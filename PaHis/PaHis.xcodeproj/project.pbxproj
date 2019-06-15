@@ -50,6 +50,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		535CCB6D22B5519300182DB9 /* InitialScene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = InitialScene;
+			sourceTree = "<group>";
+		};
 		536562C722B535950051F848 = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +78,7 @@
 		536562D222B535950051F848 /* PaHis */ = {
 			isa = PBXGroup;
 			children = (
+				535CCB6D22B5519300182DB9 /* InitialScene */,
 				536562D322B535950051F848 /* AppDelegate.swift */,
 				536562D522B535950051F848 /* ViewController.swift */,
 				536562D722B535950051F848 /* Main.storyboard */,
@@ -364,7 +372,10 @@
 				DEVELOPMENT_TEAM = 6XLK5Y2G8X;
 				INFOPLIST_FILE = PaHis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = maple.personal.project.PaHis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -381,7 +392,10 @@
 				DEVELOPMENT_TEAM = 6XLK5Y2G8X;
 				INFOPLIST_FILE = PaHis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = maple.personal.project.PaHis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
