@@ -13,13 +13,15 @@ class LoginTableViewController: UITableViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Ingresar"
         let cancelBarButtonItem = UIBarButtonItem(image: UIImage(named: "CancelIcon"), style: .plain, target: self, action: #selector(cancelButtonTapped))
-        self.navigationController?.navigationBar.tintColor  = #colorLiteral(red: 0.9411764706, green: 0.4352941176, blue: 0.1882352941, alpha: 1)
+        self.navigationController?.navigationBar.tintColor  = UIColor(rgb: 0xF5391C)
         self.navigationItem.rightBarButtonItem = cancelBarButtonItem
+        self.loginButton.backgroundColor = UIColor(rgb: 0xF5391C)
     }
     
     @objc func cancelButtonTapped() {

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -128,6 +127,7 @@
                     <navigationItem key="navigationItem" title="Ingresar" id="2ko-30-0fz"/>
                     <connections>
                         <outlet property="emailTextField" destination="m6P-IR-hev" id="cgf-NO-1hG"/>
+                        <outlet property="loginButton" destination="TRY-dC-kU3" id="Qvp-gz-thc"/>
                         <outlet property="passwordTextField" destination="CFY-ky-5nV" id="HgP-Ya-0uv"/>
                     </connections>
                 </tableViewController>
@@ -137,7 +137,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="EmailIcon" width="16" height="16"/>
-        <image name="PasswordIcon" width="16" height="16"/>
+        <image name="EmailIcon" width="32" height="32"/>
+        <image name="PasswordIcon" width="32" height="32"/>
     </resources>
 </document>
