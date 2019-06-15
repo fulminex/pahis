@@ -15,6 +15,7 @@
 		536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536562DC22B535970051F848 /* LaunchScreen.storyboard */; };
 		94C61557842208D4B3C5AC06 /* Pods_PaHis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753AB70FFA9AE883AC92BC9C /* Pods_PaHis.framework */; };
 		B3158C3322B54F290008B035 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B3158C3222B54F290008B035 /* GoogleService-Info.plist */; };
+		B3158C3522B554830008B035 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C3422B554830008B035 /* InitialViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		92871673DECF09A2D0B902B9 /* Pods-PaHis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaHis.release.xcconfig"; path = "Pods/Target Support Files/Pods-PaHis/Pods-PaHis.release.xcconfig"; sourceTree = "<group>"; };
 		9F31820B7BB556558EEBE645 /* Pods-PaHis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaHis.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PaHis/Pods-PaHis.debug.xcconfig"; sourceTree = "<group>"; };
 		B3158C3222B54F290008B035 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B3158C3422B554830008B035 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				535CCB6E22B552E400182DB9 /* Initial.storyboard */,
+				B3158C3422B554830008B035 /* InitialViewController.swift */,
 			);
 			path = InitialScene;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3158C3522B554830008B035 /* InitialViewController.swift in Sources */,
 				536562D622B535950051F848 /* ViewController.swift in Sources */,
 				536562D422B535950051F848 /* AppDelegate.swift in Sources */,
 			);

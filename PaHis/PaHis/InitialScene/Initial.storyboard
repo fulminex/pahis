@@ -13,7 +13,7 @@
         <!--Initial View Controller-->
         <scene sceneID="C2f-xF-hkD">
             <objects>
-                <viewController id="ROV-cT-oh3" customClass="InitialViewController" customModule="ChatFirebase" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ROV-cT-oh3" customClass="InitialViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jo5-Nv-XaC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,7 +34,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="BYq-gb-OL2"/>
                                 </constraints>
-                                <state key="normal" title="Ingresar">
+                                <state key="normal" title="Crear nuevo usuario">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -44,7 +44,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1G1-gr-kgY">
                                 <rect key="frame" x="15" y="779" width="384" height="30"/>
                                 <color key="backgroundColor" red="0.93415820599999999" green="0.50430279970000003" blue="0.23159649970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Crear Usuario Nuevo">
+                                <state key="normal" title="Ingresar">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
