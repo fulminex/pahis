@@ -28,17 +28,18 @@ class InitialViewController: UIViewController {
             UITabBar.appearance().tintColor = UIColor.black
             UITabBar.appearance().backgroundImage = UIImage()
             UITabBar.appearance().shadowImage = UIImage()
-            UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-            UINavigationBar.appearance().shadowImage = UIImage()
-            UINavigationBar.appearance().backgroundColor = .white
-            UINavigationBar.appearance().isTranslucent = false
+//            UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+//            UINavigationBar.appearance().shadowImage = UIImage()
+//            UINavigationBar.appearance().backgroundColor = .white
+//            UINavigationBar.appearance().isTranslucent = false
             
             let storyBoard = UIStoryboard(name: "Map", bundle:nil)
-            let initialVC = storyBoard.instantiateInitialViewController()!
-            initialVC.tabBarItem = UITabBarItem(title: "Mapa", image: nil, tag: 0)
-            initialVC.title = "Mapa"
-            initialVC.navigationItem.titleView?.isHidden = true
-            initialVC.navigationItem.title = nil
+            let mapVC = storyBoard.instantiateInitialViewController()!
+            mapVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "MapIcon")?.resizeImageWith(newSize: CGSize(width: 44, height: 44)), tag: 0)
+            mapVC.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
+            mapVC.title = ""
+            mapVC.navigationItem.titleView?.isHidden = true
+            mapVC.navigationItem.title = nil
             
 //            let filterVC = storyBoard.instantiateViewController(withIdentifier: "FilterViewController") as! FirstViewController
 //            filterVC.tabBarItem = UITabBarItem(title: "FILTROS", image: nil, tag: 1)
@@ -52,14 +53,14 @@ class InitialViewController: UIViewController {
 //            investigationVC.tabBarItem = UITabBarItem(title: "INVESTIGACIÓN", image: nil, tag: 3)
 //            investigationVC.title = "INVESTIGACIÓN"
             
-            let controllersWithoutNavigation = [initialVC]
+            let controllersWithoutNavigation = [mapVC]
 //            let controllersWithNavigation = [filterVC, searchVC, investigationVC]
             
             let tabBarController = UITabBarController()
             tabBarController.viewControllers = controllersWithoutNavigation // + controllersWithNavigation.map { UINavigationController(rootViewController: $0) }
             tabBarController.selectedIndex = 0
             tabBarController.tabBar.backgroundColor = .white
-            tabBarController.tabBar.items?.forEach({ $0.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -16) })
+            //tabBarController.tabBar.items?.forEach({ $0.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -16) })
             
 //            self.window?.rootViewController = tabBarController
 //            self.window?.makeKeyAndVisible()
