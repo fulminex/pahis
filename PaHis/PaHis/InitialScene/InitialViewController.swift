@@ -33,10 +33,10 @@ class InitialViewController: UIViewController {
             UINavigationBar.appearance().backgroundColor = .white
             UINavigationBar.appearance().isTranslucent = false
             
-            let storyBoard = UIStoryboard(name: "Main", bundle:nil)
-            let initialVC = storyBoard.instantiateViewController(withIdentifier: "InitialViewController")
-            initialVC.tabBarItem = UITabBarItem(title: "INICIO", image: nil, tag: 0)
-            initialVC.title = "INICIO"
+            let storyBoard = UIStoryboard(name: "Map", bundle:nil)
+            let initialVC = storyBoard.instantiateInitialViewController()!
+            initialVC.tabBarItem = UITabBarItem(title: "Mapa", image: nil, tag: 0)
+            initialVC.title = "Mapa"
             initialVC.navigationItem.titleView?.isHidden = true
             initialVC.navigationItem.title = nil
             

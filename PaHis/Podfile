@@ -16,5 +16,7 @@ target 'PaHis' do
     pod 'Firebase/Auth'
 
     pod 'Firebase/Core'
+    
+    pod 'GoogleMaps'
 
 end
