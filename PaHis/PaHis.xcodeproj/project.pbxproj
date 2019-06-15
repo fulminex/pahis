@@ -28,6 +28,10 @@
 		535CCBB222B5799500182DB9 /* GMUDefaultClusterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 535CCBA222B5799400182DB9 /* GMUDefaultClusterRenderer.m */; };
 		535CCBB322B5799500182DB9 /* GMUDefaultClusterIconGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 535CCBA922B5799500182DB9 /* GMUDefaultClusterIconGenerator.m */; };
 		535CCBB622B57AD200182DB9 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535CCBB522B57AD200182DB9 /* Place.swift */; };
+		535CCBB822B5858700182DB9 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 535CCBB722B5858700182DB9 /* style.json */; };
+		535CCBBB22B587CA00182DB9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535CCBBA22B587CA00182DB9 /* SearchViewController.swift */; };
+		535CCBBD22B587D800182DB9 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535CCBBC22B587D800182DB9 /* Search.storyboard */; };
+		535CCBBF22B5884100182DB9 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535CCBBE22B5884100182DB9 /* SearchTableViewCell.swift */; };
 		536562D422B535950051F848 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536562D322B535950051F848 /* AppDelegate.swift */; };
 		536562D622B535950051F848 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536562D522B535950051F848 /* ViewController.swift */; };
 		536562D922B535950051F848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536562D722B535950051F848 /* Main.storyboard */; };
@@ -84,6 +88,10 @@
 		535CCBA822B5799500182DB9 /* GMUClusterRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMUClusterRenderer.h; sourceTree = "<group>"; };
 		535CCBA922B5799500182DB9 /* GMUDefaultClusterIconGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMUDefaultClusterIconGenerator.m; sourceTree = "<group>"; };
 		535CCBB522B57AD200182DB9 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		535CCBB722B5858700182DB9 /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
+		535CCBBA22B587CA00182DB9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		535CCBBC22B587D800182DB9 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		535CCBBE22B5884100182DB9 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		536562D022B535950051F848 /* PaHis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaHis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		536562D322B535950051F848 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		536562D522B535950051F848 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +222,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		535CCBB922B587A000182DB9 /* SearchScene */ = {
+			isa = PBXGroup;
+			children = (
+				535CCBBA22B587CA00182DB9 /* SearchViewController.swift */,
+				535CCBBC22B587D800182DB9 /* Search.storyboard */,
+				535CCBBE22B5884100182DB9 /* SearchTableViewCell.swift */,
+			);
+			path = SearchScene;
+			sourceTree = "<group>";
+		};
 		536562C722B535950051F848 = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +254,7 @@
 		536562D222B535950051F848 /* PaHis */ = {
 			isa = PBXGroup;
 			children = (
+				535CCBB922B587A000182DB9 /* SearchScene */,
 				535CCBB422B57A1300182DB9 /* Models */,
 				535CCB7A22B5596C00182DB9 /* Extensions */,
 				535CCB7122B5582900182DB9 /* LoginScene */,
@@ -247,6 +266,7 @@
 				536562D722B535950051F848 /* Main.storyboard */,
 				536562DA22B535970051F848 /* Assets.xcassets */,
 				536562DC22B535970051F848 /* LaunchScreen.storyboard */,
+				535CCBB722B5858700182DB9 /* style.json */,
 				536562DF22B535970051F848 /* Info.plist */,
 				B3158C3222B54F290008B035 /* GoogleService-Info.plist */,
 			);
@@ -327,6 +347,8 @@
 				536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */,
 				B3158C3322B54F290008B035 /* GoogleService-Info.plist in Resources */,
 				535CCB7322B5583F00182DB9 /* Login.storyboard in Resources */,
+				535CCBB822B5858700182DB9 /* style.json in Resources */,
+				535CCBBD22B587D800182DB9 /* Search.storyboard in Resources */,
 				535CCB8622B5681000182DB9 /* Map.storyboard in Resources */,
 				535CCB7522B5584D00182DB9 /* CreateUser.storyboard in Resources */,
 				536562DB22B535970051F848 /* Assets.xcassets in Resources */,
@@ -415,10 +437,12 @@
 				535CCB7922B558DA00182DB9 /* CreateUserViewController.swift in Sources */,
 				535CCBAF22B5799500182DB9 /* GMUClusterManager.m in Sources */,
 				535CCB7F22B5598000182DB9 /* UIImageExtensions.swift in Sources */,
+				535CCBBF22B5884100182DB9 /* SearchTableViewCell.swift in Sources */,
 				535CCB8422B5680400182DB9 /* MapViewController.swift in Sources */,
 				B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */,
 				B3158C3522B554830008B035 /* InitialViewController.swift in Sources */,
 				536562D622B535950051F848 /* ViewController.swift in Sources */,
+				535CCBBB22B587CA00182DB9 /* SearchViewController.swift in Sources */,
 				535CCBAC22B5799500182DB9 /* GMUSimpleClusterAlgorithm.m in Sources */,
 				535CCBAB22B5799500182DB9 /* GMUWrappingDictionaryKey.m in Sources */,
 				535CCBAD22B5799500182DB9 /* GQTPointQuadTreeChild.m in Sources */,
