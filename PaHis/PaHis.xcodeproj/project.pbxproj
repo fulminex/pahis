@@ -15,6 +15,8 @@
 		535CCB7E22B5598000182DB9 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535CCB7B22B5598000182DB9 /* UIViewExtensions.swift */; };
 		535CCB7F22B5598000182DB9 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535CCB7C22B5598000182DB9 /* UIImageExtensions.swift */; };
 		535CCB8022B5598000182DB9 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535CCB7D22B5598000182DB9 /* UIViewControllerExtensions.swift */; };
+		535CCB8422B5680400182DB9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535CCB8322B5680400182DB9 /* MapViewController.swift */; };
+		535CCB8622B5681000182DB9 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535CCB8522B5681000182DB9 /* Map.storyboard */; };
 		536562D422B535950051F848 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536562D322B535950051F848 /* AppDelegate.swift */; };
 		536562D622B535950051F848 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536562D522B535950051F848 /* ViewController.swift */; };
 		536562D922B535950051F848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536562D722B535950051F848 /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 		535CCB7B22B5598000182DB9 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		535CCB7C22B5598000182DB9 /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		535CCB7D22B5598000182DB9 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		535CCB8322B5680400182DB9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		535CCB8522B5681000182DB9 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
 		536562D022B535950051F848 /* PaHis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaHis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		536562D322B535950051F848 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		536562D522B535950051F848 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +112,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		535CCB8222B567DF00182DB9 /* MapScene */ = {
+			isa = PBXGroup;
+			children = (
+				535CCB8322B5680400182DB9 /* MapViewController.swift */,
+				535CCB8522B5681000182DB9 /* Map.storyboard */,
+			);
+			path = MapScene;
+			sourceTree = "<group>";
+		};
 		536562C722B535950051F848 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +146,7 @@
 				535CCB7122B5582900182DB9 /* LoginScene */,
 				535CCB7022B5581B00182DB9 /* CreateUserScene */,
 				535CCB6D22B5519300182DB9 /* InitialScene */,
+				535CCB8222B567DF00182DB9 /* MapScene */,
 				536562D322B535950051F848 /* AppDelegate.swift */,
 				536562D522B535950051F848 /* ViewController.swift */,
 				536562D722B535950051F848 /* Main.storyboard */,
@@ -216,6 +230,7 @@
 				536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */,
 				B3158C3322B54F290008B035 /* GoogleService-Info.plist in Resources */,
 				535CCB7322B5583F00182DB9 /* Login.storyboard in Resources */,
+				535CCB8622B5681000182DB9 /* Map.storyboard in Resources */,
 				535CCB7522B5584D00182DB9 /* CreateUser.storyboard in Resources */,
 				536562DB22B535970051F848 /* Assets.xcassets in Resources */,
 				535CCB6F22B552E400182DB9 /* Initial.storyboard in Resources */,
@@ -281,6 +296,7 @@
 				535CCB7722B5589800182DB9 /* LoginViewController.swift in Sources */,
 				535CCB7922B558DA00182DB9 /* CreateUserViewController.swift in Sources */,
 				535CCB7F22B5598000182DB9 /* UIImageExtensions.swift in Sources */,
+				535CCB8422B5680400182DB9 /* MapViewController.swift in Sources */,
 				B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */,
 				B3158C3522B554830008B035 /* InitialViewController.swift in Sources */,
 				536562D622B535950051F848 /* ViewController.swift in Sources */,
