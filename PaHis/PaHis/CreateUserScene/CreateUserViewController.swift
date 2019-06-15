@@ -17,16 +17,24 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
     @IBOutlet weak var typeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var changePhotoLabel: UIButton!
+    @IBOutlet weak var createUserButton: UIButton!
+    @IBOutlet weak var genderSegmentColor: UISegmentedControl!
+    @IBOutlet weak var roleSegmentColor: UISegmentedControl!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Crear Nuevo Usuario"
         let cancelBarButtonItem = UIBarButtonItem(image: UIImage(named: "CancelIcon"), style: .plain, target: self, action: #selector(cancelButtonTapped))
-        self.navigationController?.navigationBar.tintColor  = #colorLiteral(red: 0.9411764706, green: 0.4352941176, blue: 0.1882352941, alpha: 1)
+        self.navigationController?.navigationBar.tintColor  = UIColor(rgb: 0xF5391C)
         self.navigationItem.rightBarButtonItem = cancelBarButtonItem
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2
         self.profileImageView.clipsToBounds = true
+        self.changePhotoLabel.tintColor = UIColor(rgb: 0xF5391C)
+        self.createUserButton.backgroundColor = UIColor(rgb: 0xF5391C)
+        self.genderSegmentColor.tintColor = UIColor(rgb: 0xF5391C)
+        self.roleSegmentColor.tintColor = UIColor(rgb: 0xF5391C)
     }
     
     @objc func cancelButtonTapped() {

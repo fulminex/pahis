@@ -12,7 +12,7 @@
         <!--Crear Nuevo Usuario-->
         <scene sceneID="eeU-KG-qwe">
             <objects>
-                <tableViewController storyboardIdentifier="CreateUserViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fuj-nb-zLz" customClass="CreateUserTableViewController" customModule="ChatFirebase" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CreateUserViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fuj-nb-zLz" customClass="CreateUserTableViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="knY-sH-ybk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -257,11 +257,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Crear Nuevo Usuario" id="fIu-zz-qkh"/>
                     <connections>
+                        <outlet property="changePhotoLabel" destination="fDt-W1-miR" id="iyz-2N-JOh"/>
+                        <outlet property="createUserButton" destination="6mA-BM-vvo" id="bNl-Ko-hVB"/>
                         <outlet property="emailTextField" destination="kAP-pF-q8R" id="5uI-om-Det"/>
+                        <outlet property="genderSegmentColor" destination="cF8-tt-SFw" id="fJg-Uw-BUp"/>
                         <outlet property="genderSegmentedControl" destination="cF8-tt-SFw" id="HMT-4y-yCy"/>
                         <outlet property="nameTextField" destination="FhK-Zm-f7K" id="0tR-RR-vuv"/>
                         <outlet property="passwordTextField" destination="BS1-3B-5Dl" id="rdg-XQ-oii"/>
                         <outlet property="profileImageView" destination="jNc-aG-kuU" id="abK-sN-uTr"/>
+                        <outlet property="roleSegmentColor" destination="dhg-5H-jfz" id="dhk-0o-Nxw"/>
                         <outlet property="typeSegmentedControl" destination="dhg-5H-jfz" id="Om7-FA-NhG"/>
                     </connections>
                 </tableViewController>
