@@ -12,9 +12,11 @@ import Firebase
 class InitialViewController: UIViewController {
     
     var handle: AuthStateDidChangeListenerHandle?
-
+    @IBOutlet var InitialView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        InitialView.backgroundColor = UIColor(rgb: 0xF5391C)
     }
     
     override func viewWillAppear(_ animated: Bool) {

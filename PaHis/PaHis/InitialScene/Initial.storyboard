@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ROV-cT-oh3">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,68 +15,63 @@
             <objects>
                 <viewController id="ROV-cT-oh3" customClass="InitialViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jo5-Nv-XaC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fondo" translatesAutoresizingMaskIntoConstraints="NO" id="ZaK-Wa-BrE">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UlimaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="HrV-wV-Ufz">
-                                <rect key="frame" x="87" y="74" width="240" height="130"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1G1-gr-kgY">
+                                <rect key="frame" x="58" y="641" width="100" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="bU3-fa-Jhe"/>
-                                    <constraint firstAttribute="height" constant="130" id="zcP-My-vZC"/>
+                                    <constraint firstAttribute="width" constant="100" id="ZND-eH-Jj1"/>
+                                    <constraint firstAttribute="height" constant="40" id="vUG-Bc-AP0"/>
                                 </constraints>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="ROV-cT-oh3" eventType="touchUpInside" id="S83-8Q-bpI"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="2dd-Kl-D8g">
+                                <rect key="frame" x="35" y="185" width="344" height="249.66666666666669"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbu-Fr-Bjl">
-                                <rect key="frame" x="15" y="817" width="384" height="30"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="256" y="641" width="100" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="BYq-gb-OL2"/>
+                                    <constraint firstAttribute="width" constant="100" id="SaL-Oa-cfq"/>
+                                    <constraint firstAttribute="height" constant="40" id="VfY-um-C2b"/>
                                 </constraints>
-                                <state key="normal" title="Crear nuevo usuario">
+                                <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="newAccountButtonTapped:" destination="ROV-cT-oh3" eventType="touchUpInside" id="8NL-jt-aqK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1G1-gr-kgY">
-                                <rect key="frame" x="15" y="779" width="384" height="30"/>
-                                <color key="backgroundColor" red="0.93415820599999999" green="0.50430279970000003" blue="0.23159649970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Ingresar">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginButtonTapped:" destination="ROV-cT-oh3" eventType="touchUpInside" id="S83-8Q-bpI"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="1G1-gr-kgY" firstAttribute="leading" secondItem="Ij4-tN-G2s" secondAttribute="leading" constant="15" id="9ev-HL-pU1"/>
-                            <constraint firstItem="ZaK-Wa-BrE" firstAttribute="top" secondItem="Jo5-Nv-XaC" secondAttribute="top" id="Dx1-RW-YeF"/>
-                            <constraint firstItem="Ij4-tN-G2s" firstAttribute="trailing" secondItem="ZaK-Wa-BrE" secondAttribute="trailing" id="ICt-Cr-oU5"/>
-                            <constraint firstItem="Ij4-tN-G2s" firstAttribute="trailing" secondItem="rbu-Fr-Bjl" secondAttribute="trailing" constant="15" id="LDi-xb-MMJ"/>
-                            <constraint firstItem="rbu-Fr-Bjl" firstAttribute="top" secondItem="1G1-gr-kgY" secondAttribute="bottom" constant="8" id="UHs-nG-Oru"/>
-                            <constraint firstItem="Ij4-tN-G2s" firstAttribute="trailing" secondItem="1G1-gr-kgY" secondAttribute="trailing" constant="15" id="VC2-eR-iW3"/>
-                            <constraint firstItem="HrV-wV-Ufz" firstAttribute="centerX" secondItem="Jo5-Nv-XaC" secondAttribute="centerX" id="f11-33-8uz"/>
-                            <constraint firstItem="Ij4-tN-G2s" firstAttribute="bottom" secondItem="rbu-Fr-Bjl" secondAttribute="bottom" constant="15" id="fQU-Zd-AiL"/>
-                            <constraint firstItem="HrV-wV-Ufz" firstAttribute="top" secondItem="Ij4-tN-G2s" secondAttribute="top" constant="30" id="qXk-Qd-GUT"/>
-                            <constraint firstAttribute="bottom" secondItem="ZaK-Wa-BrE" secondAttribute="bottom" id="txv-ed-ctZ"/>
-                            <constraint firstItem="ZaK-Wa-BrE" firstAttribute="leading" secondItem="Ij4-tN-G2s" secondAttribute="leading" id="ww0-jc-I4g"/>
-                            <constraint firstItem="rbu-Fr-Bjl" firstAttribute="leading" secondItem="Ij4-tN-G2s" secondAttribute="leading" constant="15" id="z4L-7T-H5Q"/>
+                            <constraint firstItem="Ij4-tN-G2s" firstAttribute="bottom" secondItem="rbu-Fr-Bjl" secondAttribute="bottom" constant="55" id="2J9-kY-APr"/>
+                            <constraint firstItem="1G1-gr-kgY" firstAttribute="leading" secondItem="Ij4-tN-G2s" secondAttribute="leading" constant="58" id="3fh-MQ-H7p"/>
+                            <constraint firstItem="2dd-Kl-D8g" firstAttribute="leading" secondItem="Ij4-tN-G2s" secondAttribute="leading" constant="35" id="EwO-qh-Plt"/>
+                            <constraint firstItem="Ij4-tN-G2s" firstAttribute="trailing" secondItem="2dd-Kl-D8g" secondAttribute="trailing" constant="35" id="Irb-Pi-jIG"/>
+                            <constraint firstItem="Ij4-tN-G2s" firstAttribute="bottom" secondItem="1G1-gr-kgY" secondAttribute="bottom" constant="55" id="MLC-Lp-S1j"/>
+                            <constraint firstItem="Ij4-tN-G2s" firstAttribute="trailing" secondItem="rbu-Fr-Bjl" secondAttribute="trailing" constant="58" id="QMi-TB-blJ"/>
+                            <constraint firstItem="2dd-Kl-D8g" firstAttribute="centerY" secondItem="Jo5-Nv-XaC" secondAttribute="centerY" constant="-58.170000000000002" id="l6l-ns-Eo6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ij4-tN-G2s"/>
                     </view>
+                    <connections>
+                        <outlet property="InitialView" destination="Jo5-Nv-XaC" id="hDt-1e-JDV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQD-an-ZPl" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133.59999999999999" y="133.5832083958021"/>
+            <point key="canvasLocation" x="131.8840579710145" y="132.88043478260872"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Fondo" width="16" height="16"/>
-        <image name="UlimaLogo" width="16" height="16"/>
+        <image name="logo" width="309" height="249.5"/>
     </resources>
 </document>
