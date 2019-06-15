@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5l7-JK-dEn">
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5l7-JK-dEn">
                                 <rect key="frame" x="344" y="734" width="58" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="58" id="Jik-uv-nk9"/>
@@ -47,6 +47,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NavigationIcon" width="32" height="32"/>
+        <image name="NavigationIcon" width="64" height="64"/>
     </resources>
 </document>
