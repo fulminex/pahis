@@ -33,17 +33,22 @@ class InitialViewController: UIViewController {
 //            UINavigationBar.appearance().backgroundColor = .white
 //            UINavigationBar.appearance().isTranslucent = false
             
+            var controllers: [UIViewController] = []
+            
             let storyBoard = UIStoryboard(name: "Map", bundle:nil)
             let mapVC = storyBoard.instantiateInitialViewController()!
             mapVC.tabBarItem = UITabBarItem(title: "Mapa", image: UIImage(named: "MapIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 0)
 //            mapVC.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
             mapVC.title = "Mapa"
-            mapVC.navigationItem.titleView?.isHidden = true
-            mapVC.navigationItem.title = nil
+//            mapVC.navigationItem.titleView?.isHidden = true
+//            mapVC.navigationItem.title = nil
+            controllers.append(mapVC)
             
             let searchSB = UIStoryboard(name: "Search", bundle:nil)
-            let searchVC = searchSB.instantiateInitialViewController()
-            searchVC?.tabBarItem = UITabBarItem(title: "Buscar" , image: UIImage(named: "SearchIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 1)
+            let searchVC = searchSB.instantiateInitialViewController()!
+            searchVC.tabBarItem = UITabBarItem(title: "Buscar" , image: UIImage(named: "SearchIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 1)
+            searchVC.title = "Buscar"
+            controllers.append(UINavigationController(rootViewController: searchVC))
 //            searchVC?.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
             
 //            let filterVC = storyBoard.instantiateViewController(withIdentifier: "FilterViewController") as! FirstViewController
@@ -58,11 +63,11 @@ class InitialViewController: UIViewController {
 //            investigationVC.tabBarItem = UITabBarItem(title: "INVESTIGACIÓN", image: nil, tag: 3)
 //            investigationVC.title = "INVESTIGACIÓN"
             
-            let controllersWithoutNavigation = [mapVC, searchVC]
-//            let controllersWithNavigation = [searchVC]
+//            let controllersWithoutNavigation = [mapVC, searchVC]
+//            let controllersWithNavigation = [mapVC, searchVC]
             
             let tabBarController = UITabBarController()
-            tabBarController.viewControllers = controllersWithoutNavigation as! [UIViewController] // + controllersWithNavigation.map { UINavigationController(rootViewController: $0 as! UIViewController) }
+            tabBarController.viewControllers = controllers //controllersWithNavigation.map { UINavigationController(rootViewController: $0 as! UIViewController) }
             tabBarController.selectedIndex = 0
             tabBarController.tabBar.backgroundColor = .white
             //tabBarController.tabBar.items?.forEach({ $0.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -16) })
@@ -71,7 +76,7 @@ class InitialViewController: UIViewController {
 //            self.window?.makeKeyAndVisible()
             
             //let ChatListVC = //ChatListCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-            self.present(UINavigationController(rootViewController: tabBarController), animated: true, completion: nil)
+            self.present(tabBarController, animated: true, completion: nil)
         }
     }
     

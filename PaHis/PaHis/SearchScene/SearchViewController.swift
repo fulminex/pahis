@@ -28,35 +28,25 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableView: UITableView!
     private let refreshControl = UIRefreshControl()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Lugares Cercanos"
-//        if #available(iOS 11.0, *) {
-//            self.navigationController?.navigationBar.prefersLargeTitles = true
-//        } else {
-//            // Fallback on earlier versions
-//        }
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        } else {
+            // Fallback on earlier versions
+        }
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80
         
         refreshControl.attributedTitle = NSAttributedString(string: "Actualizando los lugares...")
         refreshControl.addTarget(self, action: #selector(reloadPlaces), for: .valueChanged)
-//        if #available(iOS 11.0, *) {
-//            tableView.refreshControl = refreshControl
-//        } else {
+        if #available(iOS 11.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
             tableView.addSubview(refreshControl)
-//        }
+        }
         
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
