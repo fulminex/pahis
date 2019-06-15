@@ -23,6 +23,7 @@
 		94C61557842208D4B3C5AC06 /* Pods_PaHis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753AB70FFA9AE883AC92BC9C /* Pods_PaHis.framework */; };
 		B3158C3322B54F290008B035 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B3158C3222B54F290008B035 /* GoogleService-Info.plist */; };
 		B3158C3522B554830008B035 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C3422B554830008B035 /* InitialViewController.swift */; };
+		B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C3E22B55DE70008B035 /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		9F31820B7BB556558EEBE645 /* Pods-PaHis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaHis.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PaHis/Pods-PaHis.debug.xcconfig"; sourceTree = "<group>"; };
 		B3158C3222B54F290008B035 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B3158C3422B554830008B035 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		B3158C3E22B55DE70008B035 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				535CCB7C22B5598000182DB9 /* UIImageExtensions.swift */,
 				535CCB7D22B5598000182DB9 /* UIViewControllerExtensions.swift */,
 				535CCB7B22B5598000182DB9 /* UIViewExtensions.swift */,
+				B3158C3E22B55DE70008B035 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				535CCB7722B5589800182DB9 /* LoginViewController.swift in Sources */,
 				535CCB7922B558DA00182DB9 /* CreateUserViewController.swift in Sources */,
 				535CCB7F22B5598000182DB9 /* UIImageExtensions.swift in Sources */,
+				B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */,
 				B3158C3522B554830008B035 /* InitialViewController.swift in Sources */,
 				536562D622B535950051F848 /* ViewController.swift in Sources */,
 				535CCB7E22B5598000182DB9 /* UIViewExtensions.swift in Sources */,
