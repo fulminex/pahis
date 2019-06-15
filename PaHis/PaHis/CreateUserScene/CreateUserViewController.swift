@@ -14,6 +14,7 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var typeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -33,6 +34,7 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
     }
     
     @IBAction func createNewUserButtonTapped(_ sender: UIButton) {
+        view.endEditing(true)
         //Insertar funcion para crear cuenta aqui
         guard let email = emailTextField.text, email.contains("@"), email.split(separator: "@").count == 2 else {
             let alert = UIAlertController(title: "Aviso", message: "Ingresa un correo válido.", preferredStyle: .alert)
@@ -48,6 +50,21 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
         }
         
         let gender = genderSegmentedControl.selectedSegmentIndex == 0 ? "Hombre" : "Mujer"
+        
+        var userType = ""
+        
+        switch typeSegmentedControl.selectedSegmentIndex {
+        case 0:
+            userType = "Ciudadano"
+        case 1:
+            userType = "Académico"
+        case 2:
+            userType = "Profesional"
+        case 3:
+            userType = "Ad Hoc"
+        default:
+            userType = "Other"
+        }
         
         guard let password = passwordTextField.text, password.count > 6 else {
             let alert = UIAlertController(title: "Aviso", message: "Ingresa una contraseña mayor a 6 caracteres.", preferredStyle: .alert)
@@ -102,7 +119,7 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
                         return
                     }
                     let ref = Database.database().reference()
-                    ref.child("users").child(user.uid).setValue(["correo": email, "nombre": name, "genero": gender, "profileImageURL": downloadURL.absoluteString])
+                    ref.child("users").child(user.uid).setValue(["correo": email, "nombre": name, "genero": gender, "userType" : userType , "profileImageURL": downloadURL.absoluteString])
                     
                     self.navigationItem.rightBarButtonItem?.isEnabled = true
                     UIViewController.removeSpinner(spinner: spinner)
