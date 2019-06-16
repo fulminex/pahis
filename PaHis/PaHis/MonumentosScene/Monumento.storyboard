@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HKP-Xu-8bN">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController storyboardIdentifier="Monumento" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HKP-Xu-8bN" customClass="MonumentosViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mFB-zl-GlP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="rbJ-eH-gbc">
-                                <rect key="frame" x="123.5" y="166" width="73" height="236"/>
+                                <rect key="frame" x="170.5" y="330" width="73" height="236"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHY-uM-rQS">
                                         <rect key="frame" x="0.0" y="0.0" width="73" height="39"/>
@@ -75,11 +75,11 @@
             <objects>
                 <viewController storyboardIdentifier="Monumento2" title="Estilo" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Q2P-FA-2WA" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rRV-mJ-ji4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="OA3-sJ-gB1">
-                                <rect key="frame" x="59.5" y="86.5" width="201.5" height="395.5"/>
+                                <rect key="frame" x="106.5" y="250.5" width="201.5" height="395.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prehispánico" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKQ-Yl-vmO">
                                         <rect key="frame" x="0.0" y="0.0" width="201.5" height="26.5"/>
@@ -149,11 +149,11 @@
             <objects>
                 <viewController storyboardIdentifier="Autor" title="Autor" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UDH-LP-SaT" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dou-hh-14P">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="mFB-pB-DbH">
-                                <rect key="frame" x="58.5" y="111" width="203" height="346.5"/>
+                                <rect key="frame" x="105.5" y="275" width="203" height="346.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Velasco Benjamin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJq-9H-Osu">
                                         <rect key="frame" x="0.0" y="0.0" width="203" height="26.5"/>
@@ -215,26 +215,26 @@
             <objects>
                 <viewController title="Walter Weberhofer" id="6l2-JT-N7n" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="caR-mI-YSm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ufx-cS-T1x">
-                                <rect key="frame" x="0.0" y="124" width="320" height="320"/>
+                                <rect key="frame" x="0.0" y="241" width="414" height="414"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bDI-SQ-fxb">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="106.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="138"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHo-uK-ygh">
-                                                <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="casaCariquirry" translatesAutoresizingMaskIntoConstraints="NO" id="4pg-H6-i6a">
-                                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="4pg-H6-i6a" secondAttribute="height" multiplier="1:1" id="0aX-qv-0Bo"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfI-2I-sjL">
-                                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <state key="normal" title="Casa Cariquirry">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -254,16 +254,16 @@
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sK0-Et-oOX">
-                                                <rect key="frame" x="106.5" y="0.0" width="107" height="106.5"/>
+                                                <rect key="frame" x="138" y="0.0" width="138" height="138"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AtW-5b-oYf">
-                                                <rect key="frame" x="213.5" y="0.0" width="106.5" height="106.5"/>
+                                                <rect key="frame" x="276" y="0.0" width="138" height="138"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="casaFernandini" translatesAutoresizingMaskIntoConstraints="NO" id="n0a-Iu-tQF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Huf-43-jxv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <state key="normal" title="Casa Fernandini">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -285,22 +285,22 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vhi-4c-p2d">
-                                        <rect key="frame" x="0.0" y="106.5" width="320" height="107"/>
+                                        <rect key="frame" x="0.0" y="138" width="414" height="138"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OCU-dh-HiQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="106.5" height="107"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nT3-g8-Qab">
-                                                <rect key="frame" x="106.5" y="0.0" width="107" height="107"/>
+                                                <rect key="frame" x="138" y="0.0" width="138" height="138"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="casaLaneyRoss" translatesAutoresizingMaskIntoConstraints="NO" id="4DF-7w-8SQ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="4DF-7w-8SQ" secondAttribute="height" multiplier="1:1" id="TE0-TR-hhB"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Wd-aU-rG2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <state key="normal" title="Casa Laney Ross">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -320,24 +320,24 @@
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="URa-El-lf2">
-                                                <rect key="frame" x="213.5" y="0.0" width="106.5" height="107"/>
+                                                <rect key="frame" x="276" y="0.0" width="138" height="138"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="kHO-pR-Rca">
-                                        <rect key="frame" x="0.0" y="213.5" width="320" height="106.5"/>
+                                        <rect key="frame" x="0.0" y="276" width="414" height="138"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ge2-kd-FdI">
-                                                <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="casaLercari" translatesAutoresizingMaskIntoConstraints="NO" id="BkE-zr-gqp">
-                                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="BkE-zr-gqp" secondAttribute="height" multiplier="1:1" id="8pn-gx-UaB"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ygw-z5-7uL">
-                                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <state key="normal" title="Casa Lercari">
                                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -357,17 +357,17 @@
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cxb-DU-v98">
-                                                <rect key="frame" x="106.5" y="0.0" width="107" height="106.5"/>
+                                                <rect key="frame" x="138" y="0.0" width="138" height="138"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ir7-Wp-ihU">
-                                                <rect key="frame" x="213.5" y="0.0" width="106.5" height="106.5"/>
+                                                <rect key="frame" x="276" y="0.0" width="138" height="138"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cineTauro" translatesAutoresizingMaskIntoConstraints="NO" id="iRn-RD-UXE">
-                                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                                         <gestureRecognizers/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJd-J3-iRO">
-                                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="106.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <state key="normal" title="Cine Tauro">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -413,108 +413,140 @@
             <objects>
                 <viewController title="Cine Tauro" id="tn4-uD-Aad" customClass="CineTauroViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eqa-jx-Niu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEBERHOFER Walter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oqv-fp-hn2">
-                                <rect key="frame" x="20" y="37.5" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1958" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0L-oS-g4B">
-                                <rect key="frame" x="20" y="58.5" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INFORMACIÓN DEL EDIFICIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="MZi-kG-AqT">
-                                <rect key="frame" x="20" y="109.5" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPCIÓN DEL EDIFICIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Wxq-Cd-GrH">
-                                <rect key="frame" x="20" y="301" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categoría: Inmueble con valor monumental" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8QB-qX-qw5">
-                                <rect key="frame" x="20" y="142.5" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="kV4-5Y-cbi">
-                                <rect key="frame" x="20" y="163.5" width="280" height="125.5"/>
-                                <string key="text">Dirección: Ca. Washington esquina con Ca. Delgado
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pYK-xR-dNG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEBERHOFER Walter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oqv-fp-hn2">
+                                        <rect key="frame" x="20" y="20" width="374" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1958" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0L-oS-g4B">
+                                        <rect key="frame" x="20" y="41" width="374" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INFORMACIÓN DEL EDIFICIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="MZi-kG-AqT">
+                                        <rect key="frame" x="20" y="92" width="374" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPCIÓN DEL EDIFICIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Wxq-Cd-GrH">
+                                        <rect key="frame" x="20" y="331" width="374" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categoría: Inmueble con valor monumental" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8QB-qX-qw5">
+                                        <rect key="frame" x="20" y="125" width="374" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksW-KS-4oH">
+                                        <rect key="frame" x="20" y="507" width="158" height="21"/>
+                                        <string key="text">DELEGADO AD HOC
+</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jLY-iW-CVn">
+                                        <rect key="frame" x="20" y="360" width="374" height="133"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="133" id="Qiz-t8-dTn"/>
+                                        </constraints>
+                                        <string key="text">“El Tauro fue diseñado entre los años 1957-1958, y su nombre original era el de cine Washington, haciendo con esto alusión al jirón en el que está ubicado. Así mismo, fue anunciada en algún momento como la primera sala en Lima equipada con sistema TODD-AO, sin embargo esto no se concretó.”</string>
+                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textView>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="1BQ-ay-69U">
+                                        <rect key="frame" x="203" y="500" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="Gxa-SC-vEA"/>
+                                            <constraint firstAttribute="height" constant="32" id="dSx-eB-hvn"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Snh-Kr-XVf">
+                                        <rect key="frame" x="20" y="156" width="374" height="155"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <string key="text">Dirección: Ca. Washington esquina con Ca. Delgado
 Distrito: Cercado de Lima
 Ciudad: Lima
 Área del terreno: 
 Área construída:
 </string>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksW-KS-4oH">
-                                <rect key="frame" x="20" y="477" width="280" height="21"/>
-                                <string key="text">DELEGADOS AD HOC
-</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jLY-iW-CVn">
-                                <rect key="frame" x="20" y="330" width="280" height="132.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">“El Tauro fue diseñado entre los años 1957-1958, y su nombre original era el de cine Washington, haciendo con esto alusión al jirón en el que está ubicado. Así mismo, fue anunciada en algún momento como la primera sala en Lima equipada con sistema TODD-AO, sin embargo esto no se concretó.”</string>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Snh-Kr-XVf" secondAttribute="trailing" constant="20" id="0GT-Oa-qN5"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="trailing" secondItem="d0L-oS-g4B" secondAttribute="trailing" id="1P9-ia-bqi"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="trailing" secondItem="8QB-qX-qw5" secondAttribute="trailing" id="2Si-4v-L5w"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="trailing" secondItem="MZi-kG-AqT" secondAttribute="trailing" id="3Rg-da-zd8"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="leading" secondItem="pYK-xR-dNG" secondAttribute="leading" constant="20" id="3V0-L7-leS"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="leading" secondItem="jLY-iW-CVn" secondAttribute="leading" id="60P-kR-h9Y"/>
+                                    <constraint firstItem="MZi-kG-AqT" firstAttribute="top" secondItem="d0L-oS-g4B" secondAttribute="bottom" constant="30" id="7uy-hy-wdB"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="centerX" secondItem="pYK-xR-dNG" secondAttribute="centerX" id="9Qz-A5-1jG"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="leading" secondItem="ksW-KS-4oH" secondAttribute="leading" id="BkL-rt-QFF"/>
+                                    <constraint firstItem="ksW-KS-4oH" firstAttribute="top" secondItem="jLY-iW-CVn" secondAttribute="bottom" constant="14" id="CvL-wb-rt9"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="top" secondItem="pYK-xR-dNG" secondAttribute="top" constant="20" id="IFf-63-iAm"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="leading" secondItem="d0L-oS-g4B" secondAttribute="leading" id="IOg-iJ-3cp"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="trailing" secondItem="jLY-iW-CVn" secondAttribute="trailing" id="JYz-ZF-gLH"/>
+                                    <constraint firstItem="Snh-Kr-XVf" firstAttribute="top" secondItem="8QB-qX-qw5" secondAttribute="bottom" constant="10" id="LFF-WM-7Bc"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="leading" secondItem="MZi-kG-AqT" secondAttribute="leading" id="MkY-lf-dM1"/>
+                                    <constraint firstItem="8QB-qX-qw5" firstAttribute="top" secondItem="MZi-kG-AqT" secondAttribute="bottom" constant="12" id="Ofo-HG-PcN"/>
+                                    <constraint firstAttribute="bottom" secondItem="Oqv-fp-hn2" secondAttribute="bottom" constant="510" id="Tb2-VM-C5L"/>
+                                    <constraint firstItem="1BQ-ay-69U" firstAttribute="top" secondItem="jLY-iW-CVn" secondAttribute="bottom" constant="7" id="Tzh-wM-DhZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Oqv-fp-hn2" secondAttribute="trailing" constant="20" id="YFE-3o-jOA"/>
+                                    <constraint firstItem="jLY-iW-CVn" firstAttribute="top" secondItem="pYK-xR-dNG" secondAttribute="top" constant="360" id="YVi-OR-KCC"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="leading" secondItem="8QB-qX-qw5" secondAttribute="leading" id="ZfL-J4-YYh"/>
+                                    <constraint firstItem="jLY-iW-CVn" firstAttribute="top" secondItem="Wxq-Cd-GrH" secondAttribute="bottom" constant="8" id="dac-Wz-Pxs"/>
+                                    <constraint firstItem="Snh-Kr-XVf" firstAttribute="leading" secondItem="pYK-xR-dNG" secondAttribute="leading" constant="20" id="duI-Pa-INE"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="trailing" secondItem="Wxq-Cd-GrH" secondAttribute="trailing" id="fdp-7t-LuK"/>
+                                    <constraint firstItem="d0L-oS-g4B" firstAttribute="top" secondItem="Oqv-fp-hn2" secondAttribute="bottom" id="mv2-2L-BkY"/>
+                                    <constraint firstItem="1BQ-ay-69U" firstAttribute="leading" secondItem="ksW-KS-4oH" secondAttribute="trailing" constant="25" id="qhO-Of-OwT"/>
+                                    <constraint firstItem="Wxq-Cd-GrH" firstAttribute="top" secondItem="Snh-Kr-XVf" secondAttribute="bottom" constant="20" id="u7D-UL-Cxc"/>
+                                    <constraint firstItem="Oqv-fp-hn2" firstAttribute="leading" secondItem="Wxq-Cd-GrH" secondAttribute="leading" id="vn0-2C-88r"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Wxq-Cd-GrH" firstAttribute="leading" secondItem="m14-Dp-wwL" secondAttribute="leading" constant="20" id="4Uo-02-1eG"/>
-                            <constraint firstItem="jLY-iW-CVn" firstAttribute="top" secondItem="Wxq-Cd-GrH" secondAttribute="bottom" constant="8" id="71m-eN-ZOV"/>
-                            <constraint firstItem="MZi-kG-AqT" firstAttribute="top" secondItem="d0L-oS-g4B" secondAttribute="bottom" constant="30" id="9yu-J6-3GW"/>
-                            <constraint firstItem="jLY-iW-CVn" firstAttribute="leading" secondItem="m14-Dp-wwL" secondAttribute="leading" constant="20" id="AO4-CG-Bkc"/>
-                            <constraint firstItem="m14-Dp-wwL" firstAttribute="bottom" secondItem="ksW-KS-4oH" secondAttribute="bottom" constant="70" id="ASH-St-jyv"/>
-                            <constraint firstItem="d0L-oS-g4B" firstAttribute="top" secondItem="Oqv-fp-hn2" secondAttribute="bottom" id="Enn-iE-YZ6"/>
-                            <constraint firstItem="Wxq-Cd-GrH" firstAttribute="top" secondItem="kV4-5Y-cbi" secondAttribute="bottom" constant="12" id="GX1-T6-le6"/>
-                            <constraint firstItem="d0L-oS-g4B" firstAttribute="leading" secondItem="m14-Dp-wwL" secondAttribute="leading" constant="20" id="HiZ-9e-6eO"/>
-                            <constraint firstItem="m14-Dp-wwL" firstAttribute="trailing" secondItem="ksW-KS-4oH" secondAttribute="trailing" constant="20" id="TLa-UB-HNC"/>
-                            <constraint firstItem="8QB-qX-qw5" firstAttribute="leading" secondItem="m14-Dp-wwL" secondAttribute="leading" constant="20" id="VWu-eY-sxG"/>
-                            <constraint firstItem="m14-Dp-wwL" firstAttribute="trailing" secondItem="ksW-KS-4oH" secondAttribute="trailing" constant="20" id="Vbd-cI-u7f"/>
-                            <constraint firstItem="m14-Dp-wwL" firstAttribute="trailing" secondItem="8QB-qX-qw5" secondAttribute="trailing" constant="20" id="WmK-v8-wtm"/>
-                            <constraint firstItem="kV4-5Y-cbi" firstAttribute="leading" secondItem="m14-Dp-wwL" secondAttribute="leading" constant="20" id="YAv-fR-cMy"/>
-                            <constraint firstItem="8QB-qX-qw5" firstAttribute="top" secondItem="MZi-kG-AqT" secondAttribute="bottom" constant="12" id="YfZ-jE-xLz"/>
-                            <constraint firstItem="MZi-kG-AqT" firstAttribute="leading" secondItem="m14-Dp-wwL" secondAttribute="leading" constant="20" id="a9H-7g-lvZ"/>
-                            <constraint firstItem="ksW-KS-4oH" firstAttribute="leading" secondItem="m14-Dp-wwL" secondAttribute="leading" constant="20" id="b1z-Ee-S92"/>
-                            <constraint firstItem="kV4-5Y-cbi" firstAttribute="top" secondItem="8QB-qX-qw5" secondAttribute="bottom" id="cY7-hM-wdH"/>
-                            <constraint firstItem="m14-Dp-wwL" firstAttribute="trailing" secondItem="Oqv-fp-hn2" secondAttribute="trailing" constant="20" id="cwf-zb-QvS"/>
-                            <constraint firstItem="Oqv-fp-hn2" firstAttribute="top" secondItem="m14-Dp-wwL" secondAttribute="top" constant="17.5" id="eE3-eN-5pp"/>
-                            <constraint firstItem="m14-Dp-wwL" firstAttribute="trailing" secondItem="d0L-oS-g4B" secondAttribute="trailing" constant="20" id="mJa-MP-Lxs"/>
-                            <constraint firstItem="m14-Dp-wwL" firstAttribute="trailing" secondItem="Wxq-Cd-GrH" secondAttribute="trailing" constant="20" id="nEI-2e-nrU"/>
-                            <constraint firstItem="m14-Dp-wwL" firstAttribute="trailing" secondItem="jLY-iW-CVn" secondAttribute="trailing" constant="20" id="pcc-KF-aOa"/>
-                            <constraint firstItem="Oqv-fp-hn2" firstAttribute="leading" secondItem="m14-Dp-wwL" secondAttribute="leading" constant="20" id="qci-MT-cnN"/>
-                            <constraint firstItem="ksW-KS-4oH" firstAttribute="leading" secondItem="m14-Dp-wwL" secondAttribute="leading" constant="20" id="rOt-yw-ftF"/>
-                            <constraint firstItem="ksW-KS-4oH" firstAttribute="top" secondItem="jLY-iW-CVn" secondAttribute="bottom" constant="14.33" id="tvL-cx-dcR"/>
-                            <constraint firstItem="m14-Dp-wwL" firstAttribute="trailing" secondItem="MZi-kG-AqT" secondAttribute="trailing" constant="20" id="v9w-hA-fa1"/>
-                            <constraint firstItem="m14-Dp-wwL" firstAttribute="trailing" secondItem="kV4-5Y-cbi" secondAttribute="trailing" constant="20" id="wUm-ZS-jPA"/>
+                            <constraint firstItem="pYK-xR-dNG" firstAttribute="top" secondItem="eqa-jx-Niu" secondAttribute="top" id="4lr-8P-lnN"/>
+                            <constraint firstItem="pYK-xR-dNG" firstAttribute="leading" secondItem="m14-Dp-wwL" secondAttribute="leading" id="Gvl-Js-Q8p"/>
+                            <constraint firstItem="pYK-xR-dNG" firstAttribute="trailing" secondItem="m14-Dp-wwL" secondAttribute="trailing" id="X1A-v5-adN"/>
+                            <constraint firstItem="m14-Dp-wwL" firstAttribute="bottom" secondItem="pYK-xR-dNG" secondAttribute="bottom" id="sMb-BC-97p"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="m14-Dp-wwL"/>
                     </view>
                     <connections>
                         <outlet property="autorLabel" destination="Oqv-fp-hn2" id="lJS-Eh-fFd"/>
+                        <outlet property="bottomConstraint" destination="sMb-BC-97p" id="s4g-VM-B8r"/>
+                        <outlet property="delegadoLabel" destination="ksW-KS-4oH" id="NNK-sl-MSV"/>
+                        <outlet property="infoTextField" destination="Snh-Kr-XVf" id="eFO-Dz-iH0"/>
+                        <outlet property="lockIconUIImage" destination="1BQ-ay-69U" id="7tf-U7-LWq"/>
                         <outlet property="textUITextfield" destination="jLY-iW-CVn" id="EOj-Ei-54Z"/>
                         <outlet property="yearLabel" destination="d0L-oS-g4B" id="dec-DN-vkD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQC-A1-d1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3195.6521739130435" y="736.14130434782612"/>
+            <point key="canvasLocation" x="3194.202898550725" y="734.59821428571422"/>
         </scene>
     </scenes>
     <resources>
@@ -523,5 +555,6 @@ Ciudad: Lima
         <image name="casaLaneyRoss" width="340" height="231.5"/>
         <image name="casaLercari" width="319" height="235"/>
         <image name="cineTauro" width="279" height="235"/>
+        <image name="lock" width="256" height="256"/>
     </resources>
 </document>
