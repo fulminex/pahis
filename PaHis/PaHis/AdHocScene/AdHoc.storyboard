@@ -143,7 +143,7 @@
         <!--Alertas-->
         <scene sceneID="ktH-ca-t1i">
             <objects>
-                <viewController title="Alertas" id="rXa-ph-9dS" customClass="PlaceListViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlertTableViewController" title="Alertas" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rXa-ph-9dS" customClass="ListadoAlertaViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yLL-DL-ykC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,7 +155,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaceTableViewCell" rowHeight="82" id="7h2-oW-SSv" customClass="PlaceTableViewCell" customModule="PaHis" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlertaTableViewCell" rowHeight="82" id="7h2-oW-SSv" customClass="AlertaTableViewCell" customModule="PaHis" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="82"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7h2-oW-SSv" id="oSC-v2-QQa">
@@ -217,7 +217,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Lugares" id="PXQ-2G-rug"/>
                     <connections>
-                        <outlet property="tableView" destination="Uoz-ew-djJ" id="8Rt-qP-LOR"/>
+                        <outlet property="tableView" destination="Uoz-ew-djJ" id="0ZH-fL-7TK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u1l-qR-VFe" sceneMemberID="firstResponder"/>
