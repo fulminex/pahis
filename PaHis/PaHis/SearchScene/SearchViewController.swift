@@ -55,7 +55,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.estimatedRowHeight = 80
         
         let button1 = UIBarButtonItem(image: UIImage(named: "FilterIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: nil)
-        let button2 = UIBarButtonItem(image: UIImage(named: "PlusIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: nil)
+        let button2 = UIBarButtonItem(image: UIImage(named: "PlusIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(navigateToRegister))
         self.navigationItem.setRightBarButtonItems([button2,button1], animated: true)
         
         refreshControl.attributedTitle = NSAttributedString(string: "Actualizando los lugares...")
@@ -98,6 +98,12 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @objc func reloadPlaces() {
         fetchPlaces(forced: true)
+    }
+    
+    @objc func navigateToRegister() {
+        let sb = UIStoryboard(name: "Register", bundle: nil)
+        let vc = sb.instantiateInitialViewController()
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     func fetchCategories(forced: Bool) {
