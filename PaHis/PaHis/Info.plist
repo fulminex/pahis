@@ -18,12 +18,30 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+		<string>waze</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Se necesita usar tu cámara para que puedas subir una foto de perfil</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>La aplicacion requiere el uso del GPS para recomendarte lugares cercanos</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>La aplicacion requiere el uso del GPS para recomendarte lugares cercanos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Se necesita acceder a tu librería de fotos para que puedas subir una foto de perfil</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Initial</string>
+	<string>Register</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -39,28 +57,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSCameraUsageDescription</key>
-    <string>Se necesita usar tu cámara para que puedas subir una foto de perfil</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Se necesita acceder a tu librería de fotos para que puedas subir una foto de perfil</string>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>googlechromes</string>
-        <string>comgooglemaps</string>
-    </array>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>La aplicacion requiere el uso del GPS para recomendarte lugares cercanos</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>La aplicacion requiere el uso del GPS para recomendarte lugares cercanos</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>comgooglemaps</string>
-        <string>waze</string>
-    </array>
 </dict>
 </plist>

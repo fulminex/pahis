@@ -41,6 +41,8 @@
 		B3158C3322B54F290008B035 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B3158C3222B54F290008B035 /* GoogleService-Info.plist */; };
 		B3158C3522B554830008B035 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C3422B554830008B035 /* InitialViewController.swift */; };
 		B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C3E22B55DE70008B035 /* UIColor.swift */; };
+		B3158C4422B5A0780008B035 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3158C4322B5A0780008B035 /* Register.storyboard */; };
+		B3158C4822B5B9010008B035 /* RegisterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C4722B5B9010008B035 /* RegisterTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +107,8 @@
 		B3158C3222B54F290008B035 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B3158C3422B554830008B035 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		B3158C3E22B55DE70008B035 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		B3158C4322B5A0780008B035 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
+		B3158C4722B5B9010008B035 /* RegisterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +258,7 @@
 		536562D222B535950051F848 /* PaHis */ = {
 			isa = PBXGroup;
 			children = (
+				B3158C4022B5A0540008B035 /* RegisterScene */,
 				535CCBB922B587A000182DB9 /* SearchScene */,
 				535CCBB422B57A1300182DB9 /* Models */,
 				535CCB7A22B5596C00182DB9 /* Extensions */,
@@ -271,6 +276,15 @@
 				B3158C3222B54F290008B035 /* GoogleService-Info.plist */,
 			);
 			path = PaHis;
+			sourceTree = "<group>";
+		};
+		B3158C4022B5A0540008B035 /* RegisterScene */ = {
+			isa = PBXGroup;
+			children = (
+				B3158C4322B5A0780008B035 /* Register.storyboard */,
+				B3158C4722B5B9010008B035 /* RegisterTableViewController.swift */,
+			);
+			path = RegisterScene;
 			sourceTree = "<group>";
 		};
 		B4E5AD64AF0986BF6F7F9F01 /* Pods */ = {
@@ -350,6 +364,7 @@
 				535CCBB822B5858700182DB9 /* style.json in Resources */,
 				535CCBBD22B587D800182DB9 /* Search.storyboard in Resources */,
 				535CCB8622B5681000182DB9 /* Map.storyboard in Resources */,
+				B3158C4422B5A0780008B035 /* Register.storyboard in Resources */,
 				535CCB7522B5584D00182DB9 /* CreateUser.storyboard in Resources */,
 				536562DB22B535970051F848 /* Assets.xcassets in Resources */,
 				535CCB6F22B552E400182DB9 /* Initial.storyboard in Resources */,
@@ -445,6 +460,7 @@
 				535CCBBB22B587CA00182DB9 /* SearchViewController.swift in Sources */,
 				535CCBAC22B5799500182DB9 /* GMUSimpleClusterAlgorithm.m in Sources */,
 				535CCBAB22B5799500182DB9 /* GMUWrappingDictionaryKey.m in Sources */,
+				B3158C4822B5B9010008B035 /* RegisterTableViewController.swift in Sources */,
 				535CCBAD22B5799500182DB9 /* GQTPointQuadTreeChild.m in Sources */,
 				535CCB7E22B5598000182DB9 /* UIViewExtensions.swift in Sources */,
 				535CCBB222B5799500182DB9 /* GMUDefaultClusterRenderer.m in Sources */,
