@@ -289,6 +289,30 @@
             </objects>
             <point key="canvasLocation" x="2021.7391304347827" y="736.60714285714278"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="lhP-d5-92h">
+            <objects>
+                <viewController id="tn4-uD-Aad" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eqa-jx-Niu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yI2-Hy-zCs">
+                                <rect key="frame" x="20" y="44" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="m14-Dp-wwL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eQC-A1-d1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3196" y="737"/>
+        </scene>
     </scenes>
     <resources>
         <image name="casaCariquirry" width="335" height="235"/>
