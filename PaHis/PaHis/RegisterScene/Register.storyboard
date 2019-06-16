@@ -233,6 +233,9 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="titleShadowColor" red="0.0" green="0.47908455129999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="registerButtonPressed:" destination="nyO-jZ-1en" eventType="touchUpInside" id="CfX-iX-1mS"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -256,7 +259,10 @@
                         <outlet property="cameraUIImage" destination="Ikm-WY-nwn" id="O6p-Qe-4Qo"/>
                         <outlet property="categoryUILabel" destination="LUt-dz-PRs" id="RF6-g4-wlT"/>
                         <outlet property="createButton" destination="fTW-At-EF9" id="sQe-jx-Ejv"/>
+                        <outlet property="descripcionTextField" destination="34a-S2-KlJ" id="MFt-oO-qLf"/>
+                        <outlet property="direccionTextField" destination="Odi-6L-ab5" id="IMw-Pn-13z"/>
                         <outlet property="distritoUILabel" destination="HKn-4g-gCA" id="pvx-Fe-L11"/>
+                        <outlet property="observacionTextField" destination="LaA-r1-DX0" id="Vci-uy-I6T"/>
                         <outlet property="tableView" destination="cEg-lJ-gzt" id="9YZ-d1-f8e"/>
                     </connections>
                 </tableViewController>

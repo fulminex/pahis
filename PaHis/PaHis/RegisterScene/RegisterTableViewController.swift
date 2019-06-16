@@ -5,13 +5,16 @@
 //  Created by Leo on 6/15/19.
 //  Copyright © 2019 Maple. All rights reserved.
 //
-
+import Firebase
 import UIKit
 
 class RegisterTableViewController: UITableViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate  {
 
+    @IBOutlet weak var descripcionTextField: UITextField!
     @IBOutlet weak var distritoUILabel: UITextField!
     @IBOutlet weak var categoryUILabel: UITextField!
+    @IBOutlet weak var direccionTextField: UITextField!
+    @IBOutlet weak var observacionTextField: UITextField!
     @IBOutlet weak var cameraUIImage: UIImageView!
     @IBOutlet weak var createButton: UIButton!
     
@@ -105,6 +108,82 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
         }))
         alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+    }
+    
+    @IBAction func registerButtonPressed(_ sender: Any) {
+        guard descripcionTextField.text != "", let descripcion = descripcionTextField.text else {
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese una descripción válida", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        guard distritoUILabel.text != "", let distrito = distritoUILabel.text  else {
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese un distrito válida", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        guard categoryUILabel.text != "", let categoria = categoryUILabel.text  else {
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese una categoria válida", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        guard direccionTextField.text != "", let direccion = direccionTextField.text  else {
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese una dirección válida", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        guard observacionTextField.text != "", let observacion = observacionTextField.text  else {
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese una observación válida", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        let spinner = UIViewController.displaySpinner(onView: self.view)
+        let data = cameraUIImage.image!.jpegData(compressionQuality: 0.9)!
+        let registroImageRef = Storage.storage().reference().child("registroImages/\(UUID().uuidString).jpg")
+        _ = registroImageRef.putData(data, metadata: nil, completion: { (metadata, error) in
+            guard error == nil else {
+                UIViewController.removeSpinner(spinner: spinner)
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                print("Error al subir la imagen de perfil: ", error!.localizedDescription)
+                return
+            }
+            guard let metadata = metadata else {
+                UIViewController.removeSpinner(spinner: spinner)
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                print("No hay metadata")
+                return
+            }
+            guard let user = Auth.auth().currentUser else {
+                UIViewController.removeSpinner(spinner: spinner)
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                return
+            }
+            registroImageRef.downloadURL(completion: { (url, error) in
+                guard error == nil else {
+                    UIViewController.removeSpinner(spinner: spinner)
+                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+                    print("Error al obtener la url del profile")
+                    return
+                }
+                guard let downloadURL = url else {
+                    UIViewController.removeSpinner(spinner: spinner)
+                    return
+                }
+                let ref = Database.database().reference()
+                ref.child("registros").child(user.uid).child(UUID().uuidString).setValue(["photo": downloadURL.absoluteString, "descripcion": descripcion, "distrito": distrito, "categoria" : categoria , "direccion": direccion, "observaciones" : observacion, "estado" : "pendiente"])
+                UIViewController.removeSpinner(spinner: spinner)
+                let alert = UIAlertController(title: "Aviso", message: "Registro enviado satisfactoriamente", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
+                    self.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alert, animated: true)
+            })
+        })
+        
     }
     
     //Insertar Funciones extra aqui
