@@ -71,6 +71,9 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80
         
+        let logoutButtonItem = UIBarButtonItem(image: UIImage(named: "LogoutIcon")?.resizeImageWith(newSize: CGSize(width: 24, height: 24)), style: .plain, target: self, action: #selector(logout))
+        self.navigationItem.leftBarButtonItem = logoutButtonItem
+        
         let button1 = UIBarButtonItem(image: UIImage(named: "FilterIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(filterButtonTapped(_:)))
         let button2 = UIBarButtonItem(image: UIImage(named: "PlusIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(navigateToRegister))
         self.navigationItem.setRightBarButtonItems([button2,button1], animated: true)
@@ -139,6 +142,16 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         tableView.reloadData()
         print(selectedCat)
+    }
+    
+    @objc func logout() {
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+            return
+        }
+        self.dismiss(animated: true, completion: nil)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
