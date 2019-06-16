@@ -53,7 +53,7 @@ class InitialViewController: UIViewController {
                 
                 let monumentoSB = UIStoryboard(name: "Monumento", bundle:nil)
                 let monumentoVC = monumentoSB.instantiateInitialViewController()!
-                monumentoVC.tabBarItem = UITabBarItem(title: "Monumento" , image: UIImage(named: "SearchIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 3)
+                monumentoVC.tabBarItem = UITabBarItem(title: "Monumento" , image: UIImage(named: "MonumentoIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 3)
                 monumentoVC.title = "Monumento"
                 controllers.append(UINavigationController(rootViewController: monumentoVC))
                 
@@ -61,7 +61,7 @@ class InitialViewController: UIViewController {
                 if userRole == "Ad Hoc" {
                     let adhocSB = UIStoryboard(name: "AdHoc", bundle: nil)
                     let adhocVC = adhocSB.instantiateInitialViewController()!
-                    adhocVC.tabBarItem = UITabBarItem(title: "Ad Hoc" , image: UIImage(named: "SearchIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 4)
+                    adhocVC.tabBarItem = UITabBarItem(title: "Ad Hoc" , image: UIImage(named: "AdhocIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 4)
                     adhocVC.title = "Ad Hoc"
                     controllers.append(UINavigationController(rootViewController: adhocVC))
                 }
