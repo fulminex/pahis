@@ -60,6 +60,9 @@
 		B3158C4D22B5EEE00008B035 /* MonumentosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C4C22B5EEE00008B035 /* MonumentosViewController.swift */; };
 		B3158C4F22B5F13A0008B035 /* EstiloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C4E22B5F13A0008B035 /* EstiloViewController.swift */; };
 		B3158C5122B626350008B035 /* CineTauroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C5022B626350008B035 /* CineTauroViewController.swift */; };
+		B330A2F422B6736200528EC2 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B330A2F322B6736200528EC2 /* ARViewController.swift */; };
+		B330A2F622B6739500528EC2 /* arte.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B330A2F522B6739500528EC2 /* arte.scnassets */; };
+		B330A2FA22B6740600528EC2 /* AR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B330A2F922B6740600528EC2 /* AR.storyboard */; };
 		B3CEE6F422B649110024E05C /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CEE6F322B649110024E05C /* UITextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +147,9 @@
 		B3158C4C22B5EEE00008B035 /* MonumentosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonumentosViewController.swift; sourceTree = "<group>"; };
 		B3158C4E22B5F13A0008B035 /* EstiloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstiloViewController.swift; sourceTree = "<group>"; };
 		B3158C5022B626350008B035 /* CineTauroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineTauroViewController.swift; sourceTree = "<group>"; };
+		B330A2F322B6736200528EC2 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		B330A2F522B6739500528EC2 /* arte.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = arte.scnassets; sourceTree = "<group>"; };
+		B330A2F922B6740600528EC2 /* AR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AR.storyboard; sourceTree = "<group>"; };
 		B3CEE6F322B649110024E05C /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UITextField.swift; path = PaHis/AlertScene/UITextField.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -330,6 +336,7 @@
 		536562D222B535950051F848 /* PaHis */ = {
 			isa = PBXGroup;
 			children = (
+				B330A2F222B6734F00528EC2 /* ARScene */,
 				531285B122B6571F00E3AF5F /* ChatScene */,
 				5312859E22B63F5300E3AF5F /* AdHocScene */,
 				5312859922B61D5B00E3AF5F /* AlertScene */,
@@ -349,6 +356,7 @@
 				535CCBB722B5858700182DB9 /* style.json */,
 				536562DF22B535970051F848 /* Info.plist */,
 				B3158C3222B54F290008B035 /* GoogleService-Info.plist */,
+				B330A2F522B6739500528EC2 /* arte.scnassets */,
 			);
 			path = PaHis;
 			sourceTree = "<group>";
@@ -371,6 +379,15 @@
 				B3158C5022B626350008B035 /* CineTauroViewController.swift */,
 			);
 			path = MonumentosScene;
+			sourceTree = "<group>";
+		};
+		B330A2F222B6734F00528EC2 /* ARScene */ = {
+			isa = PBXGroup;
+			children = (
+				B330A2F322B6736200528EC2 /* ARViewController.swift */,
+				B330A2F922B6740600528EC2 /* AR.storyboard */,
+			);
+			path = ARScene;
 			sourceTree = "<group>";
 		};
 		B4E5AD64AF0986BF6F7F9F01 /* Pods */ = {
@@ -451,12 +468,14 @@
 				535CCB7322B5583F00182DB9 /* Login.storyboard in Resources */,
 				535CCBB822B5858700182DB9 /* style.json in Resources */,
 				5312859D22B61DCC00E3AF5F /* Alert.storyboard in Resources */,
+				B330A2FA22B6740600528EC2 /* AR.storyboard in Resources */,
 				535CCBBD22B587D800182DB9 /* Search.storyboard in Resources */,
 				535CCB8622B5681000182DB9 /* Map.storyboard in Resources */,
 				B3158C4422B5A0780008B035 /* Register.storyboard in Resources */,
 				535CCB7522B5584D00182DB9 /* CreateUser.storyboard in Resources */,
 				536562DB22B535970051F848 /* Assets.xcassets in Resources */,
 				535CCB6F22B552E400182DB9 /* Initial.storyboard in Resources */,
+				B330A2F622B6739500528EC2 /* arte.scnassets in Resources */,
 				536562D922B535950051F848 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,6 +571,7 @@
 				B3CEE6F422B649110024E05C /* UITextField.swift in Sources */,
 				535CCB8422B5680400182DB9 /* MapViewController.swift in Sources */,
 				531285B022B6457D00E3AF5F /* Alerta.swift in Sources */,
+				B330A2F422B6736200528EC2 /* ARViewController.swift in Sources */,
 				B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */,
 				B3158C3522B554830008B035 /* InitialViewController.swift in Sources */,
 				536562D622B535950051F848 /* ViewController.swift in Sources */,
@@ -722,7 +742,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XLK5Y2G8X;
 				INFOPLIST_FILE = PaHis/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -745,7 +765,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XLK5Y2G8X;
 				INFOPLIST_FILE = PaHis/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

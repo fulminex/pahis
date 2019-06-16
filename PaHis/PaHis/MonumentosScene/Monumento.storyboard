@@ -492,6 +492,17 @@ Ciudad: Lima
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AoD-UR-T0P">
+                                        <rect key="frame" x="350" y="20" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="dcZ-xV-Sqr"/>
+                                            <constraint firstAttribute="height" constant="44" id="oTM-1b-hGz"/>
+                                        </constraints>
+                                        <state key="normal" image="realiodad"/>
+                                        <connections>
+                                            <segue destination="Bxw-fl-tym" kind="show" id="Ewz-eB-Se3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Snh-Kr-XVf" secondAttribute="trailing" constant="20" id="0GT-Oa-qN5"/>
@@ -504,6 +515,7 @@ Ciudad: Lima
                                     <constraint firstItem="Oqv-fp-hn2" firstAttribute="centerX" secondItem="pYK-xR-dNG" secondAttribute="centerX" id="9Qz-A5-1jG"/>
                                     <constraint firstItem="Oqv-fp-hn2" firstAttribute="leading" secondItem="ksW-KS-4oH" secondAttribute="leading" id="BkL-rt-QFF"/>
                                     <constraint firstItem="ksW-KS-4oH" firstAttribute="top" secondItem="jLY-iW-CVn" secondAttribute="bottom" constant="14" id="CvL-wb-rt9"/>
+                                    <constraint firstItem="AoD-UR-T0P" firstAttribute="top" secondItem="pYK-xR-dNG" secondAttribute="top" constant="20" id="G9H-BL-0am"/>
                                     <constraint firstItem="Oqv-fp-hn2" firstAttribute="top" secondItem="pYK-xR-dNG" secondAttribute="top" constant="20" id="IFf-63-iAm"/>
                                     <constraint firstItem="Oqv-fp-hn2" firstAttribute="leading" secondItem="d0L-oS-g4B" secondAttribute="leading" id="IOg-iJ-3cp"/>
                                     <constraint firstItem="Oqv-fp-hn2" firstAttribute="trailing" secondItem="jLY-iW-CVn" secondAttribute="trailing" id="JYz-ZF-gLH"/>
@@ -515,6 +527,7 @@ Ciudad: Lima
                                     <constraint firstAttribute="trailing" secondItem="Oqv-fp-hn2" secondAttribute="trailing" constant="20" id="YFE-3o-jOA"/>
                                     <constraint firstItem="jLY-iW-CVn" firstAttribute="top" secondItem="pYK-xR-dNG" secondAttribute="top" constant="360" id="YVi-OR-KCC"/>
                                     <constraint firstItem="Oqv-fp-hn2" firstAttribute="leading" secondItem="8QB-qX-qw5" secondAttribute="leading" id="ZfL-J4-YYh"/>
+                                    <constraint firstAttribute="trailing" secondItem="AoD-UR-T0P" secondAttribute="trailing" constant="20" id="ZuM-kE-xwC"/>
                                     <constraint firstItem="jLY-iW-CVn" firstAttribute="top" secondItem="Wxq-Cd-GrH" secondAttribute="bottom" constant="8" id="dac-Wz-Pxs"/>
                                     <constraint firstItem="Snh-Kr-XVf" firstAttribute="leading" secondItem="pYK-xR-dNG" secondAttribute="leading" constant="20" id="duI-Pa-INE"/>
                                     <constraint firstItem="Oqv-fp-hn2" firstAttribute="trailing" secondItem="Wxq-Cd-GrH" secondAttribute="trailing" id="fdp-7t-LuK"/>
@@ -548,6 +561,35 @@ Ciudad: Lima
             </objects>
             <point key="canvasLocation" x="3194.202898550725" y="734.59821428571422"/>
         </scene>
+        <!--Modelo AR-->
+        <scene sceneID="AhV-5G-2td">
+            <objects>
+                <viewController title="Modelo AR" id="Bxw-fl-tym" customClass="ARViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Hh-og-nAO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYy-uk-h46">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                            </arscnView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="aYy-uk-h46" firstAttribute="top" secondItem="2Hh-og-nAO" secondAttribute="top" id="1iX-a7-kEr"/>
+                            <constraint firstItem="aYy-uk-h46" firstAttribute="bottom" secondItem="MN3-mO-UvR" secondAttribute="bottom" id="5yA-er-oNO"/>
+                            <constraint firstItem="aYy-uk-h46" firstAttribute="leading" secondItem="MN3-mO-UvR" secondAttribute="leading" id="Gmp-dq-Edc"/>
+                            <constraint firstItem="aYy-uk-h46" firstAttribute="trailing" secondItem="MN3-mO-UvR" secondAttribute="trailing" id="t9t-T8-ePL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MN3-mO-UvR"/>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="aYy-uk-h46" id="wvH-8w-yJp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e7d-ts-2uu" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4071" y="735"/>
+        </scene>
     </scenes>
     <resources>
         <image name="casaCariquirry" width="335" height="235"/>
@@ -556,5 +598,6 @@ Ciudad: Lima
         <image name="casaLercari" width="319" height="235"/>
         <image name="cineTauro" width="279" height="235"/>
         <image name="lock" width="256" height="256"/>
+        <image name="realiodad" width="256" height="256"/>
     </resources>
 </document>
