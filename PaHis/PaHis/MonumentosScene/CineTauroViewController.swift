@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CineTauroViewController: UIViewController {
     
@@ -14,13 +15,29 @@ class CineTauroViewController: UIViewController {
     @IBOutlet weak var autorLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     
+    var userRole: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         autorLabel.textColor = UIColor(rgb: 0xF5391C)
         yearLabel.textColor = UIColor(rgb: 0xF5391C)
-//        textUITextfield.isScrollEnabled = true
-//        resize(textView: textUITextfield)
-        // Do any additional setup after loading the view.
+        validateUser()
+    }
+    
+    func validateUser() {
+        guard let currentuser = Auth.auth().currentUser else {
+            return
+        }
+        
+        let ref = Database.database().reference()
+        let usersRef = ref.child("users")
+        let userRef = usersRef.child(currentuser.uid)
+        userRef.observeSingleEvent(of: .value) { (snapshot) in
+            guard let user = snapshot.value as? [String: AnyObject] else {
+                return
+            }
+            self.userRole = user["userType"] as! String
+        }
     }
     
     /*

@@ -470,7 +470,7 @@ Ciudad: Lima
                                 <rect key="frame" x="20" y="330" width="280" height="132.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">“El Tauro fue diseñado entre los años 1957-1958, y su nombre original era el de cine Washington, haciendo con esto alusión al jirón en el que está ubicado. Así mismo, fue anunciada en algún momento como la primera sala en Lima equipada con sistema TODD-AO, sin embargo esto no se concretó.”</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
