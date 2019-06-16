@@ -58,6 +58,7 @@
 		B3158C4D22B5EEE00008B035 /* MonumentosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C4C22B5EEE00008B035 /* MonumentosViewController.swift */; };
 		B3158C4F22B5F13A0008B035 /* EstiloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C4E22B5F13A0008B035 /* EstiloViewController.swift */; };
 		B3158C5122B626350008B035 /* CineTauroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C5022B626350008B035 /* CineTauroViewController.swift */; };
+		B3CEE6F422B649110024E05C /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CEE6F322B649110024E05C /* UITextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +140,7 @@
 		B3158C4C22B5EEE00008B035 /* MonumentosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonumentosViewController.swift; sourceTree = "<group>"; };
 		B3158C4E22B5F13A0008B035 /* EstiloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstiloViewController.swift; sourceTree = "<group>"; };
 		B3158C5022B626350008B035 /* CineTauroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineTauroViewController.swift; sourceTree = "<group>"; };
+		B3CEE6F322B649110024E05C /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UITextField.swift; path = PaHis/AlertScene/UITextField.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 				535CCB7D22B5598000182DB9 /* UIViewControllerExtensions.swift */,
 				535CCB7B22B5598000182DB9 /* UIViewExtensions.swift */,
 				B3158C3E22B55DE70008B035 /* UIColor.swift */,
+				B3CEE6F322B649110024E05C /* UITextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				531285AC22B644D800E3AF5F /* AlertaTableViewCell.swift in Sources */,
 				531285A822B643FE00E3AF5F /* ListadoAlertaViewController.swift in Sources */,
 				535CCBBF22B5884100182DB9 /* SearchTableViewCell.swift in Sources */,
+				B3CEE6F422B649110024E05C /* UITextField.swift in Sources */,
 				535CCB8422B5680400182DB9 /* MapViewController.swift in Sources */,
 				531285B022B6457D00E3AF5F /* Alerta.swift in Sources */,
 				B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */,
