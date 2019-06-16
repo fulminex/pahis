@@ -348,6 +348,21 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var building : Building!
+        if  (resultSearchController.isActive) {
+            building = filteredBuildings[indexPath.row]
+        } else {
+            building = displayedBuildings[indexPath.row]
+        }
+        if building.desc == "CINE TAURO" {
+            let sb = UIStoryboard(name: "Monumento", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "CineTauro")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PlaceTableViewCell.identifier, for: indexPath) as! PlaceTableViewCell
         if (resultSearchController.isActive) {

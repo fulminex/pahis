@@ -411,7 +411,7 @@
         <!--Cine Tauro-->
         <scene sceneID="lhP-d5-92h">
             <objects>
-                <viewController title="Cine Tauro" id="tn4-uD-Aad" customClass="CineTauroViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CineTauro" title="Cine Tauro" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tn4-uD-Aad" customClass="CineTauroViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eqa-jx-Niu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
