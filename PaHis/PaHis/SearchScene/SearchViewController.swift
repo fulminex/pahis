@@ -6,6 +6,7 @@
 //  Copyright © 2019 Maple. All rights reserved.
 //
 
+import Firebase
 import UIKit
 import GoogleMaps
 
@@ -18,6 +19,15 @@ struct DisplayedPlace {
 }
 
 class PlaceListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var ref: DatabaseReference!
+    var categoriesRef: DatabaseReference!
+    var categoriesHandle: DatabaseHandle!
+    var inmueblesRef: DatabaseReference!
+    var inmueblesRefHandle: DatabaseHandle!
+    
+    var categories: [Category] = []
+    var displayedBuildings: [Building] = []
     
     var places: [Place] = []
     var displayedPlaces: [DisplayedPlace] = []
@@ -48,6 +58,10 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
             tableView.addSubview(refreshControl)
         }
         
+        ref = Database.database().reference()
+        categoriesRef = ref.child("categorias")
+        inmueblesRef = ref.child("inmueblesLima")
+        
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
@@ -55,6 +69,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,6 +79,91 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @objc func reloadPlaces() {
         fetchPlaces(forced: true)
+    }
+    
+    func fetchCategories(forced: Bool) {
+        if forced {
+            categoriesRef.observeSingleEvent(of: .value) { (snapshot) in
+                if let array = snapshot.value as? [[String: Any]] {
+                    for aValue in array {
+                        let name = aValue["NOMBRE"] as? String ?? "-"
+                        let codCatString = aValue["codCategoria"] as? String ?? "-"
+                        let category = Category(name: name, codCategory: codCatString)
+                        self.categories.append(category)
+                    }
+                    self.inmueblesRef.observeSingleEvent(of: .value, with: { (snapshot2) in
+                        if let array = snapshot2.value as? [[String: Any]] {
+                            for aValue in array {
+                                let codInm = aValue["codInmueble"] as? String ?? "-"
+                                print(codInm)
+                                let desc = aValue["descripcion"] as? String ?? "-"
+                                let codDist = aValue["codDistrito"] as? String ?? "-"
+                                let obser = aValue["observacion"] as? String ?? "-"
+                                let codCat = aValue["codCategoria"] as? String ?? "-"
+                                var category: Category?
+                                self.categories.forEach({
+                                    if $0.codCategory == codCat {
+                                        category = $0
+                                    }
+                                })
+                                
+                                let x = aValue["X"] as? String ?? "-"
+                                let y = aValue["Y"] as? String ?? "-"
+                                let zona = aValue["zona"] as? String ?? "-"
+                                let latitud = aValue["LATITUD"] as? String
+                                let longitud = aValue["LONGITUD"] as? String
+                                let addr = aValue["direccion"] as? String ?? "-"
+                                let fachada = aValue["FACHADA"] as? String ?? "-"
+                                let tipoNorm = aValue["tipoDeNorma"] as? String ?? "-"
+                                let numNorma = aValue["numDeNorma"] as? String ?? "-"
+                                let archiv = aValue["archivoDeNorma"] as? String ?? "-"
+                                
+                                let distancia: Double?
+                                
+                                if latitud != nil && longitud != nil {
+                                    print(latitud)
+                                    print(longitud)
+                                    let lat = Double(latitud!)!
+                                    let lon = Double(longitud!)!
+                                    let location = CLLocation(latitude: lat, longitude: lon)
+                                    distancia = round(100*((location.distance(from: self.currentLocation))/1000.0))/100
+                                } else {
+                                    distancia = nil
+                                }
+                                
+                                let build = Building(
+                                    codBuild: codInm,
+                                    desc: desc,
+                                    codDist: codDist,
+                                    obser: obser,
+                                    category: category!,
+                                    x: x,
+                                    y: y,
+                                    zone: zona,
+                                    latitudeRaw: latitud,
+                                    longitudeRaw: longitud,
+                                    address: addr,
+                                    fachada: fachada,
+                                    tipNorma: tipoNorm,
+                                    numNorma: numNorma,
+                                    archiNorma: archiv,
+                                    distancia: distancia
+                                )
+                                if !self.displayedBuildings.contains(where: { $0.codBuild == codInm }) {
+                                    self.displayedBuildings.append(build)
+                                }
+                            }
+                            self.displayedBuildings.sort(by: { (p1, p2) -> Bool in
+                                return p1.distancia ?? Double(Int.max) < p2.distancia ?? Double(Int.max)
+                            })
+                            self.forced = false
+                            self.tableView.reloadData()
+                        }
+                    })
+                }
+            }
+        }
+        
     }
     
     func fetchPlaces(forced: Bool) {
@@ -120,12 +220,12 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayedPlaces.count
+        return displayedBuildings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PlaceTableViewCell.identifier, for: indexPath) as! PlaceTableViewCell
-        cell.place = displayedPlaces[indexPath.row]
+        cell.place = displayedBuildings[indexPath.row]
         return cell
     }
     
@@ -137,7 +237,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.present(alert, animated: true)
                 return
             }
-            guard let latitude = self.displayedPlaces[index.row].latitud, let lat = Double(latitude), let longitude = self.displayedPlaces[index.row].longitud, let lon = Double(longitude) else {
+            guard let latitude = self.displayedBuildings[index.row].latitudeRaw, let lat = Double(latitude), let longitude = self.displayedBuildings[index.row].longitudeRaw, let lon = Double(longitude) else {
                 let alert = UIAlertController(title: "Aviso", message: "El lugar seleccionado no cuenta con ubicación disponible, intente con otro lugar.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
@@ -152,7 +252,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.present(alert, animated: true)
                 return
             }
-            guard let latitude = self.displayedPlaces[index.row].latitud, let lat = Double(latitude), let longitude = self.displayedPlaces[index.row].longitud, let lon = Double(longitude) else {
+            guard let latitude = self.displayedBuildings[index.row].latitudeRaw, let lat = Double(latitude), let longitude = self.displayedBuildings[index.row].longitudeRaw, let lon = Double(longitude) else {
                 let alert = UIAlertController(title: "Aviso", message: "El lugar seleccionado no cuenta con ubicación disponible, intente con otro lugar.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
@@ -173,7 +273,8 @@ extension PlaceListViewController: CLLocationManagerDelegate {
         let location = locations.last!
         print("Location: \(location)")
         currentLocation = location
-        fetchPlaces(forced: forced)
+        fetchCategories(forced: forced)
+        //fetchPlaces(forced: forced)
         tableView.reloadData()
     }
     

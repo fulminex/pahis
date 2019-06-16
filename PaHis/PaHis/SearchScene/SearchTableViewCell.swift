@@ -16,11 +16,15 @@ class PlaceTableViewCell: UITableViewCell {
     
     static let identifier = "PlaceTableViewCell"
     
-    var place: DisplayedPlace! {
+    var place: Building! {
         didSet {
-            descriptionLabel.text = place.name + "\nLatitud: \(place.latitud ?? "-")" + "\nLongitud: \(place.longitud ?? "-")" + "\nDistancia: \(place.distance == nil ? "-" : "\(place.distance ?? 0) kilometros")"
-            photoImage.kf.indicatorType = .activity
-            photoImage.kf.setImage(with: place.imageUrl)
+            descriptionLabel.text = place.desc + "\nCategoría: \(place.category.name)" + "\n\(place.distancia == nil ? "-" : "A \(place.distancia ?? 0) kilómetros")"
+                
+                //place.name + "\nLatitud: \(place.latitud ?? "-")" + "\nLongitud: \(place.longitud ?? "-")" + "\nDistancia: \(place.distance == nil ? "-" : "\(place.distance ?? 0) kilometros")"
+            
+            photoImage.image = UIImage(named: "NoImageIcon")
+//            photoImage.kf.indicatorType = .activity
+//            photoImage.kf.setImage(with: place.imageUrl)
         }
     }
 }
