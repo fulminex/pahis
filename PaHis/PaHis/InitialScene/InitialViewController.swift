@@ -28,6 +28,7 @@ class InitialViewController: UIViewController {
             UITabBar.appearance().tintColor = UIColor.black
             UITabBar.appearance().backgroundImage = UIImage()
             UITabBar.appearance().shadowImage = UIImage()
+            UINavigationBar.appearance().tintColor = UIColor(rgb: 0xF5391C)
 //            UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
 //            UINavigationBar.appearance().shadowImage = UIImage()
 //            UINavigationBar.appearance().backgroundColor = .white
@@ -49,6 +50,15 @@ class InitialViewController: UIViewController {
             searchVC.tabBarItem = UITabBarItem(title: "Buscar" , image: UIImage(named: "SearchIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 1)
             searchVC.title = "Buscar"
             controllers.append(UINavigationController(rootViewController: searchVC))
+            
+            //
+            
+            let monumentoSB = UIStoryboard(name: "Monumento", bundle:nil)
+            let monumentoVC = monumentoSB.instantiateInitialViewController()!
+            monumentoVC.tabBarItem = UITabBarItem(title: "Monumento" , image: UIImage(named: "SearchIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 1)
+            monumentoVC.title = "Monumento"
+            controllers.append(UINavigationController(rootViewController: monumentoVC))
+            
 //            searchVC?.tabBarItem.imageInsets = UIEdgeInsets(top: 9, left: 0, bottom: -9, right: 0)
             
 //            let filterVC = storyBoard.instantiateViewController(withIdentifier: "FilterViewController") as! FirstViewController

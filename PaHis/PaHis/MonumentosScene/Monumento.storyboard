@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HKP-Xu-8bN">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Monumentos View Controller-->
+        <scene sceneID="qIj-89-cUP">
+            <objects>
+                <viewController storyboardIdentifier="Monumento" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HKP-Xu-8bN" customClass="MonumentosViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mFB-zl-GlP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="rbJ-eH-gbc">
+                                <rect key="frame" x="170.5" y="330" width="73" height="236"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHY-uM-rQS">
+                                        <rect key="frame" x="0.0" y="0.0" width="73" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Estilo"/>
+                                        <connections>
+                                            <segue destination="Q2P-FA-2WA" kind="show" id="Cfm-Yx-JOG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRc-kZ-yu3">
+                                        <rect key="frame" x="0.0" y="74" width="73" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Autor"/>
+                                        <connections>
+                                            <segue destination="UDH-LP-SaT" kind="show" id="Ied-BY-fxw"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Periodo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mh0-st-dKl">
+                                        <rect key="frame" x="0.0" y="148" width="73" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uso" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwB-ze-cbj">
+                                        <rect key="frame" x="0.0" y="209.5" width="73" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rbJ-eH-gbc" firstAttribute="centerX" secondItem="mFB-zl-GlP" secondAttribute="centerX" id="IeR-7M-3nS"/>
+                            <constraint firstItem="rbJ-eH-gbc" firstAttribute="centerY" secondItem="mFB-zl-GlP" secondAttribute="centerY" id="oS0-Kw-Tg7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="r5M-d2-2dG"/>
+                    </view>
+                    <connections>
+                        <outlet property="autorButton" destination="rRc-kZ-yu3" id="hB1-NB-2wv"/>
+                        <outlet property="estiloButton" destination="HHY-uM-rQS" id="nqi-eL-eFy"/>
+                        <outlet property="periodoLabel" destination="mh0-st-dKl" id="O0f-dU-vjb"/>
+                        <outlet property="usoLabel" destination="jwB-ze-cbj" id="Qfv-lF-Spq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2zZ-Xp-vdI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="112" y="423"/>
+        </scene>
+        <!--Estilo-->
+        <scene sceneID="UH6-1c-mCQ">
+            <objects>
+                <viewController storyboardIdentifier="Monumento2" title="Estilo" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Q2P-FA-2WA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rRV-mJ-ji4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="OA3-sJ-gB1">
+                                <rect key="frame" x="106.5" y="250.5" width="201.5" height="395.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prehispánico" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKQ-Yl-vmO">
+                                        <rect key="frame" x="0.0" y="0.0" width="201.5" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Colonial" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uV0-xJ-Vgx">
+                                        <rect key="frame" x="0.0" y="61.5" width="201.5" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Republicano" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6d-9Z-duY">
+                                        <rect key="frame" x="0.0" y="123" width="201.5" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g61-Us-fUp">
+                                        <rect key="frame" x="0.0" y="184.5" width="201.5" height="26.5"/>
+                                        <string key="text">Neo colonial
+</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neo Peruano" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fc8-4W-j8D">
+                                        <rect key="frame" x="0.0" y="246" width="201.5" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTo-Kq-txL">
+                                        <rect key="frame" x="0.0" y="307.5" width="201.5" height="26.5"/>
+                                        <string key="text">Movimiento moderno
+</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJZ-eL-HGM">
+                                        <rect key="frame" x="0.0" y="369" width="201.5" height="26.5"/>
+                                        <string key="text">Entorno monumental
+</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OA3-sJ-gB1" firstAttribute="centerY" secondItem="rRV-mJ-ji4" secondAttribute="centerY" id="UAT-gM-duG"/>
+                            <constraint firstItem="OA3-sJ-gB1" firstAttribute="centerX" secondItem="rRV-mJ-ji4" secondAttribute="centerX" id="sfS-qu-cnf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yPw-6w-xKd"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h9m-GU-pp6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1016" y="78"/>
+        </scene>
+        <!--Autor-->
+        <scene sceneID="T19-UT-1p9">
+            <objects>
+                <viewController storyboardIdentifier="Autor" title="Autor" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UDH-LP-SaT" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dou-hh-14P">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="mFB-pB-DbH">
+                                <rect key="frame" x="105.5" y="275" width="203" height="346.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Velasco Benjamin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJq-9H-Osu">
+                                        <rect key="frame" x="0.0" y="0.0" width="203" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venegas Ramón" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Is2-jC-WrO">
+                                        <rect key="frame" x="0.0" y="61.5" width="203" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Villarán Freire Manuel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6L-Nx-Pjx">
+                                        <rect key="frame" x="0.0" y="123" width="203" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wakeham Roberto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgX-Fj-eA3">
+                                        <rect key="frame" x="0.0" y="184.5" width="203" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajj-R2-l0s">
+                                        <rect key="frame" x="0.0" y="246" width="203" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Weberhofer Walter">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="6l2-JT-N7n" kind="show" id="nh1-nv-Lkn"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Williams Carlos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqP-G2-m3L">
+                                        <rect key="frame" x="0.0" y="320" width="203" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mFB-pB-DbH" firstAttribute="centerY" secondItem="Dou-hh-14P" secondAttribute="centerY" id="EUb-jd-wgD"/>
+                            <constraint firstItem="mFB-pB-DbH" firstAttribute="centerX" secondItem="Dou-hh-14P" secondAttribute="centerX" id="u3w-dg-Coy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zdW-QZ-1GB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zjF-zF-eN1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1016" y="737"/>
+        </scene>
+        <!--Walter Weberhofer-->
+        <scene sceneID="kUr-Tf-YOX">
+            <objects>
+                <viewController title="Walter Weberhofer" id="6l2-JT-N7n" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="caR-mI-YSm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ufx-cS-T1x">
+                                <rect key="frame" x="0.0" y="241" width="414" height="414"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bDI-SQ-fxb">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="138"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="casaCariquirry" translatesAutoresizingMaskIntoConstraints="NO" id="4pg-H6-i6a">
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="4pg-H6-i6a" secondAttribute="height" multiplier="1:1" id="0aX-qv-0Bo"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sK0-Et-oOX">
+                                                <rect key="frame" x="138" y="0.0" width="138" height="138"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="casaFernandini" translatesAutoresizingMaskIntoConstraints="NO" id="n0a-Iu-tQF">
+                                                <rect key="frame" x="276" y="0.0" width="138" height="138"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vhi-4c-p2d">
+                                        <rect key="frame" x="0.0" y="138" width="414" height="138"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4DF-7w-8SQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="4DF-7w-8SQ" secondAttribute="height" multiplier="1:1" id="TE0-TR-hhB"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="casaLaneyRoss" translatesAutoresizingMaskIntoConstraints="NO" id="OCU-dh-HiQ">
+                                                <rect key="frame" x="138" y="0.0" width="138" height="138"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="URa-El-lf2">
+                                                <rect key="frame" x="276" y="0.0" width="138" height="138"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="kHO-pR-Rca">
+                                        <rect key="frame" x="0.0" y="276" width="414" height="138"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="casaLaneyRoss" translatesAutoresizingMaskIntoConstraints="NO" id="BkE-zr-gqp">
+                                                <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="BkE-zr-gqp" secondAttribute="height" multiplier="1:1" id="8pn-gx-UaB"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cxb-DU-v98">
+                                                <rect key="frame" x="138" y="0.0" width="138" height="138"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cineTauro" translatesAutoresizingMaskIntoConstraints="NO" id="iRn-RD-UXE">
+                                                <rect key="frame" x="276" y="0.0" width="138" height="138"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ufx-cS-T1x" firstAttribute="centerY" secondItem="caR-mI-YSm" secondAttribute="centerY" id="2R5-1O-rAe"/>
+                            <constraint firstItem="ufx-cS-T1x" firstAttribute="centerX" secondItem="caR-mI-YSm" secondAttribute="centerX" id="JuE-bv-g6M"/>
+                            <constraint firstItem="ufx-cS-T1x" firstAttribute="leading" secondItem="x47-9v-fEK" secondAttribute="leading" id="aQq-qA-TB5"/>
+                            <constraint firstAttribute="trailing" secondItem="ufx-cS-T1x" secondAttribute="trailing" id="fWC-YS-m97"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="x47-9v-fEK"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r2A-ZJ-gW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2021.7391304347827" y="736.60714285714278"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="casaCariquirry" width="335" height="235"/>
+        <image name="casaFernandini" width="312.5" height="235"/>
+        <image name="casaLaneyRoss" width="340" height="231.5"/>
+        <image name="cineTauro" width="279" height="235"/>
+    </resources>
+</document>

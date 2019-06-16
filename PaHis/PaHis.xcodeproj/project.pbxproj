@@ -44,6 +44,9 @@
 		B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C3E22B55DE70008B035 /* UIColor.swift */; };
 		B3158C4422B5A0780008B035 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3158C4322B5A0780008B035 /* Register.storyboard */; };
 		B3158C4822B5B9010008B035 /* RegisterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C4722B5B9010008B035 /* RegisterTableViewController.swift */; };
+		B3158C4B22B5EDD90008B035 /* Monumento.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3158C4A22B5EDD90008B035 /* Monumento.storyboard */; };
+		B3158C4D22B5EEE00008B035 /* MonumentosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C4C22B5EEE00008B035 /* MonumentosViewController.swift */; };
+		B3158C4F22B5F13A0008B035 /* EstiloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C4E22B5F13A0008B035 /* EstiloViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +114,9 @@
 		B3158C3E22B55DE70008B035 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B3158C4322B5A0780008B035 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		B3158C4722B5B9010008B035 /* RegisterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTableViewController.swift; sourceTree = "<group>"; };
+		B3158C4A22B5EDD90008B035 /* Monumento.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Monumento.storyboard; sourceTree = "<group>"; };
+		B3158C4C22B5EEE00008B035 /* MonumentosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonumentosViewController.swift; sourceTree = "<group>"; };
+		B3158C4E22B5F13A0008B035 /* EstiloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstiloViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,7 @@
 			children = (
 				535CCB6E22B552E400182DB9 /* Initial.storyboard */,
 				B3158C3422B554830008B035 /* InitialViewController.swift */,
+				535CCB8222B567DF00182DB9 /* MapScene */,
 			);
 			path = InitialScene;
 			sourceTree = "<group>";
@@ -261,6 +268,7 @@
 		536562D222B535950051F848 /* PaHis */ = {
 			isa = PBXGroup;
 			children = (
+				B3158C4922B5ED760008B035 /* MonumentosScene */,
 				B3158C4022B5A0540008B035 /* RegisterScene */,
 				535CCBB922B587A000182DB9 /* SearchScene */,
 				535CCBB422B57A1300182DB9 /* Models */,
@@ -268,7 +276,6 @@
 				535CCB7122B5582900182DB9 /* LoginScene */,
 				535CCB7022B5581B00182DB9 /* CreateUserScene */,
 				535CCB6D22B5519300182DB9 /* InitialScene */,
-				535CCB8222B567DF00182DB9 /* MapScene */,
 				536562D322B535950051F848 /* AppDelegate.swift */,
 				536562D522B535950051F848 /* ViewController.swift */,
 				536562D722B535950051F848 /* Main.storyboard */,
@@ -288,6 +295,16 @@
 				B3158C4722B5B9010008B035 /* RegisterTableViewController.swift */,
 			);
 			path = RegisterScene;
+			sourceTree = "<group>";
+		};
+		B3158C4922B5ED760008B035 /* MonumentosScene */ = {
+			isa = PBXGroup;
+			children = (
+				B3158C4A22B5EDD90008B035 /* Monumento.storyboard */,
+				B3158C4C22B5EEE00008B035 /* MonumentosViewController.swift */,
+				B3158C4E22B5F13A0008B035 /* EstiloViewController.swift */,
+			);
+			path = MonumentosScene;
 			sourceTree = "<group>";
 		};
 		B4E5AD64AF0986BF6F7F9F01 /* Pods */ = {
@@ -362,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */,
+				B3158C4B22B5EDD90008B035 /* Monumento.storyboard in Resources */,
 				B3158C3322B54F290008B035 /* GoogleService-Info.plist in Resources */,
 				535CCB7322B5583F00182DB9 /* Login.storyboard in Resources */,
 				535CCBB822B5858700182DB9 /* style.json in Resources */,
@@ -454,6 +472,7 @@
 				535CCB7722B5589800182DB9 /* LoginViewController.swift in Sources */,
 				535CCB7922B558DA00182DB9 /* CreateUserViewController.swift in Sources */,
 				535CCBAF22B5799500182DB9 /* GMUClusterManager.m in Sources */,
+				B3158C4F22B5F13A0008B035 /* EstiloViewController.swift in Sources */,
 				535CCBC122B5A09500182DB9 /* Building.swift in Sources */,
 				535CCB7F22B5598000182DB9 /* UIImageExtensions.swift in Sources */,
 				535CCBBF22B5884100182DB9 /* SearchTableViewCell.swift in Sources */,
@@ -472,6 +491,7 @@
 				535CCBAE22B5799500182DB9 /* GMUGridBasedClusterAlgorithm.m in Sources */,
 				535CCBB322B5799500182DB9 /* GMUDefaultClusterIconGenerator.m in Sources */,
 				536562D422B535950051F848 /* AppDelegate.swift in Sources */,
+				B3158C4D22B5EEE00008B035 /* MonumentosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
