@@ -394,8 +394,20 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         let closeAction = UIContextualAction(style: .normal, title:  "Alertar", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            print("OK, marked as Closed")
+            let sb = UIStoryboard(name: "Alert", bundle: nil)
+            let vc = sb.instantiateInitialViewController() as! AlertTableViewController
+            var building : Building!
+            if (self.resultSearchController.isActive) {
+                building = self.filteredBuildings[indexPath.row]
+            }
+            else {
+                building = self.displayedBuildings[indexPath.row]
+            }
+            vc.desc = building.desc
+            vc.codBuild = building.codBuild
+            vc.direccion = building.address
             success(true)
+            self.navigationController?.pushViewController(vc, animated: true)
         })
 //        closeAction.image = UIImage(named: "tick")
         closeAction.backgroundColor = UIColor(rgb: 0xF5391C)

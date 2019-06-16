@@ -177,7 +177,7 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
                 UIViewController.removeSpinner(spinner: spinner)
                 let alert = UIAlertController(title: "Aviso", message: "Registro enviado satisfactoriamente", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-                    self.dismiss(animated: true, completion: nil)
+                    _ = self.navigationController?.popViewController(animated: true)
                 }))
                 self.present(alert, animated: true)
             })

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="00C-bf-tPw">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Crear Alerta-->
+        <scene sceneID="PhR-gd-dhd">
+            <objects>
+                <tableViewController storyboardIdentifier="RegisterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="00C-bf-tPw" customClass="AlertTableViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="0xK-4W-zn7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="lhU-WF-MAS">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultBuilding" translatesAutoresizingMaskIntoConstraints="NO" id="C8B-eh-YPI" customClass="AnimatedImageView" customModule="Kingfisher">
+                                    <rect key="frame" x="167" y="30" width="80" height="80"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="80" id="mN0-hl-FSN"/>
+                                        <constraint firstAttribute="height" constant="80" id="zvL-V2-OFM"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EX3-Wa-E6f">
+                                    <rect key="frame" x="167" y="20" width="80" height="75"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="80" id="cRG-mg-9J1"/>
+                                    </constraints>
+                                    <connections>
+                                        <action selector="cameraButtonPressed:" destination="00C-bf-tPw" eventType="touchUpInside" id="Pmm-yG-p7N"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="C8B-eh-YPI" firstAttribute="centerX" secondItem="lhU-WF-MAS" secondAttribute="centerX" id="3rJ-D5-Os5"/>
+                                <constraint firstItem="C8B-eh-YPI" firstAttribute="top" secondItem="lhU-WF-MAS" secondAttribute="top" constant="30" id="Ol6-EW-DOw"/>
+                                <constraint firstItem="EX3-Wa-E6f" firstAttribute="top" secondItem="lhU-WF-MAS" secondAttribute="top" constant="20" id="sTR-eN-Sny"/>
+                                <constraint firstItem="EX3-Wa-E6f" firstAttribute="centerY" secondItem="lhU-WF-MAS" secondAttribute="centerY" id="yRs-e1-M4x"/>
+                                <constraint firstItem="EX3-Wa-E6f" firstAttribute="leading" secondItem="C8B-eh-YPI" secondAttribute="leading" id="yx4-PA-5pu"/>
+                            </constraints>
+                        </view>
+                        <sections>
+                            <tableViewSection headerTitle="Reporta alguna modificación o daño a este patrimonio" id="Id2-49-oPE">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="G9N-Q7-gQx">
+                                        <rect key="frame" x="0.0" y="170.5" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G9N-Q7-gQx" id="Msj-pu-kBM">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="description" translatesAutoresizingMaskIntoConstraints="NO" id="zNX-he-TWt">
+                                                    <rect key="frame" x="16" y="30.5" width="19" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="19" id="Nif-MT-Ijv"/>
+                                                        <constraint firstAttribute="width" constant="19" id="wMk-Ty-rAu"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Descripción del reporte" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jbO-xD-8VF">
+                                                    <rect key="frame" x="43" y="5" width="359" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="70" id="t99-aq-4zI"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="jbO-xD-8VF" secondAttribute="trailing" constant="12" id="70R-5L-Gcp"/>
+                                                <constraint firstItem="zNX-he-TWt" firstAttribute="leading" secondItem="Msj-pu-kBM" secondAttribute="leading" constant="16" id="QrN-Wg-iFi"/>
+                                                <constraint firstItem="zNX-he-TWt" firstAttribute="centerY" secondItem="Msj-pu-kBM" secondAttribute="centerY" id="eq1-gw-jQR"/>
+                                                <constraint firstItem="jbO-xD-8VF" firstAttribute="leading" secondItem="zNX-he-TWt" secondAttribute="trailing" constant="8" id="f5o-Sr-CfQ"/>
+                                                <constraint firstItem="jbO-xD-8VF" firstAttribute="centerY" secondItem="Msj-pu-kBM" secondAttribute="centerY" id="ueT-AS-ovX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="tK5-ZC-FHE">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="X4h-Xr-ZPT">
+                                        <rect key="frame" x="0.0" y="286.5" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X4h-Xr-ZPT" id="SNK-D7-0mh">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ZJ-cy-uSq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
+                                                    <color key="backgroundColor" red="0.94117647059999998" green="0.43529411759999997" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Enviar Alerta">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="titleShadowColor" red="0.0" green="0.47908455129999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="registerButtonPressed:" destination="00C-bf-tPw" eventType="touchUpInside" id="aRS-he-2ea"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="8ZJ-cy-uSq" secondAttribute="trailing" id="3kq-uc-0uG"/>
+                                                <constraint firstAttribute="bottom" secondItem="8ZJ-cy-uSq" secondAttribute="bottom" id="CJM-2J-XCd"/>
+                                                <constraint firstItem="8ZJ-cy-uSq" firstAttribute="top" secondItem="SNK-D7-0mh" secondAttribute="top" id="NPv-eT-IS5"/>
+                                                <constraint firstItem="8ZJ-cy-uSq" firstAttribute="leading" secondItem="SNK-D7-0mh" secondAttribute="leading" id="ohM-lE-yty"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="00C-bf-tPw" id="MWk-am-8wi"/>
+                            <outlet property="delegate" destination="00C-bf-tPw" id="oIz-a1-jUj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Crear Alerta" id="BiZ-y6-3wo"/>
+                    <connections>
+                        <outlet property="cameraUIImage" destination="C8B-eh-YPI" id="bDo-IB-nzR"/>
+                        <outlet property="createButton" destination="8ZJ-cy-uSq" id="sDx-e8-BfB"/>
+                        <outlet property="descTextField" destination="jbO-xD-8VF" id="4oS-Xn-v08"/>
+                        <outlet property="tableView" destination="0xK-4W-zn7" id="ir1-KQ-gjw"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eiC-hy-yDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1469.5652173913045" y="138.61607142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="defaultBuilding" width="350" height="280.5"/>
+        <image name="description" width="256" height="256"/>
+    </resources>
+</document>
