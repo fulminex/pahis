@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5312859B22B61D7300E3AF5F /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312859A22B61D7300E3AF5F /* AlertViewController.swift */; };
+		5312859D22B61DCC00E3AF5F /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5312859C22B61DCC00E3AF5F /* Alert.storyboard */; };
 		535CCB6F22B552E400182DB9 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535CCB6E22B552E400182DB9 /* Initial.storyboard */; };
 		535CCB7322B5583F00182DB9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535CCB7222B5583F00182DB9 /* Login.storyboard */; };
 		535CCB7522B5584D00182DB9 /* CreateUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535CCB7422B5584D00182DB9 /* CreateUser.storyboard */; };
@@ -51,6 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5312859A22B61D7300E3AF5F /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		5312859C22B61DCC00E3AF5F /* Alert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
 		535CCB6E22B552E400182DB9 /* Initial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Initial.storyboard; sourceTree = "<group>"; };
 		535CCB7222B5583F00182DB9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		535CCB7422B5584D00182DB9 /* CreateUser.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateUser.storyboard; sourceTree = "<group>"; };
@@ -139,6 +143,15 @@
 				753AB70FFA9AE883AC92BC9C /* Pods_PaHis.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5312859922B61D5B00E3AF5F /* AlertScene */ = {
+			isa = PBXGroup;
+			children = (
+				5312859C22B61DCC00E3AF5F /* Alert.storyboard */,
+				5312859A22B61D7300E3AF5F /* AlertViewController.swift */,
+			);
+			path = AlertScene;
 			sourceTree = "<group>";
 		};
 		535CCB6D22B5519300182DB9 /* InitialScene */ = {
@@ -270,6 +283,7 @@
 		536562D222B535950051F848 /* PaHis */ = {
 			isa = PBXGroup;
 			children = (
+				5312859922B61D5B00E3AF5F /* AlertScene */,
 				B3158C4922B5ED760008B035 /* MonumentosScene */,
 				535CCB7A22B5596C00182DB9 /* Extensions */,
 				B3158C4022B5A0540008B035 /* RegisterScene */,
@@ -386,6 +400,7 @@
 				B3158C3322B54F290008B035 /* GoogleService-Info.plist in Resources */,
 				535CCB7322B5583F00182DB9 /* Login.storyboard in Resources */,
 				535CCBB822B5858700182DB9 /* style.json in Resources */,
+				5312859D22B61DCC00E3AF5F /* Alert.storyboard in Resources */,
 				535CCBBD22B587D800182DB9 /* Search.storyboard in Resources */,
 				535CCB8622B5681000182DB9 /* Map.storyboard in Resources */,
 				B3158C4422B5A0780008B035 /* Register.storyboard in Resources */,
@@ -483,6 +498,7 @@
 				B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */,
 				B3158C3522B554830008B035 /* InitialViewController.swift in Sources */,
 				536562D622B535950051F848 /* ViewController.swift in Sources */,
+				5312859B22B61D7300E3AF5F /* AlertViewController.swift in Sources */,
 				535CCBBB22B587CA00182DB9 /* SearchViewController.swift in Sources */,
 				535CCBAC22B5799500182DB9 /* GMUSimpleClusterAlgorithm.m in Sources */,
 				B3158C5122B626350008B035 /* CineTauroViewController.swift in Sources */,

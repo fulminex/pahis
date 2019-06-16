@@ -219,7 +219,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                                 let latitud = aValue["LATITUD"] as? String
                                 let longitud = aValue["LONGITUD"] as? String
                                 let addr = aValue["direccion"] as? String ?? "-"
-                                let fachada = aValue["FACHADA"] as? String ?? "-"
+                                let fachada = aValue["FACHADA"] as? String
                                 let tipoNorm = aValue["tipoDeNorma"] as? String ?? "-"
                                 let numNorma = aValue["numDeNorma"] as? String ?? "-"
                                 let archiv = aValue["archivoDeNorma"] as? String ?? "-"
@@ -394,8 +394,20 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         let closeAction = UIContextualAction(style: .normal, title:  "Alertar", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            print("OK, marked as Closed")
+            let sb = UIStoryboard(name: "Alert", bundle: nil)
+            let vc = sb.instantiateInitialViewController() as! AlertTableViewController
+            var building : Building!
+            if (self.resultSearchController.isActive) {
+                building = self.filteredBuildings[indexPath.row]
+            }
+            else {
+                building = self.displayedBuildings[indexPath.row]
+            }
+            vc.desc = building.desc
+            vc.codBuild = building.codBuild
+            vc.direccion = building.address
             success(true)
+            self.navigationController?.pushViewController(vc, animated: true)
         })
 //        closeAction.image = UIImage(named: "tick")
         closeAction.backgroundColor = UIColor(rgb: 0xF5391C)

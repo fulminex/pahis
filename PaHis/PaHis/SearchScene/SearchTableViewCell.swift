@@ -22,9 +22,12 @@ class PlaceTableViewCell: UITableViewCell {
                 
                 //place.name + "\nLatitud: \(place.latitud ?? "-")" + "\nLongitud: \(place.longitud ?? "-")" + "\nDistancia: \(place.distance == nil ? "-" : "\(place.distance ?? 0) kilometros")"
             
-            photoImage.image = UIImage(named: "NoImageIcon")
-//            photoImage.kf.indicatorType = .activity
-//            photoImage.kf.setImage(with: place.imageUrl)
+            if let urlRaw = place.fachada, let url = URL(string: urlRaw) {
+                photoImage.kf.indicatorType = .activity
+                photoImage.kf.setImage(with: url)
+            } else {
+                photoImage.image = UIImage(named: "NoImageIcon")
+            }
         }
     }
 }

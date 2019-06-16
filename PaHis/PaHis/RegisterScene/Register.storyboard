@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Crear Nuevo Usuario-->
+        <!--Crear Nuevo Inmueble-->
         <scene sceneID="i0P-ZX-Vxt">
             <objects>
                 <tableViewController storyboardIdentifier="RegisterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nyO-jZ-1en" customClass="RegisterTableViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
@@ -254,7 +254,7 @@
                             <outlet property="delegate" destination="nyO-jZ-1en" id="dQg-Rm-BtK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Crear Nuevo Usuario" id="zsx-JN-fW0"/>
+                    <navigationItem key="navigationItem" title="Crear Nuevo Inmueble" id="zsx-JN-fW0"/>
                     <connections>
                         <outlet property="cameraUIImage" destination="Ikm-WY-nwn" id="O6p-Qe-4Qo"/>
                         <outlet property="categoryUILabel" destination="LUt-dz-PRs" id="RF6-g4-wlT"/>
