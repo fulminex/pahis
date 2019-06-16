@@ -66,6 +66,10 @@ class InitialViewController: UIViewController {
                     controllers.append(UINavigationController(rootViewController: adhocVC))
                 }
                 
+                let ChatVC = ChatController(collectionViewLayout: UICollectionViewFlowLayout())
+                ChatVC.tabBarItem = UITabBarItem(title: "Chat" , image: UIImage(named: "SearchIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 5)
+                controllers.append(UINavigationController(rootViewController: ChatVC))
+                
                 let tabBarController = UITabBarController()
                 tabBarController.viewControllers = controllers //controllersWithNavigation.map { UINavigationController(rootViewController: $0 as! UIViewController) }
                 tabBarController.selectedIndex = 0
