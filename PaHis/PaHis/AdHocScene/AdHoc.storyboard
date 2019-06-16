@@ -19,20 +19,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="Lvt-fJ-Bjo">
-                                <rect key="frame" x="98" y="391.5" width="218" height="113"/>
+                                <rect key="frame" x="125.5" y="391.5" width="163" height="113"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sae-vt-N6s">
-                                        <rect key="frame" x="0.0" y="0.0" width="218" height="39"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="163" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Solicitudes de Registro"/>
+                                        <state key="normal" title="Solicitudes"/>
                                         <connections>
                                             <segue destination="BX5-mi-Cs5" kind="show" id="NVZ-e7-Jwr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MG3-ET-3Qr">
-                                        <rect key="frame" x="0.0" y="74" width="218" height="39"/>
+                                        <rect key="frame" x="0.0" y="74" width="163" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Alertas"/>
+                                        <state key="normal" title="Alerta Patrimonio"/>
                                         <connections>
                                             <segue destination="rXa-ph-9dS" kind="show" id="iE5-du-sVZ"/>
                                         </connections>
