@@ -47,6 +47,7 @@
 		B3158C4B22B5EDD90008B035 /* Monumento.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3158C4A22B5EDD90008B035 /* Monumento.storyboard */; };
 		B3158C4D22B5EEE00008B035 /* MonumentosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C4C22B5EEE00008B035 /* MonumentosViewController.swift */; };
 		B3158C4F22B5F13A0008B035 /* EstiloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C4E22B5F13A0008B035 /* EstiloViewController.swift */; };
+		B3158C5122B626350008B035 /* CineTauroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C5022B626350008B035 /* CineTauroViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +118,7 @@
 		B3158C4A22B5EDD90008B035 /* Monumento.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Monumento.storyboard; sourceTree = "<group>"; };
 		B3158C4C22B5EEE00008B035 /* MonumentosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonumentosViewController.swift; sourceTree = "<group>"; };
 		B3158C4E22B5F13A0008B035 /* EstiloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstiloViewController.swift; sourceTree = "<group>"; };
+		B3158C5022B626350008B035 /* CineTauroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineTauroViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +305,7 @@
 				B3158C4A22B5EDD90008B035 /* Monumento.storyboard */,
 				B3158C4C22B5EEE00008B035 /* MonumentosViewController.swift */,
 				B3158C4E22B5F13A0008B035 /* EstiloViewController.swift */,
+				B3158C5022B626350008B035 /* CineTauroViewController.swift */,
 			);
 			path = MonumentosScene;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				536562D622B535950051F848 /* ViewController.swift in Sources */,
 				535CCBBB22B587CA00182DB9 /* SearchViewController.swift in Sources */,
 				535CCBAC22B5799500182DB9 /* GMUSimpleClusterAlgorithm.m in Sources */,
+				B3158C5122B626350008B035 /* CineTauroViewController.swift in Sources */,
 				535CCBAB22B5799500182DB9 /* GMUWrappingDictionaryKey.m in Sources */,
 				B3158C4822B5B9010008B035 /* RegisterTableViewController.swift in Sources */,
 				535CCBAD22B5799500182DB9 /* GQTPointQuadTreeChild.m in Sources */,
