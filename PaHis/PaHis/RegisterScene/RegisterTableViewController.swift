@@ -48,6 +48,7 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
         let dayPicker = UIPickerView()
         dayPicker.delegate = self
         dayPicker.restorationIdentifier = "category"
+        dayPicker.backgroundColor = .white
         
         categoryUILabel.inputView = dayPicker
     }
@@ -57,7 +58,7 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
         let distritoPicker = UIPickerView()
         distritoPicker.delegate = self
         distritoPicker.restorationIdentifier = "distrito"
-
+        distritoPicker.backgroundColor = .white
         
         distritoUILabel.inputView = distritoPicker
     }
