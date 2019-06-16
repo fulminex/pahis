@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		5312859B22B61D7300E3AF5F /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312859A22B61D7300E3AF5F /* AlertViewController.swift */; };
 		5312859D22B61DCC00E3AF5F /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5312859C22B61DCC00E3AF5F /* Alert.storyboard */; };
+		531285A022B63F6C00E3AF5F /* AdHoc.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5312859F22B63F6C00E3AF5F /* AdHoc.storyboard */; };
+		531285A422B6403D00E3AF5F /* AdHocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285A322B6403D00E3AF5F /* AdHocViewController.swift */; };
+		531285A622B643EB00E3AF5F /* ListadoRegistroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285A522B643EB00E3AF5F /* ListadoRegistroViewController.swift */; };
+		531285A822B643FE00E3AF5F /* ListadoAlertaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285A722B643FE00E3AF5F /* ListadoAlertaViewController.swift */; };
+		531285AA22B644C800E3AF5F /* RegistroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285A922B644C800E3AF5F /* RegistroTableViewCell.swift */; };
+		531285AC22B644D800E3AF5F /* AlertaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285AB22B644D800E3AF5F /* AlertaTableViewCell.swift */; };
+		531285AE22B6456900E3AF5F /* Registro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285AD22B6456900E3AF5F /* Registro.swift */; };
+		531285B022B6457D00E3AF5F /* Alerta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285AF22B6457D00E3AF5F /* Alerta.swift */; };
 		535CCB6F22B552E400182DB9 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535CCB6E22B552E400182DB9 /* Initial.storyboard */; };
 		535CCB7322B5583F00182DB9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535CCB7222B5583F00182DB9 /* Login.storyboard */; };
 		535CCB7522B5584D00182DB9 /* CreateUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535CCB7422B5584D00182DB9 /* CreateUser.storyboard */; };
@@ -55,6 +63,14 @@
 /* Begin PBXFileReference section */
 		5312859A22B61D7300E3AF5F /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		5312859C22B61DCC00E3AF5F /* Alert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
+		5312859F22B63F6C00E3AF5F /* AdHoc.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdHoc.storyboard; sourceTree = "<group>"; };
+		531285A322B6403D00E3AF5F /* AdHocViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocViewController.swift; sourceTree = "<group>"; };
+		531285A522B643EB00E3AF5F /* ListadoRegistroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListadoRegistroViewController.swift; sourceTree = "<group>"; };
+		531285A722B643FE00E3AF5F /* ListadoAlertaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListadoAlertaViewController.swift; sourceTree = "<group>"; };
+		531285A922B644C800E3AF5F /* RegistroTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistroTableViewCell.swift; sourceTree = "<group>"; };
+		531285AB22B644D800E3AF5F /* AlertaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertaTableViewCell.swift; sourceTree = "<group>"; };
+		531285AD22B6456900E3AF5F /* Registro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registro.swift; sourceTree = "<group>"; };
+		531285AF22B6457D00E3AF5F /* Alerta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerta.swift; sourceTree = "<group>"; };
 		535CCB6E22B552E400182DB9 /* Initial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Initial.storyboard; sourceTree = "<group>"; };
 		535CCB7222B5583F00182DB9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		535CCB7422B5584D00182DB9 /* CreateUser.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateUser.storyboard; sourceTree = "<group>"; };
@@ -154,6 +170,19 @@
 			path = AlertScene;
 			sourceTree = "<group>";
 		};
+		5312859E22B63F5300E3AF5F /* AdHocScene */ = {
+			isa = PBXGroup;
+			children = (
+				5312859F22B63F6C00E3AF5F /* AdHoc.storyboard */,
+				531285A322B6403D00E3AF5F /* AdHocViewController.swift */,
+				531285A522B643EB00E3AF5F /* ListadoRegistroViewController.swift */,
+				531285A722B643FE00E3AF5F /* ListadoAlertaViewController.swift */,
+				531285A922B644C800E3AF5F /* RegistroTableViewCell.swift */,
+				531285AB22B644D800E3AF5F /* AlertaTableViewCell.swift */,
+			);
+			path = AdHocScene;
+			sourceTree = "<group>";
+		};
 		535CCB6D22B5519300182DB9 /* InitialScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +276,8 @@
 			children = (
 				535CCBB522B57AD200182DB9 /* Place.swift */,
 				535CCBC022B5A09500182DB9 /* Building.swift */,
+				531285AD22B6456900E3AF5F /* Registro.swift */,
+				531285AF22B6457D00E3AF5F /* Alerta.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -283,6 +314,7 @@
 		536562D222B535950051F848 /* PaHis */ = {
 			isa = PBXGroup;
 			children = (
+				5312859E22B63F5300E3AF5F /* AdHocScene */,
 				5312859922B61D5B00E3AF5F /* AlertScene */,
 				B3158C4922B5ED760008B035 /* MonumentosScene */,
 				535CCB7A22B5596C00182DB9 /* Extensions */,
@@ -397,6 +429,7 @@
 			files = (
 				536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */,
 				B3158C4B22B5EDD90008B035 /* Monumento.storyboard in Resources */,
+				531285A022B63F6C00E3AF5F /* AdHoc.storyboard in Resources */,
 				B3158C3322B54F290008B035 /* GoogleService-Info.plist in Resources */,
 				535CCB7322B5583F00182DB9 /* Login.storyboard in Resources */,
 				535CCBB822B5858700182DB9 /* style.json in Resources */,
@@ -485,6 +518,7 @@
 			files = (
 				535CCBB022B5799500182DB9 /* GQTPointQuadTree.m in Sources */,
 				535CCB8022B5598000182DB9 /* UIViewControllerExtensions.swift in Sources */,
+				531285A422B6403D00E3AF5F /* AdHocViewController.swift in Sources */,
 				535CCBAA22B5799500182DB9 /* GMUStaticCluster.m in Sources */,
 				535CCBB122B5799500182DB9 /* GMUNonHierarchicalDistanceBasedAlgorithm.m in Sources */,
 				535CCB7722B5589800182DB9 /* LoginViewController.swift in Sources */,
@@ -493,18 +527,24 @@
 				B3158C4F22B5F13A0008B035 /* EstiloViewController.swift in Sources */,
 				535CCBC122B5A09500182DB9 /* Building.swift in Sources */,
 				535CCB7F22B5598000182DB9 /* UIImageExtensions.swift in Sources */,
+				531285A622B643EB00E3AF5F /* ListadoRegistroViewController.swift in Sources */,
+				531285AC22B644D800E3AF5F /* AlertaTableViewCell.swift in Sources */,
+				531285A822B643FE00E3AF5F /* ListadoAlertaViewController.swift in Sources */,
 				535CCBBF22B5884100182DB9 /* SearchTableViewCell.swift in Sources */,
 				535CCB8422B5680400182DB9 /* MapViewController.swift in Sources */,
+				531285B022B6457D00E3AF5F /* Alerta.swift in Sources */,
 				B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */,
 				B3158C3522B554830008B035 /* InitialViewController.swift in Sources */,
 				536562D622B535950051F848 /* ViewController.swift in Sources */,
 				5312859B22B61D7300E3AF5F /* AlertViewController.swift in Sources */,
 				535CCBBB22B587CA00182DB9 /* SearchViewController.swift in Sources */,
+				531285AA22B644C800E3AF5F /* RegistroTableViewCell.swift in Sources */,
 				535CCBAC22B5799500182DB9 /* GMUSimpleClusterAlgorithm.m in Sources */,
 				B3158C5122B626350008B035 /* CineTauroViewController.swift in Sources */,
 				535CCBAB22B5799500182DB9 /* GMUWrappingDictionaryKey.m in Sources */,
 				B3158C4822B5B9010008B035 /* RegisterTableViewController.swift in Sources */,
 				535CCBAD22B5799500182DB9 /* GQTPointQuadTreeChild.m in Sources */,
+				531285AE22B6456900E3AF5F /* Registro.swift in Sources */,
 				535CCB7E22B5598000182DB9 /* UIViewExtensions.swift in Sources */,
 				535CCBB222B5799500182DB9 /* GMUDefaultClusterRenderer.m in Sources */,
 				535CCBB622B57AD200182DB9 /* Place.swift in Sources */,
