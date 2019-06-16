@@ -261,10 +261,10 @@
 		536562D222B535950051F848 /* PaHis */ = {
 			isa = PBXGroup;
 			children = (
+				535CCB7A22B5596C00182DB9 /* Extensions */,
 				B3158C4022B5A0540008B035 /* RegisterScene */,
 				535CCBB922B587A000182DB9 /* SearchScene */,
 				535CCBB422B57A1300182DB9 /* Models */,
-				535CCB7A22B5596C00182DB9 /* Extensions */,
 				535CCB7122B5582900182DB9 /* LoginScene */,
 				535CCB7022B5581B00182DB9 /* CreateUserScene */,
 				535CCB6D22B5519300182DB9 /* InitialScene */,

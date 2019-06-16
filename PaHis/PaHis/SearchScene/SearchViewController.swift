@@ -18,7 +18,7 @@ struct DisplayedPlace {
     let imageUrl: URL
 }
 
-class PlaceListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PlaceListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     var ref: DatabaseReference!
     var categoriesRef: DatabaseReference!
@@ -28,6 +28,8 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var categories: [Category] = []
     var displayedBuildings: [Building] = []
+    var filteredBuildings = [Building]()
+    var resultSearchController = UISearchController()
     
     var places: [Place] = []
     var displayedPlaces: [DisplayedPlace] = []
@@ -37,6 +39,8 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var tableView: UITableView!
     private let refreshControl = UIRefreshControl()
+    
+    var spinner: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +54,10 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80
         
+        let button1 = UIBarButtonItem(image: UIImage(named: "FilterIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: nil)
+        let button2 = UIBarButtonItem(image: UIImage(named: "PlusIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: nil)
+        self.navigationItem.setRightBarButtonItems([button2,button1], animated: true)
+        
         refreshControl.attributedTitle = NSAttributedString(string: "Actualizando los lugares...")
         refreshControl.addTarget(self, action: #selector(reloadPlaces), for: .valueChanged)
         if #available(iOS 11.0, *) {
@@ -57,6 +65,17 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             tableView.addSubview(refreshControl)
         }
+        
+        resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.sizeToFit()
+            
+            tableView.tableHeaderView = controller.searchBar
+            
+            return controller
+        })()
         
         ref = Database.database().reference()
         categoriesRef = ref.child("categorias")
@@ -69,7 +88,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
-        
+        spinner = UIViewController.displaySpinner(onView: self.view)
     }
     
     override func didReceiveMemoryWarning() {
@@ -157,6 +176,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                                 return p1.distancia ?? Double(Int.max) < p2.distancia ?? Double(Int.max)
                             })
                             self.forced = false
+                            UIViewController.removeSpinner(spinner: self.spinner)
                             self.tableView.reloadData()
                         }
                     })
@@ -220,13 +240,29 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayedBuildings.count
+        if  (resultSearchController.isActive) {
+            return filteredBuildings.count
+        } else {
+            return displayedBuildings.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PlaceTableViewCell.identifier, for: indexPath) as! PlaceTableViewCell
-        cell.place = displayedBuildings[indexPath.row]
-        return cell
+        if (resultSearchController.isActive) {
+            cell.place = filteredBuildings[indexPath.row]
+            return cell
+        }
+        else {
+            cell.place = displayedBuildings[indexPath.row]
+            return cell
+        }
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filteredBuildings.removeAll(keepingCapacity: false)
+        filteredBuildings = displayedBuildings.filter({ $0.desc.uppercased().contains(searchController.searchBar.text!.uppercased()) })
+        self.tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -260,9 +296,24 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             UIApplication.shared.open(URL(string: "waze://?ll=\(lat),\(lon)&navigate=yes)")!)
         }
-        navigateToGoogleMaps.backgroundColor = .blue
-        navigateToWaze.backgroundColor = .orange
+        navigateToGoogleMaps.backgroundColor = .black
+        navigateToWaze.backgroundColor = .lightGray
         return [navigateToWaze, navigateToGoogleMaps]
+    }
+    
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView,
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let closeAction = UIContextualAction(style: .normal, title:  "Alertar", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            print("OK, marked as Closed")
+            success(true)
+        })
+//        closeAction.image = UIImage(named: "tick")
+        closeAction.backgroundColor = UIColor(rgb: 0xF5391C)
+        
+        return UISwipeActionsConfiguration(actions: [closeAction])
+        
     }
 }
 
