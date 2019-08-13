@@ -13,18 +13,19 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
     @IBOutlet weak var typeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var changePhotoLabel: UIButton!
     @IBOutlet weak var createUserButton: UIButton!
-    @IBOutlet weak var genderSegmentColor: UISegmentedControl!
     @IBOutlet weak var roleSegmentColor: UISegmentedControl!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+    }
+    
+    func setupView() {
         self.title = "Crear Nuevo Usuario"
         let cancelBarButtonItem = UIBarButtonItem(image: UIImage(named: "CancelIcon"), style: .plain, target: self, action: #selector(cancelButtonTapped))
         self.navigationController?.navigationBar.tintColor  = UIColor(rgb: 0xF5391C)
@@ -33,7 +34,6 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
         self.profileImageView.clipsToBounds = true
         self.changePhotoLabel.tintColor = UIColor(rgb: 0xF5391C)
         self.createUserButton.backgroundColor = UIColor(rgb: 0xF5391C)
-        self.genderSegmentColor.tintColor = UIColor(rgb: 0xF5391C)
         self.roleSegmentColor.tintColor = UIColor(rgb: 0xF5391C)
     }
     
@@ -57,19 +57,13 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
             return
         }
         
-        let gender = genderSegmentedControl.selectedSegmentIndex == 0 ? "Hombre" : "Mujer"
-        
         var userType = ""
         
         switch typeSegmentedControl.selectedSegmentIndex {
         case 0:
-            userType = "Ciudadano"
+            userType = "Normal"
         case 1:
-            userType = "Académico"
-        case 2:
-            userType = "Profesional"
-        case 3:
-            userType = "Ad Hoc"
+            userType = "Voluntario"
         default:
             userType = "Other"
         }
@@ -84,66 +78,110 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
         let data = profileImageView.image!.jpegData(compressionQuality: 0.9)!
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         let spinner = UIViewController.displaySpinner(onView: self.view)
-        Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
-            guard error == nil else {
+        
+        let urlString = "http://bec6aff2.ngrok.io/api/user"
+        let url = URL(string: urlString)!
+        
+        let json: [String: Any] = ["name": name,
+                                   "email": email,
+                                   "user_type": userType,
+                                   "profile_pic_url": "xdxdxdxd",
+                                   "password": password]
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
                 UIViewController.removeSpinner(spinner: spinner)
-                let alert = UIAlertController(title: "Aviso", message: "Error al crear el usuario: \(error!.localizedDescription)", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
+                print(error?.localizedDescription ?? "No data")
                 return
             }
-            guard let user = Auth.auth().currentUser else {
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
                 UIViewController.removeSpinner(spinner: spinner)
-                return
-            }
-            let profileImageRef = Storage.storage().reference().child("profileImages/\(user.uid).jpg")
-            _ = profileImageRef.putData(data, metadata: nil) { (metadata, error) in
-                guard error == nil else {
-                    self.navigationItem.rightBarButtonItem?.isEnabled = true
-                    UIViewController.removeSpinner(spinner: spinner)
-                    print("Error al subir la imagen de perfil: ", error!.localizedDescription)
-                    return
-                }
-                guard let metadata = metadata else {
-                    self.navigationItem.rightBarButtonItem?.isEnabled = true
-                    UIViewController.removeSpinner(spinner: spinner)
-                    print("No hay metadata")
-                    return
-                }
-                let size = metadata.size
-                print("Tamaño de la imagen: ", size)
-                profileImageRef.downloadURL { (url, error) in
-                    guard error == nil else {
-                        self.navigationItem.rightBarButtonItem?.isEnabled = true
-                        UIViewController.removeSpinner(spinner: spinner)
-                        print("Error al obtener la url del profile")
-                        return
-                    }
-                    guard let downloadURL = url else {
-                        self.navigationItem.rightBarButtonItem?.isEnabled = true
-                        UIViewController.removeSpinner(spinner: spinner)
-                        return
-                    }
-                    let ref = Database.database().reference()
-                    ref.child("users").child(user.uid).setValue(["correo": email, "nombre": name, "genero": gender, "userType" : userType , "profileImageURL": downloadURL.absoluteString])
-                    
-                    self.navigationItem.rightBarButtonItem?.isEnabled = true
-                    UIViewController.removeSpinner(spinner: spinner)
-                    let alert = UIAlertController(title: "Aviso", message: "Usuario creado satisfactoriamente.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
-                        do {
-                            try Auth.auth().signOut()
-                        } catch let signOutError as NSError {
-                            print ("Error signing out: %@", signOutError)
-                        }
-                        self.dismiss(animated: true, completion: nil)
-                    }))
+                print(responseJSON)
+                if let error = responseJSON["error"] as? String  {
+                    let alert = UIAlertController(title: "Aviso", message: "Error al crear el usuario: \(error)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
                     self.present(alert, animated: true)
                 }
+                let alert = UIAlertController(title: "Aviso", message: "Usuario creado satisfactoriamente.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
+                    self.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alert, animated: true)
             }
         }
+        
+        task.resume()
+        
+//        Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
+//            guard error == nil else {
+//                self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                UIViewController.removeSpinner(spinner: spinner)
+//                let alert = UIAlertController(title: "Aviso", message: "Error al crear el usuario: \(error!.localizedDescription)", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+//                self.present(alert, animated: true)
+//                return
+//            }
+//            guard let user = Auth.auth().currentUser else {
+//                self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                UIViewController.removeSpinner(spinner: spinner)
+//                return
+//            }
+//            let profileImageRef = Storage.storage().reference().child("profileImages/\(user.uid).jpg")
+//            _ = profileImageRef.putData(data, metadata: nil) { (metadata, error) in
+//                guard error == nil else {
+//                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                    UIViewController.removeSpinner(spinner: spinner)
+//                    print("Error al subir la imagen de perfil: ", error!.localizedDescription)
+//                    return
+//                }
+//                guard let metadata = metadata else {
+//                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                    UIViewController.removeSpinner(spinner: spinner)
+//                    print("No hay metadata")
+//                    return
+//                }
+//                let size = metadata.size
+//                print("Tamaño de la imagen: ", size)
+//                profileImageRef.downloadURL { (url, error) in
+//                    guard error == nil else {
+//                        self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                        UIViewController.removeSpinner(spinner: spinner)
+//                        print("Error al obtener la url del profile")
+//                        return
+//                    }
+//                    guard let downloadURL = url else {
+//                        self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                        UIViewController.removeSpinner(spinner: spinner)
+//                        return
+//                    }
+//                    let ref = Database.database().reference()
+//                    ref.child("users").child(user.uid).setValue(["correo": email, "nombre": name, "userType" : userType , "profileImageURL": downloadURL.absoluteString])
+//
+//                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                    UIViewController.removeSpinner(spinner: spinner)
+//                    let alert = UIAlertController(title: "Aviso", message: "Usuario creado satisfactoriamente.", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
+//                        do {
+//                            try Auth.auth().signOut()
+//                        } catch let signOutError as NSError {
+//                            print ("Error signing out: %@", signOutError)
+//                        }
+//                        self.dismiss(animated: true, completion: nil)
+//                    }))
+//                    self.present(alert, animated: true)
+//                }
+//            }
+//        }
         
     }
     

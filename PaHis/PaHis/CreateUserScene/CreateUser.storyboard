@@ -114,39 +114,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="5mD-E7-CIE">
-                                        <rect key="frame" x="0.0" y="258.5" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5mD-E7-CIE" id="jMn-M0-To1">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GenderIcon" translatesAutoresizingMaskIntoConstraints="NO" id="WGU-tS-Mxt">
-                                                    <rect key="frame" x="16" y="12.5" width="19" height="19"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="19" id="FLA-Lr-xIF"/>
-                                                        <constraint firstAttribute="height" constant="19" id="jtn-Dd-g9i"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cF8-tt-SFw">
-                                                    <rect key="frame" x="43" y="8" width="127" height="29"/>
-                                                    <segments>
-                                                        <segment title="Hombre"/>
-                                                        <segment title="Mujer"/>
-                                                    </segments>
-                                                    <color key="tintColor" red="0.94117647059999998" green="0.43529411759999997" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </segmentedControl>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="WGU-tS-Mxt" firstAttribute="leading" secondItem="jMn-M0-To1" secondAttribute="leading" constant="16" id="4uX-UM-oTg"/>
-                                                <constraint firstItem="WGU-tS-Mxt" firstAttribute="centerY" secondItem="jMn-M0-To1" secondAttribute="centerY" id="7ww-pa-BNY"/>
-                                                <constraint firstItem="cF8-tt-SFw" firstAttribute="centerY" secondItem="jMn-M0-To1" secondAttribute="centerY" id="F2D-sn-kjw"/>
-                                                <constraint firstItem="cF8-tt-SFw" firstAttribute="leading" secondItem="WGU-tS-Mxt" secondAttribute="trailing" constant="8" id="Mz6-aS-hpy"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="vbJ-7p-aQs">
-                                        <rect key="frame" x="0.0" y="302.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="258.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vbJ-7p-aQs" id="90f-Gx-6x1">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -160,12 +129,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dhg-5H-jfz">
-                                                    <rect key="frame" x="43" y="8" width="363" height="29"/>
+                                                    <rect key="frame" x="43" y="8" width="159" height="29"/>
                                                     <segments>
                                                         <segment title="Ciudadano"/>
-                                                        <segment title="Académico"/>
-                                                        <segment title="Profesional"/>
-                                                        <segment title="Ad Hoc"/>
+                                                        <segment title="Voluntario"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.94117647059999998" green="0.43529411759999997" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </segmentedControl>
@@ -174,7 +141,6 @@
                                                 <constraint firstItem="dhg-5H-jfz" firstAttribute="centerY" secondItem="90f-Gx-6x1" secondAttribute="centerY" id="85n-oB-Ae3"/>
                                                 <constraint firstItem="V5F-fc-MP4" firstAttribute="leading" secondItem="90f-Gx-6x1" secondAttribute="leading" constant="16" id="EdU-sP-p8U"/>
                                                 <constraint firstItem="dhg-5H-jfz" firstAttribute="leading" secondItem="V5F-fc-MP4" secondAttribute="trailing" constant="8" id="PaU-ok-2Rb"/>
-                                                <constraint firstAttribute="trailing" secondItem="dhg-5H-jfz" secondAttribute="trailing" constant="8" id="kuZ-Fn-E4g"/>
                                                 <constraint firstItem="V5F-fc-MP4" firstAttribute="centerY" secondItem="90f-Gx-6x1" secondAttribute="centerY" id="r2q-R0-Kyf"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -184,7 +150,7 @@
                             <tableViewSection id="wQQ-4B-0zM">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="vsc-z1-5Qj">
-                                        <rect key="frame" x="0.0" y="382.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="338.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vsc-z1-5Qj" id="3D7-zy-rte">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -221,7 +187,7 @@
                             <tableViewSection id="HaP-ZH-yPq">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="54h-JH-IDP">
-                                        <rect key="frame" x="0.0" y="462.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="418.5" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="54h-JH-IDP" id="LGM-3O-2Hv">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
@@ -260,8 +226,6 @@
                         <outlet property="changePhotoLabel" destination="fDt-W1-miR" id="iyz-2N-JOh"/>
                         <outlet property="createUserButton" destination="6mA-BM-vvo" id="bNl-Ko-hVB"/>
                         <outlet property="emailTextField" destination="kAP-pF-q8R" id="5uI-om-Det"/>
-                        <outlet property="genderSegmentColor" destination="cF8-tt-SFw" id="fJg-Uw-BUp"/>
-                        <outlet property="genderSegmentedControl" destination="cF8-tt-SFw" id="HMT-4y-yCy"/>
                         <outlet property="nameTextField" destination="FhK-Zm-f7K" id="0tR-RR-vuv"/>
                         <outlet property="passwordTextField" destination="BS1-3B-5Dl" id="rdg-XQ-oii"/>
                         <outlet property="profileImageView" destination="jNc-aG-kuU" id="abK-sN-uTr"/>
@@ -276,7 +240,6 @@
     </scenes>
     <resources>
         <image name="EmailIcon" width="32" height="32"/>
-        <image name="GenderIcon" width="32" height="32"/>
         <image name="PasswordIcon" width="32" height="32"/>
         <image name="TypeIcon" width="64" height="64"/>
         <image name="UserIcon" width="64" height="64"/>
