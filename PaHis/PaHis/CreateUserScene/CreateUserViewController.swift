@@ -99,7 +99,9 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
             guard let data = data, error == nil else {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
                 UIViewController.removeSpinner(spinner: spinner)
-                print(error?.localizedDescription ?? "No data")
+                let alert = UIAlertController(title: "Aviso", message: "Error: \(error?.localizedDescription ?? "No data")", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
                 return
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
