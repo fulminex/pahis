@@ -51,24 +51,24 @@ class InitialViewController: UIViewController {
                 searchVC.title = "Buscar"
                 controllers.append(UINavigationController(rootViewController: searchVC))
                 
-                let monumentoSB = UIStoryboard(name: "Monumento", bundle:nil)
-                let monumentoVC = monumentoSB.instantiateInitialViewController()!
-                monumentoVC.tabBarItem = UITabBarItem(title: "Monumento" , image: UIImage(named: "MonumentoIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 3)
-                monumentoVC.title = "Monumento"
-                controllers.append(UINavigationController(rootViewController: monumentoVC))
+//                let monumentoSB = UIStoryboard(name: "Monumento", bundle:nil)
+//                let monumentoVC = monumentoSB.instantiateInitialViewController()!
+//                monumentoVC.tabBarItem = UITabBarItem(title: "Monumento" , image: UIImage(named: "MonumentoIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 3)
+//                monumentoVC.title = "Monumento"
+//                controllers.append(UINavigationController(rootViewController: monumentoVC))
                 
                 let userRole = user["userType"] as! String
                 if userRole == "Ad Hoc" {
                     let adhocSB = UIStoryboard(name: "AdHoc", bundle: nil)
                     let adhocVC = adhocSB.instantiateInitialViewController()!
-                    adhocVC.tabBarItem = UITabBarItem(title: "Ad Hoc" , image: UIImage(named: "AdhocIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 4)
-                    adhocVC.title = "Ad Hoc"
+                    adhocVC.tabBarItem = UITabBarItem(title: "Alertas" , image: UIImage(named: "AdhocIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 4)
+                    adhocVC.title = "Alertas"
                     controllers.append(UINavigationController(rootViewController: adhocVC))
                 }
                 
-                let ChatVC = ChatController(collectionViewLayout: UICollectionViewFlowLayout())
-                ChatVC.tabBarItem = UITabBarItem(title: "Chat" , image: UIImage(named: "ChatIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 5)
-                controllers.append(UINavigationController(rootViewController: ChatVC))
+//                let ChatVC = ChatController(collectionViewLayout: UICollectionViewFlowLayout())
+//                ChatVC.tabBarItem = UITabBarItem(title: "Chat" , image: UIImage(named: "ChatIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 5)
+//                controllers.append(UINavigationController(rootViewController: ChatVC))
                 
                 let tabBarController = UITabBarController()
                 tabBarController.viewControllers = controllers //controllersWithNavigation.map { UINavigationController(rootViewController: $0 as! UIViewController) }

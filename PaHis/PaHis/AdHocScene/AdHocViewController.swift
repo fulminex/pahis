@@ -17,7 +17,7 @@ class AdHocViewController : UIViewController {
         super.viewDidLoad()
         registrosButton.tintColor = UIColor(rgb: 0xF5391C)
         alertasButton.tintColor = UIColor(rgb: 0xF5391C)
-        self.title = "Ad Hoc"
+        self.title = "Alertas"
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
         } else {
