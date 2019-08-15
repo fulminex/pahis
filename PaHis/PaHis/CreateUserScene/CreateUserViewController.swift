@@ -79,7 +79,7 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         let spinner = UIViewController.displaySpinner(onView: self.view)
         
-        let urlString = "http://bec6aff2.ngrok.io/api/user"
+        let urlString = "https://4d96388d.ngrok.io/api/user"
         let url = URL(string: urlString)!
         
         let json: [String: Any] = ["name": name,
@@ -113,12 +113,53 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
                     let alert = UIAlertController(title: "Aviso", message: "Error al crear el usuario: \(error)", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
                     self.present(alert, animated: true)
+                } else {
+                    let alert = UIAlertController(title: "Aviso", message: "Usuario creado satisfactoriamente.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
+                        
+                        //Nos logueamos automáticamente
+                        let urlLoginString = "https://4d96388d.ngrok.io/api/login?email=\(email)&password=\(password)"
+                        let urlLogin = URL(string: urlLoginString)!
+                        
+                        var request = URLRequest(url: urlLogin)
+                        request.httpMethod = "POST"
+                        
+                        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                            let spinner = UIViewController.displaySpinner(onView: self.view)
+                            guard let data = data, error == nil else {
+                                UIViewController.removeSpinner(spinner: spinner)
+                                let alert = UIAlertController(title: "Aviso", message: "Error: \(error?.localizedDescription ?? "No data")", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+                                self.present(alert, animated: true)
+                                return
+                            }
+                            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                            if let responseJSON = responseJSON as? [String: Any] {
+                                UIViewController.removeSpinner(spinner: spinner)
+                                print(responseJSON)
+                                if let error = responseJSON["error"] as? String {
+                                    let alert = UIAlertController(title: "Aviso", message: "Error: \(error)", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+                                    self.present(alert, animated: true)
+                                } else {
+                                    guard let token = responseJSON["token"] as? String else {
+                                        let alert = UIAlertController(title: "Aviso", message: "Error al generar el token de sesión.", preferredStyle: .alert)
+                                        alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+                                        self.present(alert, animated: true)
+                                        return
+                                    }
+                                    UserDefaults.standard.set(token, forKey: "token")
+                                    print("usuario logeado exitosamente")
+                                    self.dismiss(animated: true, completion: nil)
+                                }
+                            } else {
+                                UIViewController.removeSpinner(spinner: spinner)
+                            }
+                        }
+                        task.resume()
+                    }))
+                    self.present(alert, animated: true)
                 }
-                let alert = UIAlertController(title: "Aviso", message: "Usuario creado satisfactoriamente.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
-                    self.dismiss(animated: true, completion: nil)
-                }))
-                self.present(alert, animated: true)
             }
         }
         

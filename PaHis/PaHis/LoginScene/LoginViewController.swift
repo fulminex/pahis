@@ -46,23 +46,46 @@ class LoginTableViewController: UITableViewController {
             self.present(alert, animated: true)
             return
         }
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            guard error == nil else {
-                let alert = UIAlertController(title: "Aviso", message: "Correo y/o contraseña incorrectos.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+        
+        let urlLoginString = "https://4d96388d.ngrok.io/api/login?email=\(email)&password=\(password)"
+        let urlLogin = URL(string: urlLoginString)!
+        
+        var request = URLRequest(url: urlLogin)
+        request.httpMethod = "POST"
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
                 UIViewController.removeSpinner(spinner: spinner)
+                let alert = UIAlertController(title: "Aviso", message: "Error: \(error?.localizedDescription ?? "No data")", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
                 return
             }
-            let firebaseAuth = Auth.auth()
-            guard firebaseAuth.currentUser != nil else {
-                print("No hay ningun usuario conectado")
-                return
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                UIViewController.removeSpinner(spinner: spinner)
+                print(responseJSON)
+                if let error = responseJSON["error"] as? String {
+                    let alert = UIAlertController(title: "Aviso", message: "Error: \(error)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                } else {
+                    guard let token = responseJSON["token"] as? String else {
+                        let alert = UIAlertController(title: "Aviso", message: "Error al generar el token de sesión.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+                        self.present(alert, animated: true)
+                        return
+                    }
+                    UserDefaults.standard.set(token, forKey: "token")
+                    print("usuario logeado exitosamente")
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                UIViewController.removeSpinner(spinner: spinner)
+                
             }
-            print("usuario logeado exitosamente")
-            UIViewController.removeSpinner(spinner: spinner)
-            self.dismiss(animated: true, completion: nil)
         }
+        task.resume()
     }
     
 }
