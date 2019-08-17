@@ -149,45 +149,20 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         alert.addAction(UIAlertAction(title: "Si", style: .default, handler: { _ in
             guard let token = UserDefaults.standard.string(forKey: "token") else { return }
             let spinner = UIViewController.displaySpinner(onView: self.view)
-            
-            let urlLogoutString = "https://4d96388d.ngrok.io/api/logout?token=\(token)"
-            let urlLogout = URL(string: urlLogoutString)!
-            
-            var request = URLRequest(url: urlLogout)
-            request.httpMethod = "POST"
-            
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
+            NetworkManager.shared.logout(token: token) { result in
+                switch result {
+                case .failure(let error):
                     UIViewController.removeSpinner(spinner: spinner)
-                    let alert = UIAlertController(title: "Aviso", message: "Error: \(error?.localizedDescription ?? "No data")", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+                    let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alert, animated: true)
-                    return
-                }
-                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-                if let responseJSON = responseJSON as? [String: Any] {
+                case .success(let message):
                     UIViewController.removeSpinner(spinner: spinner)
-                    print(responseJSON)
-                    if let error = responseJSON["error"] as? String {
-                        let alert = UIAlertController(title: "Aviso", message: "Error: \(error)", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-                        self.present(alert, animated: true)
-                    } else {
-                        guard let message = responseJSON["message"] as? String else {
-                            let alert = UIAlertController(title: "Aviso", message: "Error al desloguear.", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-                            self.present(alert, animated: true)
-                            return
-                        }
-                        print(message)
-                        UserDefaults.standard.set("", forKey: "token")
-                        self.dismiss(animated: true, completion: nil)
-                    }
+                    print(message)
+                    UserDefaults.standard.set("", forKey: "token")
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
-            task.resume()
-            
-            
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(alert, animated: true)

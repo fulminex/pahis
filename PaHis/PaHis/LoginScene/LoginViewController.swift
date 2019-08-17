@@ -47,45 +47,20 @@ class LoginTableViewController: UITableViewController {
             return
         }
         
-        let urlLoginString = "https://4d96388d.ngrok.io/api/login?email=\(email)&password=\(password)"
-        let urlLogin = URL(string: urlLoginString)!
-        
-        var request = URLRequest(url: urlLogin)
-        request.httpMethod = "POST"
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
+        NetworkManager.shared.login(email: email, password: password) { result in
+            switch result {
+            case .failure(let error):
                 UIViewController.removeSpinner(spinner: spinner)
-                let alert = UIAlertController(title: "Aviso", message: "Error: \(error?.localizedDescription ?? "No data")", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+                let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
-                return
-            }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
+            case .success(let token):
                 UIViewController.removeSpinner(spinner: spinner)
-                print(responseJSON)
-                if let error = responseJSON["error"] as? String {
-                    let alert = UIAlertController(title: "Aviso", message: "Error: \(error)", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
-                } else {
-                    guard let token = responseJSON["token"] as? String else {
-                        let alert = UIAlertController(title: "Aviso", message: "Error al generar el token de sesión.", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-                        self.present(alert, animated: true)
-                        return
-                    }
-                    UserDefaults.standard.set(token, forKey: "token")
-                    print("usuario logeado exitosamente")
-                    self.dismiss(animated: true, completion: nil)
-                }
-            } else {
-                UIViewController.removeSpinner(spinner: spinner)
-                
+                UserDefaults.standard.set(token, forKey: "token")
+                print("Token guardado exitosamente")
+                self.dismiss(animated: true, completion: nil)
             }
         }
-        task.resume()
     }
     
 }

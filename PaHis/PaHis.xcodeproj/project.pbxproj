@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BE7E9D8230763C60060CD39 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7E9D7230763C60060CD39 /* NetworkManager.swift */; };
 		5312859B22B61D7300E3AF5F /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312859A22B61D7300E3AF5F /* AlertViewController.swift */; };
 		5312859D22B61DCC00E3AF5F /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5312859C22B61DCC00E3AF5F /* Alert.storyboard */; };
 		531285A022B63F6C00E3AF5F /* AdHoc.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5312859F22B63F6C00E3AF5F /* AdHoc.storyboard */; };
@@ -67,6 +68,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0BE7E9D7230763C60060CD39 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5312859A22B61D7300E3AF5F /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		5312859C22B61DCC00E3AF5F /* Alert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
 		5312859F22B63F6C00E3AF5F /* AdHoc.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdHoc.storyboard; sourceTree = "<group>"; };
@@ -173,6 +175,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0BE7E9D923078E420060CD39 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				0BE7E9D7230763C60060CD39 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		5312859922B61D5B00E3AF5F /* AlertScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,7 +218,6 @@
 			children = (
 				535CCB6E22B552E400182DB9 /* Initial.storyboard */,
 				B3158C3422B554830008B035 /* InitialViewController.swift */,
-				535CCB8222B567DF00182DB9 /* MapScene */,
 			);
 			path = InitialScene;
 			sourceTree = "<group>";
@@ -336,6 +345,7 @@
 		536562D222B535950051F848 /* PaHis */ = {
 			isa = PBXGroup;
 			children = (
+				0BE7E9D923078E420060CD39 /* Managers */,
 				B330A2F222B6734F00528EC2 /* ARScene */,
 				531285B122B6571F00E3AF5F /* ChatScene */,
 				5312859E22B63F5300E3AF5F /* AdHocScene */,
@@ -347,6 +357,7 @@
 				535CCBB422B57A1300182DB9 /* Models */,
 				535CCB7122B5582900182DB9 /* LoginScene */,
 				535CCB7022B5581B00182DB9 /* CreateUserScene */,
+				535CCB8222B567DF00182DB9 /* MapScene */,
 				535CCB6D22B5519300182DB9 /* InitialScene */,
 				536562D322B535950051F848 /* AppDelegate.swift */,
 				536562D522B535950051F848 /* ViewController.swift */,
@@ -570,6 +581,7 @@
 				535CCBBF22B5884100182DB9 /* SearchTableViewCell.swift in Sources */,
 				B3CEE6F422B649110024E05C /* UITextField.swift in Sources */,
 				535CCB8422B5680400182DB9 /* MapViewController.swift in Sources */,
+				0BE7E9D8230763C60060CD39 /* NetworkManager.swift in Sources */,
 				531285B022B6457D00E3AF5F /* Alerta.swift in Sources */,
 				B330A2F422B6736200528EC2 /* ARViewController.swift in Sources */,
 				B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */,
