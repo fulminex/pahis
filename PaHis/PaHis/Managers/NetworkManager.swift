@@ -31,7 +31,7 @@ class NetworkManager {
     
     private init () {}
     static let shared = NetworkManager()
-    let baseURL = "https://4d96388d.ngrok.io/api/"
+    let baseURL = "https://pahis-desafio-uno.herokuapp.com/api/"
     
     func login(email: String, password: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
         let path = "login?email=\(email)&password=\(password)"
@@ -93,7 +93,7 @@ class NetworkManager {
         task.resume()
     }
     
-    func getUserInfo(token: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
+    func getUserType(token: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
         let path = "user/\(token)"
         let url = URL(string: baseURL + path)!
         var request = URLRequest(url: url)
@@ -111,7 +111,7 @@ class NetworkManager {
             if let error = responseJSON["error"] as? String {
                 completion(.failure(.webserviceError(error)))
             } else {
-                guard let userTypeJSON = responseJSON["user_type"] as? [String: Any], let userTypeName = userTypeJSON["name"] as? String else {
+                guard let userTypeName = responseJSON["user_type"] as? String else {
                     completion(.failure(.noUserTypeFound))
                     return
                 }

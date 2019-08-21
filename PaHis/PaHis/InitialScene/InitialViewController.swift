@@ -25,7 +25,7 @@ class InitialViewController: UIViewController {
         if token != nil && token != "" {
             print("Token de Sesión: ", token!)
             let spinner = UIViewController.displaySpinner(onView: self.view)
-            NetworkManager.shared.getUserInfo(token: token!) { result in
+            NetworkManager.shared.getUserType(token: token!) { result in
                 switch result {
                 case .failure(let error):
                     UIViewController.removeSpinner(spinner: spinner)
