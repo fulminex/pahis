@@ -11,7 +11,7 @@ import UIKit
 class RegisterTableViewController: UITableViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate  {
 
     @IBOutlet weak var descripcionTextField: UITextField!
-    @IBOutlet weak var distritoUILabel: UITextField!
+//    @IBOutlet weak var distritoUILabel: UITextField!
     @IBOutlet weak var categoryUILabel: UITextField!
     @IBOutlet weak var direccionTextField: UITextField!
     @IBOutlet weak var observacionTextField: UITextField!
@@ -40,7 +40,7 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
         createDayPicker()
         createToolbar()
         createDistritoPicker()
-        createToolbar2()
+//        createToolbar2()
         cameraUIImage.image = cameraUIImage.image?.withRenderingMode(.alwaysTemplate)
         cameraUIImage.tintColor = UIColor.lightGray
         self.createButton.backgroundColor = UIColor.black
@@ -63,7 +63,7 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
         distritoPicker.restorationIdentifier = "distrito"
         distritoPicker.backgroundColor = .white
         
-        distritoUILabel.inputView = distritoPicker
+//        distritoUILabel.inputView = distritoPicker
     }
     
     func createToolbar() {
@@ -79,18 +79,18 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
         categoryUILabel.inputAccessoryView = toolBar
     }
     
-    func createToolbar2() {
-        
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.dismissKeyboard))
-        
-        toolBar.setItems([doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        
-        distritoUILabel.inputAccessoryView = toolBar
-    }
+//    func createToolbar2() {
+//
+//        let toolBar = UIToolbar()
+//        toolBar.sizeToFit()
+//
+//        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.dismissKeyboard))
+//
+//        toolBar.setItems([doneButton], animated: false)
+//        toolBar.isUserInteractionEnabled = true
+//
+//        distritoUILabel.inputAccessoryView = toolBar
+//    }
     
     
     @objc func dismissKeyboard() {
@@ -117,12 +117,12 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
             self.present(alert, animated: true)
             return
         }
-        guard distritoUILabel.text != "", let distrito = distritoUILabel.text  else {
-            let alert = UIAlertController(title: "Aviso", message: "Ingrese un distrito válida", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-            return
-        }
+//        guard distritoUILabel.text != "", let distrito = distritoUILabel.text  else {
+//            let alert = UIAlertController(title: "Aviso", message: "Ingrese un distrito válida", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+//            self.present(alert, animated: true)
+//            return
+//        }
         guard categoryUILabel.text != "", let categoria = categoryUILabel.text  else {
             let alert = UIAlertController(title: "Aviso", message: "Ingrese una categoria válida", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
@@ -174,7 +174,7 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
                     return
                 }
                 let ref = Database.database().reference()
-                ref.child("registros").child(user.uid).child(UUID().uuidString).setValue(["photo": downloadURL.absoluteString, "descripcion": descripcion, "distrito": distrito, "categoria" : categoria , "direccion": direccion, "observaciones" : observacion, "estado" : "pendiente"])
+                ref.child("registros").child(user.uid).child(UUID().uuidString).setValue(["photo": downloadURL.absoluteString, "descripcion": descripcion, "distrito": "Breña", "categoria" : categoria , "direccion": direccion, "observaciones" : observacion, "estado" : "pendiente"])
                 UIViewController.removeSpinner(spinner: spinner)
                 let alert = UIAlertController(title: "Aviso", message: "Registro enviado satisfactoriamente", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
@@ -238,8 +238,8 @@ extension RegisterTableViewController: UIPickerViewDelegate, UIPickerViewDataSou
             selectedCategory = categories[row]
             categoryUILabel.text = selectedCategory
         } else {
-            selectedDistrito = distrito[row]
-            distritoUILabel.text = selectedDistrito
+//            selectedDistrito = distrito[row]
+//            distritoUILabel.text = selectedDistrito
         }
     }
     
