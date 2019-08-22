@@ -16,13 +16,13 @@ class PlaceTableViewCell: UITableViewCell {
     
     static let identifier = "PlaceTableViewCell"
     
-    var place: Building! {
+    var place: DisplayedBuildingPahis! {
         didSet {
-            descriptionLabel.text = place.desc + "\nCategoría: \(place.category.name)" + "\n\(place.distancia == nil ? "-" : "A \(place.distancia ?? 0) kilómetros")"
+            descriptionLabel.text = place.name + "\nCategoría: \(place.category)" + "\n\(place.distance == nil ? "-" : "A \(place.distance ?? 0) kilómetros")"
                 
                 //place.name + "\nLatitud: \(place.latitud ?? "-")" + "\nLongitud: \(place.longitud ?? "-")" + "\nDistancia: \(place.distance == nil ? "-" : "\(place.distance ?? 0) kilometros")"
             
-            if let urlRaw = place.fachada, let url = URL(string: urlRaw) {
+            if let urlRaw = place.imageURL, let url = URL(string: urlRaw) {
                 photoImage.kf.indicatorType = .activity
                 photoImage.kf.setImage(with: url)
             } else {

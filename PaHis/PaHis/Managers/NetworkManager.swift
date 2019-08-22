@@ -175,20 +175,24 @@ class NetworkManager {
                     }
                     var buildings = [BuildingPahis]()
                     responseJSON.forEach({
+                        var documents = [String]()
+                        var images = [String]()
                         guard
                             let address = $0["address"] as? String,
                             let categoryID = $0["category"] as? Int,
                             let description = $0["description"] as? String,
-                            let documents = $0["documents"] as? [String],
                             let id = $0["id"] as? Int,
-                            let images = $0["images"] as? [String],
-                            let latitude = $0["latitude"] as? Double,
-                            let longitude = $0["longitude"] as? Double,
                             let name = $0["name"] as? String,
                             let state = $0["state"] as? String else {
                             completion(.failure(.noResponse))
                             return
                         }
+                        if let documentsJson = $0["documents"] as? [[String:Any]], let imagesJson = $0["images"]  as? [[String:Any]] {
+                            documents = documentsJson.map({ $0["url"] as! String })
+                            images = imagesJson.map({ $0["url"] as! String })
+                        }
+                        let latitude = $0["latitude"] as? Double
+                        let longitude = $0["longitude"] as? Double
                         guard let category = categories.filter({ $0.id == categoryID }).first else {
                             completion(.failure(.categoryNoFound))
                             return

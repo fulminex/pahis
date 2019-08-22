@@ -141,48 +141,56 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
             self.present(alert, animated: true)
             return
         }
-        let spinner = UIViewController.displaySpinner(onView: self.view)
-        let data = cameraUIImage.image!.jpegData(compressionQuality: 0.9)!
-        let registroImageRef = Storage.storage().reference().child("registroImages/\(UUID().uuidString).jpg")
-        _ = registroImageRef.putData(data, metadata: nil, completion: { (metadata, error) in
-            guard error == nil else {
-                UIViewController.removeSpinner(spinner: spinner)
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
-                print("Error al subir la imagen de perfil: ", error!.localizedDescription)
-                return
-            }
-            guard let metadata = metadata else {
-                UIViewController.removeSpinner(spinner: spinner)
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
-                print("No hay metadata")
-                return
-            }
-            guard let user = Auth.auth().currentUser else {
-                UIViewController.removeSpinner(spinner: spinner)
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
-                return
-            }
-            registroImageRef.downloadURL(completion: { (url, error) in
-                guard error == nil else {
-                    UIViewController.removeSpinner(spinner: spinner)
-                    self.navigationItem.rightBarButtonItem?.isEnabled = true
-                    print("Error al obtener la url del profile")
-                    return
-                }
-                guard let downloadURL = url else {
-                    UIViewController.removeSpinner(spinner: spinner)
-                    return
-                }
-                let ref = Database.database().reference()
-                ref.child("registros").child(user.uid).child(UUID().uuidString).setValue(["photo": downloadURL.absoluteString, "descripcion": descripcion, "distrito": "Breña", "categoria" : categoria , "direccion": direccion, "observaciones" : observacion, "estado" : "pendiente"])
-                UIViewController.removeSpinner(spinner: spinner)
-                let alert = UIAlertController(title: "Aviso", message: "Registro enviado satisfactoriamente", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-                    _ = self.navigationController?.popViewController(animated: true)
-                }))
-                self.present(alert, animated: true)
-            })
-        })
+        
+        //TODO: Terminar esto
+        let alert = UIAlertController(title: "Aviso", message: "Registro enviado satisfactoriamente", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
+            _ = self.navigationController?.popViewController(animated: true)
+        }))
+        self.present(alert, animated: true)
+        
+//        let spinner = UIViewController.displaySpinner(onView: self.view)
+//        let data = cameraUIImage.image!.jpegData(compressionQuality: 0.9)!
+//        let registroImageRef = Storage.storage().reference().child("registroImages/\(UUID().uuidString).jpg")
+//        _ = registroImageRef.putData(data, metadata: nil, completion: { (metadata, error) in
+//            guard error == nil else {
+//                UIViewController.removeSpinner(spinner: spinner)
+//                self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                print("Error al subir la imagen de perfil: ", error!.localizedDescription)
+//                return
+//            }
+//            guard let metadata = metadata else {
+//                UIViewController.removeSpinner(spinner: spinner)
+//                self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                print("No hay metadata")
+//                return
+//            }
+//            guard let user = Auth.auth().currentUser else {
+//                UIViewController.removeSpinner(spinner: spinner)
+//                self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                return
+//            }
+//            registroImageRef.downloadURL(completion: { (url, error) in
+//                guard error == nil else {
+//                    UIViewController.removeSpinner(spinner: spinner)
+//                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                    print("Error al obtener la url del profile")
+//                    return
+//                }
+//                guard let downloadURL = url else {
+//                    UIViewController.removeSpinner(spinner: spinner)
+//                    return
+//                }
+//                let ref = Database.database().reference()
+//                ref.child("registros").child(user.uid).child(UUID().uuidString).setValue(["photo": downloadURL.absoluteString, "descripcion": descripcion, "distrito": "Breña", "categoria" : categoria , "direccion": direccion, "observaciones" : observacion, "estado" : "pendiente"])
+//                UIViewController.removeSpinner(spinner: spinner)
+//                let alert = UIAlertController(title: "Aviso", message: "Registro enviado satisfactoriamente", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
+//                    _ = self.navigationController?.popViewController(animated: true)
+//                }))
+//                self.present(alert, animated: true)
+//            })
+//        })
         
     }
     

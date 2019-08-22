@@ -16,8 +16,8 @@ struct BuildingPahis {
     let category: Category
     let documents: [String]
     let images: [String]
-    let latitude: Double
-    let longitude: Double
+    let latitude: Double?
+    let longitude: Double?
     let state: String
 }
 

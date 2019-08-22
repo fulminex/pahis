@@ -10,49 +10,33 @@ import Firebase
 import UIKit
 import GoogleMaps
 
-struct DisplayedPlace {
+struct DisplayedBuildingPahis {
     let name: String
-    let latitud: String?
-    let longitud: String?
+    let category: String
+    let latitude: Double?
+    let longitude: Double?
     let distance: Double?
-    let imageUrl: URL
+    let imageURL: String?
 }
 
 class PlaceListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    var ref: DatabaseReference!
-    var categoriesRef: DatabaseReference!
-    var categoriesHandle: DatabaseHandle!
-    var inmueblesRef: DatabaseReference!
-    var inmueblesRefHandle: DatabaseHandle!
-    
     var categories: [Category] = []
-    var displayedBuildings: [Building] = []
-    var filteredBuildings = [Building]()
+    var buildingsPahis = [BuildingPahis]()
+    var displayedBuildingsPahis = [DisplayedBuildingPahis]()
+    var originalDisplayedBuildings = [DisplayedBuildingPahis]()
+    var filteredBuildingsPahis = [DisplayedBuildingPahis]()
+    
     var resultSearchController = UISearchController()
     
-    var places: [Place] = []
-    var displayedPlaces: [DisplayedPlace] = []
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation!
     var forced: Bool = true
     
     var toolBar = UIToolbar()
-    var picker  = UIPickerView()
-    let categoriesList = ["Todos",
-                      "Paisaje Cultural Arqueológico e Histórico",
-                      "Zona Monumental",
-                      "Ambiente Urbano Monumental",
-                      "Monumento",
-                      "Zona Histórico Monumental",
-                      "Valor Urbanistico De Entorno",
-                      "Inmueble Identificado para su Declaración",
-                      "Inmueble De Valor Monumental",
-                      "Zona Paisajística de Valor Monumental",
-                      "Ambiente Monumental",
-                      "Sitio Histórico de batalla"]
-    var selectedCat = ""
-    var originalBuildings: [Building] = []
+    var picker: UIPickerView?
+    var categoriesList = ["Todos"]
+    var selectedCat = "Todos"
     
     @IBOutlet weak var tableView: UITableView!
     private let refreshControl = UIRefreshControl()
@@ -97,30 +81,26 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
             return controller
         })()
         
-        ref = Database.database().reference()
-        categoriesRef = ref.child("categorias")
-        inmueblesRef = ref.child("inmueblesLima")
-        
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
-        // Do any additional setup after loading the view, typically from a nib.
         spinner = UIViewController.displaySpinner(onView: self.view)
-        fetchBuildings()
     }
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
+        guard picker == nil else { return }
         picker = UIPickerView.init()
-        picker.delegate = self
-        picker.backgroundColor = UIColor.white
-        picker.setValue(UIColor.black, forKey: "textColor")
-        picker.autoresizingMask = .flexibleWidth
-        picker.contentMode = .center
-        picker.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
-        self.view.addSubview(picker)
+        picker!.delegate = self
+        picker!.backgroundColor = UIColor.white
+        picker!.setValue(UIColor.black, forKey: "textColor")
+        picker!.autoresizingMask = .flexibleWidth
+        picker!.contentMode = .center
+        picker!.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
+        picker!.selectRow(categoriesList.firstIndex(of: selectedCat) ?? 0, inComponent: 0, animated: true)
+        self.view.addSubview(picker!)
         
         toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
         toolBar.items = [UIBarButtonItem.init(title: "Aplicar", style: .done, target: self, action: #selector(onDoneButtonTapped))]
@@ -130,16 +110,13 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @objc func onDoneButtonTapped() {
         toolBar.removeFromSuperview()
-        picker.removeFromSuperview()
-        displayedBuildings = originalBuildings
-        print(displayedBuildings.count)
-        displayedBuildings = displayedBuildings.filter( {
-//            print($0.category.name)
-//            print($0.category.name == selectedCat)
-            return $0.category.name == selectedCat
+        picker!.removeFromSuperview()
+        picker = nil
+        displayedBuildingsPahis = originalDisplayedBuildings.filter( {
+            return $0.category == selectedCat
         })
         if selectedCat == "Todos" {
-            displayedBuildings = originalBuildings
+            displayedBuildingsPahis = originalDisplayedBuildings
         }
         tableView.reloadData()
         print(selectedCat)
@@ -206,7 +183,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @objc func reloadPlaces() {
-        fetchPlaces(forced: true)
+        fetchBuildings(forced: true)
     }
     
     @objc func navigateToRegister() {
@@ -215,202 +192,91 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func fetchBuildings() {
-        NetworkManager.shared.getBuildings() { result in
-            switch result {
-            case .failure(let error):
-//                UIViewController.removeSpinner(spinner: spinner)
-                let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
-            case .success(let categories, let buildings):
-//                UIViewController.removeSpinner(spinner: spinner)
-                print("================= Categorias ===================")
-                print(categories)
-                print("================= Inmuebles ===================")
-                print(buildings)
-            }
-        }
-    }
-    
-    func fetchCategories(forced: Bool) {
+    func fetchBuildings(forced: Bool) {
         if forced {
-            categoriesRef.observeSingleEvent(of: .value) { (snapshot) in
-                if let array = snapshot.value as? [[String: Any]] {
-                    for aValue in array {
-                        let name = aValue["NOMBRE"] as? String ?? "-"
-                        let codCatString = aValue["codCategoria"] as? String ?? "-"
-                        let category = Category(name: name, id: 1) //codCatString
-                        self.categories.append(category)
-                    }
-                    self.inmueblesRef.observeSingleEvent(of: .value, with: { (snapshot2) in
-                        if let array = snapshot2.value as? [[String: Any]] {
-                            for aValue in array {
-                                let codInm = aValue["codInmueble"] as? String ?? "-"
-                                print(codInm)
-                                let desc = aValue["descripcion"] as? String ?? "-"
-                                let codDist = aValue["codDistrito"] as? String ?? "-"
-                                let obser = aValue["observacion"] as? String ?? "-"
-                                let codCat = aValue["codCategoria"] as? Int ?? 1
-                                var category: Category?
-                                self.categories.forEach({
-                                    if $0.id == codCat {
-                                        category = $0
-                                    }
-                                })
-                                
-                                let x = aValue["X"] as? String ?? "-"
-                                let y = aValue["Y"] as? String ?? "-"
-                                let zona = aValue["zona"] as? String ?? "-"
-                                let latitud = aValue["LATITUD"] as? String
-                                let longitud = aValue["LONGITUD"] as? String
-                                let addr = aValue["direccion"] as? String ?? "-"
-                                let fachada = aValue["FACHADA"] as? String
-                                let tipoNorm = aValue["tipoDeNorma"] as? String ?? "-"
-                                let numNorma = aValue["numDeNorma"] as? String ?? "-"
-                                let archiv = aValue["archivoDeNorma"] as? String ?? "-"
-                                
-                                let distancia: Double?
-                                
-                                if latitud != nil && longitud != nil {
-                                    print(latitud)
-                                    print(longitud)
-                                    let lat = Double(latitud!)!
-                                    let lon = Double(longitud!)!
-                                    let location = CLLocation(latitude: lat, longitude: lon)
-                                    distancia = round(100*((location.distance(from: self.currentLocation))/1000.0))/100
-                                } else {
-                                    distancia = nil
-                                }
-                                
-                                let build = Building(
-                                    codBuild: codInm,
-                                    desc: desc,
-                                    codDist: codDist,
-                                    obser: obser,
-                                    category: category!,
-                                    x: x,
-                                    y: y,
-                                    zone: zona,
-                                    latitudeRaw: latitud,
-                                    longitudeRaw: longitud,
-                                    address: addr,
-                                    fachada: fachada,
-                                    tipNorma: tipoNorm,
-                                    numNorma: numNorma,
-                                    archiNorma: archiv,
-                                    distancia: distancia
-                                )
-                                if !self.displayedBuildings.contains(where: { $0.codBuild == codInm }) {
-                                    self.displayedBuildings.append(build)
-                                }
-                            }
-                            self.displayedBuildings.sort(by: { (p1, p2) -> Bool in
-                                return p1.distancia ?? Double(Int.max) < p2.distancia ?? Double(Int.max)
-                            })
-                            self.originalBuildings = self.displayedBuildings
-                            self.forced = false
-                            UIViewController.removeSpinner(spinner: self.spinner)
-                            self.tableView.reloadData()
+            NetworkManager.shared.getBuildings() { result in
+                switch result {
+                case .failure(let error):
+                    UIViewController.removeSpinner(spinner: self.spinner)
+                    let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                case .success(let categories, let buildings):
+                    self.categories = categories
+                    self.categoriesList = ["Todos"] + self.categories.map({ $0.name })
+                    self.buildingsPahis = buildings
+                    self.displayedBuildingsPahis = self.buildingsPahis.map({
+                        var distance: Double?
+                        if $0.latitude != nil && $0.longitude != nil {
+                            distance = round(100*((CLLocation(latitude: $0.latitude!, longitude: $0.longitude!).distance(from: self.currentLocation))/1000.0))/100
                         }
+                        return DisplayedBuildingPahis(name: $0.name, category: $0.category.name, latitude: $0.latitude, longitude: $0.longitude, distance: distance, imageURL: $0.images.first)
                     })
+                    self.displayedBuildingsPahis.sort(by: { (b1, b2) -> Bool in
+                        return b1.distance ?? Double(Int.max) < b2.distance ?? Double(Int.max)
+                    })
+                    self.originalDisplayedBuildings = self.displayedBuildingsPahis
+                    self.forced = false
+                    self.refreshControl.endRefreshing()
+                    UIViewController.removeSpinner(spinner: self.spinner)
+                    self.tableView.reloadData()
                 }
             }
-        }
-        
-    }
-    
-    func fetchPlaces(forced: Bool) {
-        if forced {
-            let request = URLRequest(url: Place.apiURL)
-            let _ = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                guard response != nil else {
-                    print("Error, no hay respuesta")
-                    return
-                }
-                guard let data = data else {
-                    print("Error, no hay data")
-                    return
-                }
-                let decoder = JSONDecoder()
-                do {
-                    self.places = try decoder.decode([Place].self, from: data)
-                    print("Se realizó petición al server")
-                    self.forced = false
-                    self.displayedPlaces = self.places.map({
-                        DisplayedPlace(
-                            name: $0.nombre,
-                            latitud: $0.coord?.latitud == "" ? nil : $0.coord?.latitud,
-                            longitud: $0.coord?.longitud == "" ? nil : $0.coord?.longitud,
-                            distance: $0.location?.distance(from: self.currentLocation) != nil ? round(100*(($0.location?.distance(from: self.currentLocation) ?? 0.0)/1000.0))/100 : nil,
-                            imageUrl: $0.imageUrl)
-                    })
-                    self.displayedPlaces.sort(by: { (p1, p2) -> Bool in
-                        return p1.distance ?? Double(Int.max) < p2.distance ?? Double(Int.max)
-                    })
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.refreshControl.endRefreshing()
-                    }
-                } catch {
-                    print("Error al hacer decode")
-                }
-                }.resume()
         } else {
-            self.displayedPlaces = self.places.map({
-                DisplayedPlace(
-                    name: $0.nombre,
-                    latitud: $0.coord?.latitud == "" ? nil : $0.coord?.latitud,
-                    longitud: $0.coord?.longitud == "" ? nil : $0.coord?.longitud,
-                    distance: $0.location?.distance(from: self.currentLocation) != nil ? round(100*(($0.location?.distance(from: self.currentLocation) ?? 0.0)/1000.0))/100 : nil,
-                    imageUrl: $0.imageUrl)
+            self.displayedBuildingsPahis = self.buildingsPahis.map({
+                var distance: Double?
+                if $0.latitude != nil && $0.longitude != nil {
+                    distance = round(100*((CLLocation(latitude: $0.latitude!, longitude: $0.longitude!).distance(from: self.currentLocation))/1000.0))/100
+                }
+                return DisplayedBuildingPahis(name: $0.name, category: $0.category.name, latitude: $0.latitude, longitude: $0.longitude, distance: distance, imageURL: $0.images.first)
             })
-            print("Se actualizó las distancias")
-            self.displayedPlaces.sort(by: { (p1, p2) -> Bool in
-                return p1.distance ?? Double(Int.max) < p2.distance ?? Double(Int.max)
+            self.displayedBuildingsPahis.sort(by: { (b1, b2) -> Bool in
+                return b1.distance ?? Double(Int.max) < b2.distance ?? Double(Int.max)
             })
+            UIViewController.removeSpinner(spinner: self.spinner)
             self.tableView.reloadData()
         }
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if  (resultSearchController.isActive) {
-            return filteredBuildings.count
+            return filteredBuildingsPahis.count
         } else {
-            return displayedBuildings.count
+            return displayedBuildingsPahis.count
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var building : Building!
-        if  (resultSearchController.isActive) {
-            building = filteredBuildings[indexPath.row]
-        } else {
-            building = displayedBuildings[indexPath.row]
-        }
-        if building.desc == "CINE TAURO" {
-            let sb = UIStoryboard(name: "Monumento", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "CineTauro")
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+//        var building : DisplayedBuildingPahis!
+//        if  (resultSearchController.isActive) {
+//            building = filteredBuildingsPahis[indexPath.row]
+//        } else {
+//            building = displayedBuildingsPahis[indexPath.row]
+//        }
+//        if building.name == "CINE TAURO" {
+//            let sb = UIStoryboard(name: "Monumento", bundle: nil)
+//            let vc = sb.instantiateViewController(withIdentifier: "CineTauro")
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PlaceTableViewCell.identifier, for: indexPath) as! PlaceTableViewCell
         if (resultSearchController.isActive) {
-            cell.place = filteredBuildings[indexPath.row]
+            cell.place = filteredBuildingsPahis[indexPath.row]
             return cell
         }
         else {
-            cell.place = displayedBuildings[indexPath.row]
+            cell.place = displayedBuildingsPahis[indexPath.row]
             return cell
         }
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        filteredBuildings.removeAll(keepingCapacity: false)
-        filteredBuildings = originalBuildings.filter({ $0.desc.uppercased().contains(searchController.searchBar.text!.uppercased()) })
+        filteredBuildingsPahis.removeAll(keepingCapacity: false)
+        filteredBuildingsPahis = originalDisplayedBuildings.filter({ $0.name.uppercased().contains(searchController.searchBar.text!.uppercased()) })
         self.tableView.reloadData()
     }
     
@@ -422,7 +288,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.present(alert, animated: true)
                 return
             }
-            guard let latitude = self.displayedBuildings[index.row].latitudeRaw, let lat = Double(latitude), let longitude = self.displayedBuildings[index.row].longitudeRaw, let lon = Double(longitude) else {
+            guard let lat = self.displayedBuildingsPahis[index.row].latitude, let lon = self.displayedBuildingsPahis[index.row].longitude else {
                 let alert = UIAlertController(title: "Aviso", message: "El lugar seleccionado no cuenta con ubicación disponible, intente con otro lugar.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
@@ -437,7 +303,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.present(alert, animated: true)
                 return
             }
-            guard let latitude = self.displayedBuildings[index.row].latitudeRaw, let lat = Double(latitude), let longitude = self.displayedBuildings[index.row].longitudeRaw, let lon = Double(longitude) else {
+            guard let lat = self.displayedBuildingsPahis[index.row].latitude, let lon = self.displayedBuildingsPahis[index.row].longitude else {
                 let alert = UIAlertController(title: "Aviso", message: "El lugar seleccionado no cuenta con ubicación disponible, intente con otro lugar.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
@@ -457,18 +323,18 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         let closeAction = UIContextualAction(style: .normal, title:  "Alertar", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             let sb = UIStoryboard(name: "Alert", bundle: nil)
             let vc = sb.instantiateInitialViewController() as! AlertTableViewController
-            var building : Building!
+            var building : DisplayedBuildingPahis!
             if (self.resultSearchController.isActive) {
-                building = self.filteredBuildings[indexPath.row]
+                building = self.filteredBuildingsPahis[indexPath.row]
             }
             else {
-                building = self.displayedBuildings[indexPath.row]
+                building = self.displayedBuildingsPahis[indexPath.row]
             }
-            vc.desc = building.desc
-            vc.codBuild = building.codBuild
-            vc.direccion = building.address
+//            vc.desc = building.desc
+//            vc.codBuild = building.codBuild
+//            vc.direccion = building.address
             success(true)
-            self.navigationController?.pushViewController(vc, animated: true)
+//            self.navigationController?.pushViewController(vc, animated: true)
         })
 //        closeAction.image = UIImage(named: "tick")
         closeAction.backgroundColor = UIColor(rgb: 0xF5391C)
@@ -485,9 +351,7 @@ extension PlaceListViewController: CLLocationManagerDelegate {
         let location = locations.last!
         print("Location: \(location)")
         currentLocation = location
-        fetchCategories(forced: forced)
-        //fetchPlaces(forced: forced)
-        tableView.reloadData()
+        fetchBuildings(forced: forced)
     }
     
     // Handle authorization for the location manager.
