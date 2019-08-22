@@ -8,6 +8,19 @@
 
 import Foundation
 
+struct BuildingPahis {
+    let id: Int
+    let name: String
+    let address: String
+    let description: String
+    let category: Category
+    let documents: [String]
+    let images: [String]
+    let latitude: Double
+    let longitude: Double
+    let state: String
+}
+
 struct Building {
     let codBuild: String
     let desc: String
@@ -29,5 +42,5 @@ struct Building {
 
 struct Category {
     let name: String
-    let codCategory: String
+    let id: Int
 }

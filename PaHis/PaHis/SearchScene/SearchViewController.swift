@@ -109,6 +109,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         locationManager.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         spinner = UIViewController.displaySpinner(onView: self.view)
+        fetchBuildings()
     }
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
@@ -214,6 +215,24 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
+    func fetchBuildings() {
+        NetworkManager.shared.getBuildings() { result in
+            switch result {
+            case .failure(let error):
+//                UIViewController.removeSpinner(spinner: spinner)
+                let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            case .success(let categories, let buildings):
+//                UIViewController.removeSpinner(spinner: spinner)
+                print("================= Categorias ===================")
+                print(categories)
+                print("================= Inmuebles ===================")
+                print(buildings)
+            }
+        }
+    }
+    
     func fetchCategories(forced: Bool) {
         if forced {
             categoriesRef.observeSingleEvent(of: .value) { (snapshot) in
@@ -221,7 +240,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                     for aValue in array {
                         let name = aValue["NOMBRE"] as? String ?? "-"
                         let codCatString = aValue["codCategoria"] as? String ?? "-"
-                        let category = Category(name: name, codCategory: codCatString)
+                        let category = Category(name: name, id: 1) //codCatString
                         self.categories.append(category)
                     }
                     self.inmueblesRef.observeSingleEvent(of: .value, with: { (snapshot2) in
@@ -232,10 +251,10 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                                 let desc = aValue["descripcion"] as? String ?? "-"
                                 let codDist = aValue["codDistrito"] as? String ?? "-"
                                 let obser = aValue["observacion"] as? String ?? "-"
-                                let codCat = aValue["codCategoria"] as? String ?? "-"
+                                let codCat = aValue["codCategoria"] as? Int ?? 1
                                 var category: Category?
                                 self.categories.forEach({
-                                    if $0.codCategory == codCat {
+                                    if $0.id == codCat {
                                         category = $0
                                     }
                                 })

@@ -14,6 +14,7 @@ enum NetworkError: Error {
     case noTokenFound
     case noUserTypeFound
     case webserviceError(String)
+    case categoryNoFound
     
     var errorDescription: String {
         switch self {
@@ -22,6 +23,7 @@ enum NetworkError: Error {
         case .noTokenFound: return "Error al generar el token de sesión."
         case .noUserTypeFound: return "Error al obtener el tipo de usuario."
         case .webserviceError(let error): return error
+        case .categoryNoFound: return "Error: no se encontró la categoría."
         }
     }
     
@@ -147,6 +149,99 @@ class NetworkManager {
                 }
                 completion(.success(message))
             }
+        }
+        task.resume()
+    }
+    
+    func getBuildings(completion: @escaping (Result<([Category],[BuildingPahis]),NetworkError>) -> Void) {
+        NetworkManager.shared.getCategories(){ result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let categories):
+                let path = "inmuebles"
+                let url = URL(string: self.baseURL + path)!
+                var request = URLRequest(url: url)
+                request.httpMethod = "GET"
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    guard let data = data, error == nil else {
+                        completion(.failure(.noData(error!.localizedDescription)))
+                        return
+                    }
+                    let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
+                    guard let responseJSON = jsonObject as? [[String: Any]] else {
+                        completion(.failure(.noResponse))
+                        return
+                    }
+                    var buildings = [BuildingPahis]()
+                    responseJSON.forEach({
+                        guard
+                            let address = $0["address"] as? String,
+                            let categoryID = $0["category"] as? Int,
+                            let description = $0["description"] as? String,
+                            let documents = $0["documents"] as? [String],
+                            let id = $0["id"] as? Int,
+                            let images = $0["images"] as? [String],
+                            let latitude = $0["latitude"] as? Double,
+                            let longitude = $0["longitude"] as? Double,
+                            let name = $0["name"] as? String,
+                            let state = $0["state"] as? String else {
+                            completion(.failure(.noResponse))
+                            return
+                        }
+                        guard let category = categories.filter({ $0.id == categoryID }).first else {
+                            completion(.failure(.categoryNoFound))
+                            return
+                        }
+                        let building = BuildingPahis(
+                            id: id,
+                            name: name,
+                            address: address,
+                            description: description,
+                            category: category,
+                            documents: documents,
+                            images: images,
+                            latitude: latitude,
+                            longitude: longitude,
+                            state: state
+                        )
+                        buildings.append(building)
+                    })
+                    DispatchQueue.main.async {
+                        completion(.success((categories, buildings)))
+                    }
+                }
+                task.resume()
+            }
+        }
+        
+    }
+    
+    func getCategories(completion: @escaping (Result<[Category],NetworkError>) -> Void) {
+        let path = "categories"
+        let url = URL(string: baseURL + path)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                completion(.failure(.noData(error!.localizedDescription)))
+                return
+            }
+            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
+            guard let responseJSON = jsonObject as? [[String: Any]] else {
+                completion(.failure(.noResponse))
+                return
+            }
+            var categories = [Category]()
+            responseJSON.forEach({
+                guard let id = $0["id"] as? Int , let name = $0["name"] as? String else {
+                    completion(.failure(.noResponse))
+                    return
+                }
+                let category = Category(name: name, id: id)
+                categories.append(category)
+            })
+            completion(.success(categories))
         }
         task.resume()
     }
