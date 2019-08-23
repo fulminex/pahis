@@ -13,7 +13,7 @@ struct BuildingPahis {
     let name: String
     let address: String
     let description: String
-    let category: Category
+    let category: CategoryPahis
     let documents: [String]
     let images: [String]
     let latitude: Double?
@@ -21,26 +21,7 @@ struct BuildingPahis {
     let state: String
 }
 
-struct Building {
-    let codBuild: String
-    let desc: String
-    let codDist: String
-    let obser: String?
-    let category: Category
-    let x: String?
-    let y: String?
-    let zone: String?
-    let latitudeRaw: String?
-    let longitudeRaw: String?
-    let address: String?
-    let fachada: String?
-    let tipNorma: String
-    let numNorma: String
-    let archiNorma: String?
-    let distancia: Double?
-}
-
-struct Category {
+struct CategoryPahis {
     let name: String
     let id: Int
 }

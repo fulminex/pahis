@@ -35,6 +35,8 @@ class NetworkManager {
     static let shared = NetworkManager()
     let baseURL = "https://pahis-desafio-uno.herokuapp.com/api/"
     
+    let persistanceManager = PersistenceManager.shared
+    
     func login(email: String, password: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
         let path = "login?email=\(email)&password=\(password)"
         let url = URL(string: baseURL + path)!
@@ -42,22 +44,32 @@ class NetworkManager {
         request.httpMethod = "POST"
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data, error == nil else {
-                completion(.failure(.noData(error!.localizedDescription)))
+                DispatchQueue.main.async {
+                    completion(.failure(.noData(error!.localizedDescription)))
+                }
                 return
             }
             let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
             guard let responseJSON = jsonObject as? [String: Any] else {
-                completion(.failure(.noResponse))
+                DispatchQueue.main.async {
+                    completion(.failure(.noResponse))
+                }
                 return
             }
             if let error = responseJSON["error"] as? String {
-                completion(.failure(.webserviceError(error)))
+                DispatchQueue.main.async {
+                    completion(.failure(.webserviceError(error)))
+                }
             } else {
                 guard let token = responseJSON["token"] as? String else {
-                    completion(.failure(.noTokenFound))
+                    DispatchQueue.main.async {
+                        completion(.failure(.noTokenFound))
+                    }
                     return
                 }
-                completion(.success(token))
+                DispatchQueue.main.async {
+                    completion(.success(token))
+                }
             }
         }
         task.resume()
@@ -78,18 +90,26 @@ class NetworkManager {
         request.httpBody = jsonData
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                completion(.failure(.noData(error!.localizedDescription)))
+                DispatchQueue.main.async {
+                    completion(.failure(.noData(error!.localizedDescription)))
+                }
                 return
             }
             let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
             guard let responseJSON = jsonObject as? [String: Any] else {
-                completion(.failure(.noResponse))
+                DispatchQueue.main.async {
+                    completion(.failure(.noResponse))
+                }
                 return
             }
             if let error = responseJSON["error"] as? String {
-                completion(.failure(.webserviceError(error)))
+                DispatchQueue.main.async {
+                    completion(.failure(.webserviceError(error)))
+                }
             } else {
-                completion(.success("Usuario creado satisfactoriamente."))
+                DispatchQueue.main.async {
+                    completion(.success("Usuario creado satisfactoriamente."))
+                }
             }
         }
         task.resume()
@@ -102,19 +122,27 @@ class NetworkManager {
         request.httpMethod = "GET"
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                completion(.failure(.noData(error!.localizedDescription)))
+                DispatchQueue.main.async {
+                    completion(.failure(.noData(error!.localizedDescription)))
+                }
                 return
             }
             let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
             guard let responseJSON = jsonObject as? [String: Any] else {
-                completion(.failure(.noResponse))
+                DispatchQueue.main.async {
+                    completion(.failure(.noResponse))
+                }
                 return
             }
             if let error = responseJSON["error"] as? String {
-                completion(.failure(.webserviceError(error)))
+                DispatchQueue.main.async {
+                    completion(.failure(.webserviceError(error)))
+                }
             } else {
                 guard let userTypeName = responseJSON["user_type"] as? String else {
-                    completion(.failure(.noUserTypeFound))
+                    DispatchQueue.main.async {
+                        completion(.failure(.noUserTypeFound))
+                    }
                     return
                 }
                 DispatchQueue.main.async {
@@ -132,32 +160,44 @@ class NetworkManager {
         request.httpMethod = "POST"
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                completion(.failure(.noData(error!.localizedDescription)))
+                DispatchQueue.main.async {
+                    completion(.failure(.noData(error!.localizedDescription)))
+                }
                 return
             }
             let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
             guard let responseJSON = jsonObject as? [String: Any] else {
-                completion(.failure(.noResponse))
+                DispatchQueue.main.async {
+                    completion(.failure(.noResponse))
+                }
                 return
             }
             if let error = responseJSON["error"] as? String {
-                completion(.failure(.webserviceError(error)))
+                DispatchQueue.main.async {
+                    completion(.failure(.webserviceError(error)))
+                }
             } else {
                 guard let message = responseJSON["message"] as? String else {
-                    completion(.failure(.noResponse))
+                    DispatchQueue.main.async {
+                        completion(.failure(.noResponse))
+                    }
                     return
                 }
-                completion(.success(message))
+                DispatchQueue.main.async {
+                    completion(.success(message))
+                }
             }
         }
         task.resume()
     }
     
-    func getBuildings(completion: @escaping (Result<([Category],[BuildingPahis]),NetworkError>) -> Void) {
+    func getBuildings(completion: @escaping (Result<([Category],[Building]),NetworkError>) -> Void) {
         NetworkManager.shared.getCategories(){ result in
             switch result {
             case .failure(let error):
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
             case .success(let categories):
                 let path = "inmuebles"
                 let url = URL(string: self.baseURL + path)!
@@ -165,15 +205,18 @@ class NetworkManager {
                 request.httpMethod = "GET"
                 let task = URLSession.shared.dataTask(with: request) { data, response, error in
                     guard let data = data, error == nil else {
-                        completion(.failure(.noData(error!.localizedDescription)))
+                        DispatchQueue.main.async {
+                            completion(.failure(.noData(error!.localizedDescription)))
+                        }
                         return
                     }
                     let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
                     guard let responseJSON = jsonObject as? [[String: Any]] else {
-                        completion(.failure(.noResponse))
+                        DispatchQueue.main.async {
+                            completion(.failure(.noResponse))
+                        }
                         return
                     }
-                    var buildings = [BuildingPahis]()
                     responseJSON.forEach({
                         var documents = [String]()
                         var images = [String]()
@@ -181,36 +224,36 @@ class NetworkManager {
                             let address = $0["address"] as? String,
                             let categoryID = $0["category"] as? Int,
                             let description = $0["description"] as? String,
-                            let id = $0["id"] as? Int,
+                            let id = $0["id"] as? Int32,
                             let name = $0["name"] as? String,
                             let state = $0["state"] as? String else {
-                            completion(.failure(.noResponse))
+                                DispatchQueue.main.async {
+                                    completion(.failure(.noResponse))
+                                }
                             return
                         }
+                        let building = self.persistanceManager.fetchSingleOrCreate(Building.self, uid: id)
+                        building.address = address
+                        building.detail = description
+                        building.name = name
+                        building.state = state
                         if let documentsJson = $0["documents"] as? [[String:Any]], let imagesJson = $0["images"]  as? [[String:Any]] {
                             documents = documentsJson.map({ $0["url"] as! String })
                             images = imagesJson.map({ $0["url"] as! String })
                         }
-                        let latitude = $0["latitude"] as? Double
-                        let longitude = $0["longitude"] as? Double
-                        guard let category = categories.filter({ $0.id == categoryID }).first else {
+                        guard let category = categories.filter({ $0.uid == categoryID }).first else {
                             completion(.failure(.categoryNoFound))
                             return
                         }
-                        let building = BuildingPahis(
-                            id: id,
-                            name: name,
-                            address: address,
-                            description: description,
-                            category: category,
-                            documents: documents,
-                            images: images,
-                            latitude: latitude,
-                            longitude: longitude,
-                            state: state
-                        )
-                        buildings.append(building)
+                        building.category = category
+                        building.documents = documents
+                        building.images = images
+                        building.latitude = $0["latitude"] as? NSNumber
+                        building.longitude = $0["longitude"] as? NSNumber
                     })
+                    _ = self.persistanceManager.fetch(Building.self).filter({ !$0.hasChanges }).forEach({ self.persistanceManager.delete($0) })
+                    self.persistanceManager.save()
+                    let buildings = self.persistanceManager.fetch(Building.self)
                     DispatchQueue.main.async {
                         completion(.success((categories, buildings)))
                     }
@@ -236,15 +279,16 @@ class NetworkManager {
                 completion(.failure(.noResponse))
                 return
             }
-            var categories = [Category]()
             responseJSON.forEach({
-                guard let id = $0["id"] as? Int , let name = $0["name"] as? String else {
+                guard let id = $0["id"] as? Int32 , let name = $0["name"] as? String else {
                     completion(.failure(.noResponse))
                     return
                 }
-                let category = Category(name: name, id: id)
-                categories.append(category)
+                let category = self.persistanceManager.fetchSingleOrCreate(Category.self, uid: id)
+                category.name = name
             })
+            _ = self.persistanceManager.fetch(Category.self).filter({ !$0.hasChanges }).forEach({ self.persistanceManager.delete($0) })
+            let categories = self.persistanceManager.fetch(Category.self)
             completion(.success(categories))
         }
         task.resume()

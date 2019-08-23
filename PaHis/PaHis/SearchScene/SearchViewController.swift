@@ -22,7 +22,6 @@ struct DisplayedBuildingPahis {
 class PlaceListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var categories: [Category] = []
-    var buildingsPahis = [BuildingPahis]()
     var displayedBuildingsPahis = [DisplayedBuildingPahis]()
     var originalDisplayedBuildings = [DisplayedBuildingPahis]()
     var filteredBuildingsPahis = [DisplayedBuildingPahis]()
@@ -31,17 +30,18 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation!
-    var forced: Bool = true
     
     var toolBar = UIToolbar()
     var picker: UIPickerView?
     var categoriesList = ["Todos"]
     var selectedCat = "Todos"
     
+    var coreDataHasData: Bool = {
+        return !PersistenceManager.shared.fetch(Category.self).isEmpty
+    }()
+    
     @IBOutlet weak var tableView: UITableView!
     private let refreshControl = UIRefreshControl()
-    
-    var spinner: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +87,6 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
-        spinner = UIViewController.displaySpinner(onView: self.view)
     }
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
@@ -192,48 +191,49 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func fetchBuildings(forced: Bool) {
-        if forced {
+    func fetchBuildings(forced: Bool = false) {
+        let spinner = UIViewController.displaySpinner(onView: self.view)
+        if !coreDataHasData || forced {
             NetworkManager.shared.getBuildings() { result in
                 switch result {
                 case .failure(let error):
-                    UIViewController.removeSpinner(spinner: self.spinner)
+                    self.refreshControl.endRefreshing()
+                    UIViewController.removeSpinner(spinner: spinner)
                     let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alert, animated: true)
                 case .success(let categories, let buildings):
                     self.categories = categories
                     self.categoriesList = ["Todos"] + self.categories.map({ $0.name })
-                    self.buildingsPahis = buildings
-                    self.displayedBuildingsPahis = self.buildingsPahis.map({
+                    self.displayedBuildingsPahis = buildings.map({
                         var distance: Double?
                         if $0.latitude != nil && $0.longitude != nil {
-                            distance = round(100*((CLLocation(latitude: $0.latitude!, longitude: $0.longitude!).distance(from: self.currentLocation))/1000.0))/100
+                            distance = round(100*((CLLocation(latitude: $0.latitude! as! Double, longitude: $0.longitude! as! Double).distance(from: self.currentLocation))/1000.0))/100
                         }
-                        return DisplayedBuildingPahis(name: $0.name, category: $0.category.name, latitude: $0.latitude, longitude: $0.longitude, distance: distance, imageURL: $0.images.first)
+                        return DisplayedBuildingPahis(name: $0.name, category: $0.category.name, latitude: $0.latitude as? Double, longitude: $0.longitude as? Double, distance: distance, imageURL: $0.images.first)
                     })
                     self.displayedBuildingsPahis.sort(by: { (b1, b2) -> Bool in
                         return b1.distance ?? Double(Int.max) < b2.distance ?? Double(Int.max)
                     })
                     self.originalDisplayedBuildings = self.displayedBuildingsPahis
-                    self.forced = false
                     self.refreshControl.endRefreshing()
-                    UIViewController.removeSpinner(spinner: self.spinner)
+                    UIViewController.removeSpinner(spinner: spinner)
                     self.tableView.reloadData()
                 }
             }
         } else {
-            self.displayedBuildingsPahis = self.buildingsPahis.map({
+            let buildings = PersistenceManager.shared.fetch(Building.self)
+            self.displayedBuildingsPahis = buildings.map({
                 var distance: Double?
                 if $0.latitude != nil && $0.longitude != nil {
-                    distance = round(100*((CLLocation(latitude: $0.latitude!, longitude: $0.longitude!).distance(from: self.currentLocation))/1000.0))/100
+                    distance = round(100*((CLLocation(latitude: $0.latitude! as! Double, longitude: $0.longitude! as! Double).distance(from: self.currentLocation))/1000.0))/100
                 }
-                return DisplayedBuildingPahis(name: $0.name, category: $0.category.name, latitude: $0.latitude, longitude: $0.longitude, distance: distance, imageURL: $0.images.first)
+                return DisplayedBuildingPahis(name: $0.name, category: $0.category.name, latitude: $0.latitude as? Double, longitude: $0.longitude as? Double, distance: distance, imageURL: $0.images.first)
             })
             self.displayedBuildingsPahis.sort(by: { (b1, b2) -> Bool in
                 return b1.distance ?? Double(Int.max) < b2.distance ?? Double(Int.max)
             })
-            UIViewController.removeSpinner(spinner: self.spinner)
+            UIViewController.removeSpinner(spinner: spinner)
             self.tableView.reloadData()
         }
     }
@@ -351,7 +351,7 @@ extension PlaceListViewController: CLLocationManagerDelegate {
         let location = locations.last!
         print("Location: \(location)")
         currentLocation = location
-        fetchBuildings(forced: forced)
+        fetchBuildings(forced: false)
     }
     
     // Handle authorization for the location manager.
