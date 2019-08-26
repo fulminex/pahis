@@ -10,14 +10,15 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="state" attributeType="String" syncable="YES"/>
         <attribute name="uid" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="buildingsRaw" inverseEntity="Category" syncable="YES"/>
     </entity>
     <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="uid" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="buildingsRaw" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Building" inverseName="category" inverseEntity="Building" syncable="YES"/>
     </entity>
     <elements>
         <element name="Building" positionX="-63" positionY="-18" width="128" height="195"/>
-        <element name="Category" positionX="-54" positionY="63" width="128" height="75"/>
+        <element name="Category" positionX="-54" positionY="63" width="128" height="90"/>
     </elements>
 </model>

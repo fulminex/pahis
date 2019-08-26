@@ -18,5 +18,12 @@ extension Category {
 
     @NSManaged public var uid: Int32
     @NSManaged public var name: String
+    
+    // Object Relationships
+    @NSManaged public var buildingsRaw: NSSet
+    
+    var buildings: [Building] {
+        return buildingsRaw.allObjects as? [Building] ?? [Building]()
+    }
 
 }
