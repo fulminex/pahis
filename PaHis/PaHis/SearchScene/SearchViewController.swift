@@ -36,10 +36,6 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     var categoriesList = ["Todos"]
     var selectedCat = "Todos"
     
-    var coreDataHasData: Bool = {
-        return !PersistenceManager.shared.fetch(Category.self).isEmpty
-    }()
-    
     @IBOutlet weak var tableView: UITableView!
     private let refreshControl = UIRefreshControl()
     
@@ -193,48 +189,32 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func fetchBuildings(forced: Bool = false) {
         let spinner = UIViewController.displaySpinner(onView: self.view)
-        if !coreDataHasData || forced {
-            NetworkManager.shared.getBuildings() { result in
-                switch result {
-                case .failure(let error):
-                    self.refreshControl.endRefreshing()
-                    UIViewController.removeSpinner(spinner: spinner)
-                    let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
-                case .success(let categories, let buildings):
-                    self.categories = categories
-                    self.categoriesList = ["Todos"] + self.categories.map({ $0.name })
-                    self.displayedBuildingsPahis = buildings.map({
-                        var distance: Double?
-                        if $0.latitude != nil && $0.longitude != nil {
-                            distance = round(100*((CLLocation(latitude: $0.latitude! as! Double, longitude: $0.longitude! as! Double).distance(from: self.currentLocation))/1000.0))/100
-                        }
-                        return DisplayedBuildingPahis(name: $0.name, category: $0.category.name, latitude: $0.latitude as? Double, longitude: $0.longitude as? Double, distance: distance, imageURL: $0.images.first)
-                    })
-                    self.displayedBuildingsPahis.sort(by: { (b1, b2) -> Bool in
-                        return b1.distance ?? Double(Int.max) < b2.distance ?? Double(Int.max)
-                    })
-                    self.originalDisplayedBuildings = self.displayedBuildingsPahis
-                    self.refreshControl.endRefreshing()
-                    UIViewController.removeSpinner(spinner: spinner)
-                    self.tableView.reloadData()
-                }
+        NetworkManager.shared.getBuildings(forced: forced) { result in
+            switch result {
+            case .failure(let error):
+                self.refreshControl.endRefreshing()
+                UIViewController.removeSpinner(spinner: spinner)
+                let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            case .success(let categories, let buildings):
+                self.categories = categories
+                self.categoriesList = ["Todos"] + self.categories.map({ $0.name })
+                self.displayedBuildingsPahis = buildings.map({
+                    var distance: Double?
+                    if $0.latitude != nil && $0.longitude != nil {
+                        distance = round(100*((CLLocation(latitude: $0.latitude! as! Double, longitude: $0.longitude! as! Double).distance(from: self.currentLocation))/1000.0))/100
+                    }
+                    return DisplayedBuildingPahis(name: $0.name, category: $0.category.name, latitude: $0.latitude as? Double, longitude: $0.longitude as? Double, distance: distance, imageURL: $0.images.first)
+                })
+                self.displayedBuildingsPahis.sort(by: { (b1, b2) -> Bool in
+                    return b1.distance ?? Double(Int.max) < b2.distance ?? Double(Int.max)
+                })
+                self.originalDisplayedBuildings = self.displayedBuildingsPahis
+                self.refreshControl.endRefreshing()
+                UIViewController.removeSpinner(spinner: spinner)
+                self.tableView.reloadData()
             }
-        } else {
-            let buildings = PersistenceManager.shared.fetch(Building.self)
-            self.displayedBuildingsPahis = buildings.map({
-                var distance: Double?
-                if $0.latitude != nil && $0.longitude != nil {
-                    distance = round(100*((CLLocation(latitude: $0.latitude! as! Double, longitude: $0.longitude! as! Double).distance(from: self.currentLocation))/1000.0))/100
-                }
-                return DisplayedBuildingPahis(name: $0.name, category: $0.category.name, latitude: $0.latitude as? Double, longitude: $0.longitude as? Double, distance: distance, imageURL: $0.images.first)
-            })
-            self.displayedBuildingsPahis.sort(by: { (b1, b2) -> Bool in
-                return b1.distance ?? Double(Int.max) < b2.distance ?? Double(Int.max)
-            })
-            UIViewController.removeSpinner(spinner: spinner)
-            self.tableView.reloadData()
         }
     }
     

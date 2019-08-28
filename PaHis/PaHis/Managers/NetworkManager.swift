@@ -191,77 +191,83 @@ class NetworkManager {
         task.resume()
     }
     
-    func getBuildings(completion: @escaping (Result<([Category],[Building]),NetworkError>) -> Void) {
-        NetworkManager.shared.getCategories(){ result in
-            switch result {
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
-            case .success(let categories):
-                let path = "inmuebles"
-                let url = URL(string: self.baseURL + path)!
-                var request = URLRequest(url: url)
-                request.httpMethod = "GET"
-                let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                    guard let data = data, error == nil else {
-                        DispatchQueue.main.async {
-                            completion(.failure(.noData(error!.localizedDescription)))
-                        }
-                        return
-                    }
-                    let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
-                    guard let responseJSON = jsonObject as? [[String: Any]] else {
-                        DispatchQueue.main.async {
-                            completion(.failure(.noResponse))
-                        }
-                        return
-                    }
-                    responseJSON.forEach({
-                        var documents = [String]()
-                        var images = [String]()
-                        guard
-                            let address = $0["address"] as? String,
-                            let categoryID = $0["category"] as? Int,
-                            let description = $0["description"] as? String,
-                            let id = $0["id"] as? Int32,
-                            let name = $0["name"] as? String,
-                            let state = $0["state"] as? String else {
-                                DispatchQueue.main.async {
-                                    completion(.failure(.noResponse))
-                                }
-                            return
-                        }
-                        let building = self.persistanceManager.fetchSingleOrCreate(Building.self, uid: id)
-                        building.address = address
-                        building.detail = description
-                        building.name = name
-                        building.state = state
-                        if let documentsJson = $0["documents"] as? [[String:Any]], let imagesJson = $0["images"]  as? [[String:Any]] {
-                            documents = documentsJson.map({ $0["url"] as! String })
-                            images = imagesJson.map({ $0["url"] as! String })
-                        }
-                        guard let category = categories.filter({ $0.uid == categoryID }).first else {
-                            completion(.failure(.categoryNoFound))
-                            return
-                        }
-                        building.category = category
-                        building.documents = documents
-                        building.images = images
-                        building.latitude = $0["latitude"] as? NSNumber
-                        building.longitude = $0["longitude"] as? NSNumber
-                    })
-                    _ = self.persistanceManager.fetch(Building.self).filter({ !$0.hasChanges }).forEach({ self.persistanceManager.delete($0) })
-                    self.persistanceManager.save()
-                    let buildings = self.persistanceManager.fetch(Building.self)
+    func getBuildings(forced: Bool, completion: @escaping (Result<([Category],[Building]),NetworkError>) -> Void) {
+        let categories = persistanceManager.fetch(Category.self)
+        if forced || categories.isEmpty {
+            NetworkManager.shared.getCategories(){ result in
+                switch result {
+                case .failure(let error):
                     DispatchQueue.main.async {
-                        completion(.success((categories, buildings)))
+                        completion(.failure(error))
                     }
+                case .success(let categories):
+                    let path = "inmuebles"
+                    let url = URL(string: self.baseURL + path)!
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "GET"
+                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                        guard let data = data, error == nil else {
+                            DispatchQueue.main.async {
+                                completion(.failure(.noData(error!.localizedDescription)))
+                            }
+                            return
+                        }
+                        let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
+                        guard let responseJSON = jsonObject as? [[String: Any]] else {
+                            DispatchQueue.main.async {
+                                completion(.failure(.noResponse))
+                            }
+                            return
+                        }
+                        responseJSON.forEach({
+                            var documents = [String]()
+                            var images = [String]()
+                            guard
+                                let address = $0["address"] as? String,
+                                let categoryID = $0["category"] as? Int,
+                                let description = $0["description"] as? String,
+                                let id = $0["id"] as? Int32,
+                                let name = $0["name"] as? String,
+                                let state = $0["state"] as? String else {
+                                    DispatchQueue.main.async {
+                                        completion(.failure(.noResponse))
+                                    }
+                                    return
+                            }
+                            let building = self.persistanceManager.fetchSingleOrCreate(Building.self, uid: id)
+                            building.address = address
+                            building.detail = description
+                            building.name = name
+                            building.state = state
+                            if let documentsJson = $0["documents"] as? [[String:Any]], let imagesJson = $0["images"]  as? [[String:Any]] {
+                                documents = documentsJson.map({ $0["url"] as! String })
+                                images = imagesJson.map({ $0["url"] as! String })
+                            }
+                            guard let category = categories.filter({ $0.uid == categoryID }).first else {
+                                completion(.failure(.categoryNoFound))
+                                return
+                            }
+                            building.category = category
+                            building.documents = documents
+                            building.images = images
+                            building.latitude = $0["latitude"] as? NSNumber
+                            building.longitude = $0["longitude"] as? NSNumber
+                        })
+                        _ = self.persistanceManager.fetch(Building.self).filter({ !$0.hasChanges }).forEach({ self.persistanceManager.delete($0) })
+                        self.persistanceManager.save()
+                        let categories = self.persistanceManager.fetch(Category.self)
+                        let buildings = self.persistanceManager.fetch(Building.self)
+                        DispatchQueue.main.async {
+                            completion(.success((categories, buildings)))
+                        }
+                    }
+                    task.resume()
                 }
-                task.resume()
             }
+        } else {
+            let buildings = persistanceManager.fetch(Building.self)
+            completion(.success((categories, buildings)))
         }
-        
     }
     
     func getCategories(completion: @escaping (Result<[Category],NetworkError>) -> Void) {
