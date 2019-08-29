@@ -132,7 +132,6 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                 case .success(let message):
                     UIViewController.removeSpinner(spinner: spinner)
                     print(message)
-                    UserDefaults.standard.set("", forKey: "token")
                     self.dismiss(animated: true, completion: nil)
                 }
             }

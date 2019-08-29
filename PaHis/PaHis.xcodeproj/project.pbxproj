@@ -13,6 +13,8 @@
 		0B6C36F52310524E0031D27B /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C36F12310524E0031D27B /* Category+CoreDataClass.swift */; };
 		0B6C36F62310524E0031D27B /* Building+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C36F22310524E0031D27B /* Building+CoreDataClass.swift */; };
 		0B6C371C231055E80031D27B /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C371B231055E80031D27B /* PersistenceManager.swift */; };
+		0BD59D482318369B00153112 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD59D462318369A00153112 /* User+CoreDataProperties.swift */; };
+		0BD59D492318369B00153112 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD59D472318369A00153112 /* User+CoreDataClass.swift */; };
 		0BE7E9D8230763C60060CD39 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7E9D7230763C60060CD39 /* NetworkManager.swift */; };
 		5312859B22B61D7300E3AF5F /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312859A22B61D7300E3AF5F /* AlertViewController.swift */; };
 		5312859D22B61DCC00E3AF5F /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5312859C22B61DCC00E3AF5F /* Alert.storyboard */; };
@@ -24,7 +26,6 @@
 		531285AC22B644D800E3AF5F /* AlertaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285AB22B644D800E3AF5F /* AlertaTableViewCell.swift */; };
 		531285AE22B6456900E3AF5F /* Registro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285AD22B6456900E3AF5F /* Registro.swift */; };
 		531285B022B6457D00E3AF5F /* Alerta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285AF22B6457D00E3AF5F /* Alerta.swift */; };
-		531285B322B6573A00E3AF5F /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285B222B6573A00E3AF5F /* ChatViewController.swift */; };
 		531285B522B6577B00E3AF5F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285B422B6577B00E3AF5F /* Message.swift */; };
 		535CCB6F22B552E400182DB9 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535CCB6E22B552E400182DB9 /* Initial.storyboard */; };
 		535CCB7322B5583F00182DB9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 535CCB7222B5583F00182DB9 /* Login.storyboard */; };
@@ -80,6 +81,8 @@
 		0B6C36F12310524E0031D27B /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0B6C36F22310524E0031D27B /* Building+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Building+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0B6C371B231055E80031D27B /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		0BD59D462318369A00153112 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0BD59D472318369A00153112 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0BE7E9D7230763C60060CD39 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5312859A22B61D7300E3AF5F /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		5312859C22B61DCC00E3AF5F /* Alert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
@@ -91,7 +94,6 @@
 		531285AB22B644D800E3AF5F /* AlertaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertaTableViewCell.swift; sourceTree = "<group>"; };
 		531285AD22B6456900E3AF5F /* Registro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registro.swift; sourceTree = "<group>"; };
 		531285AF22B6457D00E3AF5F /* Alerta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerta.swift; sourceTree = "<group>"; };
-		531285B222B6573A00E3AF5F /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		531285B422B6577B00E3AF5F /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		535CCB6E22B552E400182DB9 /* Initial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Initial.storyboard; sourceTree = "<group>"; };
 		535CCB7222B5583F00182DB9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		0B6C36EE23103BAF0031D27B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				0BD59D452318368D00153112 /* User */,
 				0B6C36F9231052D00031D27B /* Category */,
 				0B6C36F8231052C40031D27B /* Building */,
 				0B6C36EB23103B9E0031D27B /* CoreData.xcdatamodeld */,
@@ -213,6 +216,15 @@
 				0B6C36F12310524E0031D27B /* Category+CoreDataClass.swift */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		0BD59D452318368D00153112 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				0BD59D472318369A00153112 /* User+CoreDataClass.swift */,
+				0BD59D462318369A00153112 /* User+CoreDataProperties.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		0BE7E9D923078E420060CD39 /* Managers */ = {
@@ -244,14 +256,6 @@
 				531285AB22B644D800E3AF5F /* AlertaTableViewCell.swift */,
 			);
 			path = AdHocScene;
-			sourceTree = "<group>";
-		};
-		531285B122B6571F00E3AF5F /* ChatScene */ = {
-			isa = PBXGroup;
-			children = (
-				531285B222B6573A00E3AF5F /* ChatViewController.swift */,
-			);
-			path = ChatScene;
 			sourceTree = "<group>";
 		};
 		535CCB6D22B5519300182DB9 /* InitialScene */ = {
@@ -389,7 +393,6 @@
 				0B6C36EE23103BAF0031D27B /* CoreData */,
 				0BE7E9D923078E420060CD39 /* Managers */,
 				B330A2F222B6734F00528EC2 /* ARScene */,
-				531285B122B6571F00E3AF5F /* ChatScene */,
 				5312859E22B63F5300E3AF5F /* AdHocScene */,
 				5312859922B61D5B00E3AF5F /* AlertScene */,
 				B3158C4922B5ED760008B035 /* MonumentosScene */,
@@ -607,6 +610,7 @@
 			files = (
 				535CCBB022B5799500182DB9 /* GQTPointQuadTree.m in Sources */,
 				535CCB8022B5598000182DB9 /* UIViewControllerExtensions.swift in Sources */,
+				0BD59D482318369B00153112 /* User+CoreDataProperties.swift in Sources */,
 				0B6C36F32310524E0031D27B /* Building+CoreDataProperties.swift in Sources */,
 				531285A422B6403D00E3AF5F /* AdHocViewController.swift in Sources */,
 				535CCBAA22B5799500182DB9 /* GMUStaticCluster.m in Sources */,
@@ -631,6 +635,7 @@
 				0B6C36ED23103B9E0031D27B /* CoreData.xcdatamodeld in Sources */,
 				B330A2F422B6736200528EC2 /* ARViewController.swift in Sources */,
 				B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */,
+				0BD59D492318369B00153112 /* User+CoreDataClass.swift in Sources */,
 				B3158C3522B554830008B035 /* InitialViewController.swift in Sources */,
 				536562D622B535950051F848 /* ViewController.swift in Sources */,
 				5312859B22B61D7300E3AF5F /* AlertViewController.swift in Sources */,
@@ -643,7 +648,6 @@
 				B3158C4822B5B9010008B035 /* RegisterTableViewController.swift in Sources */,
 				535CCBAD22B5799500182DB9 /* GQTPointQuadTreeChild.m in Sources */,
 				531285AE22B6456900E3AF5F /* Registro.swift in Sources */,
-				531285B322B6573A00E3AF5F /* ChatViewController.swift in Sources */,
 				0B6C36F52310524E0031D27B /* Category+CoreDataClass.swift in Sources */,
 				535CCB7E22B5598000182DB9 /* UIViewExtensions.swift in Sources */,
 				535CCBB222B5799500182DB9 /* GMUDefaultClusterRenderer.m in Sources */,

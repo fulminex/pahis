@@ -14,7 +14,7 @@ struct Message {
     let isSender: Bool
 }
 
-struct User {
-    let name: String
-    let profileImage: UIImage
-}
+//struct User {
+//    let name: String
+//    let profileImage: UIImage
+//}

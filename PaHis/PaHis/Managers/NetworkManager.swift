@@ -115,42 +115,62 @@ class NetworkManager {
         task.resume()
     }
     
-    func getUserType(token: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
-        let path = "user/\(token)"
-        let url = URL(string: baseURL + path)!
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                DispatchQueue.main.async {
-                    completion(.failure(.noData(error!.localizedDescription)))
-                }
-                return
-            }
-            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
-            guard let responseJSON = jsonObject as? [String: Any] else {
-                DispatchQueue.main.async {
-                    completion(.failure(.noResponse))
-                }
-                return
-            }
-            if let error = responseJSON["error"] as? String {
-                DispatchQueue.main.async {
-                    completion(.failure(.webserviceError(error)))
-                }
-            } else {
-                guard let userTypeName = responseJSON["user_type"] as? String else {
+    func getUser(forced: Bool = false, token: String, completion: @escaping (Result<User,NetworkError>) -> Void) {
+        let user = persistanceManager.fetch(User.self).filter({ $0.token == token })
+        if forced || user.isEmpty {
+            let path = "user/\(token)"
+            let url = URL(string: baseURL + path)!
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
                     DispatchQueue.main.async {
-                        completion(.failure(.noUserTypeFound))
+                        completion(.failure(.noData(error!.localizedDescription)))
                     }
                     return
                 }
-                DispatchQueue.main.async {
-                    completion(.success(userTypeName))
+                let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
+                guard let responseJSON = jsonObject as? [String: Any] else {
+                    DispatchQueue.main.async {
+                        completion(.failure(.noResponse))
+                    }
+                    return
+                }
+                if let error = responseJSON["error"] as? String {
+                    DispatchQueue.main.async {
+                        completion(.failure(.webserviceError(error)))
+                    }
+                } else {
+                    guard let type = responseJSON["user_type"] as? String else {
+                        DispatchQueue.main.async {
+                            completion(.failure(.noUserTypeFound))
+                        }
+                        return
+                    }
+                    guard let uid = responseJSON["id"] as? Int32, let name = responseJSON["name"] as? String, let email = responseJSON["email"] as? String, let profilePicUrlRaw = responseJSON["profile_pic_url"] as? String else {
+                        DispatchQueue.main.async {
+                            completion(.failure(.noResponse))
+                        }
+                        return
+                    }
+                    let user = self.persistanceManager.fetchSingleOrCreate(User.self, uid: uid)
+                    user.name = name
+                    user.email = email
+                    user.profilePicUrlRaw = profilePicUrlRaw
+                    user.type = type
+                    user.token = token
+                    _ = self.persistanceManager.fetch(User.self).filter({ !$0.hasChanges }).forEach({ self.persistanceManager.delete($0) })
+                    self.persistanceManager.save()
+                    DispatchQueue.main.async {
+                        completion(.success(user))
+                    }
                 }
             }
+            task.resume()
+        } else {
+            completion(.success(user.first!))
         }
-        task.resume()
+        
     }
     
     func logout(token: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
@@ -183,6 +203,9 @@ class NetworkManager {
                     }
                     return
                 }
+                UserDefaults.standard.set("", forKey: "token")
+                _ = self.persistanceManager.fetch(User.self).forEach({ self.persistanceManager.delete($0) })
+                _ = self.persistanceManager.fetch(Category.self).forEach({ self.persistanceManager.delete($0) })
                 DispatchQueue.main.async {
                     completion(.success(message))
                 }

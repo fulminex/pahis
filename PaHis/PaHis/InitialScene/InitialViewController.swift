@@ -25,16 +25,16 @@ class InitialViewController: UIViewController {
         if token != nil && token != "" {
             print("Token de Sesión: ", token!)
             let spinner = UIViewController.displaySpinner(onView: self.view)
-            NetworkManager.shared.getUserType(token: token!) { result in
+            NetworkManager.shared.getUser(token: token!) { result in
                 switch result {
                 case .failure(let error):
                     UIViewController.removeSpinner(spinner: spinner)
                     let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(alert, animated: true)
-                case .success(let userTypeName):
+                case .success(let user):
                     UIViewController.removeSpinner(spinner: spinner)
-                    self.createTabBarController(userTypeName: userTypeName)
+                    self.createTabBarController(userTypeName: user.type)
                 }
             }
         }
@@ -73,6 +73,9 @@ class InitialViewController: UIViewController {
         tabBarController.viewControllers = controllers
         tabBarController.selectedIndex = 0
         tabBarController.tabBar.backgroundColor = .white
+        
+        tabBarController.modalPresentationStyle = .overCurrentContext
+        tabBarController.modalTransitionStyle = .crossDissolve
         
         self.present(tabBarController, animated: true, completion: nil)
     }
