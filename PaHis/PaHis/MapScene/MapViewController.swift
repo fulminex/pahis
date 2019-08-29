@@ -35,7 +35,7 @@ class MapViewController: UIViewController, GMUClusterManagerDelegate, GMSMapView
     
     let defaultLocation = CLLocation(latitude: -12.0266034, longitude: -77.1278631)
     
-    var places: [Place] = []
+    var buildings = [Building]()
     
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
@@ -104,28 +104,15 @@ class MapViewController: UIViewController, GMUClusterManagerDelegate, GMSMapView
     }
     
     func fetchPlaces() {
-        let request = URLRequest(url: Place.apiURL)
-        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard response != nil else {
-                print("Error, no hay respuesta")
-                return
-            }
-            guard let data = data else {
-                print("Error, no hay data")
-                return
-            }
-            let decoder = JSONDecoder()
-            do {
-                self.places = try decoder.decode([Place].self, from: data)
-                print(self.places.count)
-                DispatchQueue.main.async {
-                    self.createMarkers()
-                }
-            } catch {
-                print("Error al hacer decode")
+        NetworkManager.shared.getBuildings(forced: false) { result in
+            switch result {
+            case.failure(let error):
+                print(error)
+            case.success((_, let buildings )):
+                self.buildings = buildings
+                self.createMarkers()
             }
         }
-        session.resume()
     }
     
     func setupNavigationButton() {
@@ -191,9 +178,11 @@ class MapViewController: UIViewController, GMUClusterManagerDelegate, GMSMapView
     }
     
     private func generateClusterItems() {
-        places.forEach ({
-            guard let coordinate = $0.location?.coordinate else { return }
-            let item = POIItem(position: coordinate, name: $0.nombre)
+        buildings.forEach ({
+            guard let latitud = $0.latitude, let lat = latitud as? Double else { return }
+            guard let longitud = $0.longitude, let long = longitud as? Double else { return }
+            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            let item = POIItem(position: coordinate, name: $0.name)
             clusterManager.add(item)
         })
     }
