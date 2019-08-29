@@ -206,6 +206,7 @@ class NetworkManager {
                 UserDefaults.standard.set("", forKey: "token")
                 _ = self.persistanceManager.fetch(User.self).forEach({ self.persistanceManager.delete($0) })
                 _ = self.persistanceManager.fetch(Category.self).forEach({ self.persistanceManager.delete($0) })
+                self.persistanceManager.save()
                 DispatchQueue.main.async {
                     completion(.success(message))
                 }
