@@ -8,12 +8,14 @@
 
 import Firebase
 import LocationPickerViewController
+import MobileCoreServices
 import UIKit
 
 class RegisterTableViewController: UITableViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate  {
 
     @IBOutlet weak var descripcionTextField: UITextField!
 //    @IBOutlet weak var distritoUILabel: UITextField!
+    @IBOutlet weak var documentsTextView: UITextView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var categoryUILabel: UITextField!
     @IBOutlet weak var observacionTextField: UITextField!
@@ -47,19 +49,34 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addressLabelPressed))
         addressLabel.addGestureRecognizer(tapGesture)
         
+        let tapDocumentsGesture = UITapGestureRecognizer(target: self, action: #selector(attachDocument))
+        documentsTextView.addGestureRecognizer(tapDocumentsGesture)
+        
         cameraUIImage.image = cameraUIImage.image?.withRenderingMode(.alwaysTemplate)
         cameraUIImage.tintColor = UIColor.lightGray
         self.createButton.backgroundColor = UIColor.black
     }
     
+    @objc func attachDocument() {
+        let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet]
+        let importMenu = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
+        
+        if #available(iOS 11.0, *) {
+            importMenu.allowsMultipleSelection = true
+        }
+        
+        importMenu.delegate = self
+        importMenu.modalPresentationStyle = .formSheet
+        
+        present(importMenu, animated: true)
+    }
+
+    
     @objc func addressLabelPressed(){
         let locationPicker = LocationPicker()
         locationPicker.pickCompletion = { (pickedLocationItem) in
-            // Do something with the location the user picked.
-            print(pickedLocationItem)
-            print(pickedLocationItem.addressDictionary?["Street"] as! String)
             self.addressLabel.textColor = .black
-            self.addressLabel.text = pickedLocationItem.addressDictionary?["Street"] as! String
+            self.addressLabel.text = pickedLocationItem.name
             print("Latitud: ", pickedLocationItem.coordinate?.latitude ?? 0," Longitud: ", pickedLocationItem.coordinate?.longitude ?? 0)
         }
         locationPicker.setColors(themeColor: UIColor(rgb: 0xF5391C), primaryTextColor: .black, secondaryTextColor: .black)
@@ -304,5 +321,40 @@ extension RegisterTableViewController: UIPickerViewDelegate, UIPickerViewDataSou
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         cameraUIImage.image = image.resizeImageWith(newSize: CGSize(width: 200, height: 200))
         dismiss(animated:true, completion: nil)
+    }
+}
+
+extension RegisterTableViewController: UIDocumentPickerDelegate {
+    
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        print(urls)
+        var documentsName = ""
+        var documentsBase64EncondedString = [String]()
+        var isFirst = true
+        urls.forEach({
+            guard let name = $0.absoluteString.split(separator: "/").last else {
+                return
+            }
+            if isFirst {
+                documentsName = String(name)
+                isFirst = false
+            } else {
+                documentsName = documentsName + "\n" + String(name)
+            }
+            
+            let coordinator = NSFileCoordinator(filePresenter: nil)
+            let error = NSErrorPointer(nilLiteral: ())
+            coordinator.coordinate(readingItemAt: $0, options: .forUploading, error: error) { (newUrl) in
+                guard let data = NSData(contentsOf: newUrl) else { return }
+                documentsBase64EncondedString.append(data.base64EncodedString())
+            }
+        })
+        documentsTextView.text = documentsName
+        print(documentsBase64EncondedString)
+    }
+    
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        print("view was cancelled")
+        dismiss(animated: true, completion: nil)
     }
 }

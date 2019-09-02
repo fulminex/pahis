@@ -75,6 +75,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B3BF237231DAEAC001FF510 /* PaHis.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PaHis.entitlements; sourceTree = "<group>"; };
 		0B6C36EC23103B9E0031D27B /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		0B6C36EF2310524E0031D27B /* Building+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Building+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0B6C36F02310524E0031D27B /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -390,6 +391,7 @@
 		536562D222B535950051F848 /* PaHis */ = {
 			isa = PBXGroup;
 			children = (
+				0B3BF237231DAEAC001FF510 /* PaHis.entitlements */,
 				0B6C36EE23103BAF0031D27B /* CoreData */,
 				0BE7E9D923078E420060CD39 /* Managers */,
 				B330A2F222B6734F00528EC2 /* ARScene */,
@@ -491,6 +493,17 @@
 					536562CF22B535950051F848 = {
 						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.GameCenter.iOS = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -805,6 +818,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PaHis/PaHis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XLK5Y2G8X;
 				INFOPLIST_FILE = PaHis/Info.plist;
@@ -828,6 +842,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PaHis/PaHis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XLK5Y2G8X;
 				INFOPLIST_FILE = PaHis/Info.plist;

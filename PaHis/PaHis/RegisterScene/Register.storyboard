@@ -22,7 +22,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultBuilding" translatesAutoresizingMaskIntoConstraints="NO" id="Ikm-WY-nwn" customClass="AnimatedImageView" customModule="Kingfisher">
-                                    <rect key="frame" x="167" y="30" width="80" height="80"/>
+                                    <rect key="frame" x="167" y="30" width="80" height="80.000000000000057"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="rp3-t9-sav"/>
                                         <constraint firstAttribute="height" constant="80" id="wqv-cQ-b8v"/>
@@ -182,8 +182,42 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="j6S-7k-m2w">
+                                        <rect key="frame" x="0.0" y="346.5" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j6S-7k-m2w" id="Uau-dj-FL4">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AdhocIcon" translatesAutoresizingMaskIntoConstraints="NO" id="s1u-Yn-lbR">
+                                                    <rect key="frame" x="16" y="20.5" width="19" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="19" id="KCn-l7-EBc"/>
+                                                        <constraint firstAttribute="width" constant="19" id="kZy-pg-fqM"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Bv0-iH-UMd">
+                                                    <rect key="frame" x="43" y="-0.5" width="339" height="60.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="wkC-9T-our"/>
+                                                    </constraints>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Bv0-iH-UMd" secondAttribute="trailing" constant="12" id="07D-IB-XxR"/>
+                                                <constraint firstItem="s1u-Yn-lbR" firstAttribute="centerY" secondItem="Uau-dj-FL4" secondAttribute="centerY" id="E9x-WJ-688"/>
+                                                <constraint firstItem="Bv0-iH-UMd" firstAttribute="leading" secondItem="s1u-Yn-lbR" secondAttribute="trailing" constant="8" id="JcJ-MA-JQe"/>
+                                                <constraint firstItem="Bv0-iH-UMd" firstAttribute="centerY" secondItem="Uau-dj-FL4" secondAttribute="centerY" id="XtE-BD-6xV"/>
+                                                <constraint firstItem="s1u-Yn-lbR" firstAttribute="leading" secondItem="Uau-dj-FL4" secondAttribute="leading" constant="16" id="yap-AG-mXg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="eup-KZ-bbG">
-                                        <rect key="frame" x="0.0" y="346.5" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="406.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eup-KZ-bbG" id="ys9-BK-PfW">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -220,7 +254,7 @@
                             <tableViewSection id="4z7-Ci-lF4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="FPB-n5-iOG">
-                                        <rect key="frame" x="0.0" y="426.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="486.5" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FPB-n5-iOG" id="iyi-Ds-RTQ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
@@ -261,6 +295,7 @@
                         <outlet property="categoryUILabel" destination="LUt-dz-PRs" id="RF6-g4-wlT"/>
                         <outlet property="createButton" destination="fTW-At-EF9" id="sQe-jx-Ejv"/>
                         <outlet property="descripcionTextField" destination="34a-S2-KlJ" id="MFt-oO-qLf"/>
+                        <outlet property="documentsTextView" destination="Bv0-iH-UMd" id="C2B-2X-9xC"/>
                         <outlet property="observacionTextField" destination="LaA-r1-DX0" id="Vci-uy-I6T"/>
                         <outlet property="tableView" destination="cEg-lJ-gzt" id="9YZ-d1-f8e"/>
                     </connections>
@@ -271,6 +306,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AdhocIcon" width="350" height="298"/>
         <image name="MonumentoIcon" width="350" height="291"/>
         <image name="anotacion" width="256" height="256"/>
         <image name="brujula" width="256" height="256"/>
