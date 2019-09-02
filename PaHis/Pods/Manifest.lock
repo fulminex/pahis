@@ -42,6 +42,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.15)
   - Kingfisher (4.8.0)
   - leveldb-library (1.20)
+  - LocationPickerViewController (3.4)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - GoogleMaps
   - Kingfisher (~> 4.0)
+  - LocationPickerViewController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -70,6 +72,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - Kingfisher
     - leveldb-library
+    - LocationPickerViewController
     - nanopb
 
 SPEC CHECKSUMS:
@@ -85,8 +88,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  LocationPickerViewController: 4f33d63587bca682267a09779de2b2e09cf5b8e2
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: c2ddde4c413194c4b20cebfae734c3e3c6ccd8b7
+PODFILE CHECKSUM: b49159647d3593c3fb23a360ed2832c2c124051b
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0

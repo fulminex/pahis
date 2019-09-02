@@ -18,5 +18,7 @@ target 'PaHis' do
     pod 'Firebase/Core'
     
     pod 'GoogleMaps'
+    
+    pod 'LocationPickerViewController'
 
 end

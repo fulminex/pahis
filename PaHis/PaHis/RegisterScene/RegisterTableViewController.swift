@@ -5,15 +5,17 @@
 //  Created by Leo on 6/15/19.
 //  Copyright © 2019 Maple. All rights reserved.
 //
+
 import Firebase
+import LocationPickerViewController
 import UIKit
 
 class RegisterTableViewController: UITableViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate  {
 
     @IBOutlet weak var descripcionTextField: UITextField!
 //    @IBOutlet weak var distritoUILabel: UITextField!
+    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var categoryUILabel: UITextField!
-    @IBOutlet weak var direccionTextField: UITextField!
     @IBOutlet weak var observacionTextField: UITextField!
     @IBOutlet weak var cameraUIImage: UIImageView!
     @IBOutlet weak var createButton: UIButton!
@@ -41,9 +43,34 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
         createToolbar()
         createDistritoPicker()
 //        createToolbar2()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addressLabelPressed))
+        addressLabel.addGestureRecognizer(tapGesture)
+        
         cameraUIImage.image = cameraUIImage.image?.withRenderingMode(.alwaysTemplate)
         cameraUIImage.tintColor = UIColor.lightGray
         self.createButton.backgroundColor = UIColor.black
+    }
+    
+    @objc func addressLabelPressed(){
+        let locationPicker = LocationPicker()
+        locationPicker.pickCompletion = { (pickedLocationItem) in
+            // Do something with the location the user picked.
+            print(pickedLocationItem)
+            print(pickedLocationItem.addressDictionary?["Street"] as! String)
+            self.addressLabel.textColor = .black
+            self.addressLabel.text = pickedLocationItem.addressDictionary?["Street"] as! String
+            print("Latitud: ", pickedLocationItem.coordinate?.latitude ?? 0," Longitud: ", pickedLocationItem.coordinate?.longitude ?? 0)
+        }
+        locationPicker.setColors(themeColor: UIColor(rgb: 0xF5391C), primaryTextColor: .black, secondaryTextColor: .black)
+        locationPicker.searchBarPlaceholder = "Busca una dirección aquí"
+        locationPicker.currentLocationText = "Ubicación actual"
+        locationPicker.locationDeniedAlertTitle = "Acceso a tu ubicación denegada"
+        locationPicker.locationDeniedAlertMessage = "Permite el acceso a tu ubicación para usar tu ubicación actual"
+        locationPicker.locationDeniedGrantText = "Permitir"
+        locationPicker.locationDeniedCancelText = "Cancelar"
+        locationPicker.addBarButtons(doneButtonItem: UIBarButtonItem(title: "Seleccionar", style: .done, target: self, action: nil), cancelButtonItem: UIBarButtonItem(title: "Cancelar", style: .plain, target: self, action: nil), doneButtonOrientation: .right)
+        present(UINavigationController(rootViewController: locationPicker), animated: true, completion: nil)
     }
     
     func createDayPicker() {
@@ -129,12 +156,12 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
             self.present(alert, animated: true)
             return
         }
-        guard direccionTextField.text != "", let direccion = direccionTextField.text  else {
-            let alert = UIAlertController(title: "Aviso", message: "Ingrese una dirección válida", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-            return
-        }
+//        guard direccionTextField.text != "", let direccion = direccionTextField.text  else {
+//            let alert = UIAlertController(title: "Aviso", message: "Ingrese una dirección válida", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+//            self.present(alert, animated: true)
+//            return
+//        }
         guard observacionTextField.text != "", let observacion = observacionTextField.text  else {
             let alert = UIAlertController(title: "Aviso", message: "Ingrese una observación válida", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
