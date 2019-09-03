@@ -183,7 +183,9 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     @objc func navigateToRegister() {
         let sb = UIStoryboard(name: "Register", bundle: nil)
         let vc = sb.instantiateInitialViewController()
-        self.navigationController?.pushViewController(vc!, animated: true)
+        let navigationController = UINavigationController(rootViewController: vc!)
+        self.present(navigationController, animated: true)
+//        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     func fetchBuildings(forced: Bool = false) {

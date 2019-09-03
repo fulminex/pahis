@@ -11,10 +11,11 @@ import LocationPickerViewController
 import MobileCoreServices
 import UIKit
 
-class RegisterTableViewController: UITableViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate  {
-
+class RegisterTableViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate , UINavigationControllerDelegate, DeletePhotoDelegate  {
+    
     @IBOutlet weak var descripcionTextField: UITextField!
-//    @IBOutlet weak var distritoUILabel: UITextField!
+    @IBOutlet weak var collectionView: UICollectionView!
+    //    @IBOutlet weak var distritoUILabel: UITextField!
     @IBOutlet weak var documentsTextView: UITextView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var categoryUILabel: UITextField!
@@ -38,6 +39,7 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
     var selectedCategory: String?
     var selectedDistrito: String?
     
+    var photos = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +47,11 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
         createToolbar()
         createDistritoPicker()
 //        createToolbar2()
+        
+        self.title = "Crear Nuevo Inmueble"
+        let cancelBarButtonItem = UIBarButtonItem(image: UIImage(named: "CancelIcon"), style: .plain, target: self, action: #selector(cancelButtonTapped))
+        self.navigationController?.navigationBar.tintColor  = UIColor(rgb: 0xF5391C)
+        self.navigationItem.rightBarButtonItem = cancelBarButtonItem
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addressLabelPressed))
         addressLabel.addGestureRecognizer(tapGesture)
@@ -55,6 +62,10 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
         cameraUIImage.image = cameraUIImage.image?.withRenderingMode(.alwaysTemplate)
         cameraUIImage.tintColor = UIColor.lightGray
         self.createButton.backgroundColor = UIColor.black
+    }
+    
+    @objc func cancelButtonTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func attachDocument() {
@@ -258,6 +269,29 @@ class RegisterTableViewController: UITableViewController, UIImagePickerControlle
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return photos.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RegisterCollectionViewCell.identifier, for: indexPath) as! RegisterCollectionViewCell
+        cell.photoImageView.image = photos[indexPath.row]
+        cell.row = indexPath.row
+        cell.delegate = self
+        return cell
+    }
+    
+    func deletePhotoAt(row: Int) {
+        let alert = UIAlertController(title: "Aviso", message: "¿Esta seguro de que desea borrar esta imagen?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Sí", style: .destructive, handler: { (_) in
+            self.photos.remove(at: row)
+            self.collectionView.reloadData()
+        }))
+        self.present(alert, animated: true)
+    }
+    
 }
 
 extension RegisterTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -319,7 +353,9 @@ extension RegisterTableViewController: UIPickerViewDelegate, UIPickerViewDataSou
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        cameraUIImage.image = image.resizeImageWith(newSize: CGSize(width: 200, height: 200))
+        photos.append(image.resizeImageWith(newSize: CGSize(width: 200, height: 200)))
+        collectionView.reloadData()
+//        cameraUIImage.image = image.resizeImageWith(newSize: CGSize(width: 200, height: 200))
         dismiss(animated:true, completion: nil)
     }
 }

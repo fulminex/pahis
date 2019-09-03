@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B685B90231EFB2A00676C72 /* RegisterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B685B8F231EFB2A00676C72 /* RegisterCollectionViewCell.swift */; };
 		0B6C36ED23103B9E0031D27B /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C36EB23103B9E0031D27B /* CoreData.xcdatamodeld */; };
 		0B6C36F32310524E0031D27B /* Building+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C36EF2310524E0031D27B /* Building+CoreDataProperties.swift */; };
 		0B6C36F42310524E0031D27B /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C36F02310524E0031D27B /* Category+CoreDataProperties.swift */; };
@@ -76,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		0B3BF237231DAEAC001FF510 /* PaHis.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PaHis.entitlements; sourceTree = "<group>"; };
+		0B685B8F231EFB2A00676C72 /* RegisterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCollectionViewCell.swift; sourceTree = "<group>"; };
 		0B6C36EC23103B9E0031D27B /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		0B6C36EF2310524E0031D27B /* Building+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Building+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0B6C36F02310524E0031D27B /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 			children = (
 				B3158C4322B5A0780008B035 /* Register.storyboard */,
 				B3158C4722B5B9010008B035 /* RegisterTableViewController.swift */,
+				0B685B8F231EFB2A00676C72 /* RegisterCollectionViewCell.swift */,
 			);
 			path = RegisterScene;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				535CCBC122B5A09500182DB9 /* Building.swift in Sources */,
 				535CCB7F22B5598000182DB9 /* UIImageExtensions.swift in Sources */,
 				531285A622B643EB00E3AF5F /* ListadoRegistroViewController.swift in Sources */,
+				0B685B90231EFB2A00676C72 /* RegisterCollectionViewCell.swift in Sources */,
 				531285AC22B644D800E3AF5F /* AlertaTableViewCell.swift in Sources */,
 				531285A822B643FE00E3AF5F /* ListadoAlertaViewController.swift in Sources */,
 				535CCBBF22B5884100182DB9 /* SearchTableViewCell.swift in Sources */,
