@@ -323,4 +323,101 @@ class NetworkManager {
         }
         task.resume()
     }
+    
+    func createBuilding(token:String, name: String, coordinate: (latitude: Double, longitude: Double), address: String, description: String, category: Int, images: [String], documents: [String], completion: @escaping (Result<String, NetworkError>) -> Void) {
+        
+        NetworkManager.shared.uploadDocuments(files: images) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let imageURLs):
+                NetworkManager.shared.uploadDocuments(files: documents) { result in
+                    switch result {
+                    case .failure(let error):
+                        completion(.failure(error))
+                    case .success(let documentURLs):
+                        let path = "inmueble"
+                        let url = URL(string: self.baseURL + path)!
+                        var request = URLRequest(url: url)
+                        request.httpMethod = "POST"
+                        request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+                        let json: [String: Any] = [
+                            "token": token,
+                            "name": name,
+                            "latitude": coordinate.latitude,
+                            "longitude": coordinate.longitude,
+                            "address": address,
+                            "description": description,
+                            "category": category,
+                            "images": imageURLs,
+                            "documents": documentURLs
+                        ]
+                        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+                        request.httpBody = jsonData
+                        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                            guard let data = data, error == nil else {
+                                DispatchQueue.main.async {
+                                    completion(.failure(.noData(error!.localizedDescription)))
+                                }
+                                return
+                            }
+                            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
+                            guard let responseJSON = jsonObject as? [String: Any] else {
+                                DispatchQueue.main.async {
+                                    completion(.failure(.noResponse))
+                                }
+                                return
+                            }
+                            if let error = responseJSON["error"] as? String {
+                                DispatchQueue.main.async {
+                                    completion(.failure(.webserviceError(error)))
+                                }
+                            } else {
+                                DispatchQueue.main.async {
+                                    completion(.success("Inmueble creado satisfactoriamente."))
+                                }
+                            }
+                        }
+                        task.resume()
+                    }
+                }
+            }
+        }
+    }
+    
+    func uploadDocuments(files: [String], completion: @escaping (Result<[String],NetworkError>) -> Void) {
+        let path = "files"
+        let url = URL(string: baseURL + path)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+        let json: [String: Any] = ["files": files]
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        request.httpBody = jsonData
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    completion(.failure(.noData(error!.localizedDescription)))
+                }
+                return
+            }
+            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
+            guard let responseJSON = jsonObject as? [String: Any] else {
+                DispatchQueue.main.async {
+                    completion(.failure(.noResponse))
+                }
+                return
+            }
+            guard let fileURL = responseJSON["file_urls"] as? [String] else {
+                DispatchQueue.main.async {
+                    completion(.failure(.noResponse))
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                completion(.success(fileURL))
+            }
+        }
+        task.resume()
+    }
 }

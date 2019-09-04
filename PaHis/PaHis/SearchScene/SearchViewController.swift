@@ -182,8 +182,10 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @objc func navigateToRegister() {
         let sb = UIStoryboard(name: "Register", bundle: nil)
-        let vc = sb.instantiateInitialViewController()
-        let navigationController = UINavigationController(rootViewController: vc!)
+        let vc = sb.instantiateInitialViewController() as! RegisterTableViewController
+        vc.categories = categories
+        vc.categoriesName = categories.map({ $0.name })
+        let navigationController = UINavigationController(rootViewController: vc)
         self.present(navigationController, animated: true)
 //        self.navigationController?.pushViewController(vc!, animated: true)
     }

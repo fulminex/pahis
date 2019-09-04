@@ -11,35 +11,29 @@ import LocationPickerViewController
 import MobileCoreServices
 import UIKit
 
-class RegisterTableViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate , UINavigationControllerDelegate, DeletePhotoDelegate  {
+class RegisterTableViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate , UINavigationControllerDelegate, DeletePhotoDelegate, UITextViewDelegate {
     
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descripcionTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     //    @IBOutlet weak var distritoUILabel: UITextField!
     @IBOutlet weak var documentsTextView: UITextView!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var observationsTextView: UITextView!
     @IBOutlet weak var categoryUILabel: UITextField!
-    @IBOutlet weak var observacionTextField: UITextField!
     @IBOutlet weak var cameraUIImage: UIImageView!
     @IBOutlet weak var createButton: UIButton!
     
-    let categories = ["Paisaje Cultural Arqueológico e Histórico",
-                "Zona Monumental",
-                "Ambiente Urbano Monumental",
-                "Monumento",
-                "Zona Histórico Monumental",
-                "Valor Urbanistico De Entorno",
-                "Inmueble Identificado para su Declaración",
-                "Inmueble De Valor Monumental",
-                "Zona Paisajística de Valor Monumental",
-                "Ambiente Monumental",
-                "Sitio Histórico de batalla"]
+    var categories: [Category]!
+    var categoriesName: [String]!
     
     let distrito = ["Ancon","Ate","Barranco","Breña","Carabayllo","Chaclacayo","Chorrillos","Cieneguilla","Comas","El Agustino","Independencia","Jesus Maria","La Molina","La Victoria","Lima","Lince","Los Olivos","Lurigancho","Lurin","Magdalena Del Mar","Miraflores","Pachacamac","Pucusana","Pueblo Libre","Puente Piedra","Punta Hermosa","Punta Negra","Rimac","San Bartolo","San Borja","San Isidro","San Juan De Lurigancho","San Juan De Miraflores","San Luis","San Martin De Porres","San Miguel","Santa Anita","Santa Maria Del Mar","Santa Rosa","Santiago De Surco","Surquillo","Villa El Salvador","Villa Maria Del Triunfo"]
     var selectedCategory: String?
     var selectedDistrito: String?
+    var addressLocation: (latitude: Double, longitude: Double)?
     
     var photos = [UIImage]()
+    var documentsBase64EncondedString = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +46,12 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
         let cancelBarButtonItem = UIBarButtonItem(image: UIImage(named: "CancelIcon"), style: .plain, target: self, action: #selector(cancelButtonTapped))
         self.navigationController?.navigationBar.tintColor  = UIColor(rgb: 0xF5391C)
         self.navigationItem.rightBarButtonItem = cancelBarButtonItem
+        
+        selectedCategory = categoriesName.first!
+        
+        observationsTextView.text = "\nObservaciones: 200 caracteres max."
+        observationsTextView.textColor = .lightGray
+        observationsTextView.delegate = self
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addressLabelPressed))
         addressLabel.addGestureRecognizer(tapGesture)
@@ -69,8 +69,8 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
     }
     
     @objc func attachDocument() {
-        let types = [kUTTypePDF, kUTTypeText, kUTTypeRTF, kUTTypeSpreadsheet]
-        let importMenu = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
+        let types = [String(kUTTypePDF), "org.openxmlformats.wordprocessingml.document"]
+        let importMenu = UIDocumentPickerViewController(documentTypes: types, in: .import)
         
         if #available(iOS 11.0, *) {
             importMenu.allowsMultipleSelection = true
@@ -88,7 +88,7 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
         locationPicker.pickCompletion = { (pickedLocationItem) in
             self.addressLabel.textColor = .black
             self.addressLabel.text = pickedLocationItem.name
-            print("Latitud: ", pickedLocationItem.coordinate?.latitude ?? 0," Longitud: ", pickedLocationItem.coordinate?.longitude ?? 0)
+            self.addressLocation = pickedLocationItem.coordinate
         }
         locationPicker.setColors(themeColor: UIColor(rgb: 0xF5391C), primaryTextColor: .black, secondaryTextColor: .black)
         locationPicker.searchBarPlaceholder = "Busca una dirección aquí"
@@ -126,7 +126,7 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.dismissKeyboard))
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard) )
         
         toolBar.setItems([doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
@@ -134,75 +134,92 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
         categoryUILabel.inputAccessoryView = toolBar
     }
     
-//    func createToolbar2() {
-//
-//        let toolBar = UIToolbar()
-//        toolBar.sizeToFit()
-//
-//        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.dismissKeyboard))
-//
-//        toolBar.setItems([doneButton], animated: false)
-//        toolBar.isUserInteractionEnabled = true
-//
-//        distritoUILabel.inputAccessoryView = toolBar
-//    }
-    
-    
     @objc func dismissKeyboard() {
+        categoryUILabel.text = selectedCategory
         view.endEditing(true)
     }
 
     @IBAction func cameraButtonPressed(_ sender: Any) {
-        //Insertar funcion para cambiar imagen aqui
-        let alert = UIAlertController(title: "Aviso", message: "Elige desde donde deseas agregar una foto", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Abrir cámara", style: .default, handler: { (action) in
-            self.openCamera()
-        }))
-        alert.addAction(UIAlertAction(title: "Abrir librería de fotos", style: .default, handler: { (action) in
-            self.openPhotoLibrary()
-        }))
-        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
+        let maxPhotos = 5
+        if photos.count < maxPhotos {
+            let alert = UIAlertController(title: "Aviso", message: "Elige desde donde deseas agregar una foto", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Abrir cámara", style: .default, handler: { (action) in
+                self.openCamera()
+            }))
+            alert.addAction(UIAlertAction(title: "Abrir librería de fotos", style: .default, handler: { (action) in
+                self.openPhotoLibrary()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        } else {
+            let alert = UIAlertController(title: "Aviso", message: "El numero máximo de fotos es de \(maxPhotos)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil ))
+            self.present(alert, animated: true)
+        }
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
+        guard nameTextField.text != "", let name = nameTextField.text else {
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese un nombre válido", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
         guard descripcionTextField.text != "", let descripcion = descripcionTextField.text else {
             let alert = UIAlertController(title: "Aviso", message: "Ingrese una descripción válida", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
             self.present(alert, animated: true)
             return
         }
-//        guard distritoUILabel.text != "", let distrito = distritoUILabel.text  else {
-//            let alert = UIAlertController(title: "Aviso", message: "Ingrese un distrito válida", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-//            self.present(alert, animated: true)
-//            return
-//        }
-        guard categoryUILabel.text != "", let categoria = categoryUILabel.text  else {
+        guard categoryUILabel.text != "", let categoria = categoryUILabel.text, let categoryID = categories.filter({ $0.name == categoria }).first?.uid  else {
             let alert = UIAlertController(title: "Aviso", message: "Ingrese una categoria válida", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
             self.present(alert, animated: true)
             return
         }
-//        guard direccionTextField.text != "", let direccion = direccionTextField.text  else {
-//            let alert = UIAlertController(title: "Aviso", message: "Ingrese una dirección válida", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-//            self.present(alert, animated: true)
-//            return
-//        }
-        guard observacionTextField.text != "", let observacion = observacionTextField.text  else {
+        guard let direccion = addressLabel.text, addressLabel.text != "Dirección", let coordinate = addressLocation  else {
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese una dirección válida", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        guard observationsTextView.text != "", let observacion = observationsTextView.text  else {
             let alert = UIAlertController(title: "Aviso", message: "Ingrese una observación válida", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
             self.present(alert, animated: true)
             return
         }
         
+        guard let currentUser = User.currentUser else {
+            let alert = UIAlertController(title: "Aviso", message: "Su sessión ha expirado", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        
+        let spinner = UIViewController.displaySpinner(onView: self.view)
+        
+        NetworkManager.shared.createBuilding(token: currentUser.token, name: name, coordinate: coordinate, address: direccion, description: descripcion, category: Int(categoryID), images: photos.map({ ($0.jpegData(compressionQuality: 0.6)?.base64EncodedString())! }), documents: documentsBase64EncondedString) { result in
+            switch result {
+            case .failure(let error):
+                UIViewController.removeSpinner(spinner: spinner)
+                let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            case .success(let message):
+                UIViewController.removeSpinner(spinner: spinner)
+                let alert = UIAlertController(title: "Aviso", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            }
+        }
+        
         //TODO: Terminar esto
-        let alert = UIAlertController(title: "Aviso", message: "Registro enviado satisfactoriamente", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-            _ = self.navigationController?.popViewController(animated: true)
-        }))
-        self.present(alert, animated: true)
+//        let alert = UIAlertController(title: "Aviso", message: "Registro enviado satisfactoriamente", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
+//            _ = self.navigationController?.popViewController(animated: true)
+//        }))
+//        self.present(alert, animated: true)
         
 //        let spinner = UIViewController.displaySpinner(onView: self.view)
 //        let data = cameraUIImage.image!.jpegData(compressionQuality: 0.9)!
@@ -292,6 +309,28 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
         self.present(alert, animated: true)
     }
     
+    // MARK:- ObservationsTextView Delegate Functions
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if observationsTextView.textColor == UIColor.lightGray {
+            observationsTextView.text = nil
+            observationsTextView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if observationsTextView.text.isEmpty {
+            observationsTextView.text = "\nObservaciones: 200 caracteres max."
+            observationsTextView.textColor = UIColor.lightGray
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (observationsTextView.text as NSString).replacingCharacters(in: range, with: text)
+        let numberOfChars = newText.count
+        return numberOfChars <= 200
+    }
+    
 }
 
 extension RegisterTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -303,7 +342,7 @@ extension RegisterTableViewController: UIPickerViewDelegate, UIPickerViewDataSou
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.restorationIdentifier == "category" {
-            return categories.count
+            return categoriesName.count
         } else {
             return distrito.count
         }
@@ -312,7 +351,7 @@ extension RegisterTableViewController: UIPickerViewDelegate, UIPickerViewDataSou
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.restorationIdentifier == "category" {
-            return categories[row]
+            return categoriesName[row]
         } else {
             return distrito[row]
         }
@@ -321,7 +360,7 @@ extension RegisterTableViewController: UIPickerViewDelegate, UIPickerViewDataSou
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.restorationIdentifier == "category" {
-            selectedCategory = categories[row]
+            selectedCategory = categoriesName[row]
             categoryUILabel.text = selectedCategory
         } else {
 //            selectedDistrito = distrito[row]
@@ -342,7 +381,7 @@ extension RegisterTableViewController: UIPickerViewDelegate, UIPickerViewDataSou
         label.font = UIFont(name: "system", size: 8)
         
         if pickerView.restorationIdentifier == "category" {
-            label.text = categories[row]
+            label.text = categoriesName[row]
         } else {
             label.text = distrito[row]
         }
@@ -364,8 +403,15 @@ extension RegisterTableViewController: UIDocumentPickerDelegate {
     
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         print(urls)
+        let maxDoc = 2
+        guard urls.count <= maxDoc else {
+            let alert = UIAlertController(title: "Aviso", message: "El numero máximo de documentos es de \(maxDoc)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil ))
+            self.present(alert, animated: true)
+            return
+        }
         var documentsName = ""
-        var documentsBase64EncondedString = [String]()
+        var documentsBase64 = [String]()
         var isFirst = true
         urls.forEach({
             guard let name = $0.absoluteString.split(separator: "/").last else {
@@ -382,15 +428,15 @@ extension RegisterTableViewController: UIDocumentPickerDelegate {
             let error = NSErrorPointer(nilLiteral: ())
             coordinator.coordinate(readingItemAt: $0, options: .forUploading, error: error) { (newUrl) in
                 guard let data = NSData(contentsOf: newUrl) else { return }
-                documentsBase64EncondedString.append(data.base64EncodedString())
+                documentsBase64.append(data.base64EncodedString())
             }
         })
+        self.documentsBase64EncondedString = documentsBase64
         documentsTextView.text = documentsName
-        print(documentsBase64EncondedString)
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        print("view was cancelled")
-        dismiss(animated: true, completion: nil)
+        print("documentPicker was cancelled")
+//        dismiss(animated: true, completion: nil)
     }
 }

@@ -26,5 +26,11 @@ extension User: UniquedObject {
     var profilePicUrl: URL? {
         return URL(string: profilePicUrlRaw)
     }
+    
+    static var currentUser: User? {
+        let users = PersistenceManager.shared.fetch(User.self)
+        guard !users.isEmpty else { return nil }
+        return users.first
+    }
 
 }
