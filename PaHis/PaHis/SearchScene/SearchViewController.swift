@@ -22,6 +22,7 @@ struct DisplayedBuildingPahis {
 class PlaceListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var categories: [Category] = []
+    var buildings: [Building] = []
     var displayedBuildingsPahis = [DisplayedBuildingPahis]()
     var originalDisplayedBuildings = [DisplayedBuildingPahis]()
     var filteredBuildingsPahis = [DisplayedBuildingPahis]()
@@ -202,6 +203,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.present(alert, animated: true)
             case .success(let categories, let buildings):
                 self.categories = categories
+                self.buildings = buildings
                 self.categoriesList = ["Todos"] + self.categories.map({ $0.name })
                 self.displayedBuildingsPahis = buildings.map({
                     var distance: Double?
@@ -231,18 +233,16 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        var building : DisplayedBuildingPahis!
-//        if  (resultSearchController.isActive) {
-//            building = filteredBuildingsPahis[indexPath.row]
-//        } else {
-//            building = displayedBuildingsPahis[indexPath.row]
-//        }
-//        if building.name == "CINE TAURO" {
-//            let sb = UIStoryboard(name: "Monumento", bundle: nil)
-//            let vc = sb.instantiateViewController(withIdentifier: "CineTauro")
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
-        
+        var building : DisplayedBuildingPahis!
+        if  (resultSearchController.isActive) {
+            building = filteredBuildingsPahis[indexPath.row]
+        } else {
+            building = displayedBuildingsPahis[indexPath.row]
+        }
+        let sb = UIStoryboard(name: "DetailBuilding", bundle: nil)
+        let vc = sb.instantiateInitialViewController() as! DetailsBuildingViewController
+        vc.building = buildings.filter({ $0.name == building.name }).first!
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
