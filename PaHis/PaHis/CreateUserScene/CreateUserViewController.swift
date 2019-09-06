@@ -13,12 +13,10 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var typeSegmentedControl: UISegmentedControl!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var changePhotoLabel: UIButton!
     @IBOutlet weak var createUserButton: UIButton!
-    @IBOutlet weak var roleSegmentColor: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +32,6 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
         self.profileImageView.clipsToBounds = true
         self.changePhotoLabel.tintColor = UIColor(rgb: 0xF5391C)
         self.createUserButton.backgroundColor = UIColor(rgb: 0xF5391C)
-        self.roleSegmentColor.tintColor = UIColor(rgb: 0xF5391C)
     }
     
     @objc func cancelButtonTapped() {
@@ -57,16 +54,7 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
             return
         }
         
-        var userType = ""
-        
-        switch typeSegmentedControl.selectedSegmentIndex {
-        case 0:
-            userType = "Normal"
-        case 1:
-            userType = "Voluntario"
-        default:
-            userType = "Other"
-        }
+        let userType = "Voluntario"
         
         guard let password = passwordTextField.text, password.count > 6 else {
             let alert = UIAlertController(title: "Aviso", message: "Ingresa una contraseña mayor a 6 caracteres.", preferredStyle: .alert)
