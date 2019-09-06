@@ -22,6 +22,7 @@
 		0BEBC4E02321907100335FA9 /* DetailBuildingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEBC4DF2321907100335FA9 /* DetailBuildingCollectionViewCell.swift */; };
 		0BEBC4E22321908300335FA9 /* DetailBuildingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEBC4E12321908300335FA9 /* DetailBuildingTableViewCell.swift */; };
 		0BEBC4E42321A00400335FA9 /* UITextViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEBC4E32321A00400335FA9 /* UITextViewExtensions.swift */; };
+		0BF355802322C923008400ED /* AlertCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF3557F2322C923008400ED /* AlertCollectionViewCell.swift */; };
 		5312859B22B61D7300E3AF5F /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312859A22B61D7300E3AF5F /* AlertViewController.swift */; };
 		5312859D22B61DCC00E3AF5F /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5312859C22B61DCC00E3AF5F /* Alert.storyboard */; };
 		531285A022B63F6C00E3AF5F /* AdHoc.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5312859F22B63F6C00E3AF5F /* AdHoc.storyboard */; };
@@ -97,6 +98,7 @@
 		0BEBC4DF2321907100335FA9 /* DetailBuildingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuildingCollectionViewCell.swift; sourceTree = "<group>"; };
 		0BEBC4E12321908300335FA9 /* DetailBuildingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuildingTableViewCell.swift; sourceTree = "<group>"; };
 		0BEBC4E32321A00400335FA9 /* UITextViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtensions.swift; sourceTree = "<group>"; };
+		0BF3557F2322C923008400ED /* AlertCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCollectionViewCell.swift; sourceTree = "<group>"; };
 		5312859A22B61D7300E3AF5F /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		5312859C22B61DCC00E3AF5F /* Alert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
 		5312859F22B63F6C00E3AF5F /* AdHoc.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdHoc.storyboard; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			children = (
 				5312859C22B61DCC00E3AF5F /* Alert.storyboard */,
 				5312859A22B61D7300E3AF5F /* AlertViewController.swift */,
+				0BF3557F2322C923008400ED /* AlertCollectionViewCell.swift */,
 			);
 			path = AlertScene;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 				B3158C3522B554830008B035 /* InitialViewController.swift in Sources */,
 				536562D622B535950051F848 /* ViewController.swift in Sources */,
 				5312859B22B61D7300E3AF5F /* AlertViewController.swift in Sources */,
+				0BF355802322C923008400ED /* AlertCollectionViewCell.swift in Sources */,
 				535CCBBB22B587CA00182DB9 /* SearchViewController.swift in Sources */,
 				531285AA22B644C800E3AF5F /* RegistroTableViewCell.swift in Sources */,
 				535CCBAC22B5799500182DB9 /* GMUSimpleClusterAlgorithm.m in Sources */,

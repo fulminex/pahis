@@ -7,17 +7,26 @@
 //
 
 import Firebase
+import LocationPickerViewController
 import UIKit
 
-class AlertTableViewController: UITableViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate  {
+class AlertTableViewController: UITableViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource  {
     
     var desc: String!
     var codBuild: String!
     var direccion: String!
     
-    @IBOutlet weak var descTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var descTextView: UITextView!
     @IBOutlet weak var cameraUIImage: UIImageView!
     @IBOutlet weak var createButton: UIButton!
+    
+    var photos = [UIImage]()
+    
+    var addressLocation: (latitude: Double, longitude: Double)?
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +34,15 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
         cameraUIImage.tintColor = UIColor.lightGray
         self.createButton.backgroundColor = UIColor(rgb: 0xF5391C)
         title = desc
+    }
+    
+    func setupView() {
+        cameraUIImage.image = cameraUIImage.image?.withRenderingMode(.alwaysTemplate)
+        cameraUIImage.tintColor = UIColor.lightGray
+        self.createButton.backgroundColor = UIColor(rgb: 0xF5391C)
+        title = desc
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addressLabelPressed))
+        addressLabel.addGestureRecognizer(tapGesture)
     }
     
     @objc func dismissKeyboard() {
@@ -44,8 +62,26 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
         self.present(alert, animated: true)
     }
     
+    @objc func addressLabelPressed(){
+        let locationPicker = LocationPicker()
+        locationPicker.pickCompletion = { (pickedLocationItem) in
+            self.addressLabel.textColor = .black
+            self.addressLabel.text = pickedLocationItem.name
+            self.addressLocation = pickedLocationItem.coordinate
+        }
+        locationPicker.setColors(themeColor: UIColor(rgb: 0xF5391C), primaryTextColor: .black, secondaryTextColor: .black)
+        locationPicker.searchBarPlaceholder = "Busca una dirección aquí"
+        locationPicker.currentLocationText = "Ubicación actual"
+        locationPicker.locationDeniedAlertTitle = "Acceso a tu ubicación denegada"
+        locationPicker.locationDeniedAlertMessage = "Permite el acceso a tu ubicación para usar tu ubicación actual"
+        locationPicker.locationDeniedGrantText = "Permitir"
+        locationPicker.locationDeniedCancelText = "Cancelar"
+        locationPicker.addBarButtons(doneButtonItem: UIBarButtonItem(title: "Seleccionar", style: .done, target: self, action: nil), cancelButtonItem: UIBarButtonItem(title: "Cancelar", style: .plain, target: self, action: nil), doneButtonOrientation: .right)
+        present(UINavigationController(rootViewController: locationPicker), animated: true, completion: nil)
+    }
+    
     @IBAction func registerButtonPressed(_ sender: Any) {
-        guard descTextField.text != "", let descripcion = descTextField.text else {
+        guard descTextView.text != "", let descripcion = descTextView.text else {
             let alert = UIAlertController(title: "Aviso", message: "Ingrese una descripción válida", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
             self.present(alert, animated: true)
@@ -119,7 +155,32 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        cameraUIImage.image = image.resizeImageWith(newSize: CGSize(width: 200, height: 200))
+        photos.append(image.resizeImageWith(newSize: CGSize(width: 200, height: 200)))
         dismiss(animated:true, completion: nil)
     }
+    
+    // MARK:- Funciones del delegate del collectionView
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return photos.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlertCollectionViewCell.identifier, for: indexPath) as! AlertCollectionViewCell
+        cell.row = indexPath.row
+        cell.deletegate = self
+        cell.photo = photos[indexPath.row]
+        return cell
+    }
+}
+
+extension AlertTableViewController: DeletePhotoDelegate {
+    func deletePhotoAt(row: Int) {
+        photos.remove(at: row)
+        collectionView.reloadData()
+    }
+}
+
+extension AlertTableViewController {
+    
 }
