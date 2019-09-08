@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5312859B22B61D7300E3AF5F /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312859A22B61D7300E3AF5F /* AlertViewController.swift */; };
-		5312859D22B61DCC00E3AF5F /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5312859C22B61DCC00E3AF5F /* Alert.storyboard */; };
 		531285A022B63F6C00E3AF5F /* AdHoc.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5312859F22B63F6C00E3AF5F /* AdHoc.storyboard */; };
 		531285A422B6403D00E3AF5F /* AdHocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285A322B6403D00E3AF5F /* AdHocViewController.swift */; };
 		531285A622B643EB00E3AF5F /* ListadoRegistroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531285A522B643EB00E3AF5F /* ListadoRegistroViewController.swift */; };
@@ -46,10 +45,10 @@
 		535CCBBF22B5884100182DB9 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535CCBBE22B5884100182DB9 /* SearchTableViewCell.swift */; };
 		535CCBC122B5A09500182DB9 /* Building.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535CCBC022B5A09500182DB9 /* Building.swift */; };
 		536562D422B535950051F848 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536562D322B535950051F848 /* AppDelegate.swift */; };
-		536562D622B535950051F848 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536562D522B535950051F848 /* ViewController.swift */; };
 		536562D922B535950051F848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536562D722B535950051F848 /* Main.storyboard */; };
 		536562DB22B535970051F848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 536562DA22B535970051F848 /* Assets.xcassets */; };
 		536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536562DC22B535970051F848 /* LaunchScreen.storyboard */; };
+		5D3143DC23258C9300118E9E /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5312859C22B61DCC00E3AF5F /* Alert.storyboard */; };
 		94C61557842208D4B3C5AC06 /* Pods_PaHis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753AB70FFA9AE883AC92BC9C /* Pods_PaHis.framework */; };
 		B3158C3322B54F290008B035 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B3158C3222B54F290008B035 /* GoogleService-Info.plist */; };
 		B3158C3522B554830008B035 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C3422B554830008B035 /* InitialViewController.swift */; };
@@ -63,7 +62,6 @@
 		B330A2F422B6736200528EC2 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B330A2F322B6736200528EC2 /* ARViewController.swift */; };
 		B330A2F622B6739500528EC2 /* arte.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B330A2F522B6739500528EC2 /* arte.scnassets */; };
 		B330A2FA22B6740600528EC2 /* AR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B330A2F922B6740600528EC2 /* AR.storyboard */; };
-		B3CEE6F422B649110024E05C /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CEE6F322B649110024E05C /* UITextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,7 +128,6 @@
 		535CCBC022B5A09500182DB9 /* Building.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Building.swift; sourceTree = "<group>"; };
 		536562D022B535950051F848 /* PaHis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaHis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		536562D322B535950051F848 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		536562D522B535950051F848 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		536562D822B535950051F848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		536562DA22B535970051F848 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		536562DD22B535970051F848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -336,29 +333,36 @@
 		536562D222B535950051F848 /* PaHis */ = {
 			isa = PBXGroup;
 			children = (
+				536562D322B535950051F848 /* AppDelegate.swift */,
+				B330A2F522B6739500528EC2 /* arte.scnassets */,
+				536562DA22B535970051F848 /* Assets.xcassets */,
+				535CCB7A22B5596C00182DB9 /* Extensions */,
+				B3158C3222B54F290008B035 /* GoogleService-Info.plist */,
+				536562DF22B535970051F848 /* Info.plist */,
+				536562DC22B535970051F848 /* LaunchScreen.storyboard */,
+				536562D722B535950051F848 /* Main.storyboard */,
+				535CCBB722B5858700182DB9 /* style.json */,
+				535CCBB422B57A1300182DB9 /* Models */,
+				5D3143DB23258AA200118E9E /* Scenes */,
+			);
+			path = PaHis;
+			sourceTree = "<group>";
+		};
+		5D3143DB23258AA200118E9E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
 				B330A2F222B6734F00528EC2 /* ARScene */,
 				531285B122B6571F00E3AF5F /* ChatScene */,
 				5312859E22B63F5300E3AF5F /* AdHocScene */,
 				5312859922B61D5B00E3AF5F /* AlertScene */,
 				B3158C4922B5ED760008B035 /* MonumentosScene */,
-				535CCB7A22B5596C00182DB9 /* Extensions */,
 				B3158C4022B5A0540008B035 /* RegisterScene */,
 				535CCBB922B587A000182DB9 /* SearchScene */,
-				535CCBB422B57A1300182DB9 /* Models */,
 				535CCB7122B5582900182DB9 /* LoginScene */,
 				535CCB7022B5581B00182DB9 /* CreateUserScene */,
 				535CCB6D22B5519300182DB9 /* InitialScene */,
-				536562D322B535950051F848 /* AppDelegate.swift */,
-				536562D522B535950051F848 /* ViewController.swift */,
-				536562D722B535950051F848 /* Main.storyboard */,
-				536562DA22B535970051F848 /* Assets.xcassets */,
-				536562DC22B535970051F848 /* LaunchScreen.storyboard */,
-				535CCBB722B5858700182DB9 /* style.json */,
-				536562DF22B535970051F848 /* Info.plist */,
-				B3158C3222B54F290008B035 /* GoogleService-Info.plist */,
-				B330A2F522B6739500528EC2 /* arte.scnassets */,
 			);
-			path = PaHis;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		B3158C4022B5A0540008B035 /* RegisterScene */ = {
@@ -461,13 +465,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D3143DC23258C9300118E9E /* Alert.storyboard in Resources */,
 				536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */,
 				B3158C4B22B5EDD90008B035 /* Monumento.storyboard in Resources */,
 				531285A022B63F6C00E3AF5F /* AdHoc.storyboard in Resources */,
 				B3158C3322B54F290008B035 /* GoogleService-Info.plist in Resources */,
 				535CCB7322B5583F00182DB9 /* Login.storyboard in Resources */,
 				535CCBB822B5858700182DB9 /* style.json in Resources */,
-				5312859D22B61DCC00E3AF5F /* Alert.storyboard in Resources */,
 				B330A2FA22B6740600528EC2 /* AR.storyboard in Resources */,
 				535CCBBD22B587D800182DB9 /* Search.storyboard in Resources */,
 				535CCB8622B5681000182DB9 /* Map.storyboard in Resources */,
@@ -568,13 +572,11 @@
 				531285AC22B644D800E3AF5F /* AlertaTableViewCell.swift in Sources */,
 				531285A822B643FE00E3AF5F /* ListadoAlertaViewController.swift in Sources */,
 				535CCBBF22B5884100182DB9 /* SearchTableViewCell.swift in Sources */,
-				B3CEE6F422B649110024E05C /* UITextField.swift in Sources */,
 				535CCB8422B5680400182DB9 /* MapViewController.swift in Sources */,
 				531285B022B6457D00E3AF5F /* Alerta.swift in Sources */,
 				B330A2F422B6736200528EC2 /* ARViewController.swift in Sources */,
 				B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */,
 				B3158C3522B554830008B035 /* InitialViewController.swift in Sources */,
-				536562D622B535950051F848 /* ViewController.swift in Sources */,
 				5312859B22B61D7300E3AF5F /* AlertViewController.swift in Sources */,
 				535CCBBB22B587CA00182DB9 /* SearchViewController.swift in Sources */,
 				531285AA22B644C800E3AF5F /* RegistroTableViewCell.swift in Sources */,
@@ -740,14 +742,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6XLK5Y2G8X;
+				DEVELOPMENT_TEAM = PLGMCC6BTS;
 				INFOPLIST_FILE = PaHis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = maple.personal.project.PaHis;
+				PRODUCT_BUNDLE_IDENTIFIER = maple.personal.project.angel.PaHis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Google-Maps-iOS-Utils/PaHis-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -763,14 +765,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6XLK5Y2G8X;
+				DEVELOPMENT_TEAM = PLGMCC6BTS;
 				INFOPLIST_FILE = PaHis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = maple.personal.project.PaHis;
+				PRODUCT_BUNDLE_IDENTIFIER = maple.personal.project.angel.PaHis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Google-Maps-iOS-Utils/PaHis-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
