@@ -24,7 +24,7 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
     @IBOutlet weak var cameraUIImage: UIImageView!
     @IBOutlet weak var createButton: UIButton!
     
-    var categories: [Category]!
+    var categories: [CategoryPahis]!
     var categoriesName: [String]!
     
     let distrito = ["Ancon","Ate","Barranco","Breña","Carabayllo","Chaclacayo","Chorrillos","Cieneguilla","Comas","El Agustino","Independencia","Jesus Maria","La Molina","La Victoria","Lima","Lince","Los Olivos","Lurigancho","Lurin","Magdalena Del Mar","Miraflores","Pachacamac","Pucusana","Pueblo Libre","Puente Piedra","Punta Hermosa","Punta Negra","Rimac","San Bartolo","San Borja","San Isidro","San Juan De Lurigancho","San Juan De Miraflores","San Luis","San Martin De Porres","San Miguel","Santa Anita","Santa Maria Del Mar","Santa Rosa","Santiago De Surco","Surquillo","Villa El Salvador","Villa Maria Del Triunfo"]
@@ -171,7 +171,7 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
             self.present(alert, animated: true)
             return
         }
-        guard categoryUILabel.text != "", let categoria = categoryUILabel.text, let categoryID = categories.filter({ $0.name == categoria }).first?.uid  else {
+        guard categoryUILabel.text != "", let categoria = categoryUILabel.text, let categoryID = categories.filter({ $0.name == categoria }).first?.id  else {
             let alert = UIAlertController(title: "Aviso", message: "Ingrese una categoria válida", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
             self.present(alert, animated: true)
