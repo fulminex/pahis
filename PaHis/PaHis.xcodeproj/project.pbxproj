@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -65,6 +65,11 @@
 		536562D922B535950051F848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536562D722B535950051F848 /* Main.storyboard */; };
 		536562DB22B535970051F848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 536562DA22B535970051F848 /* Assets.xcassets */; };
 		536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536562DC22B535970051F848 /* LaunchScreen.storyboard */; };
+		5DC6E999233837A50029CBDF /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6E998233837A50029CBDF /* FiltersViewController.swift */; };
+		5DC6E99B233837B70029CBDF /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC6E99A233837B70029CBDF /* Filters.storyboard */; };
+		5DC6E99E23383B560029CBDF /* Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC6E99D23383B560029CBDF /* Picker.storyboard */; };
+		5DDB4B8323383BA400F14A02 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDB4B8223383BA400F14A02 /* PickerViewController.swift */; };
+		5DDB4B852338400100F14A02 /* Ubigeo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDB4B842338400100F14A02 /* Ubigeo.swift */; };
 		94C61557842208D4B3C5AC06 /* Pods_PaHis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753AB70FFA9AE883AC92BC9C /* Pods_PaHis.framework */; };
 		B3158C3322B54F290008B035 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B3158C3222B54F290008B035 /* GoogleService-Info.plist */; };
 		B3158C3522B554830008B035 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3158C3422B554830008B035 /* InitialViewController.swift */; };
@@ -78,7 +83,6 @@
 		B330A2F422B6736200528EC2 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B330A2F322B6736200528EC2 /* ARViewController.swift */; };
 		B330A2F622B6739500528EC2 /* arte.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B330A2F522B6739500528EC2 /* arte.scnassets */; };
 		B330A2FA22B6740600528EC2 /* AR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B330A2F922B6740600528EC2 /* AR.storyboard */; };
-		B3CEE6F422B649110024E05C /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CEE6F322B649110024E05C /* UITextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,6 +170,11 @@
 		536562DA22B535970051F848 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		536562DD22B535970051F848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		536562DF22B535970051F848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DC6E998233837A50029CBDF /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
+		5DC6E99A233837B70029CBDF /* Filters.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filters.storyboard; sourceTree = "<group>"; };
+		5DC6E99D23383B560029CBDF /* Picker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Picker.storyboard; sourceTree = "<group>"; };
+		5DDB4B8223383BA400F14A02 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		5DDB4B842338400100F14A02 /* Ubigeo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ubigeo.swift; sourceTree = "<group>"; };
 		753AB70FFA9AE883AC92BC9C /* Pods_PaHis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaHis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92871673DECF09A2D0B902B9 /* Pods-PaHis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaHis.release.xcconfig"; path = "Pods/Target Support Files/Pods-PaHis/Pods-PaHis.release.xcconfig"; sourceTree = "<group>"; };
 		9F31820B7BB556558EEBE645 /* Pods-PaHis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaHis.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PaHis/Pods-PaHis.debug.xcconfig"; sourceTree = "<group>"; };
@@ -382,6 +391,7 @@
 				531285AD22B6456900E3AF5F /* Registro.swift */,
 				531285AF22B6457D00E3AF5F /* Alerta.swift */,
 				531285B422B6577B00E3AF5F /* Message.swift */,
+				5DDB4B842338400100F14A02 /* Ubigeo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -418,22 +428,12 @@
 		536562D222B535950051F848 /* PaHis */ = {
 			isa = PBXGroup;
 			children = (
-				0B2A36D12320643D00136223 /* DetailBuildingScene */,
+				5D3143DD23258E2200118E9E /* Scenes */,
 				0B3BF237231DAEAC001FF510 /* PaHis.entitlements */,
 				0B6C36EE23103BAF0031D27B /* CoreData */,
 				0BE7E9D923078E420060CD39 /* Managers */,
-				B330A2F222B6734F00528EC2 /* ARScene */,
-				5312859E22B63F5300E3AF5F /* AdHocScene */,
-				5312859922B61D5B00E3AF5F /* AlertScene */,
-				B3158C4922B5ED760008B035 /* MonumentosScene */,
 				535CCB7A22B5596C00182DB9 /* Extensions */,
-				B3158C4022B5A0540008B035 /* RegisterScene */,
-				535CCBB922B587A000182DB9 /* SearchScene */,
 				535CCBB422B57A1300182DB9 /* Models */,
-				535CCB7122B5582900182DB9 /* LoginScene */,
-				535CCB7022B5581B00182DB9 /* CreateUserScene */,
-				535CCB8222B567DF00182DB9 /* MapScene */,
-				535CCB6D22B5519300182DB9 /* InitialScene */,
 				536562D322B535950051F848 /* AppDelegate.swift */,
 				536562D522B535950051F848 /* ViewController.swift */,
 				536562D722B535950051F848 /* Main.storyboard */,
@@ -445,6 +445,44 @@
 				B330A2F522B6739500528EC2 /* arte.scnassets */,
 			);
 			path = PaHis;
+			sourceTree = "<group>";
+		};
+		5D3143DD23258E2200118E9E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				5DC6E99C23383B440029CBDF /* PickerScene */,
+				5DC6E997233835B70029CBDF /* FiltersScene */,
+				0B2A36D12320643D00136223 /* DetailBuildingScene */,
+				B330A2F222B6734F00528EC2 /* ARScene */,
+				5312859E22B63F5300E3AF5F /* AdHocScene */,
+				5312859922B61D5B00E3AF5F /* AlertScene */,
+				B3158C4922B5ED760008B035 /* MonumentosScene */,
+				B3158C4022B5A0540008B035 /* RegisterScene */,
+				535CCBB922B587A000182DB9 /* SearchScene */,
+				535CCB7122B5582900182DB9 /* LoginScene */,
+				535CCB7022B5581B00182DB9 /* CreateUserScene */,
+				535CCB8222B567DF00182DB9 /* MapScene */,
+				535CCB6D22B5519300182DB9 /* InitialScene */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		5DC6E997233835B70029CBDF /* FiltersScene */ = {
+			isa = PBXGroup;
+			children = (
+				5DC6E998233837A50029CBDF /* FiltersViewController.swift */,
+				5DC6E99A233837B70029CBDF /* Filters.storyboard */,
+			);
+			path = FiltersScene;
+			sourceTree = "<group>";
+		};
+		5DC6E99C23383B440029CBDF /* PickerScene */ = {
+			isa = PBXGroup;
+			children = (
+				5DC6E99D23383B560029CBDF /* Picker.storyboard */,
+				5DDB4B8223383BA400F14A02 /* PickerViewController.swift */,
+			);
+			path = PickerScene;
 			sourceTree = "<group>";
 		};
 		B3158C4022B5A0540008B035 /* RegisterScene */ = {
@@ -565,6 +603,7 @@
 				531285A022B63F6C00E3AF5F /* AdHoc.storyboard in Resources */,
 				B3158C3322B54F290008B035 /* GoogleService-Info.plist in Resources */,
 				535CCB7322B5583F00182DB9 /* Login.storyboard in Resources */,
+				5DC6E99B233837B70029CBDF /* Filters.storyboard in Resources */,
 				535CCBB822B5858700182DB9 /* style.json in Resources */,
 				5312859D22B61DCC00E3AF5F /* Alert.storyboard in Resources */,
 				B330A2FA22B6740600528EC2 /* AR.storyboard in Resources */,
@@ -574,6 +613,7 @@
 				535CCB7522B5584D00182DB9 /* CreateUser.storyboard in Resources */,
 				536562DB22B535970051F848 /* Assets.xcassets in Resources */,
 				535CCB6F22B552E400182DB9 /* Initial.storyboard in Resources */,
+				5DC6E99E23383B560029CBDF /* Picker.storyboard in Resources */,
 				B330A2F622B6739500528EC2 /* arte.scnassets in Resources */,
 				536562D922B535950051F848 /* Main.storyboard in Resources */,
 			);
@@ -605,13 +645,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PaHis/Pods-PaHis-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PaHis/Pods-PaHis-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PaHis/Pods-PaHis-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -623,23 +662,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PaHis/Pods-PaHis-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/LocationPickerViewController/LocationPickerViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PaHis/Pods-PaHis-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LocationPickerViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PaHis/Pods-PaHis-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -671,12 +699,12 @@
 				535CCB7F22B5598000182DB9 /* UIImageExtensions.swift in Sources */,
 				0BEBC4E02321907100335FA9 /* DetailBuildingCollectionViewCell.swift in Sources */,
 				531285A622B643EB00E3AF5F /* ListadoRegistroViewController.swift in Sources */,
+				5DDB4B852338400100F14A02 /* Ubigeo.swift in Sources */,
 				0B685B90231EFB2A00676C72 /* RegisterCollectionViewCell.swift in Sources */,
 				531285AC22B644D800E3AF5F /* AlertaTableViewCell.swift in Sources */,
 				531285A822B643FE00E3AF5F /* ListadoAlertaViewController.swift in Sources */,
 				535CCBBF22B5884100182DB9 /* SearchTableViewCell.swift in Sources */,
 				0B2A36D32320647B00136223 /* DetailBuildingViewController.swift in Sources */,
-				B3CEE6F422B649110024E05C /* UITextField.swift in Sources */,
 				535CCB8422B5680400182DB9 /* MapViewController.swift in Sources */,
 				0BE7E9D8230763C60060CD39 /* NetworkManager.swift in Sources */,
 				531285B022B6457D00E3AF5F /* Alerta.swift in Sources */,
@@ -688,11 +716,13 @@
 				B3158C3522B554830008B035 /* InitialViewController.swift in Sources */,
 				536562D622B535950051F848 /* ViewController.swift in Sources */,
 				5312859B22B61D7300E3AF5F /* AlertViewController.swift in Sources */,
+				5DC6E999233837A50029CBDF /* FiltersViewController.swift in Sources */,
 				0BF355802322C923008400ED /* AlertCollectionViewCell.swift in Sources */,
 				535CCBBB22B587CA00182DB9 /* SearchViewController.swift in Sources */,
 				531285AA22B644C800E3AF5F /* RegistroTableViewCell.swift in Sources */,
 				535CCBAC22B5799500182DB9 /* GMUSimpleClusterAlgorithm.m in Sources */,
 				0BEBC4E42321A00400335FA9 /* UITextViewExtensions.swift in Sources */,
+				5DDB4B8323383BA400F14A02 /* PickerViewController.swift in Sources */,
 				B3158C5122B626350008B035 /* CineTauroViewController.swift in Sources */,
 				0B6C371C231055E80031D27B /* PersistenceManager.swift in Sources */,
 				535CCBAB22B5799500182DB9 /* GMUWrappingDictionaryKey.m in Sources */,
@@ -856,14 +886,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PaHis/PaHis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6XLK5Y2G8X;
+				DEVELOPMENT_TEAM = PLGMCC6BTS;
 				INFOPLIST_FILE = PaHis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = maple.personal.project.PaHis;
+				PRODUCT_BUNDLE_IDENTIFIER = maple.personal.project.angel.PaHis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Google-Maps-iOS-Utils/PaHis-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -880,14 +910,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PaHis/PaHis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6XLK5Y2G8X;
+				DEVELOPMENT_TEAM = PLGMCC6BTS;
 				INFOPLIST_FILE = PaHis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = maple.personal.project.PaHis;
+				PRODUCT_BUNDLE_IDENTIFIER = maple.personal.project.angel.PaHis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Google-Maps-iOS-Utils/PaHis-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

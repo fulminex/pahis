@@ -24,7 +24,6 @@ extension Building {
     @NSManaged public var images: [String]
     @NSManaged public var latitude: NSNumber?
     @NSManaged public var longitude: NSNumber?
-    @NSManaged public var state: String
     @NSManaged public var category: Category
 
 }

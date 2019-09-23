@@ -10,7 +10,7 @@ import UIKit
 
 class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
-    var building: Building!
+    var building: BuildingPahis!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -26,11 +26,11 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func setupView() {
-        title = building.name
-        nameLabel.text = building.name
-        descriptionTextView.text = building.detail
+        title = building.name!
+        nameLabel.text = building.name!
+        descriptionTextView.text = building.buildingDescription!
         descriptionTextView.adjustContentSize()
-        categoryLabel.text = building.category.name
+        categoryLabel.text = building.category!.name!
         addressTextView.text = building.address
         addressTextView.adjustContentSize()
         tableView.estimatedRowHeight = 80
@@ -40,29 +40,29 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
     // MARK:- Funciones del delegate del collectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return building.images.count
+        return building.images!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailBuildingCollectionViewCell.identifier, for: indexPath) as! DetailBuildingCollectionViewCell
-        cell.urlImageRaw = building.images[indexPath.row]
+        cell.urlImageRaw = self.building.images![indexPath.row].url
         return cell
     }
     
     // MARK:- Funciones del delegate del tableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return building.documents.count
+        return building.documents!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DetailBuildingTableViewCell.identifier, for: indexPath) as! DetailBuildingTableViewCell
-        cell.documentName = building.documents[indexPath.row]
+        cell.documentName = building.documents![indexPath.row].url
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let url = URL(string: building.documents[indexPath.row]) else { return }
+        guard let url = URL(string: building.documents![indexPath.row].url!)else { return }
         UIApplication.shared.open(url)
     }
 }

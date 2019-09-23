@@ -20,7 +20,7 @@ class InitialViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
         let token = UserDefaults.standard.string(forKey: "token")
         if token != nil && token != "" {
             print("Token de Sesión: ", token!)

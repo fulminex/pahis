@@ -35,7 +35,7 @@ class MapViewController: UIViewController, GMUClusterManagerDelegate, GMSMapView
     
     let defaultLocation = CLLocation(latitude: -12.0266034, longitude: -77.1278631)
     
-    var buildings = [Building]()
+    var buildings = [BuildingPahis]()
     
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
@@ -93,8 +93,6 @@ class MapViewController: UIViewController, GMUClusterManagerDelegate, GMSMapView
         // Register self to listen to both GMUClusterManagerDelegate and GMSMapViewDelegate events.
         clusterManager.setDelegate(self, mapDelegate: self)
         
-        fetchPlaces()
-        
         setupNavigationButton()
     }
     
@@ -104,12 +102,12 @@ class MapViewController: UIViewController, GMUClusterManagerDelegate, GMSMapView
     }
     
     func fetchPlaces() {
-        NetworkManager.shared.getBuildings(forced: false) { result in
-            switch result {
+        NetworkManager.shared.getBuildings(page: 1, latitud: String(currentLocation!.coordinate.latitude), longitud: String(currentLocation!.coordinate.longitude)) { result in
+            switch result {
             case.failure(let error):
                 print(error)
-            case.success((_, let buildings )):
-                self.buildings = buildings
+            case.success((_, let page )):
+                self.buildings = page.items!
                 self.createMarkers()
             }
         }
@@ -172,17 +170,17 @@ class MapViewController: UIViewController, GMUClusterManagerDelegate, GMSMapView
     }
     
     func createMarkers() {
+        clusterManager.clearItems()
         generateClusterItems()
-        // Call cluster() after items have been added to perform the clustering and rendering on map.
         clusterManager.cluster()
     }
     
     private func generateClusterItems() {
         buildings.forEach ({
-            guard let latitud = $0.latitude, let lat = latitud as? Double else { return }
-            guard let longitud = $0.longitude, let long = longitud as? Double else { return }
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            let item = POIItem(position: coordinate, name: $0.name)
+            guard let latitud = $0.latitude else { return }
+            guard let longitud = $0.longitude else { return }
+            let coordinate = CLLocationCoordinate2D(latitude: latitud, longitude: longitud)
+            let item = POIItem(position: coordinate, name: $0.name!)
             clusterManager.add(item)
         })
     }
@@ -259,6 +257,7 @@ extension MapViewController: CLLocationManagerDelegate {
         } else {
             mapView.animate(to: camera)
         }
+        self.fetchPlaces()
     }
     
     // Handle authorization for the location manager.

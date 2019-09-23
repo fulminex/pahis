@@ -8,7 +8,7 @@
 	<string>$(TeamIdentifierPrefix)$(CFBundleIdentifier)</string>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)maple.personal.project.PaHis</string>
+		<string>$(AppIdentifierPrefix)maple.personal.project.angel.PaHis</string>
 	</array>
 </dict>
 </plist>

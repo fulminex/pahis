@@ -21,11 +21,17 @@ struct DisplayedBuildingPahis {
 
 class PlaceListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    var categories: [Category] = []
-    var buildings: [Building] = []
+    var pageBuilding: PageBuilding?
+    var filteredPage: PageBuilding?
+    
+    var categories: [CategoryPahis] = []
+    var buildings: [BuildingPahis] = []
     var displayedBuildingsPahis = [DisplayedBuildingPahis]()
     var originalDisplayedBuildings = [DisplayedBuildingPahis]()
     var filteredBuildingsPahis = [DisplayedBuildingPahis]()
+    
+    var page: Int = 1
+    var isForced: Bool = true
     
     var resultSearchController = UISearchController()
     
@@ -81,27 +87,19 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-        locationManager.distanceFilter = 50
+        locationManager.distanceFilter = 100
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
     }
     
     @IBAction func filterButtonTapped(_ sender: UIButton) {
-        guard picker == nil else { return }
-        picker = UIPickerView.init()
-        picker!.delegate = self
-        picker!.backgroundColor = UIColor.white
-        picker!.setValue(UIColor.black, forKey: "textColor")
-        picker!.autoresizingMask = .flexibleWidth
-        picker!.contentMode = .center
-        picker!.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
-        picker!.selectRow(categoriesList.firstIndex(of: selectedCat) ?? 0, inComponent: 0, animated: true)
-        self.view.addSubview(picker!)
-        
-        toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50))
-        toolBar.items = [UIBarButtonItem.init(title: "Aplicar", style: .done, target: self, action: #selector(onDoneButtonTapped))]
-        toolBar.tintColor = UIColor(rgb: 0xF5391C)
-        self.view.addSubview(toolBar)
+        let sb = UIStoryboard(name: "Filters", bundle: nil)
+        let vc = sb.instantiateInitialViewController() as! FiltersViewController
+        vc.categories = self.categories
+        vc.delegate = self
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true)
     }
     
     @objc func onDoneButtonTapped() {
@@ -178,22 +176,75 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @objc func reloadPlaces() {
-        fetchBuildings(forced: true)
+        pageBuilding = nil
+        buildings = []
+        self.page = 1
+        isForced = true
+        fetchBuildings(page: self.page)
     }
     
     @objc func navigateToRegister() {
         let sb = UIStoryboard(name: "Register", bundle: nil)
         let vc = sb.instantiateInitialViewController() as! RegisterTableViewController
-        vc.categories = categories
-        vc.categoriesName = categories.map({ $0.name })
+//        vc.categories = categories
+//        vc.categoriesName = categories.map({ $0.name })
         let navigationController = UINavigationController(rootViewController: vc)
         self.present(navigationController, animated: true)
 //        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func fetchBuildings(forced: Bool = false) {
+    func fetchBuildings(page: Int, categoriID: String = "", codUbigeo: String = "", lat: String = "", long: String = "") {
+        if isForced {
+            let spinner = UIViewController.displaySpinner(onView: self.view)
+            NetworkManager.shared.getBuildings(page: page, categoriID: categoriID, codUbigeo: codUbigeo, latitud: lat, longitud: long) { result in
+                switch result {
+                case .failure(let error):
+                    self.refreshControl.endRefreshing()
+                    UIViewController.removeSpinner(spinner: spinner)
+                    let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                case .success(let categories, let pageBuilding):
+                    self.pageBuilding = pageBuilding
+                    self.categories = categories
+                    self.buildings += pageBuilding.items!
+                    self.categoriesList = ["Todos"] + self.categories.map({ $0.name! })
+                    self.displayedBuildingsPahis = self.buildings.map({
+                        var distance: Double?
+                        if $0.latitude != nil && $0.longitude != nil {
+                            distance = round(100*((CLLocation(latitude: $0.latitude! , longitude: $0.longitude! ).distance(from: self.currentLocation))/1000.0))/100
+                        }
+                        return DisplayedBuildingPahis(name: $0.name!, category: $0.category!.name!, latitude: $0.latitude, longitude: $0.longitude, distance: distance, imageURL: $0.images!.first?.url!)
+                    })
+                    self.displayedBuildingsPahis.sort(by: { (b1, b2) -> Bool in
+                        return b1.distance ?? Double(Int.max) < b2.distance ?? Double(Int.max)
+                    })
+                    self.originalDisplayedBuildings = self.displayedBuildingsPahis
+                    self.refreshControl.endRefreshing()
+                    UIViewController.removeSpinner(spinner: spinner)
+                    self.isForced = false
+                    self.tableView.reloadData()
+                }
+            }
+        } else {
+            self.displayedBuildingsPahis = self.buildings.map({
+                var distance: Double?
+                if $0.latitude != nil && $0.longitude != nil {
+                    distance = round(100*((CLLocation(latitude: $0.latitude! , longitude: $0.longitude! ).distance(from: self.currentLocation))/1000.0))/100
+                }
+                return DisplayedBuildingPahis(name: $0.name!, category: $0.category!.name!, latitude: $0.latitude, longitude: $0.longitude, distance: distance, imageURL: $0.images!.first?.url!)
+            })
+            self.displayedBuildingsPahis.sort(by: { (b1, b2) -> Bool in
+                return b1.distance ?? Double(Int.max) < b2.distance ?? Double(Int.max)
+            })
+            self.originalDisplayedBuildings = self.displayedBuildingsPahis
+            self.tableView.reloadData()
+        }
+    }
+    
+    func fetchBuildingsWithFilter(page: Int, query: String, lat: String = "", long: String = "") {
         let spinner = UIViewController.displaySpinner(onView: self.view)
-        NetworkManager.shared.getBuildings(forced: forced) { result in
+        NetworkManager.shared.getBuildings(page: page, query: query, latitud: lat, longitud: long) { result in
             switch result {
             case .failure(let error):
                 self.refreshControl.endRefreshing()
@@ -201,21 +252,18 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                 let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
-            case .success(let categories, let buildings):
-                self.categories = categories
-                self.buildings = buildings
-                self.categoriesList = ["Todos"] + self.categories.map({ $0.name })
-                self.displayedBuildingsPahis = buildings.map({
+            case .success(_, let pageBuilding):
+                self.filteredPage = pageBuilding
+                self.filteredBuildingsPahis = pageBuilding.items!.map({
                     var distance: Double?
                     if $0.latitude != nil && $0.longitude != nil {
-                        distance = round(100*((CLLocation(latitude: $0.latitude! as! Double, longitude: $0.longitude! as! Double).distance(from: self.currentLocation))/1000.0))/100
+                        distance = round(100*((CLLocation(latitude: $0.latitude! , longitude: $0.longitude! ).distance(from: self.currentLocation))/1000.0))/100
                     }
-                    return DisplayedBuildingPahis(name: $0.name, category: $0.category.name, latitude: $0.latitude as? Double, longitude: $0.longitude as? Double, distance: distance, imageURL: $0.images.first)
+                    return DisplayedBuildingPahis(name: $0.name!, category: $0.category!.name!, latitude: $0.latitude, longitude: $0.longitude, distance: distance, imageURL: $0.images!.first?.url!)
                 })
-                self.displayedBuildingsPahis.sort(by: { (b1, b2) -> Bool in
+                self.filteredBuildingsPahis.sort(by: { (b1, b2) -> Bool in
                     return b1.distance ?? Double(Int.max) < b2.distance ?? Double(Int.max)
                 })
-                self.originalDisplayedBuildings = self.displayedBuildingsPahis
                 self.refreshControl.endRefreshing()
                 UIViewController.removeSpinner(spinner: spinner)
                 self.tableView.reloadData()
@@ -234,14 +282,16 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var building : DisplayedBuildingPahis!
-        if  (resultSearchController.isActive) {
-            building = filteredBuildingsPahis[indexPath.row]
-        } else {
-            building = displayedBuildingsPahis[indexPath.row]
-        }
         let sb = UIStoryboard(name: "DetailBuilding", bundle: nil)
         let vc = sb.instantiateInitialViewController() as! DetailsBuildingViewController
-        vc.building = buildings.filter({ $0.name == building.name }).first!
+        if  (resultSearchController.isActive) {
+            building = filteredBuildingsPahis[indexPath.row]
+            vc.building = filteredPage?.items!.filter({ $0.name == building.name }).first!
+        } else {
+            building = displayedBuildingsPahis[indexPath.row]
+            vc.building = pageBuilding?.items!.filter({ $0.name == building.name }).first!
+        }
+        resultSearchController.isActive = false
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -257,13 +307,32 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let intTotalrow = tableView.numberOfRows(inSection:indexPath.section)//first get total rows in that section by current indexPath.
+        //get last last row of tablview
+        if indexPath.row == intTotalrow - 4 {
+            if pageBuilding!.hasNext! {
+                isForced = true
+                fetchBuildings(page: page + 1, lat: String(currentLocation!.coordinate.latitude), long: String(currentLocation!.coordinate.longitude))
+            }
+        }
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
-        filteredBuildingsPahis.removeAll(keepingCapacity: false)
-        filteredBuildingsPahis = originalDisplayedBuildings.filter({ $0.name.uppercased().contains(searchController.searchBar.text!.uppercased()) })
+        filteredBuildingsPahis = []
         self.tableView.reloadData()
+        fetchBuildingsWithFilter(page: 1, query: searchController.searchBar.text!, lat: String(currentLocation!.coordinate.latitude), long: String(currentLocation!.coordinate.longitude))
+//        filteredBuildingsPahis = originalDisplayedBuildings.filter({ $0.name.uppercased().contains(searchController.searchBar.text!.uppercased()) })
+//        self.tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        var building : DisplayedBuildingPahis!
+        if  (resultSearchController.isActive) {
+            building = filteredBuildingsPahis[indexPath.row]
+        } else {
+            building = displayedBuildingsPahis[indexPath.row]
+        }
         let navigateToGoogleMaps = UITableViewRowAction(style: .normal, title: "Google Maps") { action, index in
             guard UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) else {
                 let alert = UIAlertController(title: "Aviso", message: "No tiene instalado Google Maps en su dispositivo.", preferredStyle: .alert)
@@ -271,7 +340,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.present(alert, animated: true)
                 return
             }
-            guard let lat = self.displayedBuildingsPahis[index.row].latitude, let lon = self.displayedBuildingsPahis[index.row].longitude else {
+            guard let lat = building.latitude, let lon = building.longitude else {
                 let alert = UIAlertController(title: "Aviso", message: "El lugar seleccionado no cuenta con ubicación disponible, intente con otro lugar.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
@@ -286,7 +355,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.present(alert, animated: true)
                 return
             }
-            guard let lat = self.displayedBuildingsPahis[index.row].latitude, let lon = self.displayedBuildingsPahis[index.row].longitude else {
+            guard let lat = building.latitude, let lon = building.longitude else {
                 let alert = UIAlertController(title: "Aviso", message: "El lugar seleccionado no cuenta con ubicación disponible, intente con otro lugar.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
@@ -307,17 +376,18 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
             let sb = UIStoryboard(name: "Alert", bundle: nil)
             let vc = sb.instantiateInitialViewController() as! AlertTableViewController
             var building : DisplayedBuildingPahis!
-            if (self.resultSearchController.isActive) {
+            if  (self.resultSearchController.isActive) {
                 building = self.filteredBuildingsPahis[indexPath.row]
-            }
-            else {
+//                vc.building = filteredPage?.items!.filter({ $0.name == building.name }).first!
+            } else {
                 building = self.displayedBuildingsPahis[indexPath.row]
+//                vc.building = pageBuilding?.items!.filter({ $0.name == building.name }).first!
             }
 //            vc.desc = building.desc
 //            vc.codBuild = building.codBuild
 //            vc.direccion = building.address
             success(true)
-//            self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(vc, animated: true)
         })
 //        closeAction.image = UIImage(named: "tick")
         closeAction.backgroundColor = UIColor(rgb: 0xF5391C)
@@ -334,7 +404,7 @@ extension PlaceListViewController: CLLocationManagerDelegate {
         let location = locations.last!
         print("Location: \(location)")
         currentLocation = location
-        fetchBuildings(forced: false)
+        fetchBuildings(page: self.page, lat: String(currentLocation!.coordinate.latitude), long: String(currentLocation!.coordinate.longitude))
     }
     
     // Handle authorization for the location manager.
@@ -359,3 +429,12 @@ extension PlaceListViewController: CLLocationManagerDelegate {
     }
 }
 
+extension PlaceListViewController: FilterPopUpDelegate {
+    func getFilter(filter: Filter) {
+        pageBuilding = nil
+        buildings = []
+        self.page = 1
+        isForced = true
+        fetchBuildings(page: self.page, categoriID: filter.categoryID ?? "", codUbigeo: filter.codUbigeo ?? "", lat: String(currentLocation!.coordinate.latitude), long: String(currentLocation!.coordinate.longitude))
+    }
+}
