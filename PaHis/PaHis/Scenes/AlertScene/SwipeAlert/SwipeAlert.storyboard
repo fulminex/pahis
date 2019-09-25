@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="00C-bf-tPw">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Crear Alerta-->
+        <scene sceneID="PhR-gd-dhd">
+            <objects>
+                <tableViewController storyboardIdentifier="RegisterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="00C-bf-tPw" customClass="SwipeAlertTableViewController" customModule="PaHis" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" sectionIndexMinimumDisplayRowCount="3" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="0xK-4W-zn7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="lhU-WF-MAS">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EX3-Wa-E6f">
+                                    <rect key="frame" x="167" y="20" width="80" height="75"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="80" id="LkV-2o-yJj"/>
+                                        <constraint firstAttribute="width" constant="80" id="cRG-mg-9J1"/>
+                                    </constraints>
+                                    <state key="normal" image="defaultBuilding"/>
+                                    <connections>
+                                        <action selector="photoButtonTapped:" destination="00C-bf-tPw" eventType="touchUpInside" id="i6G-2Q-8P3"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="EX3-Wa-E6f" firstAttribute="centerY" secondItem="lhU-WF-MAS" secondAttribute="centerY" id="oYr-LY-R1q"/>
+                                <constraint firstItem="EX3-Wa-E6f" firstAttribute="centerX" secondItem="lhU-WF-MAS" secondAttribute="centerX" id="sQV-r3-Jvu"/>
+                                <constraint firstItem="EX3-Wa-E6f" firstAttribute="top" secondItem="lhU-WF-MAS" secondAttribute="top" constant="20" id="sTR-eN-Sny"/>
+                            </constraints>
+                        </view>
+                        <sections>
+                            <tableViewSection headerTitle="Reporta alguna modificación o daño a este patrimonio" id="Id2-49-oPE">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="KJR-JK-vKq">
+                                        <rect key="frame" x="0.0" y="188.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KJR-JK-vKq" id="cGX-br-qaw">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MonumentoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Nrp-d1-Oxz">
+                                                    <rect key="frame" x="16" y="12.5" width="19" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="19" id="5nj-M6-m9O"/>
+                                                        <constraint firstAttribute="height" constant="19" id="gF4-mZ-tzB"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nombre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jzL-aP-Lkj">
+                                                    <rect key="frame" x="43" y="7" width="359" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="y3c-7W-uF0"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jzL-aP-Lkj" firstAttribute="leading" secondItem="Nrp-d1-Oxz" secondAttribute="trailing" constant="8" id="5VZ-pY-24H"/>
+                                                <constraint firstItem="Nrp-d1-Oxz" firstAttribute="leading" secondItem="cGX-br-qaw" secondAttribute="leading" constant="16" id="JPk-rc-L4y"/>
+                                                <constraint firstAttribute="trailing" secondItem="jzL-aP-Lkj" secondAttribute="trailing" constant="12" id="MVX-rd-bbi"/>
+                                                <constraint firstItem="Nrp-d1-Oxz" firstAttribute="centerY" secondItem="cGX-br-qaw" secondAttribute="centerY" id="Pgv-eY-P0A"/>
+                                                <constraint firstItem="jzL-aP-Lkj" firstAttribute="centerY" secondItem="cGX-br-qaw" secondAttribute="centerY" id="fiH-8J-LMQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="oI4-Ov-F6v">
+                                        <rect key="frame" x="0.0" y="232.5" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oI4-Ov-F6v" id="jyC-7U-QX9">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="description" translatesAutoresizingMaskIntoConstraints="NO" id="6HB-o8-HUa">
+                                                    <rect key="frame" x="16" y="30.5" width="19" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="19" id="2J2-mO-BVG"/>
+                                                        <constraint firstAttribute="width" constant="19" id="UnH-n0-1Ny"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Ingrese una descripción del daño o modificación" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PL8-1J-32G">
+                                                    <rect key="frame" x="39" y="0.0" width="363" height="80"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="PL8-1J-32G" secondAttribute="bottom" id="Mya-WS-O3l"/>
+                                                <constraint firstItem="PL8-1J-32G" firstAttribute="leading" secondItem="6HB-o8-HUa" secondAttribute="trailing" constant="4" id="N3p-EU-fCj"/>
+                                                <constraint firstAttribute="trailing" secondItem="PL8-1J-32G" secondAttribute="trailing" constant="12" id="SU7-h0-jfa"/>
+                                                <constraint firstItem="PL8-1J-32G" firstAttribute="top" secondItem="jyC-7U-QX9" secondAttribute="top" id="al4-nE-tAD"/>
+                                                <constraint firstItem="6HB-o8-HUa" firstAttribute="leading" secondItem="jyC-7U-QX9" secondAttribute="leading" constant="16" id="hF0-fH-uPT"/>
+                                                <constraint firstItem="6HB-o8-HUa" firstAttribute="centerY" secondItem="jyC-7U-QX9" secondAttribute="centerY" id="yG2-jX-VjX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="tK5-ZC-FHE">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="X4h-Xr-ZPT">
+                                        <rect key="frame" x="0.0" y="348.5" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X4h-Xr-ZPT" id="SNK-D7-0mh">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ZJ-cy-uSq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                                    <color key="backgroundColor" red="0.94117647059999998" green="0.43529411759999997" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Enviar Alerta">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="titleShadowColor" red="0.0" green="0.47908455129999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="sendAlertButton:" destination="00C-bf-tPw" eventType="touchUpInside" id="VC0-fi-g42"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="8ZJ-cy-uSq" secondAttribute="trailing" id="3kq-uc-0uG"/>
+                                                <constraint firstAttribute="bottom" secondItem="8ZJ-cy-uSq" secondAttribute="bottom" id="CJM-2J-XCd"/>
+                                                <constraint firstItem="8ZJ-cy-uSq" firstAttribute="top" secondItem="SNK-D7-0mh" secondAttribute="top" id="NPv-eT-IS5"/>
+                                                <constraint firstItem="8ZJ-cy-uSq" firstAttribute="leading" secondItem="SNK-D7-0mh" secondAttribute="leading" id="ohM-lE-yty"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="00C-bf-tPw" id="MWk-am-8wi"/>
+                            <outlet property="delegate" destination="00C-bf-tPw" id="oIz-a1-jUj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Crear Alerta" id="BiZ-y6-3wo"/>
+                    <connections>
+                        <outlet property="nameTextField" destination="jzL-aP-Lkj" id="gwN-V3-Jdv"/>
+                        <outlet property="photoButton" destination="EX3-Wa-E6f" id="PAC-0z-bFk"/>
+                        <outlet property="sendAlertButon" destination="8ZJ-cy-uSq" id="qW7-uL-ysp"/>
+                        <outlet property="textView" destination="PL8-1J-32G" id="7yy-zc-e79"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eiC-hy-yDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1469.5652173913045" y="138.61607142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="MonumentoIcon" width="350" height="291"/>
+        <image name="defaultBuilding" width="350" height="280.5"/>
+        <image name="description" width="256" height="256"/>
+    </resources>
+</document>

@@ -409,4 +409,53 @@ class NetworkManager {
         }
         task.resume()
     }
+    
+    func sendAlert(token: String, images: [String], id: Int, name: String, description: String, completion: @escaping (Result<[String],NetworkError>) -> Void) {
+        NetworkManager.shared.uploadDocuments(files: images) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let imageURLs):
+                let path = "alert"
+                let url = URL(string: self.baseURL + path)!
+                var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+                let json: [String: Any]  = [
+                    "token": token,
+                    "name": name,
+                    "description": description,
+                    "inmueble_id": id,
+                    "images": imageURLs,
+                ]
+                let jsonData = try? JSONSerialization.data(withJSONObject: json)
+                request.httpBody = jsonData
+                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    guard let data = data, error == nil else {
+                        DispatchQueue.main.async {
+                            completion(.failure(.noData(error!.localizedDescription)))
+                        }
+                        return
+                    }
+                    let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
+                    guard let responseJSON = jsonObject as? [String: Any] else {
+                        DispatchQueue.main.async {
+                            completion(.failure(.noResponse))
+                        }
+                        return
+                    }
+                    guard let fileURL = responseJSON["file_urls"] as? [String] else {
+                        DispatchQueue.main.async {
+                            completion(.failure(.noResponse))
+                        }
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        completion(.success(fileURL))
+                    }
+                }
+                task.resume()
+            }
+        }
+    }
 }

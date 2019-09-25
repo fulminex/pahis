@@ -83,6 +83,8 @@
 		B330A2F422B6736200528EC2 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B330A2F322B6736200528EC2 /* ARViewController.swift */; };
 		B330A2F622B6739500528EC2 /* arte.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B330A2F522B6739500528EC2 /* arte.scnassets */; };
 		B330A2FA22B6740600528EC2 /* AR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B330A2F922B6740600528EC2 /* AR.storyboard */; };
+		B3B22826233C15CB0030AD37 /* SwipeAlertTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B22825233C15CB0030AD37 /* SwipeAlertTableViewController.swift */; };
+		B3B22828233C15D80030AD37 /* SwipeAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3B22827233C15D80030AD37 /* SwipeAlert.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -190,6 +192,8 @@
 		B330A2F322B6736200528EC2 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		B330A2F522B6739500528EC2 /* arte.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = arte.scnassets; sourceTree = "<group>"; };
 		B330A2F922B6740600528EC2 /* AR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AR.storyboard; sourceTree = "<group>"; };
+		B3B22825233C15CB0030AD37 /* SwipeAlertTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAlertTableViewController.swift; sourceTree = "<group>"; };
+		B3B22827233C15D80030AD37 /* SwipeAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SwipeAlert.storyboard; sourceTree = "<group>"; };
 		B3CEE6F322B649110024E05C /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UITextField.swift; path = PaHis/AlertScene/UITextField.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -274,6 +278,7 @@
 		5312859922B61D5B00E3AF5F /* AlertScene */ = {
 			isa = PBXGroup;
 			children = (
+				B3B22824233C15A50030AD37 /* SwipeAlert */,
 				5312859C22B61DCC00E3AF5F /* Alert.storyboard */,
 				5312859A22B61D7300E3AF5F /* AlertViewController.swift */,
 				0BF3557F2322C923008400ED /* AlertCollectionViewCell.swift */,
@@ -515,6 +520,15 @@
 			path = ARScene;
 			sourceTree = "<group>";
 		};
+		B3B22824233C15A50030AD37 /* SwipeAlert */ = {
+			isa = PBXGroup;
+			children = (
+				B3B22825233C15CB0030AD37 /* SwipeAlertTableViewController.swift */,
+				B3B22827233C15D80030AD37 /* SwipeAlert.storyboard */,
+			);
+			path = SwipeAlert;
+			sourceTree = "<group>";
+		};
 		B4E5AD64AF0986BF6F7F9F01 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -597,6 +611,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3B22828233C15D80030AD37 /* SwipeAlert.storyboard in Resources */,
 				0B2A36D52320648D00136223 /* DetailBuilding.storyboard in Resources */,
 				536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */,
 				B3158C4B22B5EDD90008B035 /* Monumento.storyboard in Resources */,
@@ -736,6 +751,7 @@
 				535CCBAE22B5799500182DB9 /* GMUGridBasedClusterAlgorithm.m in Sources */,
 				535CCBB322B5799500182DB9 /* GMUDefaultClusterIconGenerator.m in Sources */,
 				536562D422B535950051F848 /* AppDelegate.swift in Sources */,
+				B3B22826233C15CB0030AD37 /* SwipeAlertTableViewController.swift in Sources */,
 				B3158C4D22B5EEE00008B035 /* MonumentosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -373,15 +373,15 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         let closeAction = UIContextualAction(style: .normal, title:  "Alertar", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            let sb = UIStoryboard(name: "Alert", bundle: nil)
-            let vc = sb.instantiateInitialViewController() as! AlertTableViewController
+            let sb = UIStoryboard(name: "SwipeAlert", bundle: nil)
+            let vc = sb.instantiateInitialViewController() as! SwipeAlertTableViewController
             var building : DisplayedBuildingPahis!
             if  (self.resultSearchController.isActive) {
                 building = self.filteredBuildingsPahis[indexPath.row]
-//                vc.building = filteredPage?.items!.filter({ $0.name == building.name }).first!
+                vc.building = self.filteredPage?.items!.filter({ $0.name == building.name }).first!
             } else {
                 building = self.displayedBuildingsPahis[indexPath.row]
-//                vc.building = pageBuilding?.items!.filter({ $0.name == building.name }).first!
+                vc.building = self.pageBuilding?.items!.filter({ $0.name == building.name }).first!
             }
 //            vc.desc = building.desc
 //            vc.codBuild = building.codBuild
