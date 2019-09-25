@@ -281,7 +281,7 @@ class NetworkManager {
         task.resume()
     }
     
-    func getProvincias(departmentID: Int, completion: @escaping (Result<[Ubigeo],NetworkError>) -> Void) {
+    func getProvincias(departmentID: String, completion: @escaping (Result<[Ubigeo],NetworkError>) -> Void) {
         let path = "provincias/\(departmentID)"
         let url = URL(string: baseURL + path)!
         var request = URLRequest(url: url)
@@ -297,7 +297,7 @@ class NetworkManager {
         task.resume()
     }
     
-    func getDistritos(id: Int, completion: @escaping (Result<[Ubigeo],NetworkError>) -> Void) {
+    func getDistritos(id: String, completion: @escaping (Result<[Ubigeo],NetworkError>) -> Void) {
         let path = "distritos/\(id)"
         let url = URL(string: baseURL + path)!
         var request = URLRequest(url: url)

@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Ubigeo
 struct Ubigeo: Decodable {
-    let codUbigeo: Int?
+    let codUbigeo: String?
     let nombre: String?
 
     enum CodingKeys: String, CodingKey {

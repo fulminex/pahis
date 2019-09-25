@@ -102,35 +102,35 @@ class FiltersViewController: UIViewController {
             case .failure(let error):
                 print(error.errorDescription)
             case .success(let departments):
-                self.departments = departments
+                self.departments = departments.sorted(by: { $0.nombre! < $1.nombre! })
             }
         }
     }
     
     func fetchProvincias() {
         let spinner = UIViewController.displaySpinner(onView: self.view)
-        let id = Int(String(selectedDepartment!.codUbigeo!).prefix(2))!
-        NetworkManager.shared.getProvincias(departmentID: id) { (result) in
+        let id = String(selectedDepartment!.codUbigeo!).prefix(2)
+        NetworkManager.shared.getProvincias(departmentID: String(id)) { (result) in
             UIViewController.removeSpinner(spinner: spinner)
             switch result {
             case .failure(let error):
                 print(error.errorDescription)
             case .success(let provincias):
-                self.provincias = provincias
+                self.provincias = provincias.sorted(by: { $0.nombre! < $1.nombre! })
             }
         }
     }
     
     func fetchDistritos() {
         let spinner = UIViewController.displaySpinner(onView: self.view)
-        let id = Int(String(selectedProvincia!.codUbigeo!).prefix(4))!
-        NetworkManager.shared.getDistritos(id: id) { (result) in
+        let id = String(selectedProvincia!.codUbigeo!).prefix(4)
+        NetworkManager.shared.getDistritos(id: String(id)) { (result) in
             UIViewController.removeSpinner(spinner: spinner)
             switch result {
             case .failure(let error):
                 print(error.errorDescription)
             case .success(let distritos):
-                self.distritos = distritos
+                self.distritos = distritos.sorted(by: { $0.nombre! < $1.nombre! })
             }
         }
     }
