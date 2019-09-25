@@ -96,6 +96,16 @@ class MapViewController: UIViewController, GMUClusterManagerDelegate, GMSMapView
         setupNavigationButton()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -225,6 +235,15 @@ class MapViewController: UIViewController, GMUClusterManagerDelegate, GMSMapView
             }
         }
         return false
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        if let building = buildings.first(where: {$0.name == marker.title!}) {
+            let sb = UIStoryboard(name: "DetailBuilding", bundle: nil)
+            let vc = sb.instantiateInitialViewController() as! DetailsBuildingViewController
+            vc.building = building
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     // MARK: - GMUClusterRendererDelegate
