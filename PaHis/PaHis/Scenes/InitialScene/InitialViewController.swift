@@ -88,14 +88,17 @@ class InitialViewController: UIViewController {
 
     @IBAction func loginButtonTapped(_ sender: Any) {
         let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginVC = loginStoryboard.instantiateViewController(withIdentifier: "LoginViewController")
-        self.present(UINavigationController(rootViewController: loginVC), animated: true, completion: nil)
+//        let loginVC = loginStoryboard.instantiateViewController(withIdentifier: "LoginViewController")
+        let loginVC = UINavigationController(rootViewController: loginStoryboard.instantiateViewController(withIdentifier: "LoginViewController"))
+        loginVC.modalPresentationStyle = .fullScreen
+        self.present(loginVC, animated: true, completion: nil)
     }
     
     @IBAction func newAccountButtonTapped(_ sender: Any) {
         let createUserStoryboard = UIStoryboard(name: "CreateUser", bundle: nil)
-        let createUserVC = createUserStoryboard.instantiateViewController(withIdentifier: "CreateUserViewController")
-        self.present(UINavigationController(rootViewController: createUserVC), animated: true, completion: nil)
+        let createUserVC = UINavigationController(rootViewController: createUserStoryboard.instantiateViewController(withIdentifier: "CreateUserViewController"))
+        createUserVC.modalPresentationStyle = .fullScreen
+        self.present(createUserVC, animated: true, completion: nil)
     }
 
 }
