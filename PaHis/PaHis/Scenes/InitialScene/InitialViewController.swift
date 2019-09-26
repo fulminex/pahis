@@ -16,7 +16,7 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        InitialView.backgroundColor = UIColor(rgb: 0xF5391C)
+//        InitialView.backgroundColor = UIColor(rgb: 0xF5391C)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,13 +61,13 @@ class InitialViewController: UIViewController {
         searchVC.title = "Buscar"
         controllers.append(UINavigationController(rootViewController: searchVC))
         
-        if userTypeName == "Voluntario" {
-            let adhocSB = UIStoryboard(name: "AdHoc", bundle: nil)
-            let adhocVC = adhocSB.instantiateInitialViewController()!
-            adhocVC.tabBarItem = UITabBarItem(title: "Alertas" , image: UIImage(named: "AdhocIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 4)
-            adhocVC.title = "Alertas"
-            controllers.append(UINavigationController(rootViewController: adhocVC))
-        }
+//        if userTypeName == "Voluntario" {
+        let adhocSB = UIStoryboard(name: "AdHoc", bundle: nil)
+        let adhocVC = adhocSB.instantiateInitialViewController()!
+        adhocVC.tabBarItem = UITabBarItem(title: "Alertas" , image: UIImage(named: "AdhocIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 4)
+        adhocVC.title = "Alertas"
+        controllers.append(UINavigationController(rootViewController: adhocVC))
+//        }
         
         let profileSB = UIStoryboard(name: "Profile", bundle:nil)
         let profileVC = profileSB.instantiateInitialViewController()!

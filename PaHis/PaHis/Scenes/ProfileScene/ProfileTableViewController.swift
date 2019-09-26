@@ -123,7 +123,7 @@ class ProfileTableViewController: UITableViewController {
     
     @IBAction func logoutButton(_ sender: UIButton) {
         let alert = UIAlertController(title: "Aviso", message: "¿Está seguro de que desea cerrar su sesión?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Si", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Sí", style: .destructive, handler: { _ in
             guard let token = UserDefaults.standard.string(forKey: "token") else { return }
             let spinner = UIViewController.displaySpinner(onView: self.view)
             NetworkManager.shared.logout(token: token) { result in
