@@ -29,6 +29,9 @@ class ProfileTableViewController: UITableViewController {
         fillUserInfo()
         self.refreshControl?.addTarget(self, action: #selector(refreshInfo), for: .valueChanged)
         self.tableView.addSubview(self.refreshControl!)
+        let cancelBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings")?.resizeImageWith(newSize: CGSize(width: 32.0, height: 32.0)), style: .plain, target: self, action: #selector(settingsTapped))
+        self.navigationController?.navigationBar.tintColor  = UIColor(rgb: 0xF5391C)
+        self.navigationItem.rightBarButtonItem = cancelBarButtonItem
     }
     
     func setupGesture() {
@@ -48,6 +51,14 @@ class ProfileTableViewController: UITableViewController {
     
     @objc func refreshInfo() {
         fillUserInfo()
+    }
+    
+    @objc func settingsTapped() {
+        let sb = UIStoryboard(name: "EditOptions", bundle: nil)
+        let vc = sb.instantiateInitialViewController() as! EditOptionsTableViewController
+        let navVc = UINavigationController(rootViewController: vc)
+        navVc.modalPresentationStyle = .fullScreen
+        self.present(navVc, animated: true, completion: nil)
     }
     
     func fillUserInfo() {
