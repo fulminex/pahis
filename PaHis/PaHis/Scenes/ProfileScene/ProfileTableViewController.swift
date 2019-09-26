@@ -36,6 +36,7 @@ class ProfileTableViewController: UITableViewController {
         photoImageVIew.layer.cornerRadius = self.photoImageVIew.frame.size.width / 2
         photoImageVIew.clipsToBounds = true
         photoImageVIew.contentMode = .scaleAspectFill
+        self.tableView.tableFooterView = UIView()
     }
 
 }
