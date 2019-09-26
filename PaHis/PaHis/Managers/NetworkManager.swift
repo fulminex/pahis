@@ -466,4 +466,34 @@ class NetworkManager {
             }
         }
     }
+    func getNumberOfContributions(token: String, completion: @escaping (Result<[[Int]],NetworkError>) -> Void) {
+        let path = "user/\(token)"
+        let url = URL(string: baseURL + path)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                completion(.failure(.noData(error!.localizedDescription)))
+                return
+            }
+            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
+            guard let responseJSON = jsonObject as? [String: Any] else {
+                DispatchQueue.main.async {
+                    completion(.failure(.noResponse))
+                }
+                return
+            }
+            guard let alerts = responseJSON["alerts"] as? [Int], let applications = responseJSON["edition_requests"] as? [Int], let acceptedAlerts = responseJSON["accepted_edition_requests"] as? [Int] else {
+                DispatchQueue.main.async {
+                    completion(.failure(.noResponse))
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                completion(.success([alerts,applications,acceptedAlerts]))
+            }
+            
+        }
+        task.resume()
+    }
 }
