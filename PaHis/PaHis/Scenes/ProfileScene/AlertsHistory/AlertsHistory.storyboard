@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -168,22 +169,72 @@
                                     <constraint firstAttribute="height" constant="80" id="NQ0-6Y-vJJ"/>
                                 </constraints>
                             </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kzt-dD-zEi">
+                                <rect key="frame" x="12" y="381" width="390" height="481"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="M36-m7-hMm">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlertHistoryCollectionViewCell" id="fBM-dm-4zx" customClass="AlertHistoryCollectionViewCell" customModule="PaHis" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="91"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7gV-2O-cJ9">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="91"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wD-cP-ocv">
+                                                    <rect key="frame" x="12" y="8" width="366" height="75"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="8wD-cP-ocv" secondAttribute="bottom" constant="8" id="1V9-88-aLH"/>
+                                                <constraint firstAttribute="trailing" secondItem="8wD-cP-ocv" secondAttribute="trailing" constant="12" id="Cca-n2-TdS"/>
+                                                <constraint firstItem="8wD-cP-ocv" firstAttribute="top" secondItem="7gV-2O-cJ9" secondAttribute="top" constant="8" id="gyo-ft-B4C"/>
+                                                <constraint firstItem="8wD-cP-ocv" firstAttribute="leading" secondItem="7gV-2O-cJ9" secondAttribute="leading" constant="12" id="tgS-aB-xe2"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="390" height="91"/>
+                                        <connections>
+                                            <outlet property="detailsLabel" destination="8wD-cP-ocv" id="LIb-AY-Bgu"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Va9-XR-YcK" id="TCB-w7-CxQ"/>
+                                    <outlet property="delegate" destination="Va9-XR-YcK" id="Osp-23-dKe"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="ZF8-7b-bSo" firstAttribute="top" secondItem="pYQ-q3-F7L" secondAttribute="top" id="6Lq-D1-nOt"/>
+                            <constraint firstItem="Kzt-dD-zEi" firstAttribute="leading" secondItem="pYQ-q3-F7L" secondAttribute="leading" constant="12" id="6gC-I2-YGW"/>
+                            <constraint firstItem="Kzt-dD-zEi" firstAttribute="top" secondItem="Aoz-km-7ke" secondAttribute="bottom" constant="32" id="B2t-ea-ias"/>
                             <constraint firstItem="ZF8-7b-bSo" firstAttribute="leading" secondItem="pYQ-q3-F7L" secondAttribute="leading" id="Ikm-O9-egH"/>
+                            <constraint firstItem="pYQ-q3-F7L" firstAttribute="bottom" secondItem="Kzt-dD-zEi" secondAttribute="bottom" id="SZ2-mA-OfN"/>
                             <constraint firstItem="pYQ-q3-F7L" firstAttribute="trailing" secondItem="Aoz-km-7ke" secondAttribute="trailing" constant="12" id="Skf-GV-MmN"/>
                             <constraint firstItem="ZF8-7b-bSo" firstAttribute="trailing" secondItem="pYQ-q3-F7L" secondAttribute="trailing" id="Wa5-h5-u8l"/>
                             <constraint firstItem="Aoz-km-7ke" firstAttribute="top" secondItem="ZF8-7b-bSo" secondAttribute="bottom" constant="25" id="haM-Oq-yhB"/>
+                            <constraint firstItem="pYQ-q3-F7L" firstAttribute="trailing" secondItem="Kzt-dD-zEi" secondAttribute="trailing" constant="12" id="ohD-Xp-A9X"/>
                             <constraint firstItem="Aoz-km-7ke" firstAttribute="leading" secondItem="pYQ-q3-F7L" secondAttribute="leading" constant="12" id="uOc-31-bQI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pYQ-q3-F7L"/>
                     </view>
                     <connections>
                         <outlet property="aceptedLabel" destination="cEL-xO-zTJ" id="JPQ-Gj-gTm"/>
+                        <outlet property="collectionView" destination="Kzt-dD-zEi" id="Z06-l2-ATV"/>
+                        <outlet property="grennView" destination="38D-TA-5ac" id="D4K-mW-ZPc"/>
+                        <outlet property="redView" destination="huV-eg-KcF" id="30X-kE-xqx"/>
                         <outlet property="rejectedLabel" destination="QbF-E7-y5w" id="OQd-vH-wcN"/>
                         <outlet property="waitingLabel" destination="Pkb-LE-fKe" id="Ax0-vo-Vsp"/>
+                        <outlet property="yellowView" destination="9dG-87-eXt" id="fY2-GV-tTe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AtC-NY-SPx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -8,11 +8,15 @@
 
 import UIKit
 
-class AlertsHistoryViewController: UIViewController {
+class AlertsHistoryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var waitingLabel: UILabel!
     @IBOutlet weak var aceptedLabel: UILabel!
     @IBOutlet weak var rejectedLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var yellowView: UIView!
+    @IBOutlet weak var grennView: UIView!
+    @IBOutlet weak var redView: UIView!
     
     var spinner = UIView()
     var displayedAlerts = [Alert]()
@@ -21,8 +25,21 @@ class AlertsHistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Alertas realizadas"
+        let width = (view.frame.size.width - 30) / 1
+        let cellSize = CGSize(width: width, height: 90)
+
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = cellSize
+        layout.sectionInset = UIEdgeInsets(top: 1, left: 10, bottom: 1, right: 10)
+        layout.minimumLineSpacing = 10.0
+        layout.minimumInteritemSpacing = 10.0
+        collectionView.setCollectionViewLayout(layout, animated: true)
+        
+        yellowView.layer.cornerRadius = 5
+        grennView.layer.cornerRadius = 5
+        redView.layer.cornerRadius = 5
         fetchAlerts()
-        // Do any additional setup after loading the view.
     }
     
     func fetchAlerts() {
@@ -52,22 +69,44 @@ class AlertsHistoryViewController: UIViewController {
                 self.rejectedLabel.text = String(self.displayedAlerts.filter({ alert in
                     alert.state == "Rechazada"
                 }).count)
+                self.collectionView.reloadData()
             }
-            
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-     Denuncia patrimonio
-     Alerta las incidencias que encuentres en los parimonios del Perú.
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return displayedAlerts.count
     }
-    */
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let displayedAlert = displayedAlerts[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlertHistoryCollectionViewCell", for: indexPath) as! AlertHistoryCollectionViewCell
+        if displayedAlert.state == "En espera" {
+            cell.backgroundColor = UIColor(rgb: 0xF2BC29)
+        } else if displayedAlert.state == "Aceptada" {
+            cell.backgroundColor = UIColor(rgb: 0x42A84B)
+        } else if displayedAlert.state == "Rechazada" {
+            cell.backgroundColor = UIColor(rgb: 0xA50000)
+        }
+        
+        let details = NSMutableAttributedString(string: "\(displayedAlert.state ?? "")", attributes:
+            [
+                NSAttributedString.Key.font : UIFont.systemFont(ofSize: 12),
+                NSAttributedString.Key.foregroundColor : UIColor.gray
+        ])
+        details.append(NSAttributedString(string: "\n\(displayedAlert.name ?? "")", attributes:
+            [
+                NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 17),
+                NSAttributedString.Key.foregroundColor : UIColor.white
+        ]))
+        details.append(NSAttributedString(string: "\n\(displayedAlert.description ?? "")", attributes:
+            [
+                NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),
+                NSAttributedString.Key.foregroundColor : UIColor.white
+        ]))
+        
+        cell.detailsLabel.attributedText = details
+        return cell
+    }
 
 }

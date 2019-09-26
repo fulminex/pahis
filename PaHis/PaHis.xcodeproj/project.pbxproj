@@ -86,6 +86,7 @@
 		B3A172BD233C9703006BA6DA /* AlertsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A172BC233C9703006BA6DA /* AlertsHistoryViewController.swift */; };
 		B3A172BF233C9747006BA6DA /* AlertsHistory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A172BE233C9747006BA6DA /* AlertsHistory.storyboard */; };
 		B3A172C1233C9C3B006BA6DA /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A172C0233C9C3B006BA6DA /* Alerts.swift */; };
+		B3A172C3233CA431006BA6DA /* AlertHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A172C2233CA431006BA6DA /* AlertHistoryCollectionViewCell.swift */; };
 		B3B22826233C15CB0030AD37 /* SwipeAlertTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B22825233C15CB0030AD37 /* SwipeAlertTableViewController.swift */; };
 		B3B22828233C15D80030AD37 /* SwipeAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3B22827233C15D80030AD37 /* SwipeAlert.storyboard */; };
 		B3B2282B233C34100030AD37 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B2282A233C34100030AD37 /* ProfileTableViewController.swift */; };
@@ -200,6 +201,7 @@
 		B3A172BC233C9703006BA6DA /* AlertsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsHistoryViewController.swift; sourceTree = "<group>"; };
 		B3A172BE233C9747006BA6DA /* AlertsHistory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlertsHistory.storyboard; sourceTree = "<group>"; };
 		B3A172C0233C9C3B006BA6DA /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		B3A172C2233CA431006BA6DA /* AlertHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B3B22825233C15CB0030AD37 /* SwipeAlertTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAlertTableViewController.swift; sourceTree = "<group>"; };
 		B3B22827233C15D80030AD37 /* SwipeAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SwipeAlert.storyboard; sourceTree = "<group>"; };
 		B3B2282A233C34100030AD37 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 			children = (
 				B3A172BC233C9703006BA6DA /* AlertsHistoryViewController.swift */,
 				B3A172BE233C9747006BA6DA /* AlertsHistory.storyboard */,
+				B3A172C2233CA431006BA6DA /* AlertHistoryCollectionViewCell.swift */,
 			);
 			path = AlertsHistory;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				536562D422B535950051F848 /* AppDelegate.swift in Sources */,
 				B3B22826233C15CB0030AD37 /* SwipeAlertTableViewController.swift in Sources */,
 				B3158C4D22B5EEE00008B035 /* MonumentosViewController.swift in Sources */,
+				B3A172C3233CA431006BA6DA /* AlertHistoryCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 import Foundation
 
 struct Alert: Decodable {
-    let address, dateCreated, dateModified, welcomeDescription: String?
+    let address, dateCreated, dateModified, description: String?
     let id: Int
     let images: [Image]
     let inmueble: Int?
@@ -21,8 +21,7 @@ struct Alert: Decodable {
         case address
         case dateCreated = "date_created"
         case dateModified = "date_modified"
-        case welcomeDescription = "description"
-        case id, images, inmueble, latitude, longitude, name, state, user
+        case id, images, inmueble, latitude, longitude, name, state, user, description
     }
 }
 
