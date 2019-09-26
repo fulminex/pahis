@@ -20,25 +20,12 @@ class ProfileTableViewController: UITableViewController {
     @IBOutlet weak var acceptedontributionsLabel: UILabel!
     @IBOutlet weak var alertsDescriptionLabel: UILabel!
     
-//    lazy var refreshControl: UIRefreshControl = {
-//        let refreshControl = UIRefreshControl()
-//        refreshControl.addTarget(self, action:
-//                     #selector(ViewController.handleRefresh(_:)),
-//                     for: UIControlEvents.valueChanged)
-//        refreshControl.tintColor = UIColor.red
-//
-//        return refreshControl
-//    }()
-//    override var refreshControl: UIRefreshControl?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         logoutButton.backgroundColor = .black
         alertsLabel.textColor = UIColor(rgb: 0xF5391C)
         alertsDescriptionLabel.textColor = UIColor(rgb: 0xF5391C)
         fillUserInfo()
-//        self.refreshControl?.addTarget((self, action: #selector(refreshInfo), for: .valueChanged))
-//        self.tableView.addSubview(self.refreshControl)
         self.refreshControl?.addTarget(self, action: #selector(refreshInfo), for: .valueChanged)
         self.tableView.addSubview(self.refreshControl!)
     }
