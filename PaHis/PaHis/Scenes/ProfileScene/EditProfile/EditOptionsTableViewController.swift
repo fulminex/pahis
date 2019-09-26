@@ -18,13 +18,17 @@ class EditOptionsTableViewController: UITableViewController {
         let cancelBarButtonItem = UIBarButtonItem(image: UIImage(named: "CancelIcon"), style: .plain, target: self, action: #selector(cancelButtonTapped))
         self.navigationController?.navigationBar.tintColor  = UIColor(rgb: 0xF5391C)
         self.navigationItem.rightBarButtonItem = cancelBarButtonItem
-        fillUserInfo()
+//        fillUserInfo()
         self.tableView.tableFooterView = UIView()
         title = "Editar perfil"
     }
     
     @objc func cancelButtonTapped() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fillUserInfo()
     }
     
     func fillUserInfo() {
@@ -53,7 +57,11 @@ class EditOptionsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 2 {
+        if indexPath.row == 1 {            
+            let sb = UIStoryboard(name: "UserInfo", bundle: nil)
+            let vc = sb.instantiateInitialViewController() as! UsserInfoTableViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.row == 2 {
             let sb = UIStoryboard(name: "EditPassword", bundle: nil)
             let vc = sb.instantiateInitialViewController() as! EditPasswordTableViewController
             self.navigationController?.pushViewController(vc, animated: true)

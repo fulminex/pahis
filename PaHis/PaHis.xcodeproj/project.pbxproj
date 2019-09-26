@@ -95,6 +95,8 @@
 		B3F951E3233D0CE900F269AB /* EditOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F951E2233D0CE900F269AB /* EditOptionsTableViewController.swift */; };
 		B3F951E6233D10C500F269AB /* EditPasswordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F951E5233D10C500F269AB /* EditPasswordTableViewController.swift */; };
 		B3F951E8233D10CE00F269AB /* EditPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3F951E7233D10CE00F269AB /* EditPassword.storyboard */; };
+		B3F951EB233D1B1400F269AB /* UserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3F951EA233D1B1400F269AB /* UserInfo.storyboard */; };
+		B3F951EE233D1B2500F269AB /* UsserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F951ED233D1B2500F269AB /* UsserInfoTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -215,6 +217,8 @@
 		B3F951E2233D0CE900F269AB /* EditOptionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOptionsTableViewController.swift; sourceTree = "<group>"; };
 		B3F951E5233D10C500F269AB /* EditPasswordTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordTableViewController.swift; sourceTree = "<group>"; };
 		B3F951E7233D10CE00F269AB /* EditPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditPassword.storyboard; sourceTree = "<group>"; };
+		B3F951EA233D1B1400F269AB /* UserInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserInfo.storyboard; sourceTree = "<group>"; };
+		B3F951ED233D1B2500F269AB /* UsserInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsserInfoTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -575,6 +579,7 @@
 		B3F951DF233D0C9F00F269AB /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
+				B3F951E9233D1AEC00F269AB /* UserInfo */,
 				B3F951E4233D10B800F269AB /* Password */,
 				B3F951E0233D0CC100F269AB /* EditOptions.storyboard */,
 				B3F951E2233D0CE900F269AB /* EditOptionsTableViewController.swift */,
@@ -589,6 +594,15 @@
 				B3F951E7233D10CE00F269AB /* EditPassword.storyboard */,
 			);
 			path = Password;
+			sourceTree = "<group>";
+		};
+		B3F951E9233D1AEC00F269AB /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				B3F951EA233D1B1400F269AB /* UserInfo.storyboard */,
+				B3F951ED233D1B2500F269AB /* UsserInfoTableViewController.swift */,
+			);
+			path = UserInfo;
 			sourceTree = "<group>";
 		};
 		B4E5AD64AF0986BF6F7F9F01 /* Pods */ = {
@@ -674,6 +688,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3B22828233C15D80030AD37 /* SwipeAlert.storyboard in Resources */,
+				B3F951EB233D1B1400F269AB /* UserInfo.storyboard in Resources */,
 				0B2A36D52320648D00136223 /* DetailBuilding.storyboard in Resources */,
 				B3A172BF233C9747006BA6DA /* AlertsHistory.storyboard in Resources */,
 				536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */,
@@ -772,6 +787,7 @@
 				535CCBB122B5799500182DB9 /* GMUNonHierarchicalDistanceBasedAlgorithm.m in Sources */,
 				535CCB7722B5589800182DB9 /* LoginViewController.swift in Sources */,
 				535CCB7922B558DA00182DB9 /* CreateUserViewController.swift in Sources */,
+				B3F951EE233D1B2500F269AB /* UsserInfoTableViewController.swift in Sources */,
 				535CCBAF22B5799500182DB9 /* GMUClusterManager.m in Sources */,
 				B3158C4F22B5F13A0008B035 /* EstiloViewController.swift in Sources */,
 				0B6C36F62310524E0031D27B /* Building+CoreDataClass.swift in Sources */,

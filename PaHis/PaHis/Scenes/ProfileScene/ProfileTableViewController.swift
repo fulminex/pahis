@@ -50,7 +50,25 @@ class ProfileTableViewController: UITableViewController {
     }
     
     @objc func refreshInfo() {
-        fillUserInfo()
+        guard let currentUser = User.currentUser else {
+            let alert = UIAlertController(title: "Aviso", message: "Su sessión ha expirado", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        NetworkManager.shared.getUser(forced: true, token: currentUser.token) { result in
+            switch result {
+            case .failure(let error):
+                self.refreshControl?.endRefreshing()
+                let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            case .success( _):                
+                self.fillUserInfo()
+            }
+            
+        }
+//        fillUserInfo()
     }
     
     @objc func settingsTapped() {
@@ -79,11 +97,14 @@ class ProfileTableViewController: UITableViewController {
                 NSAttributedString.Key.foregroundColor : UIColor.lightGray
             ]))
         nameLabel.attributedText = userName
-        photoImageVIew.layer.cornerRadius = self.photoImageVIew.frame.size.width / 2
-        photoImageVIew.clipsToBounds = true
-        photoImageVIew.contentMode = .scaleAspectFill
-        photoImageVIew.kf.indicatorType = .activity
-        photoImageVIew.kf.setImage(with: currentUser.profilePicUrl!)
+        if let url = URL(string: currentUser.profilePicUrlRaw) {
+            photoImageVIew.layer.cornerRadius = self.photoImageVIew.frame.size.width / 2
+            photoImageVIew.clipsToBounds = true
+            photoImageVIew.contentMode = .scaleAspectFill
+            photoImageVIew.kf.indicatorType = .activity
+            photoImageVIew.kf.setImage(with: url)
+        }
+
         self.tableView.tableFooterView = UIView()
         
         let details = NSMutableAttributedString(string: "Correo electrónico", attributes:
@@ -128,7 +149,6 @@ class ProfileTableViewController: UITableViewController {
                 self.sendedContributionsLabel.text = String(success[1].count)
                 self.acceptedontributionsLabel.text = String(success[2].count)
             }
-            
         }
     }
     

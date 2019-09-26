@@ -559,4 +559,69 @@ class NetworkManager {
         }
         task.resume()
     }
+
+    func updateUserInfo(uid: Int32, token: String, images: [String], name: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
+        
+        NetworkManager.shared.uploadDocuments(files: images) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let imageURLs):
+                let path = "user"
+                let url = URL(string: self.baseURL + path)!
+                var request = URLRequest(url: url)
+                request.httpMethod = "PUT"
+                request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+                let json: [String: Any]  = [
+                    "token": token,
+                    "name": name,
+                    "profile_pic_url": imageURLs[0]
+                ]
+                let jsonData = try? JSONSerialization.data(withJSONObject: json)
+                request.httpBody = jsonData
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    guard let data = data, error == nil else {
+                        completion(.failure(.noData(error!.localizedDescription)))
+                        return
+                    }
+                    let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
+                    guard let responseJSON = jsonObject as? [String: Any] else {
+                        DispatchQueue.main.async {
+                            completion(.failure(.noResponse))
+                        }
+                        return
+                    }
+                    if let error = responseJSON["error"] as? String {
+                        DispatchQueue.main.async {
+                            completion(.failure(.webserviceError(error)))
+                        }
+                    } else {
+                        guard let user = self.persistanceManager.fetchSingle(User.self, uid: uid) else {
+                            DispatchQueue.main.async {
+                                completion(.failure(.noTokenFound))
+                            }
+                            return
+                        }
+                        user.name = name
+                        user.profilePicUrlRaw = imageURLs[0]
+//                        let dateFormatterGet = DateFormatter()
+//                        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+//                        if let date = dateFormatterGet.date(from: dateCreatedRaw) {
+//                            user.dateCreatedRaw = date
+//                        } else {
+//                            user.dateCreatedRaw = dateFormatterGet.date(from: "2001-01-01T01:48:07.883497")!
+//                        }
+//                        _ = self.persistanceManager.fetch(User.self).filter({ !$0.hasChanges }).forEach({ self.persistanceManager.delete($0) })
+                        self.persistanceManager.save()
+                        
+                        DispatchQueue.main.async {
+                            completion(.success(("Sus datos se actualizaron correctamente")))
+                        }
+                    }
+                    
+                }
+                task.resume()
+            }
+        }
+    }
 }
