@@ -22,9 +22,16 @@ extension User: UniquedObject {
     @NSManaged public var profilePicUrlRaw: String
     @NSManaged public var type: String
     @NSManaged public var token: String
+    @NSManaged public var dateCreatedRaw: Date
     
     var profilePicUrl: URL? {
         return URL(string: profilePicUrlRaw)
+    }
+    
+    var dateCreated: String {
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "yyyy-MM-dd"
+        return dateFormatterPrint.string(from: self.dateCreatedRaw)
     }
     
     static var currentUser: User? {

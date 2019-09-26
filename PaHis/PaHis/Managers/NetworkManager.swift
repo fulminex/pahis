@@ -152,7 +152,8 @@ class NetworkManager {
                         }
                         return
                     }
-                    guard let uid = responseJSON["id"] as? Int32, let name = responseJSON["name"] as? String, let email = responseJSON["email"] as? String, let profilePicUrlRaw = responseJSON["profile_pic_url"] as? String else {
+                    guard let uid = responseJSON["id"] as? Int32, let name = responseJSON["name"] as? String, let email = responseJSON["email"] as? String, let dateCreatedRaw = responseJSON["date_created"] as? String
+                        , let profilePicUrlRaw = responseJSON["profile_pic_url"] as? String else {
                         DispatchQueue.main.async {
                             completion(.failure(.noResponse))
                         }
@@ -164,6 +165,13 @@ class NetworkManager {
                     user.profilePicUrlRaw = profilePicUrlRaw
                     user.type = type
                     user.token = token
+                    let dateFormatterGet = DateFormatter()
+                    dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+                    if let date = dateFormatterGet.date(from: dateCreatedRaw) {
+                        user.dateCreatedRaw = date
+                    } else {
+                        user.dateCreatedRaw = dateFormatterGet.date(from: "2001-01-01T01:48:07.883497")!
+                    }
                     _ = self.persistanceManager.fetch(User.self).filter({ !$0.hasChanges }).forEach({ self.persistanceManager.delete($0) })
                     self.persistanceManager.save()
                     DispatchQueue.main.async {
@@ -410,7 +418,7 @@ class NetworkManager {
         task.resume()
     }
     
-    func sendAlert(token: String, images: [String], id: Int, name: String, description: String, completion: @escaping (Result<[String],NetworkError>) -> Void) {
+    func sendAlert(token: String, images: [String], id: Int, name: String, description: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
         NetworkManager.shared.uploadDocuments(files: images) { result in
             switch result {
             case .failure(let error):
@@ -444,14 +452,14 @@ class NetworkManager {
                         }
                         return
                     }
-                    guard let fileURL = responseJSON["file_urls"] as? [String] else {
+                    if let error = responseJSON["error"] as? String {
                         DispatchQueue.main.async {
-                            completion(.failure(.noResponse))
+                            completion(.failure(.webserviceError(error)))
                         }
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        completion(.success(fileURL))
+                    } else {
+                        DispatchQueue.main.async {
+                            completion(.success("Alerta enviada con éxito"))
+                        }
                     }
                 }
                 task.resume()

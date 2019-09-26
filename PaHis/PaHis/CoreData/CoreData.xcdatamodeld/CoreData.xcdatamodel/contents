@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="19A573a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Building" representedClassName="Building" syncable="YES">
         <attribute name="address" attributeType="String"/>
         <attribute name="detail" attributeType="String"/>
@@ -17,6 +17,7 @@
         <relationship name="buildingsRaw" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Building" inverseName="category" inverseEntity="Building"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="dateCreatedRaw" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="email" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="profilePicUrlRaw" attributeType="String"/>
@@ -27,6 +28,6 @@
     <elements>
         <element name="Building" positionX="-63" positionY="-18" width="128" height="178"/>
         <element name="Category" positionX="-54" positionY="63" width="128" height="90"/>
-        <element name="User" positionX="-54" positionY="63" width="128" height="135"/>
+        <element name="User" positionX="-54" positionY="63" width="128" height="148"/>
     </elements>
 </model>

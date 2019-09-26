@@ -31,7 +31,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="casaCariquirry" translatesAutoresizingMaskIntoConstraints="NO" id="rRI-U1-nNr">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rRI-U1-nNr">
                                                     <rect key="frame" x="132" y="118" width="150" height="150"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="dsh-Ue-rL2"/>
@@ -68,21 +68,48 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="1k7-Bj-XSQ">
-                                        <rect key="frame" x="0.0" y="371.5" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="250" id="1k7-Bj-XSQ">
+                                        <rect key="frame" x="0.0" y="371.5" width="414" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1k7-Bj-XSQ" id="I96-Q8-1El">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAh-Op-aS2">
-                                                    <rect key="frame" x="186" y="11" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAh-Op-aS2">
+                                                    <rect key="frame" x="32" y="23" width="350" height="122"/>
+                                                    <string key="text">Correo electrónico
+angel@gmail.com
+
+Fecha de creación
+2019-09-11
+</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8us-Kz-vPc">
+                                                    <rect key="frame" x="0.0" y="188" width="414" height="50"/>
+                                                    <color key="backgroundColor" red="0.94117647059999998" green="0.43529411759999997" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="ryB-Z1-ZvF"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Cerrar sesión">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="titleShadowColor" red="0.0" green="0.47908455129999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="logoutButton:" destination="foH-7A-zGx" eventType="touchUpInside" id="GRE-io-K90"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="8us-Kz-vPc" secondAttribute="bottom" constant="12" id="47k-6Z-Irq"/>
+                                                <constraint firstAttribute="trailing" secondItem="8us-Kz-vPc" secondAttribute="trailing" id="7jh-54-aXK"/>
+                                                <constraint firstItem="GAh-Op-aS2" firstAttribute="leading" secondItem="I96-Q8-1El" secondAttribute="leadingMargin" constant="12" id="WkH-Kw-MaC"/>
+                                                <constraint firstItem="GAh-Op-aS2" firstAttribute="top" secondItem="I96-Q8-1El" secondAttribute="topMargin" constant="12" id="lBw-se-02T"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="GAh-Op-aS2" secondAttribute="trailing" constant="12" id="nUu-Rs-fh7"/>
+                                                <constraint firstItem="8us-Kz-vPc" firstAttribute="leading" secondItem="I96-Q8-1El" secondAttribute="leading" id="sRa-JA-nWY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -94,8 +121,10 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="logoutButton" destination="8us-Kz-vPc" id="i9j-fH-cDH"/>
                         <outlet property="nameLabel" destination="AOF-xO-uoz" id="YFz-Tf-a9L"/>
                         <outlet property="photoImageVIew" destination="rRI-U1-nNr" id="rS9-fk-Xq3"/>
+                        <outlet property="userInfoLabel" destination="GAh-Op-aS2" id="vIm-5k-cbC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vw4-Cd-nqQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -103,7 +132,4 @@
             <point key="canvasLocation" x="2.8985507246376816" y="-198.21428571428569"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="casaCariquirry" width="335" height="235"/>
-    </resources>
 </document>

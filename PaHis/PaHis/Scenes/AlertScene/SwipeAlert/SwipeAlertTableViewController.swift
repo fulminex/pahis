@@ -81,9 +81,10 @@ class SwipeAlertTableViewController: UITableViewController, UITextViewDelegate {
             case .success(let success):
                 UIViewController.removeSpinner(spinner: self.spinner)
                 let alert = UIAlertController(title: "Aviso", message: "Alerta enviada satisfactoriamente", preferredStyle: .alert)
-                 alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-                 self.present(alert, animated: true)
-                self.navigationController?.popViewController(animated: true)
+                 alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
+                    self.navigationController?.popViewController(animated: true)
+                 }))
+                self.present(alert, animated: true)
             }
         }
     }

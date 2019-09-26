@@ -311,7 +311,8 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         let intTotalrow = tableView.numberOfRows(inSection:indexPath.section)//first get total rows in that section by current indexPath.
         //get last last row of tablview
         if indexPath.row == intTotalrow - 4 {
-            if pageBuilding!.hasNext! {
+            guard let pb = pageBuilding else { return }
+            if pb.hasNext! {
                 isForced = true
                 fetchBuildings(page: page + 1, lat: String(currentLocation!.coordinate.latitude), long: String(currentLocation!.coordinate.longitude))
             }
