@@ -25,9 +25,25 @@ class ProfileTableViewController: UITableViewController {
         logoutButton.backgroundColor = .black
         alertsLabel.textColor = UIColor(rgb: 0xF5391C)
         alertsDescriptionLabel.textColor = UIColor(rgb: 0xF5391C)
+        setupGesture()
         fillUserInfo()
         self.refreshControl?.addTarget(self, action: #selector(refreshInfo), for: .valueChanged)
         self.tableView.addSubview(self.refreshControl!)
+    }
+    
+    func setupGesture() {
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(navigateToAlertsHistory(sender:)))
+        alertsLabel.isUserInteractionEnabled = true
+        alertsLabel.addGestureRecognizer(tap1)
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(navigateToAlertsHistory(sender:)))
+        alertsDescriptionLabel.isUserInteractionEnabled = true
+        alertsDescriptionLabel.addGestureRecognizer(tap2)
+    }
+    
+    @objc func navigateToAlertsHistory(sender:UITapGestureRecognizer) {
+        let sb = UIStoryboard(name: "AlertsHistory", bundle: nil)
+        let vc = sb.instantiateInitialViewController() as! AlertsHistoryViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func refreshInfo() {

@@ -496,4 +496,28 @@ class NetworkManager {
         }
         task.resume()
     }
+    
+    func getAlerts(token: String, completion: @escaping (Result<[Alert],NetworkError>) -> Void) {
+        let path = "alerts/\(token)"
+        let url = URL(string: baseURL + path)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                completion(.failure(.noData(error!.localizedDescription)))
+                return
+            }
+            guard let alerts = try? JSONDecoder().decode([Alert].self, from: data) else {
+                DispatchQueue.main.async {
+                    completion(.failure(.webserviceError("Error al convertir JSON")))
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                completion(.success(alerts))
+            }
+            
+        }
+        task.resume()
+    }
 }

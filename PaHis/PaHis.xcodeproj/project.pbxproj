@@ -83,6 +83,9 @@
 		B330A2F422B6736200528EC2 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B330A2F322B6736200528EC2 /* ARViewController.swift */; };
 		B330A2F622B6739500528EC2 /* arte.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B330A2F522B6739500528EC2 /* arte.scnassets */; };
 		B330A2FA22B6740600528EC2 /* AR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B330A2F922B6740600528EC2 /* AR.storyboard */; };
+		B3A172BD233C9703006BA6DA /* AlertsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A172BC233C9703006BA6DA /* AlertsHistoryViewController.swift */; };
+		B3A172BF233C9747006BA6DA /* AlertsHistory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3A172BE233C9747006BA6DA /* AlertsHistory.storyboard */; };
+		B3A172C1233C9C3B006BA6DA /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A172C0233C9C3B006BA6DA /* Alerts.swift */; };
 		B3B22826233C15CB0030AD37 /* SwipeAlertTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B22825233C15CB0030AD37 /* SwipeAlertTableViewController.swift */; };
 		B3B22828233C15D80030AD37 /* SwipeAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3B22827233C15D80030AD37 /* SwipeAlert.storyboard */; };
 		B3B2282B233C34100030AD37 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B2282A233C34100030AD37 /* ProfileTableViewController.swift */; };
@@ -194,6 +197,9 @@
 		B330A2F322B6736200528EC2 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		B330A2F522B6739500528EC2 /* arte.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = arte.scnassets; sourceTree = "<group>"; };
 		B330A2F922B6740600528EC2 /* AR.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AR.storyboard; sourceTree = "<group>"; };
+		B3A172BC233C9703006BA6DA /* AlertsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsHistoryViewController.swift; sourceTree = "<group>"; };
+		B3A172BE233C9747006BA6DA /* AlertsHistory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlertsHistory.storyboard; sourceTree = "<group>"; };
+		B3A172C0233C9C3B006BA6DA /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		B3B22825233C15CB0030AD37 /* SwipeAlertTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAlertTableViewController.swift; sourceTree = "<group>"; };
 		B3B22827233C15D80030AD37 /* SwipeAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SwipeAlert.storyboard; sourceTree = "<group>"; };
 		B3B2282A233C34100030AD37 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
@@ -401,6 +407,7 @@
 				531285AF22B6457D00E3AF5F /* Alerta.swift */,
 				531285B422B6577B00E3AF5F /* Message.swift */,
 				5DDB4B842338400100F14A02 /* Ubigeo.swift */,
+				B3A172C0233C9C3B006BA6DA /* Alerts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -525,6 +532,15 @@
 			path = ARScene;
 			sourceTree = "<group>";
 		};
+		B3A172BB233C96A3006BA6DA /* AlertsHistory */ = {
+			isa = PBXGroup;
+			children = (
+				B3A172BC233C9703006BA6DA /* AlertsHistoryViewController.swift */,
+				B3A172BE233C9747006BA6DA /* AlertsHistory.storyboard */,
+			);
+			path = AlertsHistory;
+			sourceTree = "<group>";
+		};
 		B3B22824233C15A50030AD37 /* SwipeAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,6 +553,7 @@
 		B3B22829233C33F10030AD37 /* ProfileScene */ = {
 			isa = PBXGroup;
 			children = (
+				B3A172BB233C96A3006BA6DA /* AlertsHistory */,
 				B3B2282A233C34100030AD37 /* ProfileTableViewController.swift */,
 				B3B2282C233C34200030AD37 /* Profile.storyboard */,
 			);
@@ -627,6 +644,7 @@
 			files = (
 				B3B22828233C15D80030AD37 /* SwipeAlert.storyboard in Resources */,
 				0B2A36D52320648D00136223 /* DetailBuilding.storyboard in Resources */,
+				B3A172BF233C9747006BA6DA /* AlertsHistory.storyboard in Resources */,
 				536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */,
 				B3158C4B22B5EDD90008B035 /* Monumento.storyboard in Resources */,
 				531285A022B63F6C00E3AF5F /* AdHoc.storyboard in Resources */,
@@ -726,6 +744,7 @@
 				0B6C36F62310524E0031D27B /* Building+CoreDataClass.swift in Sources */,
 				531285B522B6577B00E3AF5F /* Message.swift in Sources */,
 				535CCBC122B5A09500182DB9 /* Building.swift in Sources */,
+				B3A172BD233C9703006BA6DA /* AlertsHistoryViewController.swift in Sources */,
 				535CCB7F22B5598000182DB9 /* UIImageExtensions.swift in Sources */,
 				0BEBC4E02321907100335FA9 /* DetailBuildingCollectionViewCell.swift in Sources */,
 				531285A622B643EB00E3AF5F /* ListadoRegistroViewController.swift in Sources */,
@@ -756,6 +775,7 @@
 				5DDB4B8323383BA400F14A02 /* PickerViewController.swift in Sources */,
 				B3158C5122B626350008B035 /* CineTauroViewController.swift in Sources */,
 				0B6C371C231055E80031D27B /* PersistenceManager.swift in Sources */,
+				B3A172C1233C9C3B006BA6DA /* Alerts.swift in Sources */,
 				535CCBAB22B5799500182DB9 /* GMUWrappingDictionaryKey.m in Sources */,
 				B3158C4822B5B9010008B035 /* RegisterTableViewController.swift in Sources */,
 				535CCBAD22B5799500182DB9 /* GQTPointQuadTreeChild.m in Sources */,
