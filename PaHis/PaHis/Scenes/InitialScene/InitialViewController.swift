@@ -69,6 +69,12 @@ class InitialViewController: UIViewController {
             controllers.append(UINavigationController(rootViewController: adhocVC))
         }
         
+        let profileSB = UIStoryboard(name: "Profile", bundle:nil)
+        let profileVC = profileSB.instantiateInitialViewController()!
+        profileVC.tabBarItem = UITabBarItem(title: "Perfil" , image: UIImage(named: "UserIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 1)
+        profileVC.title = "Perfil"
+        controllers.append(UINavigationController(rootViewController: profileVC))
+        
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = controllers
         tabBarController.selectedIndex = 0
