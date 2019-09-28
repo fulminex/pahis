@@ -30,10 +30,15 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         cameraUIImage.image = cameraUIImage.image?.withRenderingMode(.alwaysTemplate)
         cameraUIImage.tintColor = UIColor.lightGray
         self.createButton.backgroundColor = UIColor(rgb: 0xF5391C)
-        title = desc
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        title = "Alertas"
+        setupView()
     }
     
     func setupView() {
@@ -43,6 +48,7 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
         title = desc
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addressLabelPressed))
         addressLabel.addGestureRecognizer(tapGesture)
+        addressLabel.isUserInteractionEnabled = true
     }
     
     @objc func dismissKeyboard() {
@@ -156,6 +162,7 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         photos.append(image.resizeImageWith(newSize: CGSize(width: 200, height: 200)))
+        collectionView.reloadData()
         dismiss(animated:true, completion: nil)
     }
     

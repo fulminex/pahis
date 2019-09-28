@@ -62,11 +62,11 @@ class InitialViewController: UIViewController {
         controllers.append(UINavigationController(rootViewController: searchVC))
         
 //        if userTypeName == "Voluntario" {
-        let adhocSB = UIStoryboard(name: "AdHoc", bundle: nil)
-        let adhocVC = adhocSB.instantiateInitialViewController()!
-        adhocVC.tabBarItem = UITabBarItem(title: "Alertas" , image: UIImage(named: "AdhocIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 4)
-        adhocVC.title = "Alertas"
-        controllers.append(UINavigationController(rootViewController: adhocVC))
+        let alertSB = UIStoryboard(name: "Alert", bundle: nil)
+        let alertVC = alertSB.instantiateInitialViewController()!
+        alertVC.tabBarItem = UITabBarItem(title: "Alertas" , image: UIImage(named: "alert")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 4)
+        alertVC.title = "Alertas"
+        controllers.append(UINavigationController(rootViewController: alertVC))
 //        }
         
         let profileSB = UIStoryboard(name: "Profile", bundle:nil)

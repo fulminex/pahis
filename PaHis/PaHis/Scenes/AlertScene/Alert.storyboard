@@ -20,7 +20,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultBuilding" translatesAutoresizingMaskIntoConstraints="NO" id="C8B-eh-YPI" customClass="AnimatedImageView" customModule="Kingfisher">
-                                    <rect key="frame" x="167" y="30" width="80" height="80"/>
+                                    <rect key="frame" x="167" y="30" width="80" height="80.000000000000057"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="mN0-hl-FSN"/>
                                         <constraint firstAttribute="height" constant="80" id="zvL-V2-OFM"/>
@@ -127,7 +127,7 @@
                                                         <constraint firstAttribute="width" constant="19" id="UnH-n0-1Ny"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Ingrese una descripción del daño o modificación" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PL8-1J-32G">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PL8-1J-32G">
                                                     <rect key="frame" x="39" y="0.0" width="363" height="80"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
