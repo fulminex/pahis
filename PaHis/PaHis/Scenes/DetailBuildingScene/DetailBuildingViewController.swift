@@ -26,11 +26,13 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func setupView() {
-        title = building.name!
-        nameLabel.text = building.name!
-        descriptionTextView.text = building.buildingDescription!
+        title = building.name ?? "Sin nombre"
+        nameLabel.text = building.name ?? "Este patrimonio no tiene nombre"
+        descriptionTextView.text = building.buildingDescription ?? "No hay descripción disponible."
         descriptionTextView.adjustContentSize()
-        categoryLabel.text = building.category!.name!
+        if let category = building.category {
+            categoryLabel.text = category.name ?? ""
+        }
         addressTextView.text = building.address
         addressTextView.adjustContentSize()
         tableView.estimatedRowHeight = 80
