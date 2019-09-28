@@ -434,7 +434,7 @@ class NetworkManager {
                     "name": name,
                     "description": description,
                     "inmueble_id": id,
-                    "images": imageURLs,
+                    "images": imageURLs
                 ]
                 let jsonData = try? JSONSerialization.data(withJSONObject: json)
                 request.httpBody = jsonData
@@ -466,6 +466,7 @@ class NetworkManager {
             }
         }
     }
+    
     func getNumberOfContributions(token: String, completion: @escaping (Result<[[Int]],NetworkError>) -> Void) {
         let path = "user/\(token)"
         let url = URL(string: baseURL + path)!
@@ -624,4 +625,56 @@ class NetworkManager {
             }
         }
     }
+    
+    func sendIndependentAlert(token: String, latitude: Double,longitude: Double, address: String, images: [[String:String]], name: String, description: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
+        NetworkManager.shared.uploadDocuments(files: images) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let imageURLs):
+                let path = "alert"
+                let url = URL(string: self.baseURL + path)!
+                var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+                let json: [String: Any]  = [
+                    "token": token,
+                    "name": name,
+                    "latitude": latitude,
+                    "longitude": longitude,
+                    "address": address,
+                    "description": description,
+                    "images": imageURLs
+                ]
+                let jsonData = try? JSONSerialization.data(withJSONObject: json)
+                request.httpBody = jsonData
+                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    guard let data = data, error == nil else {
+                        DispatchQueue.main.async {
+                            completion(.failure(.noData(error!.localizedDescription)))
+                        }
+                        return
+                    }
+                    let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
+                    guard let responseJSON = jsonObject as? [String: Any] else {
+                        DispatchQueue.main.async {
+                            completion(.failure(.noResponse))
+                        }
+                        return
+                    }
+                    if let error = responseJSON["error"] as? String {
+                        DispatchQueue.main.async {
+                            completion(.failure(.webserviceError(error)))
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            completion(.success("Alerta enviada con éxito"))
+                        }
+                    }
+                }
+                task.resume()
+            }
+        }
+    }
+    
 }

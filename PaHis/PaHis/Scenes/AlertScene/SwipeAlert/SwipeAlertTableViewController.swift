@@ -39,7 +39,6 @@ class SwipeAlertTableViewController: UITableViewController, UITextViewDelegate {
     
     @IBAction func sendAlertButton(_ sender: UIButton) {
         self.view.endEditing(true)
-        spinner = UIViewController.displaySpinner(onView: self.view)
         guard let currentUser = User.currentUser else {
             let alert = UIAlertController(title: "Aviso", message: "Su sessión ha expirado", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
@@ -70,6 +69,7 @@ class SwipeAlertTableViewController: UITableViewController, UITextViewDelegate {
             self.present(alert, animated: true)
             return
         }
+        spinner = UIViewController.displaySpinner(onView: self.view)
         let encodedImage = alertImage.jpegData(compressionQuality: 0.6)!.base64EncodedString()
         let images = [["data":encodedImage,"extension":"jpeg"]]
         NetworkManager.shared.sendAlert(token: currentUser.token, images: images, id: Int(id), name: name, description: description) { result in
@@ -111,7 +111,7 @@ class SwipeAlertTableViewController: UITableViewController, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Placeholder"
+            textView.text = "Ingrese una descripción del daño o modificación"
             textView.textColor = UIColor.lightGray
         }
     }

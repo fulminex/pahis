@@ -10,7 +10,7 @@ import Firebase
 import LocationPickerViewController
 import UIKit
 
-class AlertTableViewController: UITableViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource  {
+class AlertTableViewController: UITableViewController, UIImagePickerControllerDelegate , UINavigationControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UITextViewDelegate {
     
     var desc: String!
     var codBuild: String!
@@ -23,8 +23,9 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
     @IBOutlet weak var createButton: UIButton!
     
     var photos = [UIImage]()
-    
+    let placeholder = "Ingrese una descripción del daño o modificación"
     var addressLocation: (latitude: Double, longitude: Double)?
+    private var spinner = UIView()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -45,10 +46,13 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
         cameraUIImage.image = cameraUIImage.image?.withRenderingMode(.alwaysTemplate)
         cameraUIImage.tintColor = UIColor.lightGray
         self.createButton.backgroundColor = UIColor(rgb: 0xF5391C)
-        title = desc
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addressLabelPressed))
         addressLabel.addGestureRecognizer(tapGesture)
         addressLabel.isUserInteractionEnabled = true
+        
+        descTextView.text = placeholder
+        descTextView.textColor = UIColor.lightGray
+        descTextView.delegate = self
     }
     
     @objc func dismissKeyboard() {
@@ -87,54 +91,107 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
-        guard descTextView.text != "", let descripcion = descTextView.text else {
+        guard let currentUser = User.currentUser else {
+            let alert = UIAlertController(title: "Aviso", message: "Su sessión ha expirado", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        guard !photos.isEmpty else {
+            let alert = UIAlertController(title: "Aviso", message: "Capture por lo menos una imagen", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        guard let name = nameTextField.text, !name.isEmpty else {
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese un nombre válido", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        guard let addressName = addressLabel.text, !addressName.isEmpty, let addressCordinates = addressLocation  else {
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese una dirección válida", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        guard descTextView.text != "",descTextView.text != placeholder , let descripcion = descTextView.text else {
             let alert = UIAlertController(title: "Aviso", message: "Ingrese una descripción válida", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
             self.present(alert, animated: true)
             return
         }
-        let spinner = UIViewController.displaySpinner(onView: self.view)
-        let data = cameraUIImage.image!.jpegData(compressionQuality: 0.9)!
-        let alertaImageRef = Storage.storage().reference().child("alertaImages/\(UUID().uuidString).jpg")
-        _ = alertaImageRef.putData(data, metadata: nil, completion: { (metadata, error) in
-            guard error == nil else {
-                UIViewController.removeSpinner(spinner: spinner)
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
-                print("Error al subir la imagen de perfil: ", error!.localizedDescription)
-                return
-            }
-            guard let metadata = metadata else {
-                UIViewController.removeSpinner(spinner: spinner)
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
-                print("No hay metadata")
-                return
-            }
-            guard let user = Auth.auth().currentUser else {
-                UIViewController.removeSpinner(spinner: spinner)
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
-                return
-            }
-            alertaImageRef.downloadURL(completion: { (url, error) in
-                guard error == nil else {
-                    UIViewController.removeSpinner(spinner: spinner)
-                    self.navigationItem.rightBarButtonItem?.isEnabled = true
-                    print("Error al obtener la url del profile")
-                    return
-                }
-                guard let downloadURL = url else {
-                    UIViewController.removeSpinner(spinner: spinner)
-                    return
-                }
-                let ref = Database.database().reference()
-                ref.child("alertas").child(user.uid).child(UUID().uuidString).setValue(["photo": downloadURL.absoluteString, "descripcion": descripcion, "codInmueble" : self.codBuild, "dirección" : self.direccion])
-                UIViewController.removeSpinner(spinner: spinner)
-                let alert = UIAlertController(title: "Aviso", message: "Registro enviado satisfactoriamente", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-                    _ = self.navigationController?.popViewController(animated: true)
-                }))
-                self.present(alert, animated: true)
-            })
+        
+        
+        spinner = UIViewController.displaySpinner(onView: self.view)
+        
+        var images = [[String:String]]()
+        photos.forEach({
+            let image = ["data":$0.jpegData(compressionQuality: 0.6)!.base64EncodedString(),"extension":"jpeg"]
+            images.append(image)
         })
+        
+        NetworkManager.shared.sendIndependentAlert(token: currentUser.token, latitude: addressCordinates.latitude, longitude: addressCordinates.longitude, address: addressName, images: images, name: name, description: descripcion) { result in
+            switch result {
+            case .failure(let error):
+            UIViewController.removeSpinner(spinner: self.spinner)
+                let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            case .success(let success):
+                UIViewController.removeSpinner(spinner: self.spinner)
+                let alert = UIAlertController(title: "Aviso", message: "Alerta enviada satisfactoriamente", preferredStyle: .alert)
+                 alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
+                    self.navigationController?.popViewController(animated: true)
+                 }))
+                self.present(alert, animated: true)
+            }
+            
+        }
+        
+//        let spinner = UIViewController.displaySpinner(onView: self.view)
+        
+//        let data = cameraUIImage.image!.jpegData(compressionQuality: 0.9)!
+//        let alertaImageRef = Storage.storage().reference().child("alertaImages/\(UUID().uuidString).jpg")
+//        _ = alertaImageRef.putData(data, metadata: nil, completion: { (metadata, error) in
+//            guard error == nil else {
+//                UIViewController.removeSpinner(spinner: spinner)
+//                self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                print("Error al subir la imagen de perfil: ", error!.localizedDescription)
+//                return
+//            }
+//            guard let metadata = metadata else {
+//                UIViewController.removeSpinner(spinner: spinner)
+//                self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                print("No hay metadata")
+//                return
+//            }
+//            guard let user = Auth.auth().currentUser else {
+//                UIViewController.removeSpinner(spinner: spinner)
+//                self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                return
+//            }
+//            alertaImageRef.downloadURL(completion: { (url, error) in
+//                guard error == nil else {
+//                    UIViewController.removeSpinner(spinner: spinner)
+//                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+//                    print("Error al obtener la url del profile")
+//                    return
+//                }
+//                guard let downloadURL = url else {
+//                    UIViewController.removeSpinner(spinner: spinner)
+//                    return
+//                }
+//                let ref = Database.database().reference()
+//                ref.child("alertas").child(user.uid).child(UUID().uuidString).setValue(["photo": downloadURL.absoluteString, "descripcion": descripcion, "codInmueble" : self.codBuild, "dirección" : self.direccion])
+//                UIViewController.removeSpinner(spinner: spinner)
+//                let alert = UIAlertController(title: "Aviso", message: "Registro enviado satisfactoriamente", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
+//                    _ = self.navigationController?.popViewController(animated: true)
+//                }))
+//                self.present(alert, animated: true)
+//            })
+//        })
         
     }
     
@@ -178,6 +235,22 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
         cell.deletegate = self
         cell.photo = photos[indexPath.row]
         return cell
+    }
+    
+    // MARK:- Funciones del delegate del textArea
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Ingrese una descripción del daño o modificación"
+            textView.textColor = UIColor.lightGray
+        }
     }
 }
 
