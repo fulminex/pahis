@@ -321,7 +321,7 @@ class NetworkManager {
         task.resume()
     }
     
-    func createBuilding(token:String, name: String, coordinate: (latitude: Double, longitude: Double), address: String, description: String, category: Int, images: [String], documents: [String], completion: @escaping (Result<String, NetworkError>) -> Void) {
+    func createBuilding(token:String, name: String, coordinate: (latitude: Double, longitude: Double), address: String, description: String, category: Int, images: [[String:String]], documents: [[String:String]], completion: @escaping (Result<String, NetworkError>) -> Void) {
         
         NetworkManager.shared.uploadDocuments(files: images) { result in
             switch result {
@@ -382,7 +382,7 @@ class NetworkManager {
         }
     }
     
-    func uploadDocuments(files: [String], completion: @escaping (Result<[String],NetworkError>) -> Void) {
+    func uploadDocuments(files: [[String:String]], completion: @escaping (Result<[String],NetworkError>) -> Void) {
         let path = "files"
         let url = URL(string: baseURL + path)!
         var request = URLRequest(url: url)
@@ -418,7 +418,7 @@ class NetworkManager {
         task.resume()
     }
     
-    func sendAlert(token: String, images: [String], id: Int, name: String, description: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
+    func sendAlert(token: String, images: [[String:String]], id: Int, name: String, description: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
         NetworkManager.shared.uploadDocuments(files: images) { result in
             switch result {
             case .failure(let error):
@@ -560,7 +560,7 @@ class NetworkManager {
         task.resume()
     }
 
-    func updateUserInfo(uid: Int32, token: String, images: [String], name: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
+    func updateUserInfo(uid: Int32, token: String, images: [[String:String]], name: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
         
         NetworkManager.shared.uploadDocuments(files: images) { result in
             switch result {

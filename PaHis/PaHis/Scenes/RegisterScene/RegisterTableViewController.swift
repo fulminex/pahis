@@ -33,7 +33,7 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
     var addressLocation: (latitude: Double, longitude: Double)?
     
     var photos = [UIImage]()
-    var documentsBase64EncondedString = [String]()
+    var documentsBase64EncondedString = [[String:String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -199,7 +199,13 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
         
         let spinner = UIViewController.displaySpinner(onView: self.view)
         
-        NetworkManager.shared.createBuilding(token: currentUser.token, name: name, coordinate: coordinate, address: direccion, description: descripcion, category: Int(categoryID), images: photos.map({ ($0.jpegData(compressionQuality: 0.6)?.base64EncodedString())! }), documents: documentsBase64EncondedString) { result in
+        var images = [[String:String]]()
+        photos.forEach({
+            let image = ["data":$0.jpegData(compressionQuality: 0.6)!.base64EncodedString(),"extension":"jpeg"]
+            images.append(image)
+        })
+        
+        NetworkManager.shared.createBuilding(token: currentUser.token, name: name, coordinate: coordinate, address: direccion, description: descripcion, category: Int(categoryID), images: images, documents: documentsBase64EncondedString) { result in
             switch result {
             case .failure(let error):
                 UIViewController.removeSpinner(spinner: spinner)
@@ -411,7 +417,7 @@ extension RegisterTableViewController: UIDocumentPickerDelegate {
             return
         }
         var documentsName = ""
-        var documentsBase64 = [String]()
+        var documentsBase64 = [[String:String]]()
         var isFirst = true
         urls.forEach({
             guard let name = $0.absoluteString.split(separator: "/").last else {
@@ -428,7 +434,8 @@ extension RegisterTableViewController: UIDocumentPickerDelegate {
             let error = NSErrorPointer(nilLiteral: ())
             coordinator.coordinate(readingItemAt: $0, options: .forUploading, error: error) { (newUrl) in
                 guard let data = NSData(contentsOf: newUrl) else { return }
-                documentsBase64.append(data.base64EncodedString())
+                let document = ["data":data.base64EncodedString(),"extension":"pdf"]
+                documentsBase64.append(document)
             }
         })
         self.documentsBase64EncondedString = documentsBase64

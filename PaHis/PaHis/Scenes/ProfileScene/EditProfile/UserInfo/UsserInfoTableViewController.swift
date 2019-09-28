@@ -79,7 +79,9 @@ class UsserInfoTableViewController: UITableViewController {
         }
         encodedImage = image.jpegData(compressionQuality: 0.6)!.base64EncodedString()
         
-        NetworkManager.shared.updateUserInfo(uid: currentUser.uid, token: currentUser.token, images: [encodedImage], name: name) { result in
+        let images = [["data":encodedImage,"extension":"jpeg"]]
+        
+        NetworkManager.shared.updateUserInfo(uid: currentUser.uid, token: currentUser.token, images: images, name: name) { result in
             switch result {
             case .failure(let error):
                 UIViewController.removeSpinner(spinner: self.spinner)
