@@ -138,10 +138,11 @@ class ProfileTableViewController: UITableViewController {
             switch result {
             case .failure(let error):
                 UIViewController.removeSpinner(spinner: spinner)
-                self.refreshControl?.endRefreshing()
-                let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                }
             case .success(let success):
                 UIViewController.removeSpinner(spinner: spinner)
                 self.refreshControl?.endRefreshing()
@@ -150,6 +151,7 @@ class ProfileTableViewController: UITableViewController {
                 self.acceptedontributionsLabel.text = String(success[2].count)
             }
         }
+        self.refreshControl?.endRefreshing()
     }
     
     @IBAction func logoutButton(_ sender: UIButton) {
@@ -160,6 +162,7 @@ class ProfileTableViewController: UITableViewController {
             NetworkManager.shared.logout(token: token) { result in
                 switch result {
                 case .failure(let error):
+                    print("cefwe")
                     UIViewController.removeSpinner(spinner: spinner)
                     let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
