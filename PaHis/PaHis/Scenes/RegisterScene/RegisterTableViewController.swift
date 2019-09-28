@@ -18,7 +18,8 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
     @IBOutlet weak var collectionView: UICollectionView!
     //    @IBOutlet weak var distritoUILabel: UITextField!
     @IBOutlet weak var documentsTextView: UITextView!
-    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var addressTextField: UITextField!
+    //    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var observationsTextView: UITextView!
 //    @IBOutlet weak var categoryUILabel: UITextField!
     @IBOutlet weak var cameraUIImage: UIImageView!
@@ -35,14 +36,15 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
     var photos = [UIImage]()
     var documentsBase64EncondedString = [[String:String]]()
     
+    var building: BuildingPahis!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        createDayPicker()
 //        createToolbar()
 //        createDistritoPicker()
 //        createToolbar2()
-        
-        self.title = "Crear Nuevo Inmueble"
+        self.title = building.name ?? "Este patrimonio no tiene nombre"
 //        let cancelBarButtonItem = UIBarButtonItem(image: UIImage(named: "CancelIcon"), style: .plain, target: self, action: #selector(cancelButtonTapped))
         self.navigationController?.navigationBar.tintColor  = UIColor(rgb: 0xF5391C)
 //        self.navigationItem.rightBarButtonItem = cancelBarButtonItem
@@ -53,8 +55,8 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
         observationsTextView.textColor = .lightGray
         observationsTextView.delegate = self
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addressLabelPressed))
-        addressLabel.addGestureRecognizer(tapGesture)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addressLabelPressed))
+//        addressLabel.addGestureRecognizer(tapGesture)
         
         let tapDocumentsGesture = UITapGestureRecognizer(target: self, action: #selector(attachDocument))
         documentsTextView.addGestureRecognizer(tapDocumentsGesture)
@@ -62,6 +64,14 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
         cameraUIImage.image = cameraUIImage.image?.withRenderingMode(.alwaysTemplate)
         cameraUIImage.tintColor = UIColor.lightGray
         self.createButton.backgroundColor = UIColor.black
+        setupfields()
+    }
+    
+    func setupfields() {
+        nameTextField.text = building.name ?? ""
+        descripcionTextField.text = building.buildingDescription ?? ""
+        addressTextField.text = building.address ?? ""
+//        addressLabel.text = building.address ?? "Dirección"
     }
     
     @objc func cancelButtonTapped() {
@@ -83,23 +93,23 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
     }
 
     
-    @objc func addressLabelPressed(){
-        let locationPicker = LocationPicker()
-        locationPicker.pickCompletion = { (pickedLocationItem) in
-            self.addressLabel.textColor = .black
-            self.addressLabel.text = pickedLocationItem.name
-            self.addressLocation = pickedLocationItem.coordinate
-        }
-        locationPicker.setColors(themeColor: UIColor(rgb: 0xF5391C), primaryTextColor: .black, secondaryTextColor: .black)
-        locationPicker.searchBarPlaceholder = "Busca una dirección aquí"
-        locationPicker.currentLocationText = "Ubicación actual"
-        locationPicker.locationDeniedAlertTitle = "Acceso a tu ubicación denegada"
-        locationPicker.locationDeniedAlertMessage = "Permite el acceso a tu ubicación para usar tu ubicación actual"
-        locationPicker.locationDeniedGrantText = "Permitir"
-        locationPicker.locationDeniedCancelText = "Cancelar"
-        locationPicker.addBarButtons(doneButtonItem: UIBarButtonItem(title: "Seleccionar", style: .done, target: self, action: nil), cancelButtonItem: UIBarButtonItem(title: "Cancelar", style: .plain, target: self, action: nil), doneButtonOrientation: .right)
-        present(UINavigationController(rootViewController: locationPicker), animated: true, completion: nil)
-    }
+//    @objc func addressLabelPressed(){
+//        let locationPicker = LocationPicker()
+//        locationPicker.pickCompletion = { (pickedLocationItem) in
+//            self.addressLabel.textColor = .black
+//            self.addressLabel.text = pickedLocationItem.name
+//            self.addressLocation = pickedLocationItem.coordinate
+//        }
+//        locationPicker.setColors(themeColor: UIColor(rgb: 0xF5391C), primaryTextColor: .black, secondaryTextColor: .black)
+//        locationPicker.searchBarPlaceholder = "Busca una dirección aquí"
+//        locationPicker.currentLocationText = "Ubicación actual"
+//        locationPicker.locationDeniedAlertTitle = "Acceso a tu ubicación denegada"
+//        locationPicker.locationDeniedAlertMessage = "Permite el acceso a tu ubicación para usar tu ubicación actual"
+//        locationPicker.locationDeniedGrantText = "Permitir"
+//        locationPicker.locationDeniedCancelText = "Cancelar"
+//        locationPicker.addBarButtons(doneButtonItem: UIBarButtonItem(title: "Seleccionar", style: .done, target: self, action: nil), cancelButtonItem: UIBarButtonItem(title: "Cancelar", style: .plain, target: self, action: nil), doneButtonOrientation: .right)
+//        present(UINavigationController(rootViewController: locationPicker), animated: true, completion: nil)
+//    }
     
 //    func createDayPicker() {
 //
@@ -177,12 +187,12 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
 //            self.present(alert, animated: true)
 //            return
 //        }
-        guard let direccion = addressLabel.text, addressLabel.text != "Dirección", let coordinate = addressLocation  else {
-            let alert = UIAlertController(title: "Aviso", message: "Ingrese una dirección válida", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-            return
-        }
+//        guard let direccion = addressLabel.text, addressLabel.text != "Dirección", let coordinate = addressLocation  else {
+//            let alert = UIAlertController(title: "Aviso", message: "Ingrese una dirección válida", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+//            self.present(alert, animated: true)
+//            return
+//        }
         guard observationsTextView.text != "", let observacion = observationsTextView.text  else {
             let alert = UIAlertController(title: "Aviso", message: "Ingrese una observación válida", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))

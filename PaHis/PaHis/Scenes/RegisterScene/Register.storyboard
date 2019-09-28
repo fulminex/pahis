@@ -126,27 +126,58 @@
                                                         <constraint firstAttribute="height" constant="19" id="cBN-H9-6dY"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dirección" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hB4-MD-yKq">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dirección" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jc4-qe-eJm">
                                                     <rect key="frame" x="43" y="7" width="359" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="r7C-SL-DdY"/>
+                                                        <constraint firstAttribute="height" constant="30" id="33S-NV-V2G"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="hB4-MD-yKq" secondAttribute="trailing" constant="12" id="6IN-Cn-8Wt"/>
-                                                <constraint firstItem="hB4-MD-yKq" firstAttribute="centerY" secondItem="7nB-oz-xb7" secondAttribute="centerY" id="Mqi-r4-WA0"/>
                                                 <constraint firstItem="VaF-7R-JI1" firstAttribute="leading" secondItem="7nB-oz-xb7" secondAttribute="leading" constant="16" id="WUJ-u9-eJX"/>
-                                                <constraint firstItem="hB4-MD-yKq" firstAttribute="leading" secondItem="VaF-7R-JI1" secondAttribute="trailing" constant="8" id="ipM-Ii-OXa"/>
+                                                <constraint firstItem="jc4-qe-eJm" firstAttribute="leading" secondItem="VaF-7R-JI1" secondAttribute="trailing" constant="8" id="Zpm-1a-Qau"/>
+                                                <constraint firstItem="jc4-qe-eJm" firstAttribute="centerY" secondItem="7nB-oz-xb7" secondAttribute="centerY" id="cLH-VX-c4z"/>
+                                                <constraint firstAttribute="trailing" secondItem="jc4-qe-eJm" secondAttribute="trailing" constant="12" id="v5v-1J-foh"/>
                                                 <constraint firstItem="VaF-7R-JI1" firstAttribute="centerY" secondItem="7nB-oz-xb7" secondAttribute="centerY" id="zq0-qV-Eka"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="qIX-P6-B5l">
+                                        <rect key="frame" x="0.0" y="302.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qIX-P6-B5l" id="IPx-eS-khW">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit" translatesAutoresizingMaskIntoConstraints="NO" id="8gs-dE-1Cp">
+                                                    <rect key="frame" x="16" y="12.5" width="19" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="19" id="AHU-1F-yCA"/>
+                                                        <constraint firstAttribute="width" constant="19" id="fvF-Ed-AG1"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Razón" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bQm-nk-U80">
+                                                    <rect key="frame" x="43" y="7" width="359" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="Zpn-0v-E39"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8gs-dE-1Cp" firstAttribute="centerY" secondItem="IPx-eS-khW" secondAttribute="centerY" id="4zz-1X-Dwz"/>
+                                                <constraint firstItem="bQm-nk-U80" firstAttribute="centerY" secondItem="IPx-eS-khW" secondAttribute="centerY" id="7nO-r8-aYt"/>
+                                                <constraint firstAttribute="trailing" secondItem="bQm-nk-U80" secondAttribute="trailing" constant="12" id="Bwr-Vn-zB6"/>
+                                                <constraint firstItem="bQm-nk-U80" firstAttribute="leading" secondItem="8gs-dE-1Cp" secondAttribute="trailing" constant="8" id="Qc9-yZ-HgH"/>
+                                                <constraint firstItem="8gs-dE-1Cp" firstAttribute="leading" secondItem="IPx-eS-khW" secondAttribute="leading" constant="16" id="RQ7-Dx-KPf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="j6S-7k-m2w">
-                                        <rect key="frame" x="0.0" y="302.5" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="346.5" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j6S-7k-m2w" id="Uau-dj-FL4">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -180,7 +211,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="eup-KZ-bbG">
-                                        <rect key="frame" x="0.0" y="362.5" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="406.5" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eup-KZ-bbG" id="ys9-BK-PfW">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -213,7 +244,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="125" id="KIH-Of-Ipp">
-                                        <rect key="frame" x="0.0" y="422.5" width="414" height="125"/>
+                                        <rect key="frame" x="0.0" y="466.5" width="414" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KIH-Of-Ipp" id="Xhg-02-oTy">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
@@ -298,7 +329,7 @@
                             <tableViewSection id="4z7-Ci-lF4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="FPB-n5-iOG">
-                                        <rect key="frame" x="0.0" y="583.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="627.5" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FPB-n5-iOG" id="iyi-Ds-RTQ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -334,7 +365,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Crear Nuevo Inmueble" id="zsx-JN-fW0"/>
                     <connections>
-                        <outlet property="addressLabel" destination="hB4-MD-yKq" id="Ath-ge-noB"/>
+                        <outlet property="addressTextField" destination="jc4-qe-eJm" id="XDh-ac-eu7"/>
                         <outlet property="cameraUIImage" destination="Ikm-WY-nwn" id="O6p-Qe-4Qo"/>
                         <outlet property="collectionView" destination="eX3-Eo-HX6" id="bhw-p5-GJs"/>
                         <outlet property="createButton" destination="fTW-At-EF9" id="sQe-jx-Ejv"/>
@@ -358,5 +389,6 @@
         <image name="brujula" width="256" height="256"/>
         <image name="defaultBuilding" width="350" height="280.5"/>
         <image name="description" width="256" height="256"/>
+        <image name="edit" width="256" height="256"/>
     </resources>
 </document>

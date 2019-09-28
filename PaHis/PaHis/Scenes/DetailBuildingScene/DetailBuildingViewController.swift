@@ -26,7 +26,7 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func setupView() {
-        title = building.name ?? "Sin nombre"
+        title = building.name ?? "Este patrimonio no tiene nombre"
         nameLabel.text = building.name ?? "Este patrimonio no tiene nombre"
         descriptionTextView.text = building.buildingDescription ?? "No hay descripción disponible."
         descriptionTextView.adjustContentSize()
@@ -47,6 +47,7 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
     @objc func navigateToRegister() {
         let sb = UIStoryboard(name: "Register", bundle: nil)
         let vc = sb.instantiateInitialViewController() as! RegisterTableViewController
+        vc.building = building
 //        vc.categories = categories
 //        vc.categoriesName = categories.map({ $0.name! })
 //        let navigationController = UINavigationController(rootViewController: vc)
