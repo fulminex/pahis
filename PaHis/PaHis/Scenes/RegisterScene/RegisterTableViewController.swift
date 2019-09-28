@@ -234,6 +234,23 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
             images.append(image)
         })
         
+        NetworkManager.shared.createChangeRequest(token: currentUser.token, name: name, address: addrress, description: descripcion, reason: reason, id: Int(id), images: images, documents: documentsBase64EncondedString) { result in
+            switch result {
+            case .failure(let error):
+                UIViewController.removeSpinner(spinner: spinner)
+                let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            case .success(let message):
+                UIViewController.removeSpinner(spinner: spinner)
+                let alert = UIAlertController(title: "Aviso", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
+                   self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true)
+            }
+        }
+        
 //        NetworkManager.shared.createBuilding(token: currentUser.token, name: name, coordinate: coordinate, address: direccion, description: descripcion, category: Int(categoryID), images: images, documents: documentsBase64EncondedString) { result in
 //            switch result {
 //            case .failure(let error):
@@ -344,6 +361,14 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
         self.present(alert, animated: true)
     }
     
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+            photos.append(image.resizeImageWith(newSize: CGSize(width: 200, height: 200)))
+            collectionView.reloadData()
+    //        cameraUIImage.image = image.resizeImageWith(newSize: CGSize(width: 200, height: 200))
+            dismiss(animated:true, completion: nil)
+        }
+    
 //    // MARK:- ObservationsTextView Delegate Functions
 //
 //    func textViewDidBeginEditing(_ textView: UITextView) {
@@ -425,13 +450,6 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
 //        return label
 //    }
 //
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-//        photos.append(image.resizeImageWith(newSize: CGSize(width: 200, height: 200)))
-//        collectionView.reloadData()
-////        cameraUIImage.image = image.resizeImageWith(newSize: CGSize(width: 200, height: 200))
-//        dismiss(animated:true, completion: nil)
-//    }
 //}
 
 extension RegisterTableViewController: UIDocumentPickerDelegate {
