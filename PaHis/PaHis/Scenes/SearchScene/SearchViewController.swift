@@ -64,7 +64,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         let button1 = UIBarButtonItem(image: UIImage(named: "FilterIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(filterButtonTapped(_:)))
 //        let button2 = UIBarButtonItem(image: UIImage(named: "PlusIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(navigateToRegister))
         self.navigationItem.rightBarButtonItem = button1
-//        self.navigationItem.setRightBarButtonItems(button1, animated: true)
+//        self.navigationItem.setRightBarButtonItems([button1,button2], animated: true)
         
         refreshControl.attributedTitle = NSAttributedString(string: "Actualizando los lugares...")
         refreshControl.addTarget(self, action: #selector(reloadPlaces), for: .valueChanged)
@@ -184,15 +184,15 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         fetchBuildings(page: self.page)
     }
     
-    @objc func navigateToRegister() {
-        let sb = UIStoryboard(name: "Register", bundle: nil)
-        let vc = sb.instantiateInitialViewController() as! RegisterTableViewController
-        vc.categories = categories
-        vc.categoriesName = categories.map({ $0.name! })
-        let navigationController = UINavigationController(rootViewController: vc)
-        self.present(navigationController, animated: true)
-//        self.navigationController?.pushViewController(vc!, animated: true)
-    }
+//    @objc func navigateToRegister() {
+//        let sb = UIStoryboard(name: "Register", bundle: nil)
+//        let vc = sb.instantiateInitialViewController() as! RegisterTableViewController
+//        vc.categories = categories
+//        vc.categoriesName = categories.map({ $0.name! })
+//        let navigationController = UINavigationController(rootViewController: vc)
+//        self.present(navigationController, animated: true)
+////        self.navigationController?.pushViewController(vc!, animated: true)
+//    }
     
     func fetchBuildings(page: Int, categoriID: String = "", codUbigeo: String = "", lat: String = "", long: String = "") {
         if isForced {

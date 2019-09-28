@@ -24,7 +24,7 @@ class RegisterCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        deleteButton.setImage(UIImage(named: "CancelIcon")?.tinted(with: UIColor(rgb: 0xF5391C)), for: .normal)
+//        deleteButton.setImage(UIImage(named: "CancelIcon")?.tinted(with: UIColor(rgb: 0xF5391C)), for: .normal)
     }
     
     @IBAction func deleteButtonPressed(_ sender: UIButton) {

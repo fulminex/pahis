@@ -20,12 +20,12 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
     @IBOutlet weak var documentsTextView: UITextView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var observationsTextView: UITextView!
-    @IBOutlet weak var categoryUILabel: UITextField!
+//    @IBOutlet weak var categoryUILabel: UITextField!
     @IBOutlet weak var cameraUIImage: UIImageView!
     @IBOutlet weak var createButton: UIButton!
     
-    var categories: [CategoryPahis]!
-    var categoriesName: [String]!
+//    var categories: [CategoryPahis]!
+//    var categoriesName: [String]!
     
     let distrito = ["Ancon","Ate","Barranco","Breña","Carabayllo","Chaclacayo","Chorrillos","Cieneguilla","Comas","El Agustino","Independencia","Jesus Maria","La Molina","La Victoria","Lima","Lince","Los Olivos","Lurigancho","Lurin","Magdalena Del Mar","Miraflores","Pachacamac","Pucusana","Pueblo Libre","Puente Piedra","Punta Hermosa","Punta Negra","Rimac","San Bartolo","San Borja","San Isidro","San Juan De Lurigancho","San Juan De Miraflores","San Luis","San Martin De Porres","San Miguel","Santa Anita","Santa Maria Del Mar","Santa Rosa","Santiago De Surco","Surquillo","Villa El Salvador","Villa Maria Del Triunfo"]
     var selectedCategory: String?
@@ -37,17 +37,17 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createDayPicker()
-        createToolbar()
-        createDistritoPicker()
+//        createDayPicker()
+//        createToolbar()
+//        createDistritoPicker()
 //        createToolbar2()
         
         self.title = "Crear Nuevo Inmueble"
-        let cancelBarButtonItem = UIBarButtonItem(image: UIImage(named: "CancelIcon"), style: .plain, target: self, action: #selector(cancelButtonTapped))
+//        let cancelBarButtonItem = UIBarButtonItem(image: UIImage(named: "CancelIcon"), style: .plain, target: self, action: #selector(cancelButtonTapped))
         self.navigationController?.navigationBar.tintColor  = UIColor(rgb: 0xF5391C)
-        self.navigationItem.rightBarButtonItem = cancelBarButtonItem
+//        self.navigationItem.rightBarButtonItem = cancelBarButtonItem
         
-        selectedCategory = categoriesName.first!
+//        selectedCategory = categoriesName.first!
         
         observationsTextView.text = "\nObservaciones: 200 caracteres max."
         observationsTextView.textColor = .lightGray
@@ -101,43 +101,43 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
         present(UINavigationController(rootViewController: locationPicker), animated: true, completion: nil)
     }
     
-    func createDayPicker() {
-        
-        let dayPicker = UIPickerView()
-        dayPicker.delegate = self
-        dayPicker.restorationIdentifier = "category"
-        dayPicker.backgroundColor = .white
-        
-        categoryUILabel.inputView = dayPicker
-    }
-    
-    func createDistritoPicker() {
-        
-        let distritoPicker = UIPickerView()
-        distritoPicker.delegate = self
-        distritoPicker.restorationIdentifier = "distrito"
-        distritoPicker.backgroundColor = .white
+//    func createDayPicker() {
+//
+//        let dayPicker = UIPickerView()
+//        dayPicker.delegate = self
+//        dayPicker.restorationIdentifier = "category"
+//        dayPicker.backgroundColor = .white
+//
+//        categoryUILabel.inputView = dayPicker
+//    }
+//
+//    func createDistritoPicker() {
+//
+//        let distritoPicker = UIPickerView()
+//        distritoPicker.delegate = self
+//        distritoPicker.restorationIdentifier = "distrito"
+//        distritoPicker.backgroundColor = .white
         
 //        distritoUILabel.inputView = distritoPicker
-    }
+//    }
     
-    func createToolbar() {
-        
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard) )
-        
-        toolBar.setItems([doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        
-        categoryUILabel.inputAccessoryView = toolBar
-    }
+//    func createToolbar() {
+//
+//        let toolBar = UIToolbar()
+//        toolBar.sizeToFit()
+//
+//        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard) )
+//
+//        toolBar.setItems([doneButton], animated: false)
+//        toolBar.isUserInteractionEnabled = true
+//
+//        categoryUILabel.inputAccessoryView = toolBar
+//    }
     
-    @objc func dismissKeyboard() {
-        categoryUILabel.text = selectedCategory
-        view.endEditing(true)
-    }
+//    @objc func dismissKeyboard() {
+//        categoryUILabel.text = selectedCategory
+//        view.endEditing(true)
+//    }
 
     @IBAction func cameraButtonPressed(_ sender: Any) {
         let maxPhotos = 5
@@ -171,12 +171,12 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
             self.present(alert, animated: true)
             return
         }
-        guard categoryUILabel.text != "", let categoria = categoryUILabel.text, let categoryID = categories.filter({ $0.name == categoria }).first?.id  else {
-            let alert = UIAlertController(title: "Aviso", message: "Ingrese una categoria válida", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-            return
-        }
+//        guard categoryUILabel.text != "", let categoria = categoryUILabel.text, let categoryID = categories.filter({ $0.name == categoria }).first?.id  else {
+//            let alert = UIAlertController(title: "Aviso", message: "Ingrese una categoria válida", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+//            self.present(alert, animated: true)
+//            return
+//        }
         guard let direccion = addressLabel.text, addressLabel.text != "Dirección", let coordinate = addressLocation  else {
             let alert = UIAlertController(title: "Aviso", message: "Ingrese una dirección válida", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
@@ -205,20 +205,20 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
             images.append(image)
         })
         
-        NetworkManager.shared.createBuilding(token: currentUser.token, name: name, coordinate: coordinate, address: direccion, description: descripcion, category: Int(categoryID), images: images, documents: documentsBase64EncondedString) { result in
-            switch result {
-            case .failure(let error):
-                UIViewController.removeSpinner(spinner: spinner)
-                let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
-            case .success(let message):
-                UIViewController.removeSpinner(spinner: spinner)
-                let alert = UIAlertController(title: "Aviso", message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
-            }
-        }
+//        NetworkManager.shared.createBuilding(token: currentUser.token, name: name, coordinate: coordinate, address: direccion, description: descripcion, category: Int(categoryID), images: images, documents: documentsBase64EncondedString) { result in
+//            switch result {
+//            case .failure(let error):
+//                UIViewController.removeSpinner(spinner: spinner)
+//                let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+//                self.present(alert, animated: true)
+//            case .success(let message):
+//                UIViewController.removeSpinner(spinner: spinner)
+//                let alert = UIAlertController(title: "Aviso", message: message, preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+//                self.present(alert, animated: true)
+//            }
+//        }
         
         //TODO: Terminar esto
 //        let alert = UIAlertController(title: "Aviso", message: "Registro enviado satisfactoriamente", preferredStyle: .alert)
@@ -339,71 +339,71 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
     
 }
 
-extension RegisterTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.restorationIdentifier == "category" {
-            return categoriesName.count
-        } else {
-            return distrito.count
-        }
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView.restorationIdentifier == "category" {
-            return categoriesName[row]
-        } else {
-            return distrito[row]
-        }
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.restorationIdentifier == "category" {
-            selectedCategory = categoriesName[row]
-            categoryUILabel.text = selectedCategory
-        } else {
-//            selectedDistrito = distrito[row]
-//            distritoUILabel.text = selectedDistrito
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
-        var label: UILabel
-        
-        if let view = view as? UILabel {
-            label = view
-        } else {
-            label = UILabel()
-        }
-        label.textAlignment = .center
-        label.font = UIFont(name: "system", size: 8)
-        
-        if pickerView.restorationIdentifier == "category" {
-            label.text = categoriesName[row]
-        } else {
-            label.text = distrito[row]
-        }
-        
-        
-        return label
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        photos.append(image.resizeImageWith(newSize: CGSize(width: 200, height: 200)))
-        collectionView.reloadData()
-//        cameraUIImage.image = image.resizeImageWith(newSize: CGSize(width: 200, height: 200))
-        dismiss(animated:true, completion: nil)
-    }
-}
+//extension RegisterTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+//
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//
+//
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        if pickerView.restorationIdentifier == "category" {
+//            return categoriesName.count
+//        } else {
+//            return distrito.count
+//        }
+//    }
+//
+//
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        if pickerView.restorationIdentifier == "category" {
+//            return categoriesName[row]
+//        } else {
+//            return distrito[row]
+//        }
+//    }
+//
+//
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        if pickerView.restorationIdentifier == "category" {
+//            selectedCategory = categoriesName[row]
+//            categoryUILabel.text = selectedCategory
+//        } else {
+////            selectedDistrito = distrito[row]
+////            distritoUILabel.text = selectedDistrito
+//        }
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+//
+//        var label: UILabel
+//
+//        if let view = view as? UILabel {
+//            label = view
+//        } else {
+//            label = UILabel()
+//        }
+//        label.textAlignment = .center
+//        label.font = UIFont(name: "system", size: 8)
+//
+//        if pickerView.restorationIdentifier == "category" {
+//            label.text = categoriesName[row]
+//        } else {
+//            label.text = distrito[row]
+//        }
+//
+//
+//        return label
+//    }
+//
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+//        photos.append(image.resizeImageWith(newSize: CGSize(width: 200, height: 200)))
+//        collectionView.reloadData()
+////        cameraUIImage.image = image.resizeImageWith(newSize: CGSize(width: 200, height: 200))
+//        dismiss(animated:true, completion: nil)
+//    }
+//}
 
 extension RegisterTableViewController: UIDocumentPickerDelegate {
     

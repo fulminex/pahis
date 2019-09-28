@@ -37,6 +37,22 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
         addressTextView.adjustContentSize()
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = 60
+
+        let button = UIBarButtonItem(image: UIImage(named: "PlusIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(navigateToRegister))
+        self.navigationItem.rightBarButtonItem = button
+    }
+    
+    // MARK: - Otras funciones xd
+    
+    @objc func navigateToRegister() {
+        let sb = UIStoryboard(name: "Register", bundle: nil)
+        let vc = sb.instantiateInitialViewController() as! RegisterTableViewController
+//        vc.categories = categories
+//        vc.categoriesName = categories.map({ $0.name! })
+//        let navigationController = UINavigationController(rootViewController: vc)
+        self.navigationController?.pushViewController(vc, animated: true)
+//        self.present(navigationController, animated: true)
+        //        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     // MARK:- Funciones del delegate del collectionView
