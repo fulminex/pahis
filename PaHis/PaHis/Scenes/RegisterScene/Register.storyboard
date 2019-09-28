@@ -210,41 +210,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="eup-KZ-bbG">
-                                        <rect key="frame" x="0.0" y="406.5" width="414" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eup-KZ-bbG" id="ys9-BK-PfW">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="anotacion" translatesAutoresizingMaskIntoConstraints="NO" id="Y4j-De-K2U">
-                                                    <rect key="frame" x="16" y="20.5" width="19" height="19"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="19" id="F7b-jU-6iW"/>
-                                                        <constraint firstAttribute="width" constant="19" id="bUB-XH-cRb"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lsn-N7-9ln">
-                                                    <rect key="frame" x="39" y="0.0" width="363" height="60"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="xV0-Od-f0d"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="lsn-N7-9ln" firstAttribute="centerY" secondItem="ys9-BK-PfW" secondAttribute="centerY" id="IIj-4f-95W"/>
-                                                <constraint firstItem="Y4j-De-K2U" firstAttribute="leading" secondItem="ys9-BK-PfW" secondAttribute="leading" constant="16" id="OEF-bl-3eg"/>
-                                                <constraint firstItem="Y4j-De-K2U" firstAttribute="centerY" secondItem="ys9-BK-PfW" secondAttribute="centerY" id="akR-Dp-8B8"/>
-                                                <constraint firstAttribute="trailing" secondItem="lsn-N7-9ln" secondAttribute="trailing" constant="12" id="dyM-bT-3Ej"/>
-                                                <constraint firstItem="lsn-N7-9ln" firstAttribute="leading" secondItem="Y4j-De-K2U" secondAttribute="trailing" constant="4" id="yOS-H0-gCM"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="125" id="KIH-Of-Ipp">
-                                        <rect key="frame" x="0.0" y="466.5" width="414" height="125"/>
+                                        <rect key="frame" x="0.0" y="406.5" width="414" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KIH-Of-Ipp" id="Xhg-02-oTy">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
@@ -329,7 +296,7 @@
                             <tableViewSection id="4z7-Ci-lF4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="FPB-n5-iOG">
-                                        <rect key="frame" x="0.0" y="627.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="567.5" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FPB-n5-iOG" id="iyi-Ds-RTQ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -372,7 +339,7 @@
                         <outlet property="descripcionTextField" destination="fzt-fK-u5i" id="YTG-bh-s7v"/>
                         <outlet property="documentsTextView" destination="Bv0-iH-UMd" id="C2B-2X-9xC"/>
                         <outlet property="nameTextField" destination="34a-S2-KlJ" id="8tf-Y9-dWc"/>
-                        <outlet property="observationsTextView" destination="lsn-N7-9ln" id="vKS-e8-LYD"/>
+                        <outlet property="reasonTextField" destination="bQm-nk-U80" id="jHJ-38-oIx"/>
                         <outlet property="tableView" destination="cEg-lJ-gzt" id="9YZ-d1-f8e"/>
                     </connections>
                 </tableViewController>
@@ -385,7 +352,6 @@
         <image name="AdhocIcon" width="350" height="298"/>
         <image name="DeleteIcon" width="64" height="64"/>
         <image name="MonumentoIcon" width="350" height="291"/>
-        <image name="anotacion" width="256" height="256"/>
         <image name="brujula" width="256" height="256"/>
         <image name="defaultBuilding" width="350" height="280.5"/>
         <image name="description" width="256" height="256"/>

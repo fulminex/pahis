@@ -20,10 +20,11 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
     @IBOutlet weak var documentsTextView: UITextView!
     @IBOutlet weak var addressTextField: UITextField!
     //    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var observationsTextView: UITextView!
+//    @IBOutlet weak var observationsTextView: UITextView!
 //    @IBOutlet weak var categoryUILabel: UITextField!
     @IBOutlet weak var cameraUIImage: UIImageView!
     @IBOutlet weak var createButton: UIButton!
+    @IBOutlet weak var reasonTextField: UITextField!
     
 //    var categories: [CategoryPahis]!
 //    var categoriesName: [String]!
@@ -51,9 +52,9 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
         
 //        selectedCategory = categoriesName.first!
         
-        observationsTextView.text = "\nObservaciones: 200 caracteres max."
-        observationsTextView.textColor = .lightGray
-        observationsTextView.delegate = self
+//        observationsTextView.text = "\nObservaciones: 200 caracteres max."
+//        observationsTextView.textColor = .lightGray
+//        observationsTextView.delegate = self
         
 //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(addressLabelPressed))
 //        addressLabel.addGestureRecognizer(tapGesture)
@@ -169,14 +170,39 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
-        guard nameTextField.text != "", let name = nameTextField.text else {
+        guard let currentUser = User.currentUser else {
+            let alert = UIAlertController(title: "Aviso", message: "Su sessión ha expirado", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        guard reasonTextField.text != "", let reason = reasonTextField.text else {
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese una razón válida", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        guard let id = building.id else {
+            let alert = UIAlertController(title: "Aviso", message: "Inmueble no disponible para edición", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        
+        guard let name = nameTextField.text else {
             let alert = UIAlertController(title: "Aviso", message: "Ingrese un nombre válido", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
             self.present(alert, animated: true)
             return
         }
-        guard descripcionTextField.text != "", let descripcion = descripcionTextField.text else {
+        guard let descripcion = descripcionTextField.text else {
             let alert = UIAlertController(title: "Aviso", message: "Ingrese una descripción válida", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        guard let addrress = addressTextField.text else {
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese una dirección válida", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
             self.present(alert, animated: true)
             return
@@ -193,19 +219,12 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
 //            self.present(alert, animated: true)
 //            return
 //        }
-        guard observationsTextView.text != "", let observacion = observationsTextView.text  else {
-            let alert = UIAlertController(title: "Aviso", message: "Ingrese una observación válida", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-            return
-        }
-        
-        guard let currentUser = User.currentUser else {
-            let alert = UIAlertController(title: "Aviso", message: "Su sessión ha expirado", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-            return
-        }
+//        guard observationsTextView.text != "", let observacion = observationsTextView.text  else {
+//            let alert = UIAlertController(title: "Aviso", message: "Ingrese una observación válida", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+//            self.present(alert, animated: true)
+//            return
+//        }
         
         let spinner = UIViewController.displaySpinner(onView: self.view)
         
@@ -325,27 +344,27 @@ class RegisterTableViewController: UITableViewController, UICollectionViewDelega
         self.present(alert, animated: true)
     }
     
-    // MARK:- ObservationsTextView Delegate Functions
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if observationsTextView.textColor == UIColor.lightGray {
-            observationsTextView.text = nil
-            observationsTextView.textColor = UIColor.black
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if observationsTextView.text.isEmpty {
-            observationsTextView.text = "\nObservaciones: 200 caracteres max."
-            observationsTextView.textColor = UIColor.lightGray
-        }
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let newText = (observationsTextView.text as NSString).replacingCharacters(in: range, with: text)
-        let numberOfChars = newText.count
-        return numberOfChars <= 200
-    }
+//    // MARK:- ObservationsTextView Delegate Functions
+//
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+//        if observationsTextView.textColor == UIColor.lightGray {
+//            observationsTextView.text = nil
+//            observationsTextView.textColor = UIColor.black
+//        }
+//    }
+//
+//    func textViewDidEndEditing(_ textView: UITextView) {
+//        if observationsTextView.text.isEmpty {
+//            observationsTextView.text = "\nObservaciones: 200 caracteres max."
+//            observationsTextView.textColor = UIColor.lightGray
+//        }
+//    }
+//
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//        let newText = (observationsTextView.text as NSString).replacingCharacters(in: range, with: text)
+//        let numberOfChars = newText.count
+//        return numberOfChars <= 200
+//    }
     
 }
 
