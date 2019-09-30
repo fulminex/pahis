@@ -53,7 +53,12 @@ class EditOptionsTableViewController: UITableViewController {
         photoImageView.clipsToBounds = true
         photoImageView.contentMode = .scaleAspectFill
         photoImageView.kf.indicatorType = .activity
-        photoImageView.kf.setImage(with: currentUser.profilePicUrl!)
+        if let url = currentUser.profilePicUrl {
+            photoImageView.kf.setImage(with: url)
+        } else {
+            photoImageView.image = UIImage(named: "UserNameIcon")
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

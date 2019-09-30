@@ -35,7 +35,11 @@ class UsserInfoTableViewController: UITableViewController {
             return
         }
         nameTextField.text = currentUser.name
-        photoImageView.kf.setImage(with: currentUser.profilePicUrl!)
+        if let url = currentUser.profilePicUrl {
+            photoImageView.kf.setImage(with: url)
+        } else {
+            photoImageView.image = UIImage(named: "UserNameIcon")
+        }
         photoImageView.layer.cornerRadius = self.photoImageView.frame.size.width / 2
         photoImageView.contentMode = .scaleAspectFill
         photoImageView.kf.indicatorType = .activity

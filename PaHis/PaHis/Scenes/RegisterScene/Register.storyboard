@@ -20,7 +20,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultBuilding" translatesAutoresizingMaskIntoConstraints="NO" id="Ikm-WY-nwn" customClass="AnimatedImageView" customModule="Kingfisher">
-                                    <rect key="frame" x="167" y="30" width="80" height="80.000000000000057"/>
+                                    <rect key="frame" x="167" y="30" width="80" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="rp3-t9-sav"/>
                                         <constraint firstAttribute="height" constant="80" id="wqv-cQ-b8v"/>
