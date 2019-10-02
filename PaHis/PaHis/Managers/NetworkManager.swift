@@ -33,7 +33,7 @@ class NetworkManager {
     
     private init () {}
     static let shared = NetworkManager()
-    let baseURL = "https://pahis-desafio-uno.herokuapp.com/api/"
+    let baseURL = "http://192.25.0.226:5000/api/"
     
     let persistanceManager = PersistenceManager.shared
     
