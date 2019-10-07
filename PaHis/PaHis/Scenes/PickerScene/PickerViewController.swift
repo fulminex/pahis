@@ -9,6 +9,7 @@ import UIKit
 
 protocol PopUpPickerViewDelegate {
     func getItemSelected( value: String)
+    func cancelButtonPressed()
 }
 
 class PickerViewController: UIViewController {
@@ -38,6 +39,7 @@ class PickerViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {
+        delegate.cancelButtonPressed()
         self.dismiss(animated: true, completion: nil)
     }
 }
