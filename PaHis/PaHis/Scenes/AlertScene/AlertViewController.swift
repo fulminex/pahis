@@ -132,18 +132,17 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
         })
         
         NetworkManager.shared.sendIndependentAlert(token: currentUser.token, latitude: addressCordinates.latitude, longitude: addressCordinates.longitude, address: addressName, images: images, name: name, description: descripcion) { result in
+            UIViewController.removeSpinner(spinner: self.spinner)
             switch result {
             case .failure(let error):
-            UIViewController.removeSpinner(spinner: self.spinner)
                 let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
-            case .success(let success):
-                UIViewController.removeSpinner(spinner: self.spinner)
+            case .success(_):
                 let alert = UIAlertController(title: "Aviso", message: "Alerta enviada satisfactoriamente", preferredStyle: .alert)
-                 alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
-                    self.navigationController?.popViewController(animated: true)
-                 }))
+                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
+                    self.clearData()
+                }))
                 self.present(alert, animated: true)
             }
             
@@ -193,6 +192,15 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
 //            })
 //        })
         
+    }
+    
+    func clearData() {
+        nameTextField.text = ""
+        addressLabel.text = "Dirección"
+        addressLabel.textColor = .lightGray
+        descTextView.text = ""
+        photos.removeAll()
+        collectionView.reloadData()
     }
     
     //Insertar Funciones extra aqui
