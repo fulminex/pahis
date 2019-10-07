@@ -200,4 +200,11 @@ extension FiltersViewController: PopUpPickerViewDelegate {
             selectedDistrito = distritos?.filter({ $0.nombre == value }).first!
         }
     }
+    
+    func cancelButtonPressed(){
+        isCategory = false
+        isDepartment = false
+        isProvincia = false
+        isDistrito = false
+    }
 }

@@ -236,7 +236,8 @@ class NetworkManager {
                     completion(.failure(error))
                 }
             case .success(let categories):
-                let path = "inmuebles_query?page=\(page)&per_page=20&query=\(query)&category_id=\(categoriID)&latitude=\(latitud)&longitude=\(longitud)&cod_ubigeo=\(codUbigeo)"
+                let urlQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                let path = "inmuebles_query?page=\(page)&per_page=20&query=\(urlQuery)&category_id=\(categoriID)&latitude=\(latitud)&longitude=\(longitud)&cod_ubigeo=\(codUbigeo)"
                 let url = URL(string: self.baseURL + path)!
                 var request = URLRequest(url: url)
                 request.httpMethod = "GET"
