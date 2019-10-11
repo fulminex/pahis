@@ -727,7 +727,7 @@ class NetworkManager {
                                 }
                             } else {
                                 DispatchQueue.main.async {
-                                    completion(.success("Inmueble creado satisfactoriamente."))
+                                    completion(.success("Solicitud enviada satisfactoriamente."))
                                 }
                             }
                         }

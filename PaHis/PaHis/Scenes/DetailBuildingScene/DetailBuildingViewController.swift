@@ -38,7 +38,7 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = 60
 
-        let button = UIBarButtonItem(image: UIImage(named: "PlusIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(navigateToRegister))
+        let button = UIBarButtonItem(image: UIImage(named: "edit")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(navigateToRegister))
         self.navigationItem.rightBarButtonItem = button
     }
     

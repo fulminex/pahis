@@ -34,6 +34,11 @@ class ProfileTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = cancelBarButtonItem
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fillUserInfo()
+    }
+    
     func setupGesture() {
         let tap1 = UITapGestureRecognizer(target: self, action: #selector(navigateToAlertsHistory(sender:)))
         alertsLabel.isUserInteractionEnabled = true
