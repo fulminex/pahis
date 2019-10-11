@@ -14,6 +14,7 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var rePasswordTextField: UITextField!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var changePhotoLabel: UIButton!
     @IBOutlet weak var createUserButton: UIButton!
@@ -63,41 +64,60 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
             return
         }
         
-        let data = profileImageView.image!.jpegData(compressionQuality: 0.9)!
+        guard let rePass = rePasswordTextField.text, rePass == password else {
+            let alert = UIAlertController(title: "Aviso", message: "Error, confirme su contraseña.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
+        
+        let data = profileImageView.image!.jpegData(compressionQuality: 0.6)!.base64EncodedString()
+        
+        let file = [["data": data, "extension": "jpeg"]]
         
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         let spinner = UIViewController.displaySpinner(onView: self.view)
         
-        NetworkManager.shared.createUser(name: name, email: email, userType: userType, profilePicURL: "urlfotoperfildummy", password: password) { result in
+        NetworkManager.shared.uploadDocuments(files: file) { result in
             switch result {
             case .failure(let error):
-                self.navigationItem.rightBarButtonItem?.isEnabled = true
                 UIViewController.removeSpinner(spinner: spinner)
                 let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
-            case .success(let message):
-                let alert = UIAlertController(title: "Aviso", message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
-                    //Nos logueamos automáticamente
-                    NetworkManager.shared.login(email: email, password: password) { result in
-                        switch result {
-                        case .failure(let error):
-                            self.navigationItem.rightBarButtonItem?.isEnabled = true
-                            UIViewController.removeSpinner(spinner: spinner)
-                            let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                            self.present(alert, animated: true)
-                        case .success(let token):
-                            self.navigationItem.rightBarButtonItem?.isEnabled = true
-                            UIViewController.removeSpinner(spinner: spinner)
-                            UserDefaults.standard.set(token, forKey: "token")
-                            print("Usuario logueado exitosamente")
-                            self.dismiss(animated: true, completion: nil)
-                        }
+            case .success(let files):
+                NetworkManager.shared.createUser(name: name, email: email, userType: userType, profilePicURL: files.first!, password: password) { result in
+                    switch result {
+                    case .failure(let error):
+                        self.navigationItem.rightBarButtonItem?.isEnabled = true
+                        UIViewController.removeSpinner(spinner: spinner)
+                        let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        self.present(alert, animated: true)
+                    case .success(let message):
+                        let alert = UIAlertController(title: "Aviso", message: message, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
+                            //Nos logueamos automáticamente
+                            NetworkManager.shared.login(email: email, password: password) { result in
+                                switch result {
+                                case .failure(let error):
+                                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+                                    UIViewController.removeSpinner(spinner: spinner)
+                                    let alert = UIAlertController(title: "Aviso", message: error.errorDescription, preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                                    self.present(alert, animated: true)
+                                case .success(let token):
+                                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+                                    UIViewController.removeSpinner(spinner: spinner)
+                                    UserDefaults.standard.set(token, forKey: "token")
+                                    print("Usuario logueado exitosamente")
+                                    self.dismiss(animated: true, completion: nil)
+                                }
+                            }
+                        }))
+                        self.present(alert, animated: true)
                     }
-                }))
-                self.present(alert, animated: true)
+                }
             }
         }
     }

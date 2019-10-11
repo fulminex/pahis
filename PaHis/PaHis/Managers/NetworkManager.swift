@@ -84,7 +84,7 @@ class NetworkManager {
         let json: [String: Any] = ["name": name,
                                    "email": email,
                                    "user_type": userType,
-                                   "profile_pic_url": "xdxdxdxd",
+                                   "profile_pic_url": profilePicURL,
                                    "password": password]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         let path = "user"

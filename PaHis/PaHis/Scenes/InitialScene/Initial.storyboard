@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="2dd-Kl-D8g">
-                                <rect key="frame" x="35" y="183.66666666666663" width="344" height="252"/>
+                                <rect key="frame" x="35" y="57.666666666666686" width="344" height="504.00000000000006"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbu-Fr-Bjl">
                                 <rect key="frame" x="256" y="641" width="100" height="40"/>
