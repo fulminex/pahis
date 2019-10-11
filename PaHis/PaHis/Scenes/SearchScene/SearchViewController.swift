@@ -287,10 +287,10 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         let vc = sb.instantiateInitialViewController() as! DetailsBuildingViewController
         if  (resultSearchController.isActive) {
             building = filteredBuildingsPahis[indexPath.row]
-            vc.building = filteredPage?.items!.filter({ $0.name == building.name }).first!
+            vc.building = buildings.filter({ $0.name == building.name }).first!
         } else {
             building = displayedBuildingsPahis[indexPath.row]
-            vc.building = pageBuilding?.items!.filter({ $0.name == building.name }).first!
+            vc.building = buildings.filter({ $0.name == building.name }).first!
         }
         resultSearchController.isActive = false
         self.navigationController?.pushViewController(vc, animated: true)

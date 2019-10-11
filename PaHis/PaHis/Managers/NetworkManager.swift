@@ -237,7 +237,7 @@ class NetworkManager {
                 }
             case .success(let categories):
                 let urlQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                let path = "inmuebles_query?page=\(page)&per_page=20&query=\(urlQuery)&category_id=\(categoriID)&latitude=\(latitud)&longitude=\(longitud)&cod_ubigeo=\(codUbigeo)"
+                let path = "inmuebles_query?page=\(page)&per_page=10&query=\(urlQuery)&category_id=\(categoriID)&latitude=\(latitud)&longitude=\(longitud)&cod_ubigeo=\(codUbigeo)"
                 let url = URL(string: self.baseURL + path)!
                 var request = URLRequest(url: url)
                 request.httpMethod = "GET"
