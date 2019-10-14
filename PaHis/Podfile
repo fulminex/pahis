@@ -20,5 +20,7 @@ target 'PaHis' do
     pod 'GoogleMaps'
     
     pod 'LocationPickerViewController'
+    
+    pod "Agrume"
 
 end

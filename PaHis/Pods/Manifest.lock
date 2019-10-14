@@ -1,4 +1,6 @@
 PODS:
+  - Agrume (5.3.2):
+    - SwiftyGif
   - Firebase/Auth (5.4.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.2)
@@ -48,8 +50,10 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - SwiftyGif (5.1.1)
 
 DEPENDENCIES:
+  - Agrume
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -59,7 +63,7 @@ DEPENDENCIES:
   - LocationPickerViewController
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -74,8 +78,12 @@ SPEC REPOS:
     - leveldb-library
     - LocationPickerViewController
     - nanopb
+  trunk:
+    - Agrume
+    - SwiftyGif
 
 SPEC CHECKSUMS:
+  Agrume: 171c1d1079324195c7ce04af4c7a66d86a9cf952
   Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
   FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
   FirebaseAuth: 096e457cdd4274412a66c4a35874787e411f5a03
@@ -90,7 +98,8 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   LocationPickerViewController: 4f33d63587bca682267a09779de2b2e09cf5b8e2
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  SwiftyGif: f7702483db93586a41f04f4927cd682852a2fa10
 
-PODFILE CHECKSUM: b49159647d3593c3fb23a360ed2832c2c124051b
+PODFILE CHECKSUM: a957cb6c9c78d69a6cfee09bdb12a32d94b39c63
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.3
