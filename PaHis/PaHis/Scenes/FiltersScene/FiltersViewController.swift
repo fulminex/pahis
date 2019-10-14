@@ -34,6 +34,11 @@ class FiltersViewController: UIViewController {
     static var selectedProvincia: Ubigeo?
     static var selectedDistrito: Ubigeo?
     
+    var prevCategory: CategoryPahis?
+    var prevDepartment: Ubigeo?
+    var prevProvincia: Ubigeo?
+    var prevDistrito: Ubigeo?
+    
     var categories: [CategoryPahis]!
     var departments: [Ubigeo]?
     var provincias: [Ubigeo]?
@@ -43,6 +48,11 @@ class FiltersViewController: UIViewController {
     static var departmentValue: Int = 0
     static var provinciaValue: Int = 0
     static var distritoValue: Int = 0
+    
+    var prevCategoryValue: Int = 0
+    var prevDepartmentValue: Int = 0
+    var prevProvinciaValue: Int = 0
+    var prevDistritoValue: Int = 0
     
     var delegate: FilterPopUpDelegate!
     
@@ -55,17 +65,24 @@ class FiltersViewController: UIViewController {
     func setupFileds() {
         if let category = FiltersViewController.selectedCategory {
             categoryButton.setTitle(category.name, for: .normal)
+            prevCategory = category
         }
         if let department = FiltersViewController.selectedDepartment {
             departmentButton.setTitle(department.nombre, for: .normal)
+            prevDepartment = department
         }
         if let provincia = FiltersViewController.selectedProvincia {
             provinciaButton.setTitle(provincia.nombre, for: .normal)
+            prevProvincia = provincia
         }
         if let distrito = FiltersViewController.selectedDistrito {
             distritoButton.setTitle(distrito.nombre, for: .normal)
+            prevDistrito = distrito
         }
-        
+        prevCategoryValue = FiltersViewController.categoryValue
+        prevDepartmentValue = FiltersViewController.departmentValue
+        prevProvinciaValue = FiltersViewController.provinciaValue
+        prevDistritoValue = FiltersViewController.distritoValue
     }
     
     @IBAction func applyButtonPressed(_ sender: UIButton) {
@@ -84,6 +101,16 @@ class FiltersViewController: UIViewController {
     }
     
     @IBAction func cancelButton(_ sender: UIButton) {
+        FiltersViewController.selectedCategory = prevCategory
+        FiltersViewController.selectedDepartment = prevDepartment
+        FiltersViewController.selectedProvincia = prevProvincia
+        FiltersViewController.selectedDistrito = prevDistrito
+
+        FiltersViewController.distritoValue = prevDistritoValue
+        FiltersViewController.departmentValue = prevDepartmentValue
+        FiltersViewController.provinciaValue = prevProvinciaValue
+        FiltersViewController.distritoValue = prevDistritoValue
+        
         self.dismiss(animated: true, completion: nil)
     }
     
