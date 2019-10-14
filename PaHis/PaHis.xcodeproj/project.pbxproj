@@ -65,6 +65,8 @@
 		536562D922B535950051F848 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536562D722B535950051F848 /* Main.storyboard */; };
 		536562DB22B535970051F848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 536562DA22B535970051F848 /* Assets.xcassets */; };
 		536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536562DC22B535970051F848 /* LaunchScreen.storyboard */; };
+		5945977E2355050400F68BAE /* AlertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5945977D2355050400F68BAE /* AlertDetailViewController.swift */; };
+		594597802355051700F68BAE /* AlertDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5945977F2355051700F68BAE /* AlertDetail.storyboard */; };
 		5DC6E999233837A50029CBDF /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6E998233837A50029CBDF /* FiltersViewController.swift */; };
 		5DC6E99B233837B70029CBDF /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC6E99A233837B70029CBDF /* Filters.storyboard */; };
 		5DC6E99E23383B560029CBDF /* Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC6E99D23383B560029CBDF /* Picker.storyboard */; };
@@ -184,6 +186,8 @@
 		536562DA22B535970051F848 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		536562DD22B535970051F848 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		536562DF22B535970051F848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5945977D2355050400F68BAE /* AlertDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDetailViewController.swift; sourceTree = "<group>"; };
+		5945977F2355051700F68BAE /* AlertDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlertDetail.storyboard; sourceTree = "<group>"; };
 		5DC6E998233837A50029CBDF /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		5DC6E99A233837B70029CBDF /* Filters.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filters.storyboard; sourceTree = "<group>"; };
 		5DC6E99D23383B560029CBDF /* Picker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Picker.storyboard; sourceTree = "<group>"; };
@@ -477,6 +481,15 @@
 			path = PaHis;
 			sourceTree = "<group>";
 		};
+		5945977C235504DD00F68BAE /* AlertDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5945977D2355050400F68BAE /* AlertDetailViewController.swift */,
+				5945977F2355051700F68BAE /* AlertDetail.storyboard */,
+			);
+			path = AlertDetail;
+			sourceTree = "<group>";
+		};
 		5D3143DD23258E2200118E9E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -569,6 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				B3F951DF233D0C9F00F269AB /* EditProfile */,
+				5945977C235504DD00F68BAE /* AlertDetail */,
 				B3A172BB233C96A3006BA6DA /* AlertsHistory */,
 				B3B2282A233C34100030AD37 /* ProfileTableViewController.swift */,
 				B3B2282C233C34200030AD37 /* Profile.storyboard */,
@@ -699,6 +713,7 @@
 				535CCB7322B5583F00182DB9 /* Login.storyboard in Resources */,
 				5DC6E99B233837B70029CBDF /* Filters.storyboard in Resources */,
 				535CCBB822B5858700182DB9 /* style.json in Resources */,
+				594597802355051700F68BAE /* AlertDetail.storyboard in Resources */,
 				5312859D22B61DCC00E3AF5F /* Alert.storyboard in Resources */,
 				B330A2FA22B6740600528EC2 /* AR.storyboard in Resources */,
 				535CCBBD22B587D800182DB9 /* Search.storyboard in Resources */,
@@ -809,6 +824,7 @@
 				531285B022B6457D00E3AF5F /* Alerta.swift in Sources */,
 				B3F951E6233D10C500F269AB /* EditPasswordTableViewController.swift in Sources */,
 				0B6C36ED23103B9E0031D27B /* CoreData.xcdatamodeld in Sources */,
+				5945977E2355050400F68BAE /* AlertDetailViewController.swift in Sources */,
 				0BEBC4E22321908300335FA9 /* DetailBuildingTableViewCell.swift in Sources */,
 				B330A2F422B6736200528EC2 /* ARViewController.swift in Sources */,
 				B3158C3F22B55DE70008B035 /* UIColor.swift in Sources */,

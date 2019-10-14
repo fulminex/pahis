@@ -419,7 +419,7 @@ class NetworkManager {
         task.resume()
     }
     
-    func sendAlert(token: String, images: [[String:String]], id: Int, name: String, description: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
+    func sendAlert(token: String, images: [[String:String]], id: Int, name: String, description: String, address: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
         NetworkManager.shared.uploadDocuments(files: images) { result in
             switch result {
             case .failure(let error):
@@ -434,6 +434,7 @@ class NetworkManager {
                     "token": token,
                     "name": name,
                     "description": description,
+                    "address": address,
                     "inmueble_id": id,
                     "images": imageURLs
                 ]
