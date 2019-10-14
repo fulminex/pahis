@@ -181,7 +181,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         buildings = []
         self.page = 1
         isForced = true
-        fetchBuildings(page: self.page)
+        fetchBuildings(page: self.page, lat: String(currentLocation!.coordinate.latitude), long: String(currentLocation!.coordinate.longitude))
     }
     
 //    @objc func navigateToRegister() {
@@ -287,7 +287,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
         let vc = sb.instantiateInitialViewController() as! DetailsBuildingViewController
         if  (resultSearchController.isActive) {
             building = filteredBuildingsPahis[indexPath.row]
-            vc.building = buildings.filter({ $0.name == building.name }).first!
+            vc.building = filteredPage?.items!.filter({ $0.name == building.name }).first!
         } else {
             building = displayedBuildingsPahis[indexPath.row]
             vc.building = buildings.filter({ $0.name == building.name }).first!
@@ -311,11 +311,12 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let intTotalrow = tableView.numberOfRows(inSection:indexPath.section)//first get total rows in that section by current indexPath.
         //get last last row of tablview
-        if indexPath.row == intTotalrow - 4 {
+        if indexPath.row == intTotalrow - 2 {
             guard let pb = pageBuilding else { return }
             if pb.hasNext! {
                 isForced = true
-                fetchBuildings(page: page + 1, lat: String(currentLocation!.coordinate.latitude), long: String(currentLocation!.coordinate.longitude))
+                self.page += 1
+                fetchBuildings(page: self.page, lat: String(currentLocation!.coordinate.latitude), long: String(currentLocation!.coordinate.longitude))
             }
         }
     }
@@ -381,9 +382,10 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
             if  (self.resultSearchController.isActive) {
                 building = self.filteredBuildingsPahis[indexPath.row]
                 vc.building = self.filteredPage?.items!.filter({ $0.name == building.name }).first!
+                self.resultSearchController.isActive = false
             } else {
                 building = self.displayedBuildingsPahis[indexPath.row]
-                vc.building = self.pageBuilding?.items!.filter({ $0.name == building.name }).first!
+                vc.building = self.buildings.filter({ $0.name == building.name }).first!
             }
 //            vc.desc = building.desc
 //            vc.codBuild = building.codBuild
