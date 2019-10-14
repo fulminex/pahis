@@ -83,6 +83,10 @@ class FiltersViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func cancelButton(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func categoryButtonPressed(_ sender: UIButton) {
         isCategory = true
         openPicker(items: ["Todas"] + categories.map({ $0.name! }), index: FiltersViewController.categoryValue)

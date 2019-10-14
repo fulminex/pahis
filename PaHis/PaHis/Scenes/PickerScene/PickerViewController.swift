@@ -38,7 +38,8 @@ class PickerViewController: UIViewController {
     
     @IBAction func okButtonPressed(_ sender: Any) {
         let itemIndex = pickerView.selectedRow(inComponent: 0)
-        delegate.getItemSelected(value: self.itemSelected, index: itemIndex)
+        let value = items[itemIndex]
+        delegate.getItemSelected(value: value, index: itemIndex)
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {

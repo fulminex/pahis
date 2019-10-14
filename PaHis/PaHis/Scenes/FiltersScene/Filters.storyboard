@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="n5F-5z-cYr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="n5F-5z-cYr">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -105,10 +105,28 @@
                                             <action selector="applyButtonPressed:" destination="n5F-5z-cYr" eventType="touchUpInside" id="o4M-Jf-qXg"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DeleteIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Wzd-uq-moX">
+                                        <rect key="frame" x="300" y="2" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="jeV-Qz-ToW"/>
+                                            <constraint firstAttribute="width" constant="32" id="tG1-fv-NRG"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aut-k4-mnc">
+                                        <rect key="frame" x="300" y="2" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="3mu-Nr-VcR"/>
+                                            <constraint firstAttribute="width" constant="32" id="Jnw-NB-rNb"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="cancelButton:" destination="n5F-5z-cYr" eventType="touchUpInside" id="w5d-ID-vSm"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Stw-4B-awW" secondAttribute="trailing" constant="6" id="01T-ah-xPf"/>
+                                    <constraint firstItem="Wzd-uq-moX" firstAttribute="top" secondItem="jD4-oe-f0g" secondAttribute="top" constant="2" id="3hv-VL-759"/>
                                     <constraint firstItem="TFu-Nc-iNj" firstAttribute="top" secondItem="D6h-4t-4cv" secondAttribute="bottom" id="4Nz-fz-C2R"/>
                                     <constraint firstItem="pdg-Oe-8hI" firstAttribute="leading" secondItem="jD4-oe-f0g" secondAttribute="leading" constant="6" id="5JZ-yB-nIB"/>
                                     <constraint firstItem="yvt-eB-us5" firstAttribute="leading" secondItem="jD4-oe-f0g" secondAttribute="leading" constant="6" id="6z4-oE-kZE"/>
@@ -119,6 +137,8 @@
                                     <constraint firstItem="S2q-OU-vNK" firstAttribute="top" secondItem="EyT-AX-jXQ" secondAttribute="bottom" constant="6" id="IRf-QR-4ZO"/>
                                     <constraint firstItem="5TH-Mf-NOG" firstAttribute="centerX" secondItem="jD4-oe-f0g" secondAttribute="centerX" id="IYV-bC-k2n"/>
                                     <constraint firstItem="TFu-Nc-iNj" firstAttribute="leading" secondItem="jD4-oe-f0g" secondAttribute="leading" constant="6" id="K10-EL-6hV"/>
+                                    <constraint firstAttribute="trailing" secondItem="aut-k4-mnc" secondAttribute="trailing" constant="2" id="KpK-P0-bDI"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wzd-uq-moX" secondAttribute="trailing" constant="2" id="OIa-Bl-0tO"/>
                                     <constraint firstAttribute="bottom" secondItem="S2q-OU-vNK" secondAttribute="bottom" id="Ose-6A-Y6L"/>
                                     <constraint firstAttribute="trailing" secondItem="yvt-eB-us5" secondAttribute="trailing" constant="6" id="RZv-6c-vik"/>
                                     <constraint firstItem="pdg-Oe-8hI" firstAttribute="top" secondItem="z5f-0k-PhG" secondAttribute="bottom" id="Vay-HO-rPm"/>
@@ -134,6 +154,7 @@
                                     <constraint firstItem="78e-27-quM" firstAttribute="leading" secondItem="jD4-oe-f0g" secondAttribute="leading" constant="6" id="lVi-3Z-i6N"/>
                                     <constraint firstAttribute="trailing" secondItem="78e-27-quM" secondAttribute="trailing" constant="6" id="lqo-QV-AIc"/>
                                     <constraint firstAttribute="trailing" secondItem="S2q-OU-vNK" secondAttribute="trailing" id="pme-rg-Xmh"/>
+                                    <constraint firstItem="aut-k4-mnc" firstAttribute="top" secondItem="jD4-oe-f0g" secondAttribute="top" constant="2" id="qFW-E4-VSx"/>
                                     <constraint firstItem="S2q-OU-vNK" firstAttribute="leading" secondItem="jD4-oe-f0g" secondAttribute="leading" id="qGS-jQ-GuL"/>
                                     <constraint firstAttribute="trailing" secondItem="z5f-0k-PhG" secondAttribute="trailing" constant="6" id="t6Z-Od-Dh2"/>
                                     <constraint firstItem="D6h-4t-4cv" firstAttribute="leading" secondItem="jD4-oe-f0g" secondAttribute="leading" constant="6" id="tvt-qe-PLe"/>
@@ -163,4 +184,7 @@
             <point key="canvasLocation" x="-14" y="80"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="DeleteIcon" width="64" height="64"/>
+    </resources>
 </document>
