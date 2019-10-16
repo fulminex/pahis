@@ -58,14 +58,14 @@ class InitialViewController: UIViewController {
         let searchSB = UIStoryboard(name: "Search", bundle:nil)
         let searchVC = searchSB.instantiateInitialViewController()!
         searchVC.tabBarItem = UITabBarItem(title: "Buscar" , image: UIImage(named: "SearchIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 1)
-        searchVC.title = "Buscar"
+        searchVC.title = "Lugares Cercanos"
         controllers.append(UINavigationController(rootViewController: searchVC))
         
 //        if userTypeName == "Voluntario" {
         let alertSB = UIStoryboard(name: "Alert", bundle: nil)
         let alertVC = alertSB.instantiateInitialViewController()!
         alertVC.tabBarItem = UITabBarItem(title: "Alertas" , image: UIImage(named: "alert")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 4)
-        alertVC.title = "Alertas"
+        alertVC.title = "Denuncia"
         controllers.append(UINavigationController(rootViewController: alertVC))
 //        }
         
