@@ -72,7 +72,7 @@ class SwipeAlertTableViewController: UITableViewController, UITextViewDelegate {
         spinner = UIViewController.displaySpinner(onView: self.view)
         let encodedImage = alertImage.jpegData(compressionQuality: 0.6)!.base64EncodedString()
         let images = [["data":encodedImage,"extension":"jpeg"]]
-        NetworkManager.shared.sendAlert(token: currentUser.token, images: images, id: Int(id), name: name, description: description) { result in
+        NetworkManager.shared.sendAlert(token: currentUser.token, images: images, id: Int(id), name: name, description: description, address: building.address ?? "-") { result in
             switch result {
             case .failure(let error):
                 UIViewController.removeSpinner(spinner: self.spinner)

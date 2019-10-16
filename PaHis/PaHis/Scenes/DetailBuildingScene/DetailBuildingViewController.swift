@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Agrume
 
 class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
@@ -38,7 +39,7 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = 60
 
-        let button = UIBarButtonItem(image: UIImage(named: "PlusIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(navigateToRegister))
+        let button = UIBarButtonItem(image: UIImage(named: "edit")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(navigateToRegister))
         self.navigationItem.rightBarButtonItem = button
     }
     
@@ -66,6 +67,20 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailBuildingCollectionViewCell.identifier, for: indexPath) as! DetailBuildingCollectionViewCell
         cell.urlImageRaw = self.building.images![indexPath.row].url
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var urls = [URL]()
+        self.building.images?.forEach({
+            if let url = URL(string: $0.url!) {
+                urls.append(url)
+            }
+        })
+        let agrume = Agrume(urls: urls, startIndex: indexPath.item, background: .blurred(.dark))
+        agrume.didScroll = { [unowned self] index in
+          self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: [], animated: false)
+        }
+        agrume.show(from: self)
     }
     
     // MARK:- Funciones del delegate del tableView

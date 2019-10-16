@@ -84,7 +84,7 @@ class NetworkManager {
         let json: [String: Any] = ["name": name,
                                    "email": email,
                                    "user_type": userType,
-                                   "profile_pic_url": "xdxdxdxd",
+                                   "profile_pic_url": profilePicURL,
                                    "password": password]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         let path = "user"
@@ -237,7 +237,7 @@ class NetworkManager {
                 }
             case .success(let categories):
                 let urlQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-                let path = "inmuebles_query?page=\(page)&per_page=20&query=\(urlQuery)&category_id=\(categoriID)&latitude=\(latitud)&longitude=\(longitud)&cod_ubigeo=\(codUbigeo)"
+                let path = "inmuebles_query?page=\(page)&per_page=10&query=\(urlQuery)&category_id=\(categoriID)&latitude=\(latitud)&longitude=\(longitud)&cod_ubigeo=\(codUbigeo)"
                 let url = URL(string: self.baseURL + path)!
                 var request = URLRequest(url: url)
                 request.httpMethod = "GET"
@@ -419,7 +419,7 @@ class NetworkManager {
         task.resume()
     }
     
-    func sendAlert(token: String, images: [[String:String]], id: Int, name: String, description: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
+    func sendAlert(token: String, images: [[String:String]], id: Int, name: String, description: String, address: String, completion: @escaping (Result<String,NetworkError>) -> Void) {
         NetworkManager.shared.uploadDocuments(files: images) { result in
             switch result {
             case .failure(let error):
@@ -434,6 +434,7 @@ class NetworkManager {
                     "token": token,
                     "name": name,
                     "description": description,
+                    "address": address,
                     "inmueble_id": id,
                     "images": imageURLs
                 ]
@@ -727,7 +728,7 @@ class NetworkManager {
                                 }
                             } else {
                                 DispatchQueue.main.async {
-                                    completion(.success("Inmueble creado satisfactoriamente."))
+                                    completion(.success("Solicitud enviada satisfactoriamente."))
                                 }
                             }
                         }

@@ -108,5 +108,13 @@ class AlertsHistoryViewController: UIViewController, UICollectionViewDataSource,
         cell.detailsLabel.attributedText = details
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let alert = displayedAlerts[indexPath.row]
+        let sb = UIStoryboard(name: "AlertDetail", bundle: nil)
+        let vc = sb.instantiateInitialViewController() as! AlertDetailViewController
+        vc.alert = alert
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
 }

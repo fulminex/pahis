@@ -8,13 +8,14 @@
 import UIKit
 
 protocol PopUpPickerViewDelegate {
-    func getItemSelected( value: String)
+    func getItemSelected(value: String,index: Int)
     func cancelButtonPressed()
 }
 
 class PickerViewController: UIViewController {
     
     var items: [String]!
+    var index: Int!
     var itemSelected = ""
     
     var delegate: PopUpPickerViewDelegate!
@@ -32,10 +33,13 @@ class PickerViewController: UIViewController {
     func setupView(){
         pickerView.delegate = self
         self.itemSelected = items.first ?? ""
+        pickerView.selectRow(index, inComponent: 0, animated: true)
     }
     
     @IBAction func okButtonPressed(_ sender: Any) {
-        delegate.getItemSelected(value: self.itemSelected)
+        let itemIndex = pickerView.selectedRow(inComponent: 0)
+        let value = items[itemIndex]
+        delegate.getItemSelected(value: value, index: itemIndex)
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {
