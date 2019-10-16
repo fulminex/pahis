@@ -21,7 +21,7 @@ class LoginTableViewController: UITableViewController {
         let cancelBarButtonItem = UIBarButtonItem(image: UIImage(named: "CancelIcon"), style: .plain, target: self, action: #selector(cancelButtonTapped))
         self.navigationController?.navigationBar.tintColor  = UIColor(rgb: 0xF5391C)
         self.navigationItem.rightBarButtonItem = cancelBarButtonItem
-        self.loginButton.backgroundColor = UIColor(rgb: 0xF5391C)
+        self.loginButton.backgroundColor = .black
     }
     
     @objc func cancelButtonTapped() {
