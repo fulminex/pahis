@@ -32,7 +32,7 @@ class CreateUserTableViewController: UITableViewController , UIImagePickerContro
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2
         self.profileImageView.clipsToBounds = true
         self.changePhotoLabel.tintColor = UIColor(rgb: 0xF5391C)
-        self.createUserButton.backgroundColor = UIColor(rgb: 0xF5391C)
+        self.createUserButton.backgroundColor = .black
     }
     
     @objc func cancelButtonTapped() {
