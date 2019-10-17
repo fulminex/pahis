@@ -58,13 +58,13 @@ class SwipeAlertTableViewController: UITableViewController, UITextViewDelegate {
             return
         }
         guard nameTextField.text != "", let name = nameTextField.text  else {
-            let alert = UIAlertController(title: "Aviso", message: "Ingrese un nombre para la alerta", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese un nombre para la denuncia", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
             self.present(alert, animated: true)
             return
         }
         guard textView.text != "", textView.text != placeholder, let description = textView.text  else {
-            let alert = UIAlertController(title: "Aviso", message: "Ingrese una descripción para la alerta", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Aviso", message: "Ingrese una descripción para la denuncia", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
             self.present(alert, animated: true)
             return
@@ -81,7 +81,7 @@ class SwipeAlertTableViewController: UITableViewController, UITextViewDelegate {
                 self.present(alert, animated: true)
             case .success(let success):
                 UIViewController.removeSpinner(spinner: self.spinner)
-                let alert = UIAlertController(title: "Aviso", message: "Alerta enviada satisfactoriamente", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Aviso", message: "denuncia enviada satisfactoriamente", preferredStyle: .alert)
                  alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
                     self.navigationController?.popViewController(animated: true)
                  }))

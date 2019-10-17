@@ -48,7 +48,7 @@ class PlaceListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Lugares Cercanos"
+        self.title = "Patrimonios"
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
         } else {
