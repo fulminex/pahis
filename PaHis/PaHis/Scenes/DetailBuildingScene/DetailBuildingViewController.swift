@@ -8,6 +8,8 @@
 
 import UIKit
 import Agrume
+import Kingfisher
+import MapKit
 
 class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
@@ -16,8 +18,11 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var addressTextView: UITextView!
+    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var detailHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var heightTableViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var documentsTitleLabel: UILabel!
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
@@ -35,15 +40,31 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
         if let category = building.category {
             categoryLabel.text = category.name ?? ""
         }
-        addressTextView.text = building.address
-        addressTextView.adjustContentSize()
+        addressLabel.text = building.address
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = 60
         
-//        let sizeThatFitsTextView = descriptionTextView.sizeThatFits(CGSize(width: descriptionTextView.bounds.width, height: CGFloat(MAXFLOAT)))
-//        detailHeightConstraint.constant = max(44, sizeThatFitsTextView.height)
+        if let lat = building.latitude, let long = building.longitude {
+            let location = CLLocationCoordinate2D(latitude: lat,
+                                                  longitude: long)
+            
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: 500, longitudinalMeters: 500)
+                mapView.setRegion(region, animated: true)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            annotation.title = building.name ?? "Sin nombre"
+            annotation.subtitle = building.category?.name ?? "Sin categoría"
+            mapView.addAnnotation(annotation)
+        } else {
+            mapView.isHidden = true
+        }
         
-
+        if building.documents!.isEmpty {
+            documentsTitleLabel.isHidden = true
+            heightTableViewConstraint.constant = 0
+            tableView.isHidden = true
+        }
+        
         let button = UIBarButtonItem(image: UIImage(named: "edit")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(navigateToRegister))
         self.navigationItem.rightBarButtonItem = button
     }
