@@ -58,7 +58,7 @@ class InitialViewController: UIViewController {
         let searchSB = UIStoryboard(name: "Search", bundle:nil)
         let searchVC = searchSB.instantiateInitialViewController()!
         searchVC.tabBarItem = UITabBarItem(title: "Buscar" , image: UIImage(named: "SearchIcon")?.resizeImageWith(newSize: CGSize(width: 33, height: 33)), tag: 1)
-        searchVC.title = "Lugares Cercanos"
+        searchVC.title = "Patrimonios"
         controllers.append(UINavigationController(rootViewController: searchVC))
         
 //        if userTypeName == "Voluntario" {

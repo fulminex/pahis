@@ -38,7 +38,7 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
         }
-        title = "Alerta"
+        title = "Denuncia"
         setupView()
     }
     
@@ -143,7 +143,7 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
                 alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
             case .success(_):
-                let alert = UIAlertController(title: "Aviso", message: "Alerta enviada satisfactoriamente", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Aviso", message: "Denuncia enviada satisfactoriamente", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
                     self.clearData()
                     self.navigationController?.popViewController(animated: true)
