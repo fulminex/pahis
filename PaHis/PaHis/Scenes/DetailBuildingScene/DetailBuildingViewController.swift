@@ -8,15 +8,21 @@
 
 import UIKit
 import Agrume
+import Kingfisher
+import MapKit
 
 class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
     var building: BuildingPahis!
     
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var addressTextView: UITextView!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var detailHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var heightTableViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var documentsTitleLabel: UILabel!
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
@@ -29,21 +35,57 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
     func setupView() {
         title = building.name ?? "Este patrimonio no tiene nombre"
         nameLabel.text = building.name ?? "Este patrimonio no tiene nombre"
-        descriptionTextView.text = building.buildingDescription ?? "No hay descripción disponible."
-        descriptionTextView.adjustContentSize()
+        descriptionLabel.text = building.buildingDescription ?? "No hay descripción disponible."
+        
         if let category = building.category {
             categoryLabel.text = category.name ?? ""
         }
-        addressTextView.text = building.address
-        addressTextView.adjustContentSize()
+        addressLabel.text = building.address
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = 60
-
+        
+        if let lat = building.latitude, let long = building.longitude {
+            let location = CLLocationCoordinate2D(latitude: lat,
+                                                  longitude: long)
+            
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: 500, longitudinalMeters: 500)
+                mapView.setRegion(region, animated: true)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            annotation.title = building.name ?? "Sin nombre"
+            annotation.subtitle = building.category?.name ?? "Sin categoría"
+            mapView.addAnnotation(annotation)
+        } else {
+            mapView.isHidden = true
+        }
+        
+        if building.documents!.isEmpty {
+            documentsTitleLabel.isHidden = true
+            heightTableViewConstraint.constant = 0
+            tableView.isHidden = true
+        }
+        
         let button = UIBarButtonItem(image: UIImage(named: "edit")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(navigateToRegister))
         self.navigationItem.rightBarButtonItem = button
     }
     
     // MARK: - Otras funciones xd
+    
+    func heightForLabel(text:String, font:UIFont, width:CGFloat) -> CGFloat
+    {
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = font
+        label.text = text
+
+        label.sizeToFit()
+
+
+
+        return label.frame.height
+
+    }
     
     @objc func navigateToRegister() {
         let sb = UIStoryboard(name: "Register", bundle: nil)

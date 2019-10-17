@@ -12,6 +12,7 @@ class EditPasswordTableViewController: UITableViewController {
 
     @IBOutlet weak var currentPasswordTextField: UITextField!
     @IBOutlet weak var newPasswordTextField: UITextField!
+    @IBOutlet weak var reNewPasswordTxt: UITextField!
     
     var spinner = UIView()
     
@@ -32,7 +33,14 @@ class EditPasswordTableViewController: UITableViewController {
             return
         }
         guard let newPassword = newPasswordTextField.text, newPassword.count != 0 else {
-            let alert = UIAlertController(title: "Aviso", message: "Ingresa tu nueva contraseña actual.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Aviso", message: "Ingresa tu nueva contraseña.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            UIViewController.removeSpinner(spinner: spinner)
+            self.present(alert, animated: true)
+            return
+        }
+        guard let rePass = reNewPasswordTxt.text, newPassword == rePass else {
+            let alert = UIAlertController(title: "Aviso", message: "Las contraseñas nuevas no coinciden.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
             UIViewController.removeSpinner(spinner: spinner)
             self.present(alert, animated: true)
