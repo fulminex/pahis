@@ -38,7 +38,7 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
         }
-        title = "Alertas"
+        title = "Alerta"
         setupView()
     }
     
@@ -59,7 +59,7 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
         view.endEditing(true)
     }
     
-    @IBAction func cameraButtonPressed(_ sender: Any) {
+    @IBAction func cameraButtonPressed(_ sender: UIButton) {
         //Insertar funcion para cambiar imagen aqui
         let alert = UIAlertController(title: "Aviso", message: "Elige desde donde deseas agregar una foto", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Abrir cámara", style: .default, handler: { (action) in
@@ -69,6 +69,10 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
             self.openPhotoLibrary()
         }))
         alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        if let popoverPresentationController = alert.popoverPresentationController {
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = sender.bounds
+        }
         self.present(alert, animated: true)
     }
     
@@ -142,6 +146,7 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
                 let alert = UIAlertController(title: "Aviso", message: "Alerta enviada satisfactoriamente", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: { _ in
                     self.clearData()
+                    self.navigationController?.popViewController(animated: true)
                 }))
                 self.present(alert, animated: true)
             }

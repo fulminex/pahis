@@ -14,9 +14,10 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
     var building: BuildingPahis!
     
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var addressTextView: UITextView!
+    @IBOutlet weak var detailHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
@@ -29,8 +30,8 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
     func setupView() {
         title = building.name ?? "Este patrimonio no tiene nombre"
         nameLabel.text = building.name ?? "Este patrimonio no tiene nombre"
-        descriptionTextView.text = building.buildingDescription ?? "No hay descripción disponible."
-        descriptionTextView.adjustContentSize()
+        descriptionLabel.text = building.buildingDescription ?? "No hay descripción disponible."
+        
         if let category = building.category {
             categoryLabel.text = category.name ?? ""
         }
@@ -38,12 +39,32 @@ class DetailsBuildingViewController: UIViewController, UICollectionViewDelegate,
         addressTextView.adjustContentSize()
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = 60
+        
+//        let sizeThatFitsTextView = descriptionTextView.sizeThatFits(CGSize(width: descriptionTextView.bounds.width, height: CGFloat(MAXFLOAT)))
+//        detailHeightConstraint.constant = max(44, sizeThatFitsTextView.height)
+        
 
         let button = UIBarButtonItem(image: UIImage(named: "edit")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(navigateToRegister))
         self.navigationItem.rightBarButtonItem = button
     }
     
     // MARK: - Otras funciones xd
+    
+    func heightForLabel(text:String, font:UIFont, width:CGFloat) -> CGFloat
+    {
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = font
+        label.text = text
+
+        label.sizeToFit()
+
+
+
+        return label.frame.height
+
+    }
     
     @objc func navigateToRegister() {
         let sb = UIStoryboard(name: "Register", bundle: nil)

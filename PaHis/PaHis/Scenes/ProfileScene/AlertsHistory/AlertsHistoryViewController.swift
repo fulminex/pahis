@@ -24,7 +24,7 @@ class AlertsHistoryViewController: UIViewController, UICollectionViewDataSource,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Alertas realizadas"
+        self.title = "Denuncias"
         let width = (view.frame.size.width - 30) / 1
         let cellSize = CGSize(width: width, height: 90)
 
@@ -39,7 +39,18 @@ class AlertsHistoryViewController: UIViewController, UICollectionViewDataSource,
         yellowView.layer.cornerRadius = 5
         grennView.layer.cornerRadius = 5
         redView.layer.cornerRadius = 5
+        let button = UIBarButtonItem(image: UIImage(named: "PlusIcon")?.resizeImageWith(newSize: CGSize(width: 22, height: 22)), style: .plain, target: self, action: #selector(navigateToAlertr))
+        self.navigationItem.rightBarButtonItem = button
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         fetchAlerts()
+    }
+    
+    @objc func navigateToAlertr() {
+        let sb = UIStoryboard(name: "Alert", bundle: nil)
+        let vc = sb.instantiateInitialViewController() as! AlertTableViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func fetchAlerts() {
