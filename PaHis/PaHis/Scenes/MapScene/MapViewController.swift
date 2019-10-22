@@ -142,6 +142,10 @@ class MapViewController: UIViewController, GMUClusterManagerDelegate, GMSMapView
                 self.goWithWaze()
             }))
             alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+            if let popoverPresentationController = alert.popoverPresentationController {
+                popoverPresentationController.sourceView = self.view
+                popoverPresentationController.sourceRect = CGRect(x: 0, y: 0, width: 1, height: 1)
+            }
             self.present(alert, animated: true)
         case (true, false):
             goWithGoogleMaps()

@@ -55,6 +55,10 @@ class UsserInfoTableViewController: UITableViewController {
             self.openPhotoLibrary()
         }))
         alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        if let popoverPresentationController = alert.popoverPresentationController {
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = sender.bounds
+        }
         self.present(alert, animated: true)
     }
 

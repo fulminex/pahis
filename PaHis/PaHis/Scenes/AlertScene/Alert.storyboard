@@ -225,12 +225,43 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="Yjq-ch-fSQ">
+                                        <rect key="frame" x="0.0" y="481.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yjq-ch-fSQ" id="9dZ-WK-V1p">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nochecked" translatesAutoresizingMaskIntoConstraints="NO" id="Vjd-Cg-S6D">
+                                                    <rect key="frame" x="16" y="12.5" width="19" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="19" id="WYc-K0-cdO"/>
+                                                        <constraint firstAttribute="height" constant="19" id="eDK-Li-OH2"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acepta el uso de su información por el Ministerio de Cultura" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FU9-X9-DFq">
+                                                    <rect key="frame" x="43" y="0.0" width="359" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="FU9-X9-DFq" secondAttribute="trailing" constant="12" id="3Tb-Yx-MSF"/>
+                                                <constraint firstItem="Vjd-Cg-S6D" firstAttribute="centerY" secondItem="9dZ-WK-V1p" secondAttribute="centerY" id="CjS-BY-Bfb"/>
+                                                <constraint firstItem="FU9-X9-DFq" firstAttribute="bottom" secondItem="9dZ-WK-V1p" secondAttribute="bottom" id="CmW-oE-Pgg"/>
+                                                <constraint firstItem="FU9-X9-DFq" firstAttribute="leading" secondItem="Vjd-Cg-S6D" secondAttribute="trailing" constant="8" id="Uqk-Kg-lF1"/>
+                                                <constraint firstItem="FU9-X9-DFq" firstAttribute="top" secondItem="9dZ-WK-V1p" secondAttribute="top" id="Zrn-Xh-tN4"/>
+                                                <constraint firstItem="Vjd-Cg-S6D" firstAttribute="leading" secondItem="9dZ-WK-V1p" secondAttribute="leading" constant="16" id="oSj-BW-fmc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="tK5-ZC-FHE">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="X4h-Xr-ZPT">
-                                        <rect key="frame" x="0.0" y="517.5" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="561.5" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X4h-Xr-ZPT" id="SNK-D7-0mh">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -273,6 +304,7 @@
                         <outlet property="descTextView" destination="PL8-1J-32G" id="3b3-hY-gWn"/>
                         <outlet property="nameTextField" destination="4gC-zQ-ot4" id="5Ur-pI-cR7"/>
                         <outlet property="tableView" destination="0xK-4W-zn7" id="ir1-KQ-gjw"/>
+                        <outlet property="termsImageView" destination="Vjd-Cg-S6D" id="M56-fc-YkC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eiC-hy-yDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -286,5 +318,6 @@
         <image name="brujula" width="256" height="256"/>
         <image name="defaultBuilding" width="350" height="280.5"/>
         <image name="description" width="256" height="256"/>
+        <image name="nochecked" width="128" height="128"/>
     </resources>
 </document>
