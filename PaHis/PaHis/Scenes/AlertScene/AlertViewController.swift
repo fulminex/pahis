@@ -21,11 +21,13 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
     @IBOutlet weak var descTextView: UITextView!
     @IBOutlet weak var cameraUIImage: UIImageView!
     @IBOutlet weak var createButton: UIButton!
+    @IBOutlet weak var termsImageView: UIImageView!
     
     var photos = [UIImage]()
     let placeholder = "Ingrese una descripción del daño o modificación"
     var addressLocation: (latitude: Double, longitude: Double)?
     private var spinner = UIView()
+    var isTermsAcepted = false
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -50,6 +52,10 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
         addressLabel.addGestureRecognizer(tapGesture)
         addressLabel.isUserInteractionEnabled = true
         
+        let tapTerms = UITapGestureRecognizer(target: self, action: #selector(termsTapped))
+        termsImageView.addGestureRecognizer(tapTerms)
+        termsImageView.isUserInteractionEnabled = true
+        
         descTextView.text = placeholder
         descTextView.textColor = UIColor.lightGray
         descTextView.delegate = self
@@ -57,6 +63,11 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    @objc func termsTapped() {
+        isTermsAcepted.toggle()
+        termsImageView.image = isTermsAcepted ? UIImage(named: "checked") : UIImage(named: "nochecked")
     }
     
     @IBAction func cameraButtonPressed(_ sender: UIButton) {
@@ -125,7 +136,12 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
             self.present(alert, animated: true)
             return
         }
-        
+        guard isTermsAcepted else {
+            let alert = UIAlertController(title: "Aviso", message: "Acepte el uso de su información para continuar", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
         
         spinner = UIViewController.displaySpinner(onView: self.view)
         
@@ -152,51 +168,6 @@ class AlertTableViewController: UITableViewController, UIImagePickerControllerDe
             }
             
         }
-        
-//        let spinner = UIViewController.displaySpinner(onView: self.view)
-        
-//        let data = cameraUIImage.image!.jpegData(compressionQuality: 0.9)!
-//        let alertaImageRef = Storage.storage().reference().child("alertaImages/\(UUID().uuidString).jpg")
-//        _ = alertaImageRef.putData(data, metadata: nil, completion: { (metadata, error) in
-//            guard error == nil else {
-//                UIViewController.removeSpinner(spinner: spinner)
-//                self.navigationItem.rightBarButtonItem?.isEnabled = true
-//                print("Error al subir la imagen de perfil: ", error!.localizedDescription)
-//                return
-//            }
-//            guard let metadata = metadata else {
-//                UIViewController.removeSpinner(spinner: spinner)
-//                self.navigationItem.rightBarButtonItem?.isEnabled = true
-//                print("No hay metadata")
-//                return
-//            }
-//            guard let user = Auth.auth().currentUser else {
-//                UIViewController.removeSpinner(spinner: spinner)
-//                self.navigationItem.rightBarButtonItem?.isEnabled = true
-//                return
-//            }
-//            alertaImageRef.downloadURL(completion: { (url, error) in
-//                guard error == nil else {
-//                    UIViewController.removeSpinner(spinner: spinner)
-//                    self.navigationItem.rightBarButtonItem?.isEnabled = true
-//                    print("Error al obtener la url del profile")
-//                    return
-//                }
-//                guard let downloadURL = url else {
-//                    UIViewController.removeSpinner(spinner: spinner)
-//                    return
-//                }
-//                let ref = Database.database().reference()
-//                ref.child("alertas").child(user.uid).child(UUID().uuidString).setValue(["photo": downloadURL.absoluteString, "descripcion": descripcion, "codInmueble" : self.codBuild, "dirección" : self.direccion])
-//                UIViewController.removeSpinner(spinner: spinner)
-//                let alert = UIAlertController(title: "Aviso", message: "Registro enviado satisfactoriamente", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-//                    _ = self.navigationController?.popViewController(animated: true)
-//                }))
-//                self.present(alert, animated: true)
-//            })
-//        })
-        
     }
     
     func clearData() {
