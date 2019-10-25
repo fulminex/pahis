@@ -166,11 +166,11 @@ class NetworkManager {
                     user.type = type
                     user.token = token
                     let dateFormatterGet = DateFormatter()
-                    dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+                    dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                     if let date = dateFormatterGet.date(from: dateCreatedRaw) {
                         user.dateCreatedRaw = date
                     } else {
-                        user.dateCreatedRaw = dateFormatterGet.date(from: "2001-01-01T01:48:07.883497")!
+                        user.dateCreatedRaw = dateFormatterGet.date(from: "2001-01-01T01:48:07")!
                     }
                     _ = self.persistanceManager.fetch(User.self).filter({ !$0.hasChanges }).forEach({ self.persistanceManager.delete($0) })
                     self.persistanceManager.save()
