@@ -93,6 +93,7 @@ class MapViewController: UIViewController, GMUClusterManagerDelegate, GMSMapView
         // Register self to listen to both GMUClusterManagerDelegate and GMSMapViewDelegate events.
         clusterManager.setDelegate(self, mapDelegate: self)
         
+        addPath()
         setupNavigationButton()
     }
     
@@ -259,6 +260,18 @@ class MapViewController: UIViewController, GMUClusterManagerDelegate, GMSMapView
         //        marker.snippet = "Ubicado a \(distanceInKilometers) Kilometros"
         marker.icon = GMSMarker.markerImage(with: nil)
         marker.icon = GMSMarker.markerImage(with: .black)
+    }
+    
+    func addPath() {
+        let path = GMSMutablePath()
+        let limits = Map.limits
+        limits.forEach({
+            path.add(CLLocationCoordinate2D(latitude: $0[1], longitude: $0[0]))
+        })
+        let rectangle = GMSPolyline(path: path)
+        rectangle.strokeWidth = 2.0
+        rectangle.strokeColor = UIColor(named: "RojoPahis")!
+        rectangle.map = self.mapView
     }
 }
 

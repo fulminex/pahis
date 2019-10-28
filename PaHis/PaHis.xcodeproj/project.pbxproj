@@ -67,6 +67,7 @@
 		536562DE22B535970051F848 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536562DC22B535970051F848 /* LaunchScreen.storyboard */; };
 		5945977E2355050400F68BAE /* AlertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5945977D2355050400F68BAE /* AlertDetailViewController.swift */; };
 		594597802355051700F68BAE /* AlertDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5945977F2355051700F68BAE /* AlertDetail.storyboard */; };
+		59FB810323673C9F000F014B /* Limits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FB810223673C9F000F014B /* Limits.swift */; };
 		5DC6E999233837A50029CBDF /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6E998233837A50029CBDF /* FiltersViewController.swift */; };
 		5DC6E99B233837B70029CBDF /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC6E99A233837B70029CBDF /* Filters.storyboard */; };
 		5DC6E99E23383B560029CBDF /* Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC6E99D23383B560029CBDF /* Picker.storyboard */; };
@@ -188,6 +189,7 @@
 		536562DF22B535970051F848 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5945977D2355050400F68BAE /* AlertDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDetailViewController.swift; sourceTree = "<group>"; };
 		5945977F2355051700F68BAE /* AlertDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlertDetail.storyboard; sourceTree = "<group>"; };
+		59FB810223673C9F000F014B /* Limits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Limits.swift; sourceTree = "<group>"; };
 		5DC6E998233837A50029CBDF /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		5DC6E99A233837B70029CBDF /* Filters.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filters.storyboard; sourceTree = "<group>"; };
 		5DC6E99D23383B560029CBDF /* Picker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Picker.storyboard; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 			children = (
 				535CCB8322B5680400182DB9 /* MapViewController.swift */,
 				535CCB8522B5681000182DB9 /* Map.storyboard */,
+				59FB810223673C9F000F014B /* Limits.swift */,
 			);
 			path = MapScene;
 			sourceTree = "<group>";
@@ -817,6 +820,7 @@
 				0B685B90231EFB2A00676C72 /* RegisterCollectionViewCell.swift in Sources */,
 				531285AC22B644D800E3AF5F /* AlertaTableViewCell.swift in Sources */,
 				531285A822B643FE00E3AF5F /* ListadoAlertaViewController.swift in Sources */,
+				59FB810323673C9F000F014B /* Limits.swift in Sources */,
 				535CCBBF22B5884100182DB9 /* SearchTableViewCell.swift in Sources */,
 				0B2A36D32320647B00136223 /* DetailBuildingViewController.swift in Sources */,
 				535CCB8422B5680400182DB9 /* MapViewController.swift in Sources */,
